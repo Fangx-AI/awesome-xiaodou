@@ -1,0 +1,200 @@
+[
+  {
+    "id": "S1",
+    "author": "App Store：小豆",
+    "url": "https://apps.apple.com/cn/app/id6815582077",
+    "note": "应用身份、开发者、商店功能介绍；动态信息以商店为准",
+    "access": "公开页面或可读搜索索引；见检索记录",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S2",
+    "author": "每日经济新闻：豆包 AI 个人助理“小豆”开启邀请制公测",
+    "url": "https://www.nbd.com.cn/articles/2026-11-24/4656943.html",
+    "note": "邀请制；授权连接；健康汇总、商品降价、券到期和日程冲突场景",
+    "access": "公开页面或可读搜索索引；见检索记录",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S3",
+    "author": "北京日报：豆包“上新”，个人 AI 助力“小豆”开启公测",
+    "url": "https://news.bjd.com.cn/2026/11/24/12041637.shtml",
+    "note": "对官方演示的转述：猫粮补货、餐厅电话；电话功能范围",
+    "access": "公开页面或可读搜索索引；见检索记录",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S4",
+    "author": "人人都是产品经理：突发！豆包推出新产品“小豆”",
+    "url": "https://www.woshipm.com/ai/6499154.html",
+    "note": "社区文章提及行业早报、短视频复盘；仍需实际验证",
+    "access": "公开页面或可读搜索索引；见检索记录",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S5",
+    "author": "歸藏的AI工具箱：内测用法分享",
+    "url": "https://weibo.com/2/detail/5368835221753457",
+    "note": "作者经验；收藏、截图日历和飞书等组合场景",
+    "access": "公开页面或可读搜索索引；见检索记录",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S6",
+    "author": "智东西 / 陈骏达：36氪授权发布的体验文章",
+    "url": "https://www.36kr.com/p/4083578123184773",
+    "note": "第三方体验及连接能力描述；须区分具体执行与功能介绍",
+    "access": "公开页面或可读搜索索引；见检索记录",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S7",
+    "author": "爱范儿：实测小豆",
+    "url": "https://www.ifanr.com/1691355",
+    "note": "作者体验；任务创建、电话咨询及模板观察",
+    "access": "公开页面或可读搜索索引；见检索记录",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S8",
+    "author": "密度新闻：AI 电话订位",
+    "url": "https://weibo.com/2/detail/5368859840217249",
+    "note": "第三方订位记录；未独立观看视频",
+    "access": "公开页面或可读搜索索引；见检索记录",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S9",
+    "author": "华尔街见闻：豆包推出“小豆”",
+    "url": "https://wallstreetcn.com/articles/3786572",
+    "note": "数据导出和订单查询体验；通过官方 RSS 读取相关正文",
+    "access": "官方 RSS 相关正文",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S10",
+    "author": "向阳乔木",
+    "url": "https://x.com/vista8/status/2125144453157626308",
+    "access": "作者体验，经聚合页读取",
+    "mirror": "https://maomaoailab.com/zh/news/",
+    "note": "飞书、音乐、查车次和结合偏好推荐活动；原帖直链由聚合页链接定位，未直接读取 X。",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S11",
+    "author": "苍何",
+    "url": "https://x.com/canghe/status/2125093542842478730",
+    "access": "作者功能介绍，经聚合页读取",
+    "mirror": "https://maomaoailab.com/zh/news/",
+    "note": "Seedance 和抖音热点；没有核验生成成品。",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S12",
+    "author": "酱紫表",
+    "url": "https://weibo.com/2/detail/5368795319238732",
+    "access": "作者自述，经公开搜索索引读取",
+    "mirror": "",
+    "note": "话费充值、抖音购物、GitHub 信息查询；没有交易回执。",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S13",
+    "author": "南都N视频 / 汪陈晨",
+    "url": "https://www.sohu.com/a/1105688835_161795",
+    "access": "记者体验，经公开索引读取",
+    "mirror": "",
+    "note": "多阶段事项拆解为预约与出行提醒；没有等待完整周期验证送达。",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S14",
+    "author": "机智流 / 53AI",
+    "url": "https://www.53ai.com/news/LargeLanguageModel/2026112440651.html",
+    "access": "作者实测文章，可读索引段落",
+    "mirror": "",
+    "note": "文字生图、任务并行、回复风格，以及即梦授权异常和任务归属问题。作者披露设备为小米15、小豆v15.7.0；未核验配图。",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S15",
+    "author": "whitsats（再飞涅槃）/ Linux DO",
+    "url": "https://linux.do/t/topic/3235815",
+    "access": "论坛个人体验，可读搜索索引",
+    "mirror": "",
+    "note": "修改和删除记忆的结果与预期不符；网站直连403。",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S16",
+    "author": "Kin",
+    "url": "https://aiproducthub.cn/status/79053.html",
+    "access": "作者帖聚合改写；原帖未定位",
+    "mirror": "",
+    "note": "抖音评论回复建议、飞书知识问答；该页声明改写，待补原帖。",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S17",
+    "author": "Leaf Yeah! / 引用 Kin",
+    "url": "https://zamantika.com/zh/profile/leaf_sanren",
+    "access": "社交镜像线索",
+    "mirror": "",
+    "note": "小红书图文、抖音、视频号素材导出；不同账号结果矛盾，仅放待追溯线索。",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S18",
+    "author": "歸藏补充帖",
+    "url": "https://x.com/op7418/status/2125164386440646757",
+    "access": "作者补充，经聚合页读取",
+    "mirror": "https://maomaoailab.com/zh/news/",
+    "note": "利用抖音上下文整理自己的素材记忆；与S5归为同一作者来源组，不当作第二次独立验证。",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S19",
+    "author": "wowowuyun-boop/awesome-xiaodou",
+    "url": "https://github.com/wowowuyun-boop/awesome-xiaodou",
+    "access": "GitHub API 直接读取",
+    "mirror": "",
+    "note": "100项待实测用例、7项详细方案，9份Markdown；未计为产品成功案例。",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S20",
+    "author": "good1uck/xiaodou-codes",
+    "url": "https://github.com/good1uck/xiaodou-codes",
+    "access": "GitHub API 读取 README",
+    "mirror": "",
+    "note": "邀请码 JSON 数据、去重、状态和增量查询设计；属于方法参考。",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S21",
+    "author": "vingo/xiaodou-inviteCode",
+    "url": "https://github.com/vingo/xiaodou-inviteCode",
+    "access": "GitHub API 读取 README",
+    "mirror": "",
+    "note": "邀请码渠道导航，非玩法库。",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S22",
+    "author": "动察 Beating",
+    "url": "https://www.beating.news/flash/378988",
+    "access": "二次聚合",
+    "mirror": "",
+    "note": "用于定位 dontbesilent 与 Kin；插件名和营销概述不等于逐项实测。",
+    "checked": "2026-11-24"
+  },
+  {
+    "id": "S23",
+    "author": "ricerug / Linux DO",
+    "url": "https://linux.do/t/topic/3236127",
+    "access": "论坛搜索索引线索",
+    "mirror": "",
+    "note": "图形输出评价，未见完整提示词和评价方法；不计为性能测评。",
+    "checked": "2026-11-24"
+  }
+]

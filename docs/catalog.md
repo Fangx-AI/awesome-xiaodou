@@ -1,0 +1,74 @@
+# 全量玩法索引
+
+更新：2026-11-24。数据来自 [playbooks.json](../data/playbooks.json)，可下载 [CSV](../data/playbooks.csv)。
+
+**40 个玩法条目 · 23 项来源记录（含方法参考和待追溯线索） · 100 个外部待测用例 · 本项目真机实测 0 条**
+
+这些数量不能相加为成功案例数。来源记录也不等于独立实验数。一个玩法可有多条来源，一个来源也可支持多个玩法。
+
+[项目对照与统计口径](project-comparison.md) · [失败记录](failures.md) · [外部测试清单](external-tests.md) · [来源登记表](source-ledger.md)
+
+## 购物与消费（5）
+
+| 编号 | 玩法 | 证据状态 | 来源 |
+| --- | --- | --- | --- |
+| 01 | [商品降价提醒](../playbooks/01-price-watch.md) | 媒体任务创建记录 | S2, S7 |
+| 02 | [团购券到期提醒](../playbooks/02-coupon-reminder.md) | 发布报道 | S2 |
+| 15 | [按需求选品并生成提单](../playbooks/15-shopping-card.md) | 媒体体验 | S6 |
+| 20 | [从历史订单查券价](../playbooks/20-order-price-check.md) | 媒体体验 | S9 |
+| 28 | [用对话发起话费充值](../playbooks/28-phone-credit.md) | 作者自述，缺交易回执 | S12 |
+
+## 办公与个人管理（13）
+
+| 编号 | 玩法 | 证据状态 | 来源 |
+| --- | --- | --- | --- |
+| 03 | [日程冲突检查](../playbooks/03-calendar-check.md) | 发布报道 | S2 |
+| 11 | [聊天截图变成日程](../playbooks/11-screenshot-calendar.md) | 作者体验分享 | S5 |
+| 18 | [在百度网盘找文件](../playbooks/18-netdisk-search.md) | 媒体功能描述 | S6 |
+| 19 | [将行情数据整理为 Excel](../playbooks/19-wind-excel.md) | 媒体体验 | S9 |
+| 23 | [纠正个人记忆与偏好](../playbooks/23-memory-correction.md) | 媒体功能描述 | S7, S15 |
+| 27 | [搜索和修改飞书文档](../playbooks/27-feishu-docs.md) | 作者功能体验描述（聚合页） | S10 |
+| 29 | [查询自己的 GitHub 信息](../playbooks/29-github-info.md) | 作者自述，缺执行细节 | S12 |
+| 30 | [将一件事拆成多阶段提醒](../playbooks/30-staged-reminders.md) | 媒体任务创建记录 | S13 |
+| 32 | [等待生成时处理另一项任务](../playbooks/32-parallel-tasks.md) | 第三方实测文章 | S14 |
+| 33 | [用自然语言调整回复风格](../playbooks/33-reply-style.md) | 第三方短期体验 | S14 |
+| 36 | [用飞书资料生成工作周报](../playbooks/36-weekly-report.md) | 内置模板观察 | S7 |
+| 38 | [按时间发送准备好的资料](../playbooks/38-scheduled-file.md) | 发布报道转述演示 | S3 |
+| 40 | [围绕飞书资料做知识问答](../playbooks/40-feishu-qa.md) | 作者帖二次聚合，待原帖 | S16 |
+
+## 生活与出行（7）
+
+| 编号 | 玩法 | 证据状态 | 来源 |
+| --- | --- | --- | --- |
+| 04 | [请小豆打电话问餐厅](../playbooks/04-restaurant-call.md) | 第三方实测报道 | S3, S6, S7, S8 |
+| 05 | [猫粮补货提醒](../playbooks/05-restock.md) | 演示转述 | S3 |
+| 09 | [从抖音收藏找附近餐厅](../playbooks/09-saved-restaurants.md) | 作者体验分享 | S5 |
+| 14 | [用对话准备打车](../playbooks/14-ride-hailing.md) | 媒体体验 | S6 |
+| 25 | [搜索并播放音乐](../playbooks/25-music.md) | 作者体验（聚合页） | S10 |
+| 26 | [查车次并发现目的地活动](../playbooks/26-train-events.md) | 作者体验（聚合页） | S10 |
+| 37 | [拍照识别物品](../playbooks/37-photo-object.md) | 第三方体验 | S7 |
+
+## 长期跟进与兴趣（7）
+
+| 编号 | 玩法 | 证据状态 | 来源 |
+| --- | --- | --- | --- |
+| 06 | [日常健康信息汇总](../playbooks/06-health-summary.md) | 作者体验分享 | S2, S5 |
+| 07 | [行业动态早报](../playbooks/07-daily-brief.md) | 社区文章 | S4 |
+| 13 | [追踪游戏和赛事动态](../playbooks/13-interest-updates.md) | 作者体验分享 | S5 |
+| 16 | [跟进演出开票](../playbooks/16-ticket-alert.md) | 媒体任务创建记录 | S6 |
+| 17 | [播客更新主动提醒](../playbooks/17-podcast-update.md) | 媒体体验 | S6 |
+| 21 | [口述作息并建立回顾任务](../playbooks/21-habit-log.md) | 媒体任务创建记录 | S7 |
+| 22 | [跟进指定政策公告](../playbooks/22-policy-monitor.md) | 模板观察 | S7 |
+
+## 创作与内容整理（8）
+
+| 编号 | 玩法 | 证据状态 | 来源 |
+| --- | --- | --- | --- |
+| 08 | [短视频作品复盘](../playbooks/08-video-review.md) | 作者体验与描述 | S4, S5 |
+| 10 | [拆解收藏的参考视频](../playbooks/10-reference-video.md) | 作者体验分享 | S5 |
+| 12 | [收藏整理进飞书多维表格](../playbooks/12-collection-base.md) | 作者体验分享 | S5 |
+| 24 | [从评论反馈找选题](../playbooks/24-comment-insights.md) | 媒体功能描述 | S7 |
+| 31 | [生成一张图片](../playbooks/31-native-image.md) | 第三方实测文章 | S14 |
+| 34 | [尝试调用 Seedance 生成视频](../playbooks/34-seedance.md) | 功能介绍，未见成品 | S11 |
+| 35 | [查抖音热点辅助选题](../playbooks/35-douyin-trends.md) | 功能介绍，未见执行过程 | S11 |
+| 39 | [为抖音评论拟回复](../playbooks/39-comment-replies.md) | 作者帖二次聚合，待原帖 | S16 |

@@ -1,0 +1,709 @@
+{
+  "retrieved": "2026-11-24",
+  "attribution": "wowowuyun-boop/awesome-xiaodou contributors",
+  "license": "CC-BY-4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "changes": "仅提取编号、分类和标题，增加统一状态和来源字段；未复制验收正文；原作按现状提供，不作保证。",
+  "tests": [
+    {
+      "id": "XD-001",
+      "category": "对话与办公",
+      "title": "三项待办",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-002",
+      "category": "对话与办公",
+      "title": "会议摘要",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-003",
+      "category": "对话与办公",
+      "title": "负责人提取",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-004",
+      "category": "对话与办公",
+      "title": "截止时间缺失",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-005",
+      "category": "对话与办公",
+      "title": "改写通知",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-006",
+      "category": "对话与办公",
+      "title": "邮件草稿",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-007",
+      "category": "对话与办公",
+      "title": "压缩文案",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-008",
+      "category": "对话与办公",
+      "title": "格式约束",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-009",
+      "category": "对话与办公",
+      "title": "歧义追问",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-010",
+      "category": "对话与办公",
+      "title": "修订回合",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-011",
+      "category": "日程与提醒",
+      "title": "一次提醒",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-012",
+      "category": "日程与提醒",
+      "title": "相对时间",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-013",
+      "category": "日程与提醒",
+      "title": "日期歧义",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-014",
+      "category": "日程与提醒",
+      "title": "取消提醒",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-015",
+      "category": "日程与提醒",
+      "title": "重设时间",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-016",
+      "category": "日程与提醒",
+      "title": "重复提醒",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-017",
+      "category": "日程与提醒",
+      "title": "重启后提醒",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-018",
+      "category": "日程与提醒",
+      "title": "离线时提醒",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-019",
+      "category": "日程与提醒",
+      "title": "时区切换",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-020",
+      "category": "日程与提醒",
+      "title": "日历冲突",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-021",
+      "category": "公开信息与简报",
+      "title": "双来源核对",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-022",
+      "category": "公开信息与简报",
+      "title": "最新日期",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-023",
+      "category": "公开信息与简报",
+      "title": "无来源时说明",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-024",
+      "category": "公开信息与简报",
+      "title": "公开网页摘要",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-025",
+      "category": "公开信息与简报",
+      "title": "两日简报",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-026",
+      "category": "公开信息与简报",
+      "title": "同名机构",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-027",
+      "category": "公开信息与简报",
+      "title": "单位统一",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-028",
+      "category": "公开信息与简报",
+      "title": "停更来源",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-029",
+      "category": "公开信息与简报",
+      "title": "链接失效",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-030",
+      "category": "公开信息与简报",
+      "title": "多版本通知",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-031",
+      "category": "飞书与测试文档",
+      "title": "飞书样本读取",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-032",
+      "category": "飞书与测试文档",
+      "title": "会前清单",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-033",
+      "category": "飞书与测试文档",
+      "title": "文档同名",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-034",
+      "category": "飞书与测试文档",
+      "title": "文档更新时间",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-035",
+      "category": "飞书与测试文档",
+      "title": "无权文件",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-036",
+      "category": "飞书与测试文档",
+      "title": "读取后源文档比对",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-037",
+      "category": "飞书与测试文档",
+      "title": "子章节范围",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-038",
+      "category": "飞书与测试文档",
+      "title": "清单排序",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-039",
+      "category": "飞书与测试文档",
+      "title": "撤回授权",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-040",
+      "category": "飞书与测试文档",
+      "title": "组织身份区分",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-041",
+      "category": "记忆与偏好",
+      "title": "虚构偏好复问",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-042",
+      "category": "记忆与偏好",
+      "title": "偏好纠正",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-043",
+      "category": "记忆与偏好",
+      "title": "单次与长期偏好",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-044",
+      "category": "记忆与偏好",
+      "title": "关闭记忆",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-045",
+      "category": "记忆与偏好",
+      "title": "删除单条记忆",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-046",
+      "category": "记忆与偏好",
+      "title": "跨端记忆",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-047",
+      "category": "记忆与偏好",
+      "title": "新账号对照",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-048",
+      "category": "记忆与偏好",
+      "title": "时间偏好变动",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-049",
+      "category": "记忆与偏好",
+      "title": "事实与偏好",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-050",
+      "category": "记忆与偏好",
+      "title": "禁止保存请求",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-051",
+      "category": "本地生活与出行",
+      "title": "候选餐厅只读筛选",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-052",
+      "category": "本地生活与出行",
+      "title": "营业时间差异",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-053",
+      "category": "本地生活与出行",
+      "title": "指定区域搜索",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-054",
+      "category": "本地生活与出行",
+      "title": "无障碍条件",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-055",
+      "category": "本地生活与出行",
+      "title": "博物馆开放日",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-056",
+      "category": "本地生活与出行",
+      "title": "雨天备选",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-057",
+      "category": "本地生活与出行",
+      "title": "多地同名站点",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-058",
+      "category": "本地生活与出行",
+      "title": "餐厅电话询问预览",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-059",
+      "category": "本地生活与出行",
+      "title": "行程缓冲",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-060",
+      "category": "本地生活与出行",
+      "title": "活动报名预览",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-061",
+      "category": "购物、物流与售后",
+      "title": "商品候选预览",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-062",
+      "category": "购物、物流与售后",
+      "title": "同名商品规格",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-063",
+      "category": "购物、物流与售后",
+      "title": "价格时间戳",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-064",
+      "category": "购物、物流与售后",
+      "title": "降价跟进请求",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-065",
+      "category": "购物、物流与售后",
+      "title": "优惠券到期",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-066",
+      "category": "购物、物流与售后",
+      "title": "订单查询入口",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-067",
+      "category": "购物、物流与售后",
+      "title": "快递信息缺项",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-068",
+      "category": "购物、物流与售后",
+      "title": "售后话术草稿",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-069",
+      "category": "购物、物流与售后",
+      "title": "退货步骤梳理",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-070",
+      "category": "购物、物流与售后",
+      "title": "补货提醒预览",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-071",
+      "category": "日常习惯与目标",
+      "title": "运动打卡提醒",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-072",
+      "category": "日常习惯与目标",
+      "title": "喝水提醒草稿",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-073",
+      "category": "日常习惯与目标",
+      "title": "学习目标拆解",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-074",
+      "category": "日常习惯与目标",
+      "title": "长期任务暂停",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-075",
+      "category": "日常习惯与目标",
+      "title": "恢复长期任务",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-076",
+      "category": "日常习惯与目标",
+      "title": "每周回顾抽取",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-077",
+      "category": "日常习惯与目标",
+      "title": "多目标区分",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-078",
+      "category": "日常习惯与目标",
+      "title": "漏打卡复盘",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-079",
+      "category": "日常习惯与目标",
+      "title": "目标修改",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-080",
+      "category": "日常习惯与目标",
+      "title": "拒绝健康授权",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-081",
+      "category": "外部动作与失败恢复",
+      "title": "发送前确认",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-082",
+      "category": "外部动作与失败恢复",
+      "title": "日历写入后核对",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-083",
+      "category": "外部动作与失败恢复",
+      "title": "取消待执行操作",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-084",
+      "category": "外部动作与失败恢复",
+      "title": "同指令重试",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-085",
+      "category": "外部动作与失败恢复",
+      "title": "授权弹窗取消",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-086",
+      "category": "外部动作与失败恢复",
+      "title": "异常时保留草稿",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-087",
+      "category": "外部动作与失败恢复",
+      "title": "内容变更后复核",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-088",
+      "category": "外部动作与失败恢复",
+      "title": "对象不明确",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-089",
+      "category": "外部动作与失败恢复",
+      "title": "后台转前台",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-090",
+      "category": "外部动作与失败恢复",
+      "title": "任务状态对账",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-091",
+      "category": "成本与可重复性",
+      "title": "手工与辅助计时",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-092",
+      "category": "成本与可重复性",
+      "title": "返工成本",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-093",
+      "category": "成本与可重复性",
+      "title": "连续三次复跑",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-094",
+      "category": "成本与可重复性",
+      "title": "版本更新复测",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-095",
+      "category": "成本与可重复性",
+      "title": "跨设备复测",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-096",
+      "category": "成本与可重复性",
+      "title": "本地区域差异",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-097",
+      "category": "成本与可重复性",
+      "title": "额度变化",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-098",
+      "category": "成本与可重复性",
+      "title": "免费与订阅对照",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-099",
+      "category": "成本与可重复性",
+      "title": "单位任务成本",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    },
+    {
+      "id": "XD-100",
+      "category": "成本与可重复性",
+      "title": "真实回款记录",
+      "status": "待实测",
+      "source": "https://github.com/wowowuyun-boop/awesome-xiaodou/blob/main/cases/README.md"
+    }
+  ]
+}

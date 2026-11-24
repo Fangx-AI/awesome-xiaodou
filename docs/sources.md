@@ -14,7 +14,7 @@
 | S8 | [密度新闻：AI 电话订位](https://weibo.com/2/detail/5368859840217249) | 第三方订位记录；未独立观看视频 |
 | S9 | [华尔街见闻：豆包推出“小豆”](https://wallstreetcn.com/articles/3786572) | 数据导出和订单查询体验；通过官方 RSS 读取相关正文 |
 
-详细作者导航见[别人怎么用](community.md)，访问方式和未覆盖区域见[检索记录](research-log.md)。S5–S9 发布于 2026-11-24。
+上表保留首两轮的 S1–S9。第三轮新增 S10–S23，完整列表见[来源登记表](source-ledger.md)及[JSON](../data/sources.json)。详细作者导航见[别人怎么用](community.md)，访问方式和未覆盖区域见[本轮检索记录](coverage-round3.md)。S5–S9 发布于 2026-11-24。
 
 ## 整理方法
 

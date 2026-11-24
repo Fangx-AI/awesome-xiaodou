@@ -17,20 +17,34 @@
 
 表中“媒体体验”只描述文章性质；正文里的功能介绍、看到模板、建成任务、实际触发，是不同证据层级。请查看每条玩法中的具体说明。
 
+## 本轮新增作者
+
+| 作者 | 主要新增内容 | 阅读入口 |
+| --- | --- | --- |
+| 向阳乔木 | 汽水音乐、查车次及活动推荐、飞书文档 | [原帖链接](https://x.com/vista8/status/2125144453157626308)，经聚合页读取，S10 |
+| 苍何 | Seedance、抖音热点等功能介绍 | [原帖链接](https://x.com/canghe/status/2125093542842478730)，经聚合页读取，S11 |
+| 酱紫表 | 话费充值、GitHub信息查询自述 | [微博](https://weibo.com/2/detail/5368795319238732)，S12 |
+| 南都N视频 / 汪陈晨 | 多阶段预约及出行提醒 | [记者体验](https://www.sohu.com/a/1105688835_161795)，S13 |
+| 机智流 | 生图、并行任务、风格调整及失败记录 | [53AI文章](https://www.53ai.com/news/LargeLanguageModel/2026112440651.html)，S14 |
+| whitsats / Linux DO | 修改与删除记忆的失败体验 | [论坛话题](https://linux.do/t/topic/3235815)，S15 |
+| Kin | 评论回复建议和飞书知识问答 | [聚合改写页](https://aiproducthub.cn/status/79053.html)，S16，尚缺原帖 |
+
+完整访问方式和限制见[来源登记表](source-ledger.md)。
+
 ## 其他 GitHub 整理
 
 ### [wowowuyun-boop/awesome-xiaodou](https://github.com/wowowuyun-boop/awesome-xiaodou)
 
 另一个社区中文资料库，按入门、进阶、生态观察组织文档；其案例目录在本次查看时列出 **100 个待实测场景、0 条仓库真机实测**。适合寻找测试方案与官方资源，不能把目录数量解释成成功案例数量。
 
-已阅读其 README、案例目录、资源库和进阶文档。本库保留链接并独立组织玩法，没有将对方测试清单改称已实现功能。
+已逐份阅读其9份Markdown及许可证。本库以CC BY 4.0署名提取了[100项测试标题索引](external-tests.md)，未复制验收正文，没有将对方测试清单改称已实现功能。另比较了邀请码项目的数据组织方式，见[项目对照与统计口径](project-comparison.md)。
 
 ## 继续追原帖的线索
 
 | 作者 / 页面 | 已看到什么 | 暂未解决的问题 |
 | --- | --- | --- |
 | [Kin 的体验帖镜像](https://zamantika.com/en/profile/bbkirstry) | 镜像中出现 Kin 的账号数据与评论分析分享 | 未定位可靠的 X 原帖直链，不以镜像代替原始实测证据 |
-| [机智流 / 53AI](https://www.53ai.com/news/LargeLanguageModel/2026112440651.html) | 自述在小米 15 测试，文章提及问题记录 | 本次只读取到索引展示的开头，未核对完整失败细节 |
+| [机智流 / 53AI](https://www.53ai.com/news/LargeLanguageModel/2026112440651.html) | 第三轮补读到生图、回复风格、并行任务及失败段落 | 已加入S14和31–33号玩法；未核验配图，详见[失败记录](failures.md) |
 | [什么值得买汇总](https://post.smzdm.com/p/aggwp673/) | 汇集多方成功和失败线索 | 部分原始视频未定位；这是二次汇总，不计为新增独立实测 |
 | [Leaf Yeah! 的帖子镜像](https://www.nitter.cf/leaf_sanren) | 声称可以取得部分平台媒体素材 | 原帖、具体步骤和适用条件未核对，暂不列为可复现玩法 |
 

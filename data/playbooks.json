@@ -1,0 +1,513 @@
+[
+  {
+    "id": "01",
+    "title": "商品降价提醒",
+    "path": "playbooks/01-price-watch.md",
+    "category": "购物与消费",
+    "evidence": "媒体任务创建记录",
+    "sources": [
+      "S2",
+      "S7"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "02",
+    "title": "团购券到期提醒",
+    "path": "playbooks/02-coupon-reminder.md",
+    "category": "购物与消费",
+    "evidence": "发布报道",
+    "sources": [
+      "S2"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "03",
+    "title": "日程冲突检查",
+    "path": "playbooks/03-calendar-check.md",
+    "category": "办公与个人管理",
+    "evidence": "发布报道",
+    "sources": [
+      "S2"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "04",
+    "title": "请小豆打电话问餐厅",
+    "path": "playbooks/04-restaurant-call.md",
+    "category": "生活与出行",
+    "evidence": "第三方实测报道",
+    "sources": [
+      "S3",
+      "S6",
+      "S7",
+      "S8"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "05",
+    "title": "猫粮补货提醒",
+    "path": "playbooks/05-restock.md",
+    "category": "生活与出行",
+    "evidence": "演示转述",
+    "sources": [
+      "S3"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "06",
+    "title": "日常健康信息汇总",
+    "path": "playbooks/06-health-summary.md",
+    "category": "长期跟进与兴趣",
+    "evidence": "作者体验分享",
+    "sources": [
+      "S2",
+      "S5"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "07",
+    "title": "行业动态早报",
+    "path": "playbooks/07-daily-brief.md",
+    "category": "长期跟进与兴趣",
+    "evidence": "社区文章",
+    "sources": [
+      "S4"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "08",
+    "title": "短视频作品复盘",
+    "path": "playbooks/08-video-review.md",
+    "category": "创作与内容整理",
+    "evidence": "作者体验与描述",
+    "sources": [
+      "S4",
+      "S5"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "09",
+    "title": "从抖音收藏找附近餐厅",
+    "path": "playbooks/09-saved-restaurants.md",
+    "category": "生活与出行",
+    "evidence": "作者体验分享",
+    "sources": [
+      "S5"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "10",
+    "title": "拆解收藏的参考视频",
+    "path": "playbooks/10-reference-video.md",
+    "category": "创作与内容整理",
+    "evidence": "作者体验分享",
+    "sources": [
+      "S5"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "11",
+    "title": "聊天截图变成日程",
+    "path": "playbooks/11-screenshot-calendar.md",
+    "category": "办公与个人管理",
+    "evidence": "作者体验分享",
+    "sources": [
+      "S5"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "12",
+    "title": "收藏整理进飞书多维表格",
+    "path": "playbooks/12-collection-base.md",
+    "category": "创作与内容整理",
+    "evidence": "作者体验分享",
+    "sources": [
+      "S5"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "13",
+    "title": "追踪游戏和赛事动态",
+    "path": "playbooks/13-interest-updates.md",
+    "category": "长期跟进与兴趣",
+    "evidence": "作者体验分享",
+    "sources": [
+      "S5"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "14",
+    "title": "用对话准备打车",
+    "path": "playbooks/14-ride-hailing.md",
+    "category": "生活与出行",
+    "evidence": "媒体体验",
+    "sources": [
+      "S6"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "15",
+    "title": "按需求选品并生成提单",
+    "path": "playbooks/15-shopping-card.md",
+    "category": "购物与消费",
+    "evidence": "媒体体验",
+    "sources": [
+      "S6"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "16",
+    "title": "跟进演出开票",
+    "path": "playbooks/16-ticket-alert.md",
+    "category": "长期跟进与兴趣",
+    "evidence": "媒体任务创建记录",
+    "sources": [
+      "S6"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "17",
+    "title": "播客更新主动提醒",
+    "path": "playbooks/17-podcast-update.md",
+    "category": "长期跟进与兴趣",
+    "evidence": "媒体体验",
+    "sources": [
+      "S6"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "18",
+    "title": "在百度网盘找文件",
+    "path": "playbooks/18-netdisk-search.md",
+    "category": "办公与个人管理",
+    "evidence": "媒体功能描述",
+    "sources": [
+      "S6"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "19",
+    "title": "将行情数据整理为 Excel",
+    "path": "playbooks/19-wind-excel.md",
+    "category": "办公与个人管理",
+    "evidence": "媒体体验",
+    "sources": [
+      "S9"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "20",
+    "title": "从历史订单查券价",
+    "path": "playbooks/20-order-price-check.md",
+    "category": "购物与消费",
+    "evidence": "媒体体验",
+    "sources": [
+      "S9"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "21",
+    "title": "口述作息并建立回顾任务",
+    "path": "playbooks/21-habit-log.md",
+    "category": "长期跟进与兴趣",
+    "evidence": "媒体任务创建记录",
+    "sources": [
+      "S7"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "22",
+    "title": "跟进指定政策公告",
+    "path": "playbooks/22-policy-monitor.md",
+    "category": "长期跟进与兴趣",
+    "evidence": "模板观察",
+    "sources": [
+      "S7"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "23",
+    "title": "纠正个人记忆与偏好",
+    "path": "playbooks/23-memory-correction.md",
+    "category": "办公与个人管理",
+    "evidence": "媒体功能描述",
+    "sources": [
+      "S7",
+      "S15"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "24",
+    "title": "从评论反馈找选题",
+    "path": "playbooks/24-comment-insights.md",
+    "category": "创作与内容整理",
+    "evidence": "媒体功能描述",
+    "sources": [
+      "S7"
+    ],
+    "self_tested": false
+  },
+  {
+    "id": "25",
+    "slug": "music",
+    "title": "搜索并播放音乐",
+    "category": "生活与出行",
+    "sources": [
+      "S10"
+    ],
+    "evidence": "作者体验（聚合页）",
+    "observed": "作者提到通过汽水音乐搜索和播放。",
+    "prompt": "帮我找 [歌手] 的 [歌曲]，显示匹配结果后播放。",
+    "verification": "核对歌手、版本、实际播放状态；授权和曲库可能不同。",
+    "self_tested": false,
+    "path": "playbooks/25-music.md"
+  },
+  {
+    "id": "26",
+    "slug": "train-events",
+    "title": "查车次并发现目的地活动",
+    "category": "生活与出行",
+    "sources": [
+      "S10"
+    ],
+    "evidence": "作者体验（聚合页）",
+    "observed": "查天津方向火车时，获得与摇滚偏好有关的演出推荐。",
+    "prompt": "查询 [日期] 从 [城市A] 到 [城市B] 的车次，并列出当天我可能喜欢的公开活动，附来源。",
+    "verification": "车次、余票、活动日期分别核对；来源没有证明已购票。",
+    "self_tested": false,
+    "path": "playbooks/26-train-events.md"
+  },
+  {
+    "id": "27",
+    "slug": "feishu-docs",
+    "title": "搜索和修改飞书文档",
+    "category": "办公与个人管理",
+    "sources": [
+      "S10"
+    ],
+    "evidence": "作者功能体验描述（聚合页）",
+    "observed": "作者将飞书文档检索和编辑列为用法。",
+    "prompt": "找到我的测试文档 [链接]，先列出标题和目标段落，再把该段改为 [新文本]。",
+    "verification": "先用测试副本，核对文档链接、修改位置和版本历史。",
+    "self_tested": false,
+    "path": "playbooks/27-feishu-docs.md"
+  },
+  {
+    "id": "28",
+    "slug": "phone-credit",
+    "title": "用对话发起话费充值",
+    "category": "购物与消费",
+    "sources": [
+      "S12"
+    ],
+    "evidence": "作者自述，缺交易回执",
+    "observed": "作者称已尝试充值话费。",
+    "prompt": "为我的号码 [号码] 准备 [金额] 的充值，先展示号码、金额、渠道和待确认步骤。",
+    "verification": "核对运营商到账记录；不能把准备订单或口头回复算充值成功。",
+    "self_tested": false,
+    "path": "playbooks/28-phone-credit.md"
+  },
+  {
+    "id": "29",
+    "slug": "github-info",
+    "title": "查询自己的 GitHub 信息",
+    "category": "办公与个人管理",
+    "sources": [
+      "S12"
+    ],
+    "evidence": "作者自述，缺执行细节",
+    "observed": "作者提到查看自己的 GitHub 信息。",
+    "prompt": "查看 [公开GitHub主页链接]，列出公开仓库与对应链接，并注明无法读取的内容。",
+    "verification": "逐项对照 GitHub 页面；此记录不支持自动提交代码或管理私有库的结论。",
+    "self_tested": false,
+    "path": "playbooks/29-github-info.md"
+  },
+  {
+    "id": "30",
+    "slug": "staged-reminders",
+    "title": "将一件事拆成多阶段提醒",
+    "category": "办公与个人管理",
+    "sources": [
+      "S13"
+    ],
+    "evidence": "媒体任务创建记录",
+    "observed": "记者测试将一个周期性事项拆为预约及出行等环节。",
+    "prompt": "按我给的安排 [事项及时间]，分别建立准备、预约和出发提醒；先列完整时间表让我核对。",
+    "verification": "实际触发要另记；如涉及就医，使用医生给定安排，不由模型决定检查时间。",
+    "self_tested": false,
+    "path": "playbooks/30-staged-reminders.md"
+  },
+  {
+    "id": "31",
+    "slug": "native-image",
+    "title": "生成一张图片",
+    "category": "创作与内容整理",
+    "sources": [
+      "S14"
+    ],
+    "evidence": "第三方实测文章",
+    "observed": "即梦连接未成功后，作者改用内置生图获得机器人图。",
+    "prompt": "生成一张16:9的蓝白色机器人插画，背景简洁。",
+    "verification": "检查可打开的图片成品；这次结果不能证明即梦连接成功。",
+    "self_tested": false,
+    "path": "playbooks/31-native-image.md"
+  },
+  {
+    "id": "32",
+    "slug": "parallel-tasks",
+    "title": "等待生成时处理另一项任务",
+    "category": "办公与个人管理",
+    "sources": [
+      "S14"
+    ],
+    "evidence": "第三方实测文章",
+    "observed": "作者在等待生图时添加早报要求；两个任务继续推进。",
+    "prompt": "在等待当前图片时，另建一个 [主题] 简报任务，时间为 [具体时间]，分别显示两项任务状态。",
+    "verification": "检查任务标题和结果是否串线；同一文章也记录了切换任务导致归属异常。",
+    "self_tested": false,
+    "path": "playbooks/32-parallel-tasks.md"
+  },
+  {
+    "id": "33",
+    "slug": "reply-style",
+    "title": "用自然语言调整回复风格",
+    "category": "办公与个人管理",
+    "sources": [
+      "S14"
+    ],
+    "evidence": "第三方短期体验",
+    "observed": "作者要求调整表达方式，随后几个回复符合要求。",
+    "prompt": "以后回复先给结论，使用简短理性的语言。请说明你能记住的范围。",
+    "verification": "跨新会话再检查；短期遵循不证明长期保存或底层文件已修改。",
+    "self_tested": false,
+    "path": "playbooks/33-reply-style.md"
+  },
+  {
+    "id": "34",
+    "slug": "seedance",
+    "title": "尝试调用 Seedance 生成视频",
+    "category": "创作与内容整理",
+    "sources": [
+      "S11"
+    ],
+    "evidence": "功能介绍，未见成品",
+    "observed": "作者列出通过小豆使用视频生成的能力。",
+    "prompt": "帮我准备一个5秒的产品展示视频：[主体和动作]。先说明可用工具与所需授权。",
+    "verification": "需实际可播放的视频才能判定成功；不要用插件入口或任务卡代替成品。",
+    "self_tested": false,
+    "path": "playbooks/34-seedance.md"
+  },
+  {
+    "id": "35",
+    "slug": "douyin-trends",
+    "title": "查抖音热点辅助选题",
+    "category": "创作与内容整理",
+    "sources": [
+      "S11"
+    ],
+    "evidence": "功能介绍，未见执行过程",
+    "observed": "作者介绍可以查看抖音热度信息。",
+    "prompt": "查 [领域] 近期抖音热点，附原视频链接、发布时间，以及你能实际读取的指标。",
+    "verification": "核对时间、链接和统计口径；热度不能从播放印象推断。",
+    "self_tested": false,
+    "path": "playbooks/35-douyin-trends.md"
+  },
+  {
+    "id": "36",
+    "slug": "weekly-report",
+    "title": "用飞书资料生成工作周报",
+    "category": "办公与个人管理",
+    "sources": [
+      "S7"
+    ],
+    "evidence": "内置模板观察",
+    "observed": "媒体提到飞书周报模板。",
+    "prompt": "仅依据 [指定飞书文档]，整理本周完成、阻塞、下周计划，缺资料处留空。",
+    "verification": "原文观察到模板，不代表完整周报工作流实测成功；逐条检查证据。",
+    "self_tested": false,
+    "path": "playbooks/36-weekly-report.md"
+  },
+  {
+    "id": "37",
+    "slug": "photo-object",
+    "title": "拍照识别物品",
+    "category": "生活与出行",
+    "sources": [
+      "S7"
+    ],
+    "evidence": "第三方体验",
+    "observed": "作者展示识别动漫杯子相关体验。",
+    "prompt": "识别这张照片中的物品，列出你能确定的特征和不能确定的信息。",
+    "verification": "用已知物品核对；不能把外观推测当品牌、型号的确定结论。",
+    "self_tested": false,
+    "path": "playbooks/37-photo-object.md"
+  },
+  {
+    "id": "38",
+    "slug": "scheduled-file",
+    "title": "按时间发送准备好的资料",
+    "category": "办公与个人管理",
+    "sources": [
+      "S3"
+    ],
+    "evidence": "发布报道转述演示",
+    "observed": "发布报道将定时发送资料列为演示场景。",
+    "prompt": "在 [日期时间和时区] 把 [测试文件] 发到 [我自己的测试会话]，先显示接收方、文件和任务详情。",
+    "verification": "应分别记录创建、到时执行、接收方实际收到；连接方式和可用范围待测。",
+    "self_tested": false,
+    "path": "playbooks/38-scheduled-file.md"
+  },
+  {
+    "id": "39",
+    "slug": "comment-replies",
+    "title": "为抖音评论拟回复",
+    "category": "创作与内容整理",
+    "sources": [
+      "S16"
+    ],
+    "evidence": "作者帖二次聚合，待原帖",
+    "observed": "聚合页转述 Kin 用自己的账号分析评论并获得回复建议。",
+    "prompt": "读取我授权的视频 [链接] 的可见评论，选出需要回应的问题，只生成回复草稿。",
+    "verification": "核对是否实际读到评论；此来源不能证明已自动发布回复。",
+    "self_tested": false,
+    "path": "playbooks/39-comment-replies.md"
+  },
+  {
+    "id": "40",
+    "slug": "feishu-qa",
+    "title": "围绕飞书资料做知识问答",
+    "category": "办公与个人管理",
+    "sources": [
+      "S16"
+    ],
+    "evidence": "作者帖二次聚合，待原帖",
+    "observed": "作者经验被聚合为飞书文档操作与知识问答。",
+    "prompt": "只用 [已授权测试文档] 回答 [问题]，引用具体段落；没有依据就说明未找到。",
+    "verification": "检查引用、权限和答案支持关系，不能假定所有知识库都已连接。",
+    "self_tested": false,
+    "path": "playbooks/40-feishu-qa.md"
+  }
+]
