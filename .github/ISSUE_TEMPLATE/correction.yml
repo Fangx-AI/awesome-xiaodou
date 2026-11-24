@@ -1,0 +1,17 @@
+name: 纠错或报告失效
+description: 更新过期信息、修正错误来源或记录失败
+title: "[纠错] "
+body:
+  - type: input
+    id: page
+    attributes:
+      label: 对应玩法或页面链接
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 问题、测试环境及证据
+      description: 请说明日期、版本、原有描述和实际情况。
+    validations:
+      required: true

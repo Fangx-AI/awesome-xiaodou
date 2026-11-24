@@ -1,0 +1,42 @@
+name: 分享一个玩法
+description: 提交小豆玩法、实测记录或待验证想法
+title: "[玩法] "
+body:
+  - type: input
+    id: goal
+    attributes:
+      label: 玩法目标
+      description: 想让小豆帮你完成什么？
+    validations:
+      required: true
+  - type: dropdown
+    id: status
+    attributes:
+      label: 验证状态
+      options:
+        - 资料收集，尚未实测
+        - 已亲自实测
+        - 创意待验证
+        - 现有玩法失败或失效
+    validations:
+      required: true
+  - type: textarea
+    id: prerequisites
+    attributes:
+      label: 环境与前提
+      description: 日期、系统、小豆版本、套餐、连接权限；未知项写未知。
+    validations:
+      required: true
+  - type: textarea
+    id: prompt
+    attributes:
+      label: 完整指令与步骤
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: 实际结果、限制与来源
+      description: 请附原始链接或脱敏截图；未测试请写待实测。
+    validations:
+      required: true
