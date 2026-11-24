@@ -3,7 +3,7 @@
 [返回玩法目录](../README.md#玩法目录)
 
 - 依据类型：媒体报道
-- 验证状态：**待实测**
+- 验证状态：**已有第三方体验或功能描述；本项目未复测**
 - 整理日期：2026-11-24
 - 测试环境：未测试；系统、版本、套餐适用范围未知
 
@@ -36,3 +36,7 @@
 [S2：场景依据](https://www.nbd.com.cn/articles/2026-11-24/4656943.html) · [来源索引](../docs/sources.md)
 
 欢迎通过 [Issue](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose) 补充版本、日期和脱敏后的结果证据。
+
+## 新增社区依据
+
+[歸藏 S5](https://weibo.com/2/detail/5368835221753457) 分享了连接 Apple 健康的分析体验；设备、可读字段与统计准确性仍需逐项核对。

@@ -3,7 +3,7 @@
 [返回玩法目录](../README.md#玩法目录)
 
 - 依据类型：社区文章
-- 验证状态：**待实测**
+- 验证状态：**已有第三方体验或功能描述；本项目未复测**
 - 整理日期：2026-11-24
 - 测试环境：未测试；系统、版本、套餐适用范围未知
 
@@ -36,3 +36,7 @@
 [S4：场景依据](https://www.woshipm.com/ai/6499154.html) · [来源索引](../docs/sources.md)
 
 欢迎通过 [Issue](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose) 补充版本、日期和脱敏后的结果证据。
+
+## 新增社区依据
+
+[歸藏 S5](https://weibo.com/2/detail/5368835221753457) 提及账号复盘及结果沉淀飞书的用法。[爱范儿 S7](https://www.ifanr.com/1691355) 也描述了账号与选题分析场景，未披露完整指标验证。
