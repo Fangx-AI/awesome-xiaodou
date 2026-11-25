@@ -6,6 +6,7 @@
 
 社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou)
 
+- 2026-11-25 19:17 · [实测豆包小豆：眼里有活儿，还得心里有数](<https://news.qq.com/rain/a/20261125A0E5LE00>) · Bing 新闻
 - 2026-11-25 16:34 · [good1uck/xiaodou-codes: 小豆邀请码抓码站（社区收集，非豆包/字节官方）](<https://news.google.com/rss/articles/CBMiU0FVX3lxTFBkWl80UU5oNjFxNVRzTjd1ajd0eFprT3ZlXzhQdU9iMUdUUVppU2NKWkN0UVUtZVdtWC1jMVM1WDVCSVItWURqSmlPN2RUX3hVSnlr>) · GitHub
 - 2026-11-25 15:44 · [豆包新App「小豆」实测：不用换手机，都能用上“豆包手机”了？](<https://news.google.com/rss/articles/CBMiU0FVX3lxTE5iUHBVMGEyaHkyUVFMbXMtd21tY0p2U0tHazh4WjVYSUh1b2JpRGE0RFIwMXpBUUgwLTlpeV9fdGNaSXYzU1ExRUtTRGh2VkJVNXNF>) · 电子工程专辑EE Times China
 - 2026-11-25 10:54 · [实测“小豆”：打通飞书是大杀器；Personal Agent的考验还是在模型智能](<https://news.google.com/rss/articles/CBMijAFBVV95cUxOMmVlTWx1RXVMaGcwWWNxNnEtR2ppdWg0cFg3Qzh6MGNQY2FOUVZLdFgwTlFnSklyeUJzVzRZVWF3V0tJTk1NdlVFN0hzaG55UnhOc0s4ejhvbm96VE9MazdNRHVCUV8xamtnT2FDWThYeUNkU3BaOGl6RGNUaXVual81aUZyQVVzSjZoNA>) · Sohu
