@@ -8,6 +8,7 @@
 2. 通过“分享一个玩法”表单提交，或复制 `templates/playbook.md` 到 `playbooks/`。
 3. 同步更新 `data/playbooks.json` 和 README 的玩法数量。新增来源登记到 `data/sources.json`。优先提供原帖，只有聚合或镜像时说明访问方式及缺失证据。
 4. 运行 `python scripts/build_catalog.py`，提交生成的目录、来源表和 CSV。外部待测用例保留在独立表中，不与玩法数相加。
+5. 更新提示词后，运行 `python scripts/build_skill.py <输出目录>`，提交更新后的提示词库和整包文本。每个玩法的可复制指令使用一个 `text` 代码块。
 
 ## 收录要求
 

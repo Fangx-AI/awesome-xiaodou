@@ -1,43 +1,64 @@
-# Awesome 小豆 🫘
+# 小豆 Skill
 
-**抖音收藏找店、截图变日程、评论变选题。这里收集豆包 AI 个人助理「小豆」的 40 个玩法，每篇都附可复制指令和出处。**
+![小豆 Skill 中文提示词工作流](assets/xiaodou-skill-cover.png)
 
-[**浏览全部玩法**](docs/catalog.md) · [看最新线索](docs/radar.md) · [贡献一个玩法](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose)
+**告诉小豆你想做什么，Skill 帮你选对提示词。** 减肥计划、抖音收藏找店、截图记日历、飞书写周报，内置 **41 条中文指令**。
 
-[![小豆玩法雷达](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml/badge.svg)](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml)
+[**复制到小豆**](prompts/xiaodou-paste-pack.txt) · [**下载技能 ZIP**](https://github.com/Fangx-AI/awesome-xiaodou/releases/latest/download/xiaodou-skill.zip) · [浏览全部提示词](skills/xiaodou-skill/references/prompts.md)
+
+## 现在就试
+
+- **小豆独立 App**：把[整包提示词](prompts/xiaodou-paste-pack.txt)复制到新对话，再说「帮我做个减肥计划」。App 原生导入入口待核实。
+- **豆包工作 / 支持 Agent Skills 的客户端**：下载 ZIP 后使用客户端的技能导入入口。[导入步骤](docs/install.md)
+
+![说出减肥需求，匹配体重管理提示词，得到七天安排和打卡复盘模板](assets/skill-flow.svg)
+
+## 精选提示词
+
+### 一周减肥计划
+
+```text
+帮我做份适合成年人的一周减肥计划。先问我的吃饭习惯、活动量、能腾出的时间和健康限制。根据我的回答选两个做得到的小目标，给我 7 天安排、外卖点单建议和 30 秒打卡模板。第 7 天我带着记录来，请根据完成情况帮我调整下一周。
+```
+
+[完整版：初次计划、打卡和每周复盘](prompts/41-weight-plan.md)
+
+### 抖音收藏找餐厅
+
+```text
+从我授权的抖音收藏里，筛出离「杭州西湖」较近的三家餐厅。每家列菜系、地址和原视频链接。请标出查不到的营业信息；如果读不到收藏，先让我发几个收藏链接。
+```
+
+### 聊天截图记日历
+
+```text
+把这张聊天截图整理成日程。先列标题、日期、开始时间、地点和参加人。遇到「下周五」这种说法，请写成具体日期让我确认。我确认后再添加到指定日历。
+```
+
+### 飞书资料变周报
+
+```text
+仅用我提供的飞书文档写一份周报。按「本周完成、阻塞、下周计划」三栏整理，每项附上文档出处。信息缺失就列在「待补充」，让我检查后再定稿。
+```
 
 ## 玩法目录
 
-### 先挑一个试试
+[全部 41 条提示词](skills/xiaodou-skill/references/prompts.md) · [40 个社区案例与出处](docs/catalog.md) · [最新线索](docs/radar.md)
 
-> 帮我从抖音收藏里找离「西湖」最近的三家餐厅，按距离排序，附上原视频链接和店铺地址。
+## 贡献一个玩法
 
-- **收藏里的餐厅，今天就能去。** 从抖音收藏筛附近店铺，拿到备选清单。[从收藏找店](playbooks/09-saved-restaurants.md)
-- **群里约好的时间，一张截图记下来。** 提取时间和地点，再写入日历。[截图变日程](playbooks/11-screenshot-calendar.md)
-- **视频发完，下一条拍什么？** 看作品和评论，把观众反复问的问题变成选题。[短视频复盘](playbooks/08-video-review.md) · [从评论找选题](playbooks/24-comment-insights.md)
-- **购物车里再等一等。** 给商品指定规格和目标价，价格到线时提醒。[设置降价提醒](playbooks/01-price-watch.md)
-- **周五下班前把周报写好。** 从指定飞书文档提取本周进展、阻塞和下周计划。[飞书周报](playbooks/36-weekly-report.md)
+你用一句什么话，让小豆帮你做成了一件事？欢迎带着**原指令和结果**来分享。也可以给项目点个 **Star**，下次想找提示词时方便回来。
 
-[购物与消费](docs/catalog.md#购物与消费) · [办公与个人管理](docs/catalog.md#办公与个人管理) · [生活与出行](docs/catalog.md#生活与出行) · [长期跟进与兴趣](docs/catalog.md#长期跟进与兴趣) · [创作与内容整理](docs/catalog.md#创作与内容整理)
-
-## 小豆玩法雷达
-
-每 **15 分钟**计划扫描公开新闻索引与媒体 RSS。找到新链接就更新雷达，社区可以从中挑选并补上用法。[看最近 7 天的线索](docs/radar.md) · [查看抓取记录](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml)
-
-## 一起把玩法补全
-
-用过一个值得分享的玩法？发来**一句指令和实际结果**，也欢迎贴原帖。觉得项目有用，可以点右上角 **Star**，或者把最喜欢的玩法发给朋友。
-
-[分享你的玩法](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose) · [贡献指南](CONTRIBUTING.md) · [在 X 分享项目](https://twitter.com/intent/tweet?text=%E5%90%8C%E6%A0%B7%E6%98%AF%E5%B0%8F%E8%B1%86%EF%BC%8C%E5%88%AB%E4%BA%BA%E5%B7%B2%E7%BB%8F%E5%9C%A8%E7%94%A8%E5%AE%83%E6%89%BE%E5%BA%97%E3%80%81%E8%AE%B0%E6%97%A5%E7%A8%8B%E3%80%81%E5%81%9A%E6%8A%96%E9%9F%B3%E5%A4%8D%E7%9B%98%E4%BA%86%E3%80%82%E6%94%B6%E9%9B%86%E4%BA%86%2040%20%E4%B8%AA%E7%8E%A9%E6%B3%95%EF%BC%8C%E9%99%84%E5%8F%AF%E5%A4%8D%E5%88%B6%E6%8C%87%E4%BB%A4%E3%80%82&url=https%3A%2F%2Fgithub.com%2FFangx-AI%2Fawesome-xiaodou)
+[投稿](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose) · [贡献指南](CONTRIBUTING.md) · [分享项目到 X](https://twitter.com/intent/tweet?text=%E5%81%9A%E5%87%8F%E8%82%A5%E8%AE%A1%E5%88%92%E3%80%81%E4%BB%8E%E6%8A%96%E9%9F%B3%E6%94%B6%E8%97%8F%E6%89%BE%E5%BA%97%E3%80%81%E6%8A%8A%E6%88%AA%E5%9B%BE%E5%8F%98%E6%97%A5%E5%8E%86%E3%80%82%E5%B0%8F%E8%B1%86%20Skill%20%E5%86%85%E7%BD%AE%2041%20%E6%9D%A1%E4%B8%AD%E6%96%87%E6%8F%90%E7%A4%BA%E8%AF%8D%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%95%B4%E5%8C%85%E5%A4%8D%E5%88%B6%E5%88%B0%E5%B0%8F%E8%B1%86%E3%80%82&url=https%3A%2F%2Fgithub.com%2FFangx-AI%2Fawesome-xiaodou)
 
 <details>
-<summary>资料与数据</summary>
+<summary>玩法研究与抓取记录</summary>
 
+- [玩法雷达](docs/radar.md) · [抓取运行记录](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml)
 - [作者分享](docs/community.md) · [来源登记](docs/source-ledger.md) · [失败记录](docs/failures.md) · [使用边界](docs/limitations.md)
 - [项目对照](docs/project-comparison.md) · [100 项外部测试用例](docs/external-tests.md) · [历次检索记录](docs/research-log.md)
-- [玩法 CSV](data/playbooks.csv) · [玩法 JSON](data/playbooks.json) · [雷达 JSON](data/radar.json)
-- [小豆 App Store 页面](https://apps.apple.com/cn/app/id6815582077)
+- [玩法 CSV](data/playbooks.csv) · [玩法 JSON](data/playbooks.json)
 
 </details>
 
-社区资料库 · [CC BY 4.0](LICENSE)
+社区项目 · [CC BY 4.0](LICENSE)
