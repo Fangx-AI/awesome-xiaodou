@@ -1,6 +1,6 @@
 # 小豆 Skill
 
-![小豆 Skill 中文提示词工作流](assets/xiaodou-skill-cover.png)
+![小豆 Skill 封面，右侧展示小豆 App 图标](assets/xiaodou-skill-app-cover.png)
 
 **告诉小豆你想做什么，Skill 帮你选对提示词。** 减肥计划、抖音收藏找店、截图记日历、飞书写周报，内置 **41 条中文指令**。
 
@@ -61,4 +61,4 @@
 
 </details>
 
-社区项目 · [CC BY 4.0](LICENSE)
+社区项目 · [原创内容 CC BY 4.0](LICENSE) · [小豆 App 图标来源](https://apps.apple.com/cn/app/id6815582077)
