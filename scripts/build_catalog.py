@@ -24,12 +24,10 @@ def build():
         assert c['self_tested'] is False, 'add actual test evidence before changing this rule'
     assert {c['path'] for c in cases} == {str(p.relative_to(ROOT)).replace('\\', '/') for p in (ROOT / 'playbooks').glob('*.md')}
     counts = Counter(c['category'] for c in cases)
-    lines = ['# 全量玩法索引', '', '更新：2026-11-24。数据来自 [playbooks.json](../data/playbooks.json)，可下载 [CSV](../data/playbooks.csv)。', '',
-             f'**{len(cases)} 个玩法条目 · {len(sources)} 项来源记录（含方法参考和待追溯线索） · {len(external)} 个外部待测用例 · 本项目真机实测 0 条**', '',
-             '这些数量不能相加为成功案例数。来源记录也不等于独立实验数。一个玩法可有多条来源，一个来源也可支持多个玩法。', '',
-             '[项目对照与统计口径](project-comparison.md) · [失败记录](failures.md) · [外部测试清单](external-tests.md) · [来源登记表](source-ledger.md)', '']
+    lines = ['# 小豆玩法目录', '', f'**{len(cases)} 个小豆玩法**', '',
+             '[回到首页](../README.md) · [最新线索](radar.md) · [下载 CSV](../data/playbooks.csv) · [来源登记](source-ledger.md)', '']
     for category in counts:
-        lines += [f'## {category}（{counts[category]}）', '', '| 编号 | 玩法 | 证据状态 | 来源 |', '| --- | --- | --- | --- |']
+        lines += [f'## {category}', '', '| 编号 | 玩法 | 证据状态 | 来源 |', '| --- | --- | --- | --- |']
         for c in cases:
             if c['category'] == category:
                 lines.append(f"| {c['id']} | [{c['title']}](../{c['path']}) | {c['evidence']} | {', '.join(c['sources'])} |")
