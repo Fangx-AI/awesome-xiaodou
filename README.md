@@ -1,6 +1,6 @@
 # 小豆 Skill
 
-![小豆 Skill 封面，右侧展示小豆 App 图标](assets/xiaodou-skill-app-cover.png)
+![把日常交给小豆。找餐厅、记日程、做计划、写周报。](assets/xiaodou-skill-daily-cover.png)
 
 **告诉小豆你想做什么，Skill 帮你选对提示词。** 减肥计划、抖音收藏找店、截图记日历、飞书写周报，内置 **41 条中文指令**。
 
