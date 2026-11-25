@@ -6,6 +6,9 @@
 
 社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou)
 
+- 2026-11-25 16:34 · [good1uck/xiaodou-codes: 小豆邀请码抓码站（社区收集，非豆包/字节官方）](<https://news.google.com/rss/articles/CBMiU0FVX3lxTFBkWl80UU5oNjFxNVRzTjd1ajd0eFprT3ZlXzhQdU9iMUdUUVppU2NKWkN0UVUtZVdtWC1jMVM1WDVCSVItWURqSmlPN2RUX3hVSnlr>) · GitHub
+- 2026-11-25 15:44 · [豆包新App「小豆」实测：不用换手机，都能用上“豆包手机”了？](<https://news.google.com/rss/articles/CBMiU0FVX3lxTE5iUHBVMGEyaHkyUVFMbXMtd21tY0p2U0tHazh4WjVYSUh1b2JpRGE0RFIwMXpBUUgwLTlpeV9fdGNaSXYzU1ExRUtTRGh2VkJVNXNF>) · 电子工程专辑EE Times China
+- 2026-11-25 10:54 · [实测“小豆”：打通飞书是大杀器；Personal Agent的考验还是在模型智能](<https://news.google.com/rss/articles/CBMijAFBVV95cUxOMmVlTWx1RXVMaGcwWWNxNnEtR2ppdWg0cFg3Qzh6MGNQY2FOUVZLdFgwTlFnSklyeUJzVzRZVWF3V0tJTk1NdlVFN0hzaG55UnhOc0s4ejhvbm96VE9MazdNRHVCUV8xamtnT2FDWThYeUNkU3BaOGl6RGNUaXVual81aUZyQVVzSjZoNA>) · Sohu
 - 2026-11-25 08:18 · [国产Muse来了？豆包小豆首日实测](<https://news.google.com/rss/articles/CBMicEFVX3lxTFBZV2M0SjVUcTJYQWNiNnFTRnhFbGJZM0xNemNhN2N6eDRlc05UekpMWGNxTC1pRVhVbng5MC1pU3FVOG9UNzl2dWIxWncyUjBmdUlmbmJrbkRnQV9QLUZJX1pDc1JhNHJKUlZHM2xOR3A>) · 53AI
 - 2026-11-24 17:42 · [用户期待豆包小豆的日程管理能力 助力打理繁杂时间](<https://news.google.com/rss/articles/CBMib0FVX3lxTFA2bVJ4c2NiOUY2Uk9YYzFyZ3Fwb3p1dTJVR0xoZkRMT2NKSkVaZXVvajhTQ3ZWQ2JtdDFTZ3JQelgxRTRSbHVoTXk3VkpOQkZJS2l0NVFzdi04OEtvNTBFbnVqLUFaUkdNZjU5UDQxcw>) · 微博
 - 2026-11-24 17:34 · [豆包小豆公测上手惊喜 一键搭建测算工作台](<https://news.google.com/rss/articles/CBMib0FVX3lxTE9UWmhTbzNFWlI5VFZtUjdSUjhHREpmaUVfTFhFSDhxMUxLRTJUam5kWWxWX1Rhbzk1OHhNa3I1SFdyd3pOV19oSWp6bFNCSEdwQnoweG1mUkpTc2Vkal9qWTdQVkZtVzhRTEUyLXlKTQ>) · 微博
