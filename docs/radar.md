@@ -6,6 +6,8 @@
 
 社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou)
 
+- 2026-11-26 18:01 · [体验小豆App：支持主动AI，豆包迎来进化？](<https://news.google.com/rss/articles/CBMiYEFVX3lxTE4yVHRFZVBJdlNYNnFTNDlqV2NCQzJ1RmFDaWY3M1V2TG1PemthUC1VT1h0RTVGTHZ5dHVVX2FFQ2U1czhqM182aUVzdzZDMVBQUEN5eTRZUURzX2VKSGU1VA>) · Jiemian.com
+- 2026-11-26 04:35 · [能帮你蹲周杰伦门票的“小豆”，可能是字节今年最重要的产品](<https://news.google.com/rss/articles/CBMiUEFVX3lxTE9ILTJGQmhFaDh3elRsLXdqSWp6QXRQQk9qYmxPWnhhNmpzWDhQYXZBOVk4UWVPNHhPcXNpbkxjc016RmdUbDFiSjhSSF8zd3Mz>) · 36Kr
 - 2026-11-25 19:17 · [实测豆包小豆：眼里有活儿，还得心里有数](<https://news.qq.com/rain/a/20261125A0E5LE00>) · Bing 新闻
 - 2026-11-25 16:34 · [good1uck/xiaodou-codes: 小豆邀请码抓码站（社区收集，非豆包/字节官方）](<https://news.google.com/rss/articles/CBMiU0FVX3lxTFBkWl80UU5oNjFxNVRzTjd1ajd0eFprT3ZlXzhQdU9iMUdUUVppU2NKWkN0UVUtZVdtWC1jMVM1WDVCSVItWURqSmlPN2RUX3hVSnlr>) · GitHub
 - 2026-11-25 15:44 · [豆包新App「小豆」实测：不用换手机，都能用上“豆包手机”了？](<https://news.google.com/rss/articles/CBMiU0FVX3lxTE5iUHBVMGEyaHkyUVFMbXMtd21tY0p2U0tHazh4WjVYSUh1b2JpRGE0RFIwMXpBUUgwLTlpeV9fdGNaSXYzU1ExRUtTRGh2VkJVNXNF>) · 电子工程专辑EE Times China
