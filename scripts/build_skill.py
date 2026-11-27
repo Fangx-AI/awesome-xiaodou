@@ -10,7 +10,7 @@ SKILL = ROOT / "skills" / "xiaodou-skill"
 LIBRARY = SKILL / "references" / "prompts.md"
 PASTE_PACK = ROOT / "prompts" / "xiaodou-paste-pack.txt"
 QUICK_PACK = ROOT / "prompts" / "xiaodou-quick-pack.txt"
-QUICK_IDS = ("H01", "09", "11", "36", "01", "07", "41", "42")
+QUICK_IDS = ("G01", "H01", "09", "11", "36", "01", "07", "41", "42")
 
 
 def read_prompt(path):
@@ -25,6 +25,8 @@ def main(output_folder):
     cases = json.loads((ROOT / "data/playbooks.json").read_text(encoding="utf-8"))
     cases.append({"id": "H01", "path": "prompts/41-weight-plan.md",
                   "title": "一个月减肥计划与每周复盘", "category": "健康与习惯"})
+    cases.append({"id": "G01", "path": "prompts/emperor-simulator.md",
+                  "title": "小豆皇帝模拟器", "category": "个人治理"})
     groups = {}
     for case in cases:
         groups.setdefault(case["category"], []).append(case)
