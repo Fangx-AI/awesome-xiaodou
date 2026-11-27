@@ -47,4 +47,5 @@ details{margin-top:.75rem}summary{cursor:pointer}
 #archive-list{overflow-wrap:anywhere}
 footer{margin:2rem auto;padding-bottom:1.5rem;display:flex;gap:1rem;flex-wrap:wrap}
 @media(max-width:820px){.workspace{grid-template-columns:1fr}.role-list{grid-template-columns:repeat(2,minmax(0,1fr))}.intro{padding:25px}.top,main,footer{padding-left:18px;padding-right:18px}}
-@media(max-width:460px){.intro{padding:20px}.top{font-size:.9rem}.plan,.desk{padding:15px}.role-list{grid-template-columns:1fr}.seal{margin-right:0;font-size:1.65rem}}
+@media(max-width:460px){.intro{padding:20px}.intro h1{font-size:2rem;letter-spacing:0}.top{font-size:.9rem}.plan,.desk{padding:15px}.role-list{grid-template-columns:1fr}.seal{margin-right:0;font-size:1.65rem}}
+@media(max-width:350px){.seal{display:none}}
