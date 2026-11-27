@@ -17,7 +17,9 @@ def verify(archive):
     starter = text(ROOT / "prompts/xiaodou-start.txt").strip()
     block = re.search(r"^`{3}text\n(.*?)\n`{3}$", readme, re.MULTILINE | re.DOTALL)
     assert block and block[1] == starter, "README starter must match its copyable text"
-    assert readme.index(starter) < readme.index("![小豆 Skill"), "starter must come before the cover"
+    intro = readme.split("## 一句话在小豆里开始", maxsplit=1)[0]
+    assert intro.startswith("# 小豆皇帝模拟器\n"), "README must identify the Skill at the top"
+    assert all(role in intro for role in ("中书省", "门下省", "尚书省", "六部")), "the court workflow belongs in the README intro"
 
     markdown_targets = re.findall(r"\]\(([^)]+)\)", readme)
     image_targets = re.findall(r'src="([^"]+)"', readme)
