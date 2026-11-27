@@ -9,6 +9,7 @@
 3. 同步更新 `data/playbooks.json` 和 README 的玩法数量。新增来源登记到 `data/sources.json`。优先提供原帖，只有聚合或镜像时说明访问方式及缺失证据。
 4. 运行 `python scripts/build_catalog.py`，提交生成的目录、来源表和 CSV。外部待测用例保留在独立表中，不与玩法数相加。
 5. 更新提示词后，运行 `python scripts/build_skill.py <输出目录>`，提交更新后的提示词库和整包文本。每个玩法的可复制指令使用一个 `text` 代码块。
+6. 发布前运行 `python scripts/check_release.py <输出目录>/xiaodou-skill.zip`。CI 会重新构建并检查生成内容是否与仓库同步。
 
 ## 收录要求
 
@@ -21,3 +22,7 @@
 - 仅有想法的条目先进入 Issue，标记“创意待验证”。
 
 维护者会核对资料及证据后更新状态。旧玩法失效时保留记录，注明失效日期及版本。
+
+## 登记小豆 App 真机结果
+
+在 `docs/field-tests/` 中添加脱敏 Markdown，写下实际输入、输出、回执或观察结果。然后在 `data/self-tests.json` 添加 `case_id`、`date`（YYYY-MM-DD）、`client`（小豆 App）、`version`、`outcome`（通过、部分通过、未通过、权限受限之一）和 `evidence_path`（相对仓库路径）。目录内的玩法同步将 `self_tested` 设为 true，再运行目录生成器。G01 和 H01 直接登记，不用改目录数据。

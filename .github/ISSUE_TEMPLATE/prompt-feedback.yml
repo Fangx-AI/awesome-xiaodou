@@ -23,10 +23,10 @@ body:
     id: example
     attributes:
       label: 你给的输入和小豆的结果
-      description: 请先隐去私人地址、联系方式和聊天内容中的身份信息。
+      description: 请先隐去私人信息。写下第一句话、实际输出、是否完成。如果中途改过计划，也请写下改后的结果。
     validations:
       required: true
   - type: input
     id: environment
     attributes:
-      label: 小豆版本、设备或日期
+      label: 小豆版本、设备与日期

@@ -4,6 +4,8 @@
 
 [回到首页](../README.md) · [最新线索](radar.md) · [下载 CSV](../data/playbooks.csv) · [来源登记](source-ledger.md)
 
+已登记真机试用：0 个目录场景。 [查看结果](field-tests/README.md)
+
 ## 购物与消费
 
 | 编号 | 玩法 | 证据状态 | 来源 |
