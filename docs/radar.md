@@ -6,6 +6,7 @@
 
 社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou)
 
+- 2026-11-27 08:23 · [豆包个人智能助理「小豆」首发实测：一码难求，它到底能干点啥？](<https://news.google.com/rss/articles/CBMihwFBVV95cUxQd0daa1hvaUkzNDZaRk1DUWs1d0laY3FHRVQxTmtmeWQ4NkpGVVR1RmQ3NXNrcXJNR2pTckNZcEdtWFF6SDJBX1dTZVZ4NVRqY2luWlcwYjhNU0E0M1hTZDFPcTRKU0pORmN1ZGNndEZZdEltc3R6V0h0enlydjBmdi13OUc2SVE>) · 微博
 - 2026-11-26 18:01 · [体验小豆App：支持主动AI，豆包迎来进化？](<https://news.google.com/rss/articles/CBMiYEFVX3lxTE4yVHRFZVBJdlNYNnFTNDlqV2NCQzJ1RmFDaWY3M1V2TG1PemthUC1VT1h0RTVGTHZ5dHVVX2FFQ2U1czhqM182aUVzdzZDMVBQUEN5eTRZUURzX2VKSGU1VA>) · Jiemian.com
 - 2026-11-26 04:35 · [能帮你蹲周杰伦门票的“小豆”，可能是字节今年最重要的产品](<https://news.google.com/rss/articles/CBMiUEFVX3lxTE9ILTJGQmhFaDh3elRsLXdqSWp6QXRQQk9qYmxPWnhhNmpzWDhQYXZBOVk4UWVPNHhPcXNpbkxjc016RmdUbDFiSjhSSF8zd3Mz>) · 36Kr
 - 2026-11-25 19:17 · [实测豆包小豆：眼里有活儿，还得心里有数](<https://news.qq.com/rain/a/20261125A0E5LE00>) · Bing 新闻
