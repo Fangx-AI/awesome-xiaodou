@@ -2,19 +2,19 @@
 
 ![小豆 Skill · 把日常交给小豆](assets/xiaodou-skill-blue-cover.png)
 
-**告诉小豆你想做什么，Skill 帮你选对提示词。** 从皇帝模拟器、减肥计划，到截图记日历、查高铁，内置 **44 条中文指令**。
+**皇上，今天先办哪件事？** 减肥、做视频、约朋友，先定今天能做的一步。做完可以记，临时有事就重新排。
 
-[**开启皇帝模拟器**](prompts/emperor-simulator.md) · [复制 9 条常用指令](prompts/xiaodou-quick-pack.txt) · [下载技能 ZIP](https://github.com/Fangx-AI/awesome-xiaodou/releases/latest/download/xiaodou-skill.zip)
+[**打开今日御案**](https://fangx-ai.github.io/awesome-xiaodou/studio/) · [**复制到小豆**](prompts/emperor-simulator.md) · [下载技能 ZIP](https://github.com/Fangx-AI/awesome-xiaodou/releases/latest/download/xiaodou-skill.zip)
 
-## 小豆皇帝模拟器
+## 先把一件事做起来
 
-**「皇上，今天想先办哪件事？」** 小事直接办，复杂目标先核对时间、预算和权限，再给你下一步。中途改时间了，说一声就接着原进度走。 [我们从 Edict 学了什么](docs/edict-adaptation.md)
+> **皇上：** 朕想月底前发出第一条视频，但今晚只有 15 分钟。
+>
+> **小豆的示例回复：** 皇上，先写一句视频要讲什么，再把两段能说明这个主题的素材放进同一文件夹。备齐就算今天完成。
 
-> 朕想减肥，但午饭只能点外卖。今天先怎么吃？
+在网页里选一个场景、定一步、回报完成或卡住。进度保存在当前浏览器，可一键复制给小豆续聊。网页建议按预设规则生成。 [在线体验](https://fangx-ai.github.io/awesome-xiaodou/studio/)
 
-**招牌玩法「朕要减肥」**。午饭给一个点单选择，加班就换个轻松的做法。想看完整计划，就说「给朕排四周」。一周后再问「朕这周做得怎么样？」 [复制减肥玩法](prompts/41-weight-plan.md)
-
-拿到下一步后，随时说「做完了」或「卡住了」。想听朝廷怎么分工，再说「展开朝议」。 [复制提示词](prompts/emperor-simulator.md) · [分享这套玩法](https://twitter.com/intent/tweet?text=%E5%B0%8F%E8%B1%86%E7%9A%87%E5%B8%9D%E6%A8%A1%E6%8B%9F%E5%99%A8%EF%BC%9A%E4%BD%A0%E5%8F%AA%E7%AE%A1%E8%AF%B4%E6%83%B3%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%8C%E5%B0%8F%E8%B1%86%E7%BB%99%E4%BD%A0%E4%BB%8A%E5%A4%A9%E7%9A%84%E4%B8%8B%E4%B8%80%E6%AD%A5%E3%80%82%E4%B8%89%E7%9C%81%E5%85%AD%E9%83%A8%E5%9C%A8%E5%B9%95%E5%90%8E%EF%BC%8C%E6%9C%9D%E8%AE%AE%E5%8F%AF%E4%BB%A5%E9%9A%8F%E6%97%B6%E5%B1%95%E5%BC%80%E3%80%82&url=https%3A%2F%2Fgithub.com%2FFangx-AI%2Fawesome-xiaodou%2Fblob%2Fmain%2Fprompts%2Femperor-simulator.md)
+试试 **「朕想减肥，但午饭只能点外卖。今天先怎么吃？」** 从这一餐开始，忙时换个做法，想要完整计划再说「给朕排四周」。 [复制减肥玩法](prompts/41-weight-plan.md) · [分享项目](https://twitter.com/intent/tweet?text=%E7%9A%87%E4%B8%8A%EF%BC%8C%E4%BB%8A%E5%A4%A9%E5%85%88%E5%8A%9E%E5%93%AA%E4%BB%B6%E4%BA%8B%EF%BC%9F%E5%B0%8F%E8%B1%86%E6%8A%8A%E7%9B%AE%E6%A0%87%E6%8B%86%E6%88%90%E4%BB%8A%E5%A4%A9%E8%83%BD%E5%AE%8C%E6%88%90%E7%9A%84%E4%B8%80%E6%AD%A5%E3%80%82%E5%BF%99%E4%BA%86%E5%8F%AF%E4%BB%A5%E6%94%B9%EF%BC%8C%E5%81%9A%E5%AE%8C%E5%8F%AF%E4%BB%A5%E8%AE%B0%EF%BC%8C%E5%A4%8D%E5%88%B6%E8%BF%9B%E5%BA%A6%E6%8E%A5%E7%9D%80%E8%81%8A%E3%80%82&url=https%3A%2F%2Fgithub.com%2FFangx-AI%2Fawesome-xiaodou)
 
 **其他实用场景**：[发测试邮件](playbooks/41-mail-confirm-send.md) · [高铁待支付订单](playbooks/42-rail-order-preview.md) · [更新记录](docs/updates.md)
 
@@ -23,7 +23,21 @@
 - **小豆独立 App**：把短版或[完整 44 条](prompts/xiaodou-paste-pack.txt)粘贴到新对话，再说「开启皇帝模拟器」或「帮我做个减肥计划」。App 原生导入入口待核实。
 - **豆包工作 / 支持 Agent Skills 的客户端**：下载 ZIP 后使用客户端的技能导入入口。[导入步骤](docs/install.md)
 
-![说出减肥需求，生成四周路线图、首周安排和打卡复盘模板](assets/skill-flow.svg)
+## 三省六部怎么帮忙
+
+**三省把计划理清，六部按需帮忙。** 目标怎么定、时间够不够、下一步谁做，这些先由小豆处理。想查分工，再展开人物卡。
+
+| 中书省 · 拟案 | 门下省 · 审议 | 尚书省 · 派活 |
+| :--: | :--: | :--: |
+| <img src="docs/studio/portraits/zhongshu.jpg" width="96" alt="顾砚"> | <img src="docs/studio/portraits/menxia.jpg" width="96" alt="沈照"> | <img src="docs/studio/portraits/shangshu.jpg" width="96" alt="陆简"> |
+
+| 吏部 · 分工 | 户部 · 时间和预算 | 礼部 · 沟通 |
+| :--: | :--: | :--: |
+| <img src="docs/studio/portraits/appointments.jpg" width="96" alt="周衡"> | <img src="docs/studio/portraits/treasury.jpg" width="96" alt="叶算盘"> | <img src="docs/studio/portraits/rites.jpg" width="96" alt="温言"> |
+| **兵部 · 推进行动** | **刑部 · 核对边界** | **工部 · 做出交付物** |
+| <img src="docs/studio/portraits/operations.jpg" width="96" alt="季行"> | <img src="docs/studio/portraits/review.jpg" width="96" alt="宋矩"> | <img src="docs/studio/portraits/works.jpg" width="96" alt="林造"> |
+
+[看人物介绍和各部门的使用示例](https://fangx-ai.github.io/awesome-xiaodou/studio/#court-title) · [Edict 适配说明](docs/edict-adaptation.md) · [完整建设计划与验收标准](docs/roadmap.md)
 
 ## 精选提示词
 
@@ -64,6 +78,8 @@
 ## 玩法目录
 
 [全部 44 条提示词](skills/xiaodou-skill/references/prompts.md) · [42 个社区案例与出处](docs/catalog.md) · [最新线索](docs/radar.md)
+
+[复制 9 条常用指令](prompts/xiaodou-quick-pack.txt) · [查看版本记录](docs/updates.md)
 
 ## 贡献一个玩法
 

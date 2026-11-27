@@ -11,6 +11,30 @@ LIBRARY = SKILL / "references" / "prompts.md"
 PASTE_PACK = ROOT / "prompts" / "xiaodou-paste-pack.txt"
 QUICK_PACK = ROOT / "prompts" / "xiaodou-quick-pack.txt"
 QUICK_IDS = ("G01", "H01", "09", "11", "36", "01", "07", "41", "42")
+COURT_ROLES = ROOT / "docs" / "studio" / "roles.json"
+COURT_REFERENCE = LIBRARY.parent / "court.md"
+
+
+def build_court():
+    roles = json.loads(COURT_ROLES.read_text(encoding="utf-8"))
+    departments = {role["department"] for role in roles}
+    expected = {"中书省", "门下省", "尚书省", "吏部", "户部", "礼部", "兵部", "刑部", "工部"}
+    portraits = [COURT_ROLES.parent / "portraits" / role["portrait"] for role in roles]
+    if departments != expected or len(roles) != len(expected):
+        raise ValueError("The court must contain one profile per department")
+    if len(set(portraits)) != len(roles) or not all(path.is_file() for path in portraits):
+        raise ValueError("Each department must have its own portrait file")
+    lines = ["# 三省六部人物志", "", "用户要求了解分工时再打开。人物均为虚构设计。", ""]
+    for role in roles:
+        lines.extend([
+            f"## {role['department']} · {role['name']}", "",
+            f"![{role['name']}](https://raw.githubusercontent.com/Fangx-AI/awesome-xiaodou/main/docs/studio/portraits/{role['portrait']})", "",
+            f"- 职责：{role['duty']}。{role['deliverable']}。",
+            f"- 性格：{role['personality']}。",
+            f"- 举例：{role['example']}。", "",
+        ])
+    COURT_REFERENCE.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+    return portraits
 
 
 def read_prompt(path):
@@ -34,6 +58,7 @@ def main(output_folder):
     markdown = ["# 小豆提示词库", "", f"共 {len(cases)} 条。可按场景或编号选用。", ""]
     routing = (SKILL / "SKILL.md").read_text(encoding="utf-8").split("---", 2)[2].strip()
     routing = routing.replace("[提示词库](references/prompts.md)", "下方的提示词库")
+    routing = routing.replace("[三省六部人物志](references/court.md)", "G01 中的角色分工")
     intro = [
         "请在本次对话中启用下面的小豆 Skill。",
         routing,
@@ -61,10 +86,13 @@ def main(output_folder):
     quick = intro + [by_id[prompt_id] for prompt_id in QUICK_IDS]
     QUICK_PACK.write_text("\n\n".join(quick) + "\n", encoding="utf-8", newline="\n")
     output_folder.mkdir(parents=True, exist_ok=True)
+    portraits = build_court()
     archive = output_folder / "xiaodou-skill.zip"
     with ZipFile(archive, "w", compression=ZIP_DEFLATED) as bundle:
-        for path in (SKILL / "SKILL.md", LIBRARY, LIBRARY.parent / "prompt-sources.md"):
+        for path in (SKILL / "SKILL.md", LIBRARY, LIBRARY.parent / "prompt-sources.md", COURT_REFERENCE):
             bundle.write(path, path.relative_to(SKILL.parent).as_posix())
+        for portrait in portraits:
+            bundle.write(portrait, f"xiaodou-skill/assets/roles/{portrait.name}")
         bundle.write(ROOT / "LICENSE", "xiaodou-skill/LICENSE")
     print(f"{len(cases)} prompts; archive: {archive}")
 

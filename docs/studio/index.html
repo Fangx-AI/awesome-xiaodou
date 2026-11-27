@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="小豆皇帝模拟器的任务工作台。定一个目标，推进今天的一步。">
+<title>今日御案 · 小豆 Skill</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="studio.css"><script defer src="studio.js"></script>
+</head>
+<body>
+<header class="top"><a href="./" class="wordmark"><span>豆</span> 小豆 Skill</a><a href="https://github.com/Fangx-AI/awesome-xiaodou">GitHub 项目 ↗</a></header>
+<main>
+<section class="intro"><div><h1>皇上，今天<br>先办哪件事？</h1><p>把目标说清楚，今天先做一步。做完、卡住或临时有事，都能接着往下排。</p></div><div class="seal" aria-hidden="true">今日<br>御案</div></section>
+<div class="workspace">
+<section class="plan" aria-labelledby="plan-title">
+<h2 id="plan-title">定一个目标</h2>
+<div class="scenarios" aria-label="选择场景">
+<button type="button" data-scenario="weight" aria-pressed="true">朕要减肥</button>
+<button type="button" data-scenario="video" aria-pressed="false">朕要做条视频</button>
+<button type="button" data-scenario="meet" aria-pressed="false">朕要约朋友</button>
+<button type="button" data-scenario="custom" aria-pressed="false">自己写</button>
+</div>
+<form id="plan-form">
+<label for="goal">想做成什么？</label>
+<textarea id="goal" rows="2" maxlength="500" required></textarea>
+<label for="capacity">今天能用多久？</label>
+<select id="capacity"><option value="5">5 分钟</option><option value="15" selected>15 分钟</option><option value="30">30 分钟</option><option value="60">60 分钟</option></select>
+<button class="primary" type="submit" id="plan-btn">定下今天的一步</button>
+</form>
+</section>
+<section class="desk" aria-labelledby="desk-title">
+<h2 id="desk-title">今天这一件</h2>
+<p id="empty">先在左边选个目标。拿到下一步后，你可以改一下再开始。</p>
+<div id="task" hidden>
+<p id="task-meta" class="meta"></p>
+<label for="action">下一步</label>
+<textarea id="action" rows="2" maxlength="500"></textarea>
+<label for="note">说一下实际进展（可选）</label>
+<input id="note" maxlength="300" placeholder="例如：素材找到了，但来不及剪">
+<div class="actions">
+<button type="button" data-result="done" class="primary">做完了</button>
+<button type="button" data-result="blocked">有点卡住</button>
+<button type="button" id="copy">复制进度到小豆</button>
+</div>
+<details id="export" hidden><summary>手动复制续聊内容</summary><textarea id="export-text" rows="8" readonly aria-label="续聊内容"></textarea></details>
+<details id="history" hidden><summary>看进度记录</summary><ol id="history-list"></ol></details>
+<button type="button" id="archive">归档并开启新目标</button>
+</div>
+<p id="feedback" role="status" aria-live="polite"></p>
+</section>
+</div>
+<p class="helper">网页提供有规则的行动建议，记录留在本浏览器。复制续聊内容后，去小豆可以按你的情况继续规划。</p>
+<details id="archives" hidden><summary>已归档的目标</summary><ul id="archive-list"></ul></details>
+<section class="court" aria-labelledby="court-title"><h2 id="court-title">认识幕后九司</h2><p>三省把事理清，六部按需帮忙。</p><div id="roles"></div></section>
+</main>
+<footer><a href="https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/emperor-simulator.md">皇帝模拟器提示词</a><a href="https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/roadmap.md">建设计划</a></footer>
+</body></html>
