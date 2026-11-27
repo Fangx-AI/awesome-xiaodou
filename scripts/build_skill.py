@@ -24,7 +24,7 @@ def read_prompt(path):
 def main(output_folder):
     cases = json.loads((ROOT / "data/playbooks.json").read_text(encoding="utf-8"))
     cases.append({"id": "H01", "path": "prompts/41-weight-plan.md",
-                  "title": "减肥计划与每周复盘", "category": "健康与习惯"})
+                  "title": "一个月减肥计划与每周复盘", "category": "健康与习惯"})
     groups = {}
     for case in cases:
         groups.setdefault(case["category"], []).append(case)
