@@ -8,11 +8,11 @@
 
 ## 小豆皇帝模拟器
 
-**你下旨，朝廷把事情拆到今天。** 中书省拟案、门下省挑漏洞、尚书省派活，六部各管分工、预算、沟通、推进、边界和建设。
+**说一件想做的事，小豆给你下一步。** 三省六部在幕后拟案、检查和分工，你照常聊天就行。
 
-> 下旨：我想用一个月学会剪短视频，每周只有 3 小时，预算 200 元。月底要独立做出 1 条 60 秒成片。先安排今晚做什么。
+> 我想月底前剪出第一条短视频，今晚只有 15 分钟。现在先做什么？
 
-用「准奏」定方案，「晚朝」复盘，「存档」把进度带到下次对话。 [复制皇帝模拟器提示词](prompts/emperor-simulator.md) · [分享这套玩法](https://twitter.com/intent/tweet?text=%E5%B0%8F%E8%B1%86%E7%9A%87%E5%B8%9D%E6%A8%A1%E6%8B%9F%E5%99%A8%EF%BC%9A%E4%BD%A0%E4%B8%8B%E6%97%A8%EF%BC%8C%E4%B8%89%E7%9C%81%E6%8B%9F%E6%A1%88%E3%80%81%E5%AE%A1%E6%A0%B8%E3%80%81%E6%B4%BE%E6%B4%BB%EF%BC%8C%E5%85%AD%E9%83%A8%E6%8A%8A%E4%BA%8B%E6%8B%86%E6%88%90%E4%BB%8A%E5%A4%A9%E8%83%BD%E5%81%9A%E7%9A%84%E4%B8%8B%E4%B8%80%E6%AD%A5%E3%80%82%E5%A4%8D%E5%88%B6%E6%8F%90%E7%A4%BA%E8%AF%8D%EF%BC%8C%E5%BC%80%E7%AC%AC%E4%B8%80%E5%9C%BA%E6%97%A9%E6%9C%9D%E3%80%82&url=https%3A%2F%2Fgithub.com%2FFangx-AI%2Fawesome-xiaodou%2Fblob%2Fmain%2Fprompts%2Femperor-simulator.md)
+拿到下一步后，随时说「做完了」或「卡住了」。想听朝廷怎么分工，再说「展开朝议」。 [复制提示词](prompts/emperor-simulator.md) · [分享这套玩法](https://twitter.com/intent/tweet?text=%E5%B0%8F%E8%B1%86%E7%9A%87%E5%B8%9D%E6%A8%A1%E6%8B%9F%E5%99%A8%EF%BC%9A%E4%BD%A0%E5%8F%AA%E7%AE%A1%E8%AF%B4%E6%83%B3%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%8C%E5%B0%8F%E8%B1%86%E7%BB%99%E4%BD%A0%E4%BB%8A%E5%A4%A9%E7%9A%84%E4%B8%8B%E4%B8%80%E6%AD%A5%E3%80%82%E4%B8%89%E7%9C%81%E5%85%AD%E9%83%A8%E5%9C%A8%E5%B9%95%E5%90%8E%EF%BC%8C%E6%9C%9D%E8%AE%AE%E5%8F%AF%E4%BB%A5%E9%9A%8F%E6%97%B6%E5%B1%95%E5%BC%80%E3%80%82&url=https%3A%2F%2Fgithub.com%2FFangx-AI%2Fawesome-xiaodou%2Fblob%2Fmain%2Fprompts%2Femperor-simulator.md)
 
 **11 月 27 日更新**：[发测试邮件](playbooks/41-mail-confirm-send.md) · [高铁待支付订单](playbooks/42-rail-order-preview.md) · [更新记录](docs/updates.md)
 
