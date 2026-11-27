@@ -8,9 +8,9 @@
 
 ## 小豆皇帝模拟器
 
-**说一件想做的事，小豆给你下一步。** 三省六部在幕后拟案、检查和分工，你照常聊天就行。
+**「皇上，今天想先办哪件事？」** 说出想做的事，小豆给你下一步。三省六部在幕后拟案、检查和分工。
 
-> 我想月底前剪出第一条短视频，今晚只有 15 分钟。现在先做什么？
+> 朕想月底前剪出第一条短视频，今晚只有 15 分钟。现在先做什么？
 
 拿到下一步后，随时说「做完了」或「卡住了」。想听朝廷怎么分工，再说「展开朝议」。 [复制提示词](prompts/emperor-simulator.md) · [分享这套玩法](https://twitter.com/intent/tweet?text=%E5%B0%8F%E8%B1%86%E7%9A%87%E5%B8%9D%E6%A8%A1%E6%8B%9F%E5%99%A8%EF%BC%9A%E4%BD%A0%E5%8F%AA%E7%AE%A1%E8%AF%B4%E6%83%B3%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%8C%E5%B0%8F%E8%B1%86%E7%BB%99%E4%BD%A0%E4%BB%8A%E5%A4%A9%E7%9A%84%E4%B8%8B%E4%B8%80%E6%AD%A5%E3%80%82%E4%B8%89%E7%9C%81%E5%85%AD%E9%83%A8%E5%9C%A8%E5%B9%95%E5%90%8E%EF%BC%8C%E6%9C%9D%E8%AE%AE%E5%8F%AF%E4%BB%A5%E9%9A%8F%E6%97%B6%E5%B1%95%E5%BC%80%E3%80%82&url=https%3A%2F%2Fgithub.com%2FFangx-AI%2Fawesome-xiaodou%2Fblob%2Fmain%2Fprompts%2Femperor-simulator.md)
 
