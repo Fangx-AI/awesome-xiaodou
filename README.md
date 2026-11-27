@@ -71,6 +71,6 @@
 
 **哪件事被小豆帮你办成了？** 欢迎分享你说的那句话和实际结果。觉得有用，点个 Star，下次需要时回来找。
 
-[分享实际结果](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=prompt-feedback.yml) · [贡献玩法](CONTRIBUTING.md) · [分享一句话开局到 X](https://twitter.com/intent/tweet?text=%E7%9A%87%E4%B8%8A%EF%BC%8C%E8%BF%99%E9%A1%BF%E5%A4%96%E5%8D%96%E6%80%8E%E4%B9%88%E7%82%B9%EF%BC%9F%E5%A4%8D%E5%88%B6%E4%B8%80%E6%9D%A1%E6%B6%88%E6%81%AF%E5%88%B0%E5%B0%8F%E8%B1%86%EF%BC%9A%E4%BB%8A%E5%A4%A9%E5%81%9A%E4%B8%80%E6%AD%A5%EF%BC%8C%E5%8A%A0%E7%8F%AD%E8%83%BD%E6%94%B9%EF%BC%8C%E5%81%9A%E8%BF%87%E7%9A%84%E6%8E%A5%E7%9D%80%E7%AE%97%E3%80%82&url=https%3A%2F%2Fgithub.com%2FFangx-AI%2Fawesome-xiaodou%23%E4%B8%80%E5%8F%A5%E8%AF%9D%E5%9C%A8%E5%B0%8F%E8%B1%86%E9%87%8C%E5%BC%80%E5%A7%8B)
+[分享实际结果](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=prompt-feedback.yml) · [贡献玩法](CONTRIBUTING.md) · [分享一句话开局到 X](https://twitter.com/intent/tweet?text=%E7%9A%87%E4%B8%8A%EF%BC%8C%E8%BF%99%E9%A1%BF%E5%A4%96%E5%8D%96%E6%80%8E%E4%B9%88%E7%82%B9%EF%BC%9F%E5%A4%8D%E5%88%B6%E4%B8%80%E6%9D%A1%E6%B6%88%E6%81%AF%E5%88%B0%E5%B0%8F%E8%B1%86%EF%BC%9A%E4%BB%8A%E5%A4%A9%E5%81%9A%E4%B8%80%E6%AD%A5%EF%BC%8C%E5%8A%A0%E7%8F%AD%E8%83%BD%E6%94%B9%EF%BC%8C%E5%81%9A%E8%BF%87%E7%9A%84%E6%8E%A5%E7%9D%80%E7%AE%97%E3%80%82&url=https%3A%2F%2Fgithub.com%2FFangx-AI%2Fawesome-xiaodou%2Fblob%2Fmain%2FREADME.md%23%E4%B8%80%E5%8F%A5%E8%AF%9D%E5%9C%A8%E5%B0%8F%E8%B1%86%E9%87%8C%E5%BC%80%E5%A7%8B)
 
 社区项目 · [原创内容 CC BY 4.0](LICENSE) · [小豆 App 图标来源](https://apps.apple.com/cn/app/id6815582077)
