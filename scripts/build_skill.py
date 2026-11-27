@@ -61,7 +61,7 @@ def main(output_folder):
     output_folder.mkdir(parents=True, exist_ok=True)
     archive = output_folder / "xiaodou-skill.zip"
     with ZipFile(archive, "w", compression=ZIP_DEFLATED) as bundle:
-        for path in (SKILL / "SKILL.md", LIBRARY):
+        for path in (SKILL / "SKILL.md", LIBRARY, LIBRARY.parent / "prompt-sources.md"):
             bundle.write(path, path.relative_to(SKILL.parent).as_posix())
         bundle.write(ROOT / "LICENSE", "xiaodou-skill/LICENSE")
     print(f"{len(cases)} prompts; archive: {archive}")

@@ -1,5 +1,10 @@
 # 小豆 Skill 更新记录
 
+## v1.2.0
+
+- 更新收藏找餐厅、截图记日历、飞书周报和行业早报四条指令。
+- 新增[提示词出处](../skills/xiaodou-skill/references/prompt-sources.md)、[试用案例](prompt-quality.md)和结果反馈表单。
+
 ## v1.1.1
 
 - H01 更新为[一个月减肥计划](../prompts/41-weight-plan.md)。提供四周路线图、按实际作息安排的首周行动表、忙碌时的替代做法和每周复盘。
