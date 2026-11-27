@@ -53,7 +53,7 @@ def build():
         lines.append('')
     (ROOT / 'docs/catalog.md').write_text('\n'.join(lines), encoding='utf-8')
     with (ROOT / 'data/playbooks.csv').open('w', encoding='utf-8-sig', newline='') as f:
-        w = csv.writer(f)
+        w = csv.writer(f, lineterminator='\n')
         w.writerow(['id', 'title', 'category', 'evidence', 'sources', 'self_tested', 'path'])
         for c in cases:
             w.writerow([c['id'], c['title'], c['category'], c['evidence'], ';'.join(c['sources']), c['self_tested'], c['path']])
