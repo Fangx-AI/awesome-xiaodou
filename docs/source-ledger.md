@@ -27,3 +27,5 @@
 | S21 | [vingo/xiaodou-inviteCode](https://github.com/vingo/xiaodou-inviteCode) | GitHub API 读取 README | 邀请码渠道导航，非玩法库。 |
 | S22 | [动察 Beating](https://www.beating.news/flash/378988) | 二次聚合 | 用于定位 dontbesilent 与 Kin；插件名和营销概述不等于逐项实测。 |
 | S23 | [ricerug / Linux DO](https://linux.do/t/topic/3236127) | 论坛搜索索引线索 | 图形输出评价，未见完整提示词和评价方法；不计为性能测评。 |
+| S24 | [每日经济新闻 / 李宇彤](https://m.nbd.com.cn/articles/2026-11-26/4659127.html) | 原文与记者实测文字 | 接入健康后读取睡眠记录，并结合运动规划和打卡；另做了餐厅等位咨询。 |
+| S25 | [Appstoy / Ricky](https://appstoy.com/1966.html) | 作者原文与报告结果 | Agent Mail 测试信收到；高铁管家建单停在待支付；另有晚间代打电话及并发任务限制记录。 |

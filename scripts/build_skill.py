@@ -9,6 +9,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skills" / "xiaodou-skill"
 LIBRARY = SKILL / "references" / "prompts.md"
 PASTE_PACK = ROOT / "prompts" / "xiaodou-paste-pack.txt"
+QUICK_PACK = ROOT / "prompts" / "xiaodou-quick-pack.txt"
+QUICK_IDS = ("H01", "09", "11", "36", "01", "07", "41", "42")
 
 
 def read_prompt(path):
@@ -30,12 +32,14 @@ def main(output_folder):
     markdown = ["# 小豆提示词库", "", f"共 {len(cases)} 条。可按场景或编号选用。", ""]
     routing = (SKILL / "SKILL.md").read_text(encoding="utf-8").split("---", 2)[2].strip()
     routing = routing.replace("[提示词库](references/prompts.md)", "下方的提示词库")
-    paste = [
+    intro = [
         "请在本次对话中启用下面的小豆 Skill。",
         routing,
         "启用后回复：小豆 Skill 已在当前对话就绪。之后等我说要做哪件事。",
         "以下是提示词库：",
     ]
+    paste = intro.copy()
+    by_id = {}
     for category, entries in groups.items():
         markdown.extend([f"## {category}", ""])
         paste.append(f"【{category}】")
@@ -43,11 +47,17 @@ def main(output_folder):
             heading = f"{case['id']} · {case['title']}"
             prompt = read_prompt(ROOT / case["path"])
             markdown.extend([f"### {heading}", "", "\x60\x60\x60text", prompt, "\x60\x60\x60", ""])
-            paste.append(f"{heading}\n{prompt}")
+            entry = f"{heading}\n{prompt}"
+            paste.append(entry)
+            if case["id"] in by_id:
+                raise ValueError(f"Duplicate prompt ID: {case['id']}")
+            by_id[case["id"]] = entry
 
     LIBRARY.parent.mkdir(parents=True, exist_ok=True)
     LIBRARY.write_text("\n".join(markdown), encoding="utf-8", newline="\n")
     PASTE_PACK.write_text("\n\n".join(paste) + "\n", encoding="utf-8", newline="\n")
+    quick = intro + [by_id[prompt_id] for prompt_id in QUICK_IDS]
+    QUICK_PACK.write_text("\n\n".join(quick) + "\n", encoding="utf-8", newline="\n")
     output_folder.mkdir(parents=True, exist_ok=True)
     archive = output_folder / "xiaodou-skill.zip"
     with ZipFile(archive, "w", compression=ZIP_DEFLATED) as bundle:

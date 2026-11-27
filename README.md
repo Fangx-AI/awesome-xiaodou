@@ -2,13 +2,15 @@
 
 ![小豆 Skill · 把日常交给小豆](assets/xiaodou-skill-blue-cover.png)
 
-**告诉小豆你想做什么，Skill 帮你选对提示词。** 减肥计划、抖音收藏找店、截图记日历、飞书写周报，内置 **41 条中文指令**。
+**告诉小豆你想做什么，Skill 帮你选对提示词。** 从减肥计划、截图记日历，到发邮件、查高铁，内置 **43 条中文指令**。
 
-[**复制到小豆**](prompts/xiaodou-paste-pack.txt) · [**下载技能 ZIP**](https://github.com/Fangx-AI/awesome-xiaodou/releases/latest/download/xiaodou-skill.zip) · [浏览全部提示词](skills/xiaodou-skill/references/prompts.md)
+[**复制 8 条常用指令**](prompts/xiaodou-quick-pack.txt) · [**下载技能 ZIP**](https://github.com/Fangx-AI/awesome-xiaodou/releases/latest/download/xiaodou-skill.zip) · [浏览全部提示词](skills/xiaodou-skill/references/prompts.md)
+
+**11 月 27 日更新**：[发测试邮件](playbooks/41-mail-confirm-send.md) · [高铁待支付订单](playbooks/42-rail-order-preview.md) · [更新记录](docs/updates.md)
 
 ## 现在就试
 
-- **小豆独立 App**：把[整包提示词](prompts/xiaodou-paste-pack.txt)复制到新对话，再说「帮我做个减肥计划」。App 原生导入入口待核实。
+- **小豆独立 App**：把短版或[完整 43 条](prompts/xiaodou-paste-pack.txt)粘贴到新对话，再说「帮我做个减肥计划」。App 原生导入入口待核实。
 - **豆包工作 / 支持 Agent Skills 的客户端**：下载 ZIP 后使用客户端的技能导入入口。[导入步骤](docs/install.md)
 
 ![说出减肥需求，匹配体重管理提示词，得到七天安排和打卡复盘模板](assets/skill-flow.svg)
@@ -43,13 +45,13 @@
 
 ## 玩法目录
 
-[全部 41 条提示词](skills/xiaodou-skill/references/prompts.md) · [40 个社区案例与出处](docs/catalog.md) · [最新线索](docs/radar.md)
+[全部 43 条提示词](skills/xiaodou-skill/references/prompts.md) · [42 个社区案例与出处](docs/catalog.md) · [最新线索](docs/radar.md)
 
 ## 贡献一个玩法
 
 你用一句什么话，让小豆帮你做成了一件事？欢迎带着**原指令和结果**来分享。也可以给项目点个 **Star**，下次想找提示词时方便回来。
 
-[投稿](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose) · [贡献指南](CONTRIBUTING.md) · [分享项目到 X](https://twitter.com/intent/tweet?text=%E5%81%9A%E5%87%8F%E8%82%A5%E8%AE%A1%E5%88%92%E3%80%81%E4%BB%8E%E6%8A%96%E9%9F%B3%E6%94%B6%E8%97%8F%E6%89%BE%E5%BA%97%E3%80%81%E6%8A%8A%E6%88%AA%E5%9B%BE%E5%8F%98%E6%97%A5%E5%8E%86%E3%80%82%E5%B0%8F%E8%B1%86%20Skill%20%E5%86%85%E7%BD%AE%2041%20%E6%9D%A1%E4%B8%AD%E6%96%87%E6%8F%90%E7%A4%BA%E8%AF%8D%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%95%B4%E5%8C%85%E5%A4%8D%E5%88%B6%E5%88%B0%E5%B0%8F%E8%B1%86%E3%80%82&url=https%3A%2F%2Fgithub.com%2FFangx-AI%2Fawesome-xiaodou)
+[投稿](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose) · [贡献指南](CONTRIBUTING.md) · [分享项目到 X](https://twitter.com/intent/tweet?text=%E6%8A%8A%E6%97%A5%E5%B8%B8%E4%BA%A4%E7%BB%99%E5%B0%8F%E8%B1%86%E3%80%82%E5%B0%8F%E8%B1%86%20Skill%20%E6%94%B6%E5%BD%95%2043%20%E6%9D%A1%E4%B8%AD%E6%96%87%E6%8F%90%E7%A4%BA%E8%AF%8D%EF%BC%8C%E6%9C%89%E5%87%8F%E8%82%A5%E8%AE%A1%E5%88%92%E3%80%81%E6%88%AA%E5%9B%BE%E8%AE%B0%E6%97%A5%E5%8E%86%E3%80%81%E5%8F%91%E9%82%AE%E4%BB%B6%E5%92%8C%E9%AB%98%E9%93%81%E6%9F%A5%E7%A5%A8%E3%80%82&url=https%3A%2F%2Fgithub.com%2FFangx-AI%2Fawesome-xiaodou)
 
 <details>
 <summary>玩法研究与抓取记录</summary>

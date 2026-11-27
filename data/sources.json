@@ -196,5 +196,23 @@
     "mirror": "",
     "note": "图形输出评价，未见完整提示词和评价方法；不计为性能测评。",
     "checked": "2026-11-24"
+  },
+  {
+    "id": "S24",
+    "author": "每日经济新闻 / 李宇彤",
+    "url": "https://m.nbd.com.cn/articles/2026-11-26/4659127.html",
+    "access": "原文与记者实测文字",
+    "mirror": "",
+    "note": "接入健康后读取睡眠记录，并结合运动规划和打卡；另做了餐厅等位咨询。",
+    "checked": "2026-11-27"
+  },
+  {
+    "id": "S25",
+    "author": "Appstoy / Ricky",
+    "url": "https://appstoy.com/1966.html",
+    "access": "作者原文与报告结果",
+    "mirror": "",
+    "note": "Agent Mail 测试信收到；高铁管家建单停在待支付；另有晚间代打电话及并发任务限制记录。",
+    "checked": "2026-11-27"
   }
 ]

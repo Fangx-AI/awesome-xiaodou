@@ -106,12 +106,15 @@ def markdown_text(value):
 def output_page(rows):
     lines = [
         "# 小豆玩法雷达", "",
-        "公开新闻索引和媒体 RSS 每 15 分钟计划扫描一次。这里展示近 7 天的新线索。"
-        "时间为北京时间。", "",
+        "这里展示近 7 天的公开新闻和社区线索。GitHub Actions 配置为每 15 分钟触发，实际运行时间可在抓取记录中核对。"
+        "下方时间为来源发布时间（北京时间）。", "",
         "[回到玩法库](../README.md) · [抓取记录](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml)"
         " · [提交新玩法](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose)", "",
-        "社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou)", "",
+        "社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou) · [已经整理成指令的更新](updates.md)", "",
     ]
+    if rows:
+        latest = max(row["first_seen"] for row in rows)
+        lines.extend([f"最新入列：{latest[:16].replace('T', ' ')}（北京时间）", ""])
     for row in rows:
         link = quote(row["url"], safe=":/?&=%+-._~#")
         source = markdown_text(row["publisher"] or row["feed"])

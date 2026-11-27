@@ -66,7 +66,8 @@
     "evidence": "作者体验分享",
     "sources": [
       "S2",
-      "S5"
+      "S5",
+      "S24"
     ],
     "self_tested": false
   },
@@ -509,5 +510,35 @@
     "verification": "检查引用、权限和答案支持关系，不能假定所有知识库都已连接。",
     "self_tested": false,
     "path": "playbooks/40-feishu-qa.md"
+  },
+  {
+    "id": "41",
+    "slug": "mail-confirm-send",
+    "title": "确认后发送测试邮件",
+    "category": "办公与个人管理",
+    "sources": [
+      "S25"
+    ],
+    "evidence": "第三方实测：收件箱收到邮件",
+    "observed": "Ricky 用已连接的 Agent Mail 发出测试邮件，并在目标收件箱看到来信。",
+    "prompt": "请用已连接的邮箱给我的测试地址 [收件地址] 准备一封连通测试邮件。主题为“小豆邮件测试”，正文说明这是一封测试邮件，不加附件。先展示发件账号、收件人、主题和正文，等我确认后再发送。发送后给出实际状态，我会到目标收件箱核对。",
+    "verification": "核对已发记录与目标收件箱，区分草稿、已发送和已送达。",
+    "self_tested": false,
+    "path": "playbooks/41-mail-confirm-send.md"
+  },
+  {
+    "id": "42",
+    "slug": "rail-order-preview",
+    "title": "筛选高铁并准备待支付订单",
+    "category": "生活与出行",
+    "sources": [
+      "S25"
+    ],
+    "evidence": "第三方实测：建单并停在待支付",
+    "observed": "Ricky 经高铁管家查到二等座选项，重试后创建订单，页面停在待支付。",
+    "prompt": "查 [日期] 从 [出发城市] 到 [到达城市] 的高铁二等座。我希望 [时间窗] 出发，预算 [金额] 元。列出最多三趟，包含车站、到达时间、价格和查询时间。我选定后，再在已授权的连接器里准备订单并停在待支付。若创建报错，先查有没有已存在的同车次订单，避免重复建单。",
+    "verification": "核对车站、日期、价格、乘车人和订单状态。支付与出票需分别核对。",
+    "self_tested": false,
+    "path": "playbooks/42-rail-order-preview.md"
   }
 ]

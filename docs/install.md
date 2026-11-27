@@ -2,8 +2,8 @@
 
 ## 小豆独立 App
 
-1. 打开[整包提示词](../prompts/xiaodou-paste-pack.txt)，点 GitHub 文件工具栏中的复制按钮，或打开 Raw 后全选复制。
-2. 在小豆中新开一个对话，粘贴发送整包提示词。
+1. 打开[8 条常用指令](../prompts/xiaodou-quick-pack.txt)或[完整 43 条](../prompts/xiaodou-paste-pack.txt)，点 GitHub 文件工具栏中的复制按钮，或打开 Raw 后全选复制。
+2. 在小豆中新开一个对话，粘贴发送选好的提示词包。
 3. 在同一个对话里说「帮我做个减肥计划」「今天的收藏里有什么店」或「看菜单」。
 
 只想办一件事时，可以复制[单条提示词](../skills/xiaodou-skill/references/prompts.md)。整包粘贴在当前对话生效。小豆独立 App 的第三方技能导入入口仍待核实。

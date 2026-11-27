@@ -1,6 +1,6 @@
 # 小豆玩法目录
 
-**40 个小豆玩法**
+**42 个小豆玩法**
 
 [回到首页](../README.md) · [最新线索](radar.md) · [下载 CSV](../data/playbooks.csv) · [来源登记](source-ledger.md)
 
@@ -31,6 +31,7 @@
 | 36 | [用飞书资料生成工作周报](../playbooks/36-weekly-report.md) | 内置模板观察 | S7 |
 | 38 | [按时间发送准备好的资料](../playbooks/38-scheduled-file.md) | 发布报道转述演示 | S3 |
 | 40 | [围绕飞书资料做知识问答](../playbooks/40-feishu-qa.md) | 作者帖二次聚合，待原帖 | S16 |
+| 41 | [确认后发送测试邮件](../playbooks/41-mail-confirm-send.md) | 第三方实测：收件箱收到邮件 | S25 |
 
 ## 生活与出行
 
@@ -43,12 +44,13 @@
 | 25 | [搜索并播放音乐](../playbooks/25-music.md) | 作者体验（聚合页） | S10 |
 | 26 | [查车次并发现目的地活动](../playbooks/26-train-events.md) | 作者体验（聚合页） | S10 |
 | 37 | [拍照识别物品](../playbooks/37-photo-object.md) | 第三方体验 | S7 |
+| 42 | [筛选高铁并准备待支付订单](../playbooks/42-rail-order-preview.md) | 第三方实测：建单并停在待支付 | S25 |
 
 ## 长期跟进与兴趣
 
 | 编号 | 玩法 | 证据状态 | 来源 |
 | --- | --- | --- | --- |
-| 06 | [日常健康信息汇总](../playbooks/06-health-summary.md) | 作者体验分享 | S2, S5 |
+| 06 | [日常健康信息汇总](../playbooks/06-health-summary.md) | 作者体验分享 | S2, S5, S24 |
 | 07 | [行业动态早报](../playbooks/07-daily-brief.md) | 社区文章 | S4 |
 | 13 | [追踪游戏和赛事动态](../playbooks/13-interest-updates.md) | 作者体验分享 | S5 |
 | 16 | [跟进演出开票](../playbooks/16-ticket-alert.md) | 媒体任务创建记录 | S6 |

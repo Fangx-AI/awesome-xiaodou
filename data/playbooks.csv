@@ -4,7 +4,7 @@
 03,日程冲突检查,办公与个人管理,发布报道,S2,False,playbooks/03-calendar-check.md
 04,请小豆打电话问餐厅,生活与出行,第三方实测报道,S3;S6;S7;S8,False,playbooks/04-restaurant-call.md
 05,猫粮补货提醒,生活与出行,演示转述,S3,False,playbooks/05-restock.md
-06,日常健康信息汇总,长期跟进与兴趣,作者体验分享,S2;S5,False,playbooks/06-health-summary.md
+06,日常健康信息汇总,长期跟进与兴趣,作者体验分享,S2;S5;S24,False,playbooks/06-health-summary.md
 07,行业动态早报,长期跟进与兴趣,社区文章,S4,False,playbooks/07-daily-brief.md
 08,短视频作品复盘,创作与内容整理,作者体验与描述,S4;S5,False,playbooks/08-video-review.md
 09,从抖音收藏找附近餐厅,生活与出行,作者体验分享,S5,False,playbooks/09-saved-restaurants.md
@@ -39,3 +39,5 @@
 38,按时间发送准备好的资料,办公与个人管理,发布报道转述演示,S3,False,playbooks/38-scheduled-file.md
 39,为抖音评论拟回复,创作与内容整理,作者帖二次聚合，待原帖,S16,False,playbooks/39-comment-replies.md
 40,围绕飞书资料做知识问答,办公与个人管理,作者帖二次聚合，待原帖,S16,False,playbooks/40-feishu-qa.md
+41,确认后发送测试邮件,办公与个人管理,第三方实测：收件箱收到邮件,S25,False,playbooks/41-mail-confirm-send.md
+42,筛选高铁并准备待支付订单,生活与出行,第三方实测：建单并停在待支付,S25,False,playbooks/42-rail-order-preview.md
