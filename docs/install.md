@@ -2,11 +2,13 @@
 
 ## 小豆独立 App
 
+打开小豆新对话，复制[首页的一句话指令](../README.md#一句话在小豆里开始)，填上你现在的目标。需要更完整的规则时，用下面的提示词包。
+
 1. 打开[9 条常用指令](../prompts/xiaodou-quick-pack.txt)或[完整 44 条](../prompts/xiaodou-paste-pack.txt)，点 GitHub 文件工具栏中的复制按钮，或打开 Raw 后全选复制。
 2. 在小豆中新开一个对话，粘贴发送选好的提示词包。
 3. 在同一个对话里说「开启皇帝模拟器」「帮我做个减肥计划」或「看菜单」。
 
-只想办一件事时，可以复制[单条提示词](../skills/xiaodou-skill/references/prompts.md)。整包粘贴在当前对话生效。小豆独立 App 的第三方技能导入入口仍待核实。
+也可以复制[单条提示词](../skills/xiaodou-skill/references/prompts.md)。一句话和提示词包都通过当前对话使用，小豆独立 App 的原生技能安装入口仍待核实。
 
 ## 豆包工作 / 支持 Agent Skills 的客户端
 
