@@ -6,7 +6,7 @@
 
 社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou) · [已经整理成指令的更新](updates.md)
 
-最新入列：2026-11-27 20:49（北京时间）
+最新入列：2026-11-28 06:39（北京时间）
 
 - 2026-11-27 08:23 · [豆包个人智能助理「小豆」首发实测：一码难求，它到底能干点啥？](<https://news.google.com/rss/articles/CBMihwFBVV95cUxQd0daa1hvaUkzNDZaRk1DUWs1d0laY3FHRVQxTmtmeWQ4NkpGVVR1RmQ3NXNrcXJNR2pTckNZcEdtWFF6SDJBX1dTZVZ4NVRqY2luWlcwYjhNU0E0M1hTZDFPcTRKU0pORmN1ZGNndEZZdEltc3R6V0h0enlydjBmdi13OUc2SVE>) · 微博
 - 2026-11-26 18:01 · [体验小豆App：支持主动AI，豆包迎来进化？](<https://news.google.com/rss/articles/CBMiYEFVX3lxTE4yVHRFZVBJdlNYNnFTNDlqV2NCQzJ1RmFDaWY3M1V2TG1PemthUC1VT1h0RTVGTHZ5dHVVX2FFQ2U1czhqM182aUVzdzZDMVBQUEN5eTRZUURzX2VKSGU1VA>) · Jiemian.com
@@ -21,5 +21,6 @@
 - 2026-11-24 17:34 · [豆包小豆公测上手惊喜 一键搭建测算工作台](<https://news.google.com/rss/articles/CBMib0FVX3lxTE9UWmhTbzNFWlI5VFZtUjdSUjhHREpmaUVfTFhFSDhxMUxLRTJUam5kWWxWX1Rhbzk1OHhNa3I1SFdyd3pOV19oSWp6bFNCSEdwQnoweG1mUkpTc2Vkal9qWTdQVkZtVzhRTEUyLXlKTQ>) · 微博
 - 2026-11-24 17:23 · [TCL空调率先适配豆包旗下“小豆”AI助理，已深度布局三大主流AI平台](<https://news.google.com/rss/articles/CBMijAFBVV95cUxQWFBONW5wVGN4Si1WQWQ5S3FRNEhMbldiWjllLUZ1YVhSRUdKUHF6SGp4NmpyRFpyZkx3bjZjOXRPVWZJa1J3YXlLYl9GLTlFY0ZzZlZhYmJ6b2Z4Ni03TUptQVREaUJjb19fYnJrQ3FCR1BPdmtxRTVNODhDTW92RFJNandjdllfSWlXUw>) · Sohu
 - 2026-11-24 16:35 · [豆包小豆公测体验：随相处变贴心 萌生养老陪伴念头](<https://news.google.com/rss/articles/CBMibEFVX3lxTE9PVVhtNWNHTTJHWENaTExKeTZLU3lfV3hPNTBPcWswbmYtNmktZWszbzhDc20wSVczY0lKeEIxZFdWZDdvNE9ITDVPQVFCLUFKQ2JhbnFpOTdTbVo1N0ladl9kTDlKakdLTTAyWQ>) · 微博
+- 2026-11-24 14:06 · [豆包个人AI助理“小豆”公测，记者实测下达定时提醒任务](<https://news.google.com/rss/articles/CBMioAFBVV95cUxPSlc0akNwS1c2QUhtdEd6VGZCUTJlNEhfa2UzazNJclF5bFlMbW9SeUJ1MGxYd1MzVUZ1dnFMa05OSVNWNXpVS0NvaFhxS2RYQTEyLXZXRDc0akJ0ZFVoLUNza2VnUWZHTGZZM3pqOGlva1lFQ0FQdUpiMFN4TlU3OHlNdjJFWU5YSS1MdTV5Q0M0X1owWVJ6c2Y0akNUMGRk>) · Sohu
 - 2026-11-24 13:46 · [豆包旗下AI个人助理产品小豆需邀请码 可下载了解](<https://news.google.com/rss/articles/CBMiVkFVX3lxTFBRVzltRlYxaUpWbHNTWllQMGpyaUsyMHhJMDZqWllSRUFtX0tqT0ZMd09aSnROVkZNRktiSWFoay0yYVNDQ1ZodjRmOWxMMXpkS1BaTHJ3>) · 微博
 - 2026-11-24 12:45 · [小豆 - 用文字或语音交代日常事务，让个人助理主动提醒并持续跟进](<https://news.google.com/rss/articles/CBMiS0FVX3lxTFBZcXl0QXE1OUxlS0I2UjhlanJWZjJ2bVV0RkVvS2NTVi1DQ0dIOHprZmNhTjBPSGZ5MG5DazdGYk9mbkJObjRVb1ZWRQ>) · 观猹
