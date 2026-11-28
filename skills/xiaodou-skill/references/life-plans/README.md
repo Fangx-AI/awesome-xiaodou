@@ -4,7 +4,7 @@
 
 ## 怎么使用
 
-- **小豆 App 聊天**　点选一个计划，点代码块右上角的复制按钮，把全文发到小豆新对话。末尾已经写好目标，有需要再改成你自己的说法。想一次带上多个分类，可以用[生活计划整包](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/xiaodou-life-plans.txt)。
+- **小豆 App 聊天**　点选一个计划，点代码块右上角的复制按钮，把全文发到小豆新对话。末尾已经写好目标，有需要再改成你自己的说法。想一次带上多个分类，可以用[生活计划整包](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/xiaodou-life-plans.md)。
 - **支持 Agent Skills 的客户端**　导入包含本目录的小豆 Skill。说自然话就会按目标选择计划。有多个目标时，先确认你要优先推进哪一个。
 
 ## 选一个你想做的计划
@@ -13,7 +13,7 @@
 
 ### 健康与运动
 
-[复制开局 · 健康与运动](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/health.txt) · [查看本类全部方案](health.md)
+[复制开局 · 健康与运动](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/health.md#自填目标) · [查看本类全部方案](health.md)
 
 - [制定减肥计划](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/health.md#p01--减肥与体重管理) · [流程与依据](health.md#p01--减肥与体重管理)
 - [开始力量训练](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/health.md#p02--新手力量与体能) · [流程与依据](health.md#p02--新手力量与体能)
@@ -24,7 +24,7 @@
 
 ### 学习与成长
 
-[复制开局 · 学习与成长](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/learning.txt) · [查看本类全部方案](learning.md)
+[复制开局 · 学习与成长](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/learning.md#自填目标) · [查看本类全部方案](learning.md)
 
 - [练英语口语](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/learning.md#p07--英语真实场景陪练) · [流程与依据](learning.md#p07--英语真实场景陪练)
 - [排考试复习](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/learning.md#p08--考试倒排与错题复习) · [流程与依据](learning.md#p08--考试倒排与错题复习)
@@ -35,7 +35,7 @@
 
 ### 职业与工作
 
-[复制开局 · 职业与工作](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/career.txt) · [查看本类全部方案](career.md)
+[复制开局 · 职业与工作](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/career.md#自填目标) · [查看本类全部方案](career.md)
 
 - [找职业方向](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/career.md#p13--职业方向探索) · [流程与依据](career.md#p13--职业方向探索)
 - [准备转岗](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/career.md#p14--转岗过渡与能力补齐) · [流程与依据](career.md#p14--转岗过渡与能力补齐)
@@ -46,7 +46,7 @@
 
 ### 财务与生活
 
-[复制开局 · 财务与生活](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/household.txt) · [查看本类全部方案](household.md)
+[复制开局 · 财务与生活](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/household.md#自填目标) · [查看本类全部方案](household.md)
 
 - [做月度预算](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/household.md#p19--个人月度预算) · [流程与依据](household.md#p19--个人月度预算)
 - [存应急金](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/household.md#p20--应急金与存钱计划) · [流程与依据](household.md#p20--应急金与存钱计划)
@@ -57,7 +57,7 @@
 
 ### 习惯与关系
 
-[复制开局 · 习惯与关系](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/habits.txt) · [查看本类全部方案](habits.md)
+[复制开局 · 习惯与关系](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/habits.md#自填目标) · [查看本类全部方案](habits.md)
 
 - [养成一个习惯](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/habits.md#p25--建立一个可持续的习惯) · [流程与依据](habits.md#p25--建立一个可持续的习惯)
 - [开始拖着没做的事](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/habits.md#p26--拖延任务的起步) · [流程与依据](habits.md#p26--拖延任务的起步)

@@ -7,7 +7,8 @@ from pathlib import Path
 from zipfile import ZipFile
 
 from build_life_plans import (
-    APP_PACK_NAME, PLAN_FILES, PLAN_INDEX, SCENE_COPY_PAGE, SCENE_TITLES, app_pack_files, copy_packs,
+    APP_PACK_NAME, CUSTOM_GOAL_HEADING, PLAN_COPY_DIR, PLAN_FILES, PLAN_INDEX, PLAN_PACK_PAGE,
+    SCENE_COPY_PAGE, SCENE_TITLES, app_pack_files, copy_packs,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,6 +32,14 @@ def verify(archive):
     for title in SCENE_TITLES.values():
         target = f"{gallery_path}#{title})"
         assert target in readme and target in share_page, f"Missing mobile copy route for {title}"
+
+    plan_index = text(PLAN_INDEX)
+    for chapter in PLAN_FILES:
+        gallery = (PLAN_COPY_DIR / chapter.name).relative_to(ROOT).as_posix()
+        target = f"{gallery}#{CUSTOM_GOAL_HEADING})"
+        assert target in readme and target in plan_index, f"Missing mobile custom-goal route: {chapter.name}"
+    pack_target = PLAN_PACK_PAGE.relative_to(ROOT).as_posix() + ")"
+    assert pack_target in readme and pack_target in plan_index, "Missing mobile life-plan pack route"
 
     markdown_targets = re.findall(r"\]\(([^)]+)\)", readme)
     image_targets = re.findall(r'src="([^"]+)"', readme)

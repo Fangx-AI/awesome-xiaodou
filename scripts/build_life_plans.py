@@ -7,7 +7,9 @@ PLAN_DIR = ROOT / "skills/xiaodou-skill/references/life-plans"
 PLAN_FILES = tuple(PLAN_DIR / name for name in ("health.md", "learning.md", "career.md", "household.md", "habits.md"))
 PLAN_INDEX = PLAN_DIR / "README.md"
 PLAN_PACK = ROOT / "prompts/xiaodou-life-plans.txt"
+PLAN_PACK_PAGE = PLAN_PACK.with_suffix(".md")
 PLAN_COPY_DIR = ROOT / "prompts/life-plans"
+CUSTOM_GOAL_HEADING = "自填目标"
 PUBLIC_PLAN_URL = "https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans"
 APP_PACK_NAME = "xiaodou-app-starters.zip"
 PLAN_FIELDS = ("触发", "中书立案", "门下核对", "尚书交办", "回奏", "依据")
@@ -115,6 +117,11 @@ def copy_packs():
         raise ValueError("Each life-plan index entry must link to its opener and matching workflow")
     intro = "\n".join(INTRO) + "\n\n"
     copies = {PLAN_PACK: intro + "\n\n".join(chapters.values()) + "\n"}
+    copies[PLAN_PACK_PAGE] = "\n".join([
+        "# 小豆 · 30 个生活计划整包", "",
+        "需要在一次对话里处理不同类别的目标时，可以复制下面整段。把想先办的事写在末尾，一起发到小豆 App 的新对话。", "",
+        "```text", copies[PLAN_PACK].rstrip(), "```", "",
+    ])
     for category, chapter in chapters.items():
         copies[PLAN_COPY_DIR / f"{category}.txt"] = (
             intro
@@ -130,6 +137,11 @@ def copy_packs():
         for plan_id, title in entries:
             starter = copies[PLAN_STARTER_FILES[plan_id]].rstrip()
             rows.extend([f"## {plan_id} · {title}", "", "```text", starter, "```", ""])
+        rows.extend([
+            f"## {CUSTOM_GOAL_HEADING}", "",
+            "复制下面整段。把自己的任务填到末尾「我的目标」后面，一起发到小豆 App 的新对话。", "",
+            "```text", copies[PLAN_COPY_DIR / f"{category}.txt"].rstrip(), "```", "",
+        ])
         copies[PLAN_COPY_DIR / f"{category}.md"] = "\n".join(rows)
     scene_rows = [
         "# 五个场景 · 一句话开局", "",
