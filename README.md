@@ -4,7 +4,7 @@
 
 **中书省问清情况、拟方案 → 门下省核对可行性 → 尚书省按需派六部、交计划。** 涉及设提醒、发消息等操作，由你确认后再办。
 
-[下载或开通小豆 App](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/install.md#下载和开通) · [已开通？复制开局](#一句话在小豆里开始) · [看减肥计划怎么制定](#朕要减肥)
+[下载或开通小豆 App](docs/install.md#下载和开通) · [已开通？复制开局](#一句话在小豆里开始) · [看减肥计划怎么制定](#朕要减肥)
 
 ![明代朝堂风格插画，殿前案上陈放奏折、卷轴和朱印](assets/xiaodou-imperial-court.jpg)
 
@@ -33,7 +33,7 @@
 
 ## 一句话在小豆里开始
 
-1. 打开已开通的**小豆独立 App**，新建对话。 [下载和开通小豆](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/install.md#下载和开通)
+1. 打开已开通的**小豆独立 App**，新建对话。 [下载和开通小豆](docs/install.md#下载和开通)
 2. **复制开局，在末尾加上你的目标，整段一次发出。** 比如「帮我制定一个减肥计划」。
 
 <details>
