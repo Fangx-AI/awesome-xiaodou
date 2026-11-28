@@ -1,0 +1,46 @@
+name: 普通小豆与皇帝模式对照
+description: 回报同一套演练在两个新对话里的实际表现，也可以说明某组在哪一步卡住
+title: "[模式对照] "
+labels: [mode-comparison]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请先用[对照消息](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/field-tests/replan-comparison.md)试一套演练。这个表单会公开显示你的 GitHub 账号。只贴虚构任务中与结果有关的几句，省略姓名、账号、邀请信息和截图。
+  - type: dropdown
+    id: scenario
+    attributes:
+      label: 用的是哪套演练
+      options:
+        - 阅读计划改标准
+        - 活动物料改预算
+    validations:
+      required: true
+  - type: dropdown
+    id: order
+    attributes:
+      label: 先试的模式
+      options:
+        - 普通小豆
+        - 皇帝模式
+        - 忘了先后
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: 试用日期、手机系统和小豆版本
+      description: 可以同时填写皇帝模式开局的链接或发布版本。手边没有的数据写待核。
+    validations:
+      required: true
+  - type: textarea
+    id: replies
+    attributes:
+      label: 两组各自保留了什么，改后能做什么
+      description: 提取各组最相关的几句，也可以写清楚哪一组没有跑到改案。请保留不同意见和失败结果。
+      placeholder: |
+        普通小豆的改案回奏：
+        皇帝模式的改案回奏：
+        补问后的变化或卡住的步骤：
+    validations:
+      required: true

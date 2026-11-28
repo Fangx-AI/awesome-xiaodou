@@ -10,9 +10,27 @@
 
 分享整个 Skill 时，可以附上[项目封面](../assets/xiaodou-github-preview.jpg)和[仓库链接](https://github.com/Fangx-AI/awesome-xiaodou#readme)。
 
+[想请朋友一起试？复制两种试用邀请](#转发试用邀请)
+
 页面中的图片用虚构场景演示。 [查看小豆真机记录](field-tests/README.md)
 
 已在小豆发出开局消息？可以[带这件事试七天](field-tests/seven-day.md)，做完第一步就能回报。
+
+## 转发试用邀请
+
+**给已经开通小豆的朋友**
+
+```text
+你最近有没有一件想做、却不知道从哪开始的事？可以用小豆皇帝模拟器试一下：说一个自己的目标，等小豆问清情况，和它定下你能做的第一步。做完或卡住了都可以回来告诉我。
+https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/field-tests/seven-day.md
+```
+
+**请第一次看到项目的朋友看首页**
+
+```text
+想请你帮我看一下这个 GitHub 首页。按你平时的习惯读，用自己的话告诉我，你觉得它能做什么、会先点哪里。看不明白的地方也想听听。不用装 App。
+https://github.com/Fangx-AI/awesome-xiaodou#readme
+```
 
 ## 制定减肥计划
 

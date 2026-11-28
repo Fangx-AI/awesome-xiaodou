@@ -164,6 +164,8 @@
 
 [带自己的目标试七天](docs/field-tests/seven-day.md)，做完第一步或卡住了，都可以回报。
 
+[用同一件事对比普通小豆和皇帝模式](docs/field-tests/replan-comparison.md)，看看改计划时各自保留了哪些进度。
+
 ## 御前问签
 
 在同一个小豆对话里说「朕想看看最近的运势」。只聊天时，礼部直接用[关帝第二签节选](https://zh.wikisource.org/zh-hant/關聖帝君靈籤/2)做固定示例，聊聊这一句怎么理解、眼前有什么小事可做。还想聊工作或学业，就说「用同一支签继续」。
@@ -212,6 +214,6 @@
 
 **哪件事被小豆帮你办成了？** 欢迎分享你说的那句话和实际结果。觉得有用，点个 Star，下次需要时回来找。
 
-[分享实际结果](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=prompt-feedback.yml) · [贡献玩法](CONTRIBUTING.md) · [保存示例图或复制转发文案](docs/share-cards.md)
+[分享实际结果](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=prompt-feedback.yml) · [邀请朋友一起试](docs/share-cards.md#转发试用邀请) · [保存场景示例图](docs/share-cards.md) · [贡献玩法](CONTRIBUTING.md)
 
 社区项目 · [原创内容 CC BY 4.0](LICENSE)
