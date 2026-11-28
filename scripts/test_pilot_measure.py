@@ -4,6 +4,14 @@ from pilot_measure import summarize, summarize_comparisons
 
 
 class PilotMeasurementTests(unittest.TestCase):
+    def test_candidate_is_retained_and_must_identify_an_immutable_commit(self):
+        commit = "91a7020c67480107c7e7f499d5993abb3cc92f11"
+        report = summarize({"as_of": "2026-12-09", "candidate_commit": commit})
+        self.assertEqual(report["candidate_commit"], commit)
+        for invalid in (None, "main", "91a7020"):
+            with self.subTest(invalid=invalid), self.assertRaises(ValueError):
+                summarize({"as_of": "2026-12-09", "candidate_commit": invalid})
+
     def test_explicit_incompletion_and_missing_reports_keep_the_same_denominator(self):
         report = summarize({"as_of": "2026-12-10", "trials": [
             {"id": "P-0001", "channel": "github", "started_on": "2026-12-01", "finished_on": "2026-12-08"},

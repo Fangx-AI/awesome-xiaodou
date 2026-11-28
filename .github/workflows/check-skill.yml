@@ -33,6 +33,18 @@ jobs:
           done
           node "$skill/scripts/birth-chart/fortune.cjs" 2 > "$RUNNER_TEMP/xiaodou/lot.json"
           python -c 'import json, sys; lot = json.load(open(sys.argv[1], encoding="utf-8")); assert lot["number"] == 2 and len(lot["verse"]) == 4' "$RUNNER_TEMP/xiaodou/lot.json"
+      - name: Prepare checksums and source links for the S0 candidate
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/codex/s0-pilot'
+        run: |
+          cp prompts/xiaodou-start.txt prompts/xiaodou-pilot-start.txt "$RUNNER_TEMP/xiaodou/"
+          cd "$RUNNER_TEMP/xiaodou"
+          sha256sum xiaodou-skill.zip xiaodou-start.txt xiaodou-pilot-start.txt > SHA256SUMS
+          {
+            printf 'candidate_commit=%s\n' "$GITHUB_SHA"
+            printf 'readme=%s/%s/blob/%s/README.md\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_SHA"
+            printf 'pilot=%s/%s/blob/%s/docs/field-tests/pilot-s0.md\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_SHA"
+            printf 'seven_day=%s/%s/blob/%s/docs/field-tests/seven-day.md\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_SHA"
+          } > CANDIDATE.txt
       - name: Upload checked S0 candidate
         if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/codex/s0-pilot'
         uses: actions/upload-artifact@v7
@@ -40,5 +52,8 @@ jobs:
           name: xiaodou-s0-${{ github.sha }}
           path: |
             ${{ runner.temp }}/xiaodou/xiaodou-skill.zip
-            prompts/xiaodou-pilot-start.txt
+            ${{ runner.temp }}/xiaodou/xiaodou-start.txt
+            ${{ runner.temp }}/xiaodou/xiaodou-pilot-start.txt
+            ${{ runner.temp }}/xiaodou/SHA256SUMS
+            ${{ runner.temp }}/xiaodou/CANDIDATE.txt
           if-no-files-found: error

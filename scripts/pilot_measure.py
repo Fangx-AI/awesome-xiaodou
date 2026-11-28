@@ -109,8 +109,13 @@ def summarize_comparisons(records):
 
 
 def summarize(data):
-    check_keys(data, ("as_of", "cold_reads", "trials", "comparisons"), "report")
+    check_keys(data, ("as_of", "candidate_commit", "cold_reads", "trials", "comparisons"), "report")
     as_of = read_day(data.get("as_of"), "as_of")
+    candidate_commit = data.get("candidate_commit")
+    if "candidate_commit" in data and (
+        not isinstance(candidate_commit, str) or not re.fullmatch(r"[0-9a-f]{40}", candidate_commit)
+    ):
+        raise ValueError("candidate_commit must be the full lowercase Git commit ID")
     reads, trials = data.get("cold_reads", []), data.get("trials", [])
     check_ids(reads, "cold_reads")
     check_ids(trials, "trials")
@@ -186,6 +191,7 @@ def summarize(data):
 
     return {
         "as_of": as_of.isoformat(),
+        "candidate_commit": candidate_commit,
         "cold_read": ratio(understood, len(reads)),
         "first_action": ratio(ready, len(trials)),
         "seven_day_completion": ratio(finished, seven_day_eligible),

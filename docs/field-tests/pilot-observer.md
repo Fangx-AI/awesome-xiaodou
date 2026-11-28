@@ -8,6 +8,8 @@
 
 冷读参与者可以没有小豆 App。观察者开场只说「请打开这页，用自己的话讲讲它是什么，再找到你会点的第一个入口」。关于名字、对象、按哪里复制等问题，等第一次完整反馈后再解释。观察版本用候选提交链接固定。
 
+从[通过的候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot)下载工件，使用 `CANDIDATE.txt` 里的固定页面链接给参与者。登记里的 `candidate_commit` 填同一文件中的完整提交号。同一批使用同一候选提交；只有分支链接的自报先作为反馈，能核对提交号再并入对应批次。
+
 [公开冷读入口](cold-read.md)用于自愿参与和未观察反馈。自行反馈单独归类，只有记录了首次反应、入口选择和四项评分的观察才计入 12 人验收。
 
 ## 七天自选任务
@@ -31,6 +33,7 @@
 ```json
 {
   "as_of": "2026-12-08",
+  "candidate_commit": "91a7020c67480107c7e7f499d5993abb3cc92f11",
   "cold_reads": [
     {
       "id": "P-0001",
