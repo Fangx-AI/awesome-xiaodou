@@ -2,19 +2,19 @@
 
 **把日常交给小豆**
 
-减肥计划试了几次，总是排不进真实的一周？**小豆独立 App** 里的个人 Agent 化身明代朝堂，照你的实际情况排计划，改期也保留进度。
+减肥计划试了几次，第一周还是排不进去？在**小豆独立 App** 说出你想办的事，让明代朝堂帮你排出第一步，做完接着办。
 
-**中书省先问再拟案 → 门下省查条件、退回重排 → 尚书省派六部、交付计划。** 设提醒、发消息等操作，等你确认后再办。
+**中书省问清目标 → 门下省核对时间和条件 → 尚书省派六部交付。** 时间或预算变了，已完成的照算，只改受影响的安排。设提醒、发消息等操作，等你确认后再办。
 
 [已开通？复制开局](#一句话在小豆里开始) · [下载小豆 App](docs/install.md#下载和开通) · [开通或发送卡住了](docs/install.md#开通或发送卡住了)
+
+<img src="assets/xiaodou-imperial-court.jpg" width="620" alt="明代朝堂风格插画，殿前案上陈放奏折、卷轴和朱印">
 
 ## 一句话在小豆里开始
 
 选一个目标，点代码块右上角复制全文。到**小豆独立 App** 新建对话，一次发出。
 
-**复制场景开局**　[减肥](prompts/life-plans/scenes.md#减肥) · [健身](prompts/life-plans/scenes.md#健身) · [自律阅读](prompts/life-plans/scenes.md#自律阅读) · [学英语](prompts/life-plans/scenes.md#学英语) · [留学](prompts/life-plans/scenes.md#留学)
-
-[没找到怎么开始？告诉我们你卡在哪](docs/field-tests/cold-read.md)，没有小豆 App 也可以。
+**复制场景开局**　[减肥](prompts/life-plans/scenes.md#减肥) · [健身](prompts/life-plans/scenes.md#健身) · [自律阅读](prompts/life-plans/scenes.md#自律阅读) · [学英语](prompts/life-plans/scenes.md#学英语) · [留学](prompts/life-plans/scenes.md#留学) · [全部 30 个生活计划](#30-个生活计划)
 
 <details>
 <summary><strong>自填目标 · 展开并复制开局</strong></summary>
@@ -98,6 +98,8 @@
 
 </details>
 
+[没找到怎么开始？告诉我们你卡在哪](docs/field-tests/cold-read.md)，没有小豆 App 也可以。
+
 ## 朕要减肥
 
 下面是一段示范。你只管说目标和实际情况，三省六部在背后把计划办下去。
@@ -175,8 +177,6 @@
 ## 三省六部怎么帮忙
 
 一句话能办的，小豆直接办。目标跨几天、撞了时间或牵涉预算时，三省先走一轮，尚书省再按需要找对应的部。想看方案怎么定的，就说「展开朝议」。
-
-![明代朝堂风格插画，殿前案上陈放奏折、卷轴和朱印](assets/xiaodou-imperial-court.jpg)
 
 ### 三省定方案
 
