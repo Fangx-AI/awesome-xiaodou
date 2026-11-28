@@ -12,6 +12,7 @@ CHANGE_SCORES = ("preserved", "affected_only", "actionable")
 COMPARISON_ARMS = ("regular", "emperor")
 COMPARISON_REPLAN_FIELDS = ("preserved", "affected_only", "replan_actionable")
 COMPARISON_FIELDS = ("first_action", *COMPARISON_REPLAN_FIELDS)
+CARRYOVER_STAGES = ("none", "first_action", "replan")
 TRIAL_STARTERS = ("xiaodou-start.txt", PLAN_PACK.name,
                   *(f"life-plans/{path.stem}.txt" for path in PLAN_FILES),
                   *(f"life-plans/{path.name}" for path in SCENE_FILES.values()))
@@ -124,13 +125,40 @@ def score_comparison_pairs(records):
     }
 
 
+def check_carryover(item):
+    if "carryover" in item and item["carryover"] not in CARRYOVER_STAGES:
+        raise ValueError("carryover must be none, first_action or replan")
+
+
+def comparison_report(records):
+    counts = dict.fromkeys((*CARRYOVER_STAGES, "unknown"), 0)
+    screened = []
+    for item in records:
+        value = item.get("carryover", "unknown")
+        counts[value] += 1
+        if value == "none":
+            screened.append(item)
+        elif value == "replan":
+            # The first action and its follow-ups preceded the conflicting information.
+            screened.append({
+                arm: {key: score for key, score in item.get(arm, {}).items() if key not in COMPARISON_REPLAN_FIELDS}
+                for arm in COMPARISON_ARMS
+            })
+    return {
+        **score_comparison_pairs(records),
+        "carryover_counts": counts,
+        "carryover_screened": score_comparison_pairs(screened),
+    }
+
+
 def summarize_comparisons(records):
     check_ids(records, "comparisons")
     by_order = {arm: [] for arm in COMPARISON_ARMS}
     for item in records:
-        check_keys(item, ("id", "order", *COMPARISON_ARMS), "comparison")
+        check_keys(item, ("id", "order", "carryover", *COMPARISON_ARMS), "comparison")
         if item.get("order") not in COMPARISON_ARMS:
             raise ValueError("comparison order must name the first arm: regular or emperor")
+        check_carryover(item)
         for result in (item.get(arm, {}) for arm in COMPARISON_ARMS):
             check_keys(result, (*COMPARISON_FIELDS, "follow_up_questions"), "comparison arm")
             check_flags({key: result[key] for key in COMPARISON_FIELDS if key in result},
@@ -142,9 +170,9 @@ def summarize_comparisons(records):
         by_order[item["order"]].append(item)
 
     return {
-        **score_comparison_pairs(records),
+        **comparison_report(records),
         "order_counts": {arm: len(items) for arm, items in by_order.items()},
-        "by_order": {arm: score_comparison_pairs(items) for arm, items in by_order.items()},
+        "by_order": {arm: comparison_report(items) for arm, items in by_order.items()},
     }
 
 

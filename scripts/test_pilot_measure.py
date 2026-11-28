@@ -5,6 +5,41 @@ from pilot_measure import summarize, summarize_comparisons, summarize_cumulative
 
 
 class PilotMeasurementTests(unittest.TestCase):
+    def test_carryover_is_private_until_scores_are_restored(self):
+        record = {"id": "P-0001", "order": "regular", "task": "练会议开场",
+                  "regular": "写第一句。", "emperor": "先读第一句。", "carryover": "replan"}
+        reviewer, key = anonymize([record])
+        self.assertTrue(all("carryover" not in row for row in reviewer))
+        self.assertEqual(key[0]["carryover"], "replan")
+        self.assertEqual(restore(key, reviewer)[0]["carryover"], "replan")
+        with self.assertRaisesRegex(ValueError, "carryover must be"):
+            anonymize([{**record, "carryover": "unknown"}])
+        with self.assertRaisesRegex(ValueError, "carryover must be"):
+            restore([{**key[0], "carryover": None}], reviewer)
+
+    def test_screening_preserves_raw_counts_and_unaffected_first_actions(self):
+        common = {"first_action": True, "preserved": True, "affected_only": True, "replan_actionable": True}
+        records = [
+            {"id": "P-0001", "order": "regular", "carryover": "none"},
+            {"id": "P-0002", "order": "regular", "carryover": "first_action"},
+            {"id": "P-0003", "order": "emperor", "carryover": "replan"},
+            {"id": "P-0004", "order": "emperor"},
+        ]
+        report = summarize_comparisons([
+            {**item, "regular": {**common, "follow_up_questions": 2}, "emperor": {**common, "follow_up_questions": 1}}
+            for item in records
+        ])
+        self.assertEqual(report["carryover_counts"], {"none": 1, "first_action": 1, "replan": 1, "unknown": 1})
+        self.assertEqual(report["outcomes"]["replan"]["pairs"], 4)
+        screened = report["carryover_screened"]
+        self.assertEqual(screened["outcomes"]["first_action"]["pairs"], 2)
+        self.assertEqual(screened["outcomes"]["replan"]["pairs"], 1)
+        self.assertEqual(screened["replan_checks"]["affected_only"]["pairs"], 1)
+        self.assertEqual(screened["follow_up_questions"]["pairs"], 2)
+        emperor_first = report["by_order"]["emperor"]["carryover_screened"]
+        self.assertEqual(emperor_first["outcomes"]["first_action"]["pairs"], 1)
+        self.assertEqual(emperor_first["outcomes"]["replan"]["pairs"], 0)
+
     def test_access_recovery_stays_separate_from_trial_counts(self):
         report = summarize({"as_of": "2026-12-12", "access_blocks": [
             {"id": "P-0001", "stage": "activate", "observed_on": "2026-12-01"},
