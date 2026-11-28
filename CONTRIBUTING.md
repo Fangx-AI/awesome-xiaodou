@@ -9,7 +9,7 @@
 3. 同步更新 `data/playbooks.json` 和 README 的玩法数量。新增来源登记到 `data/sources.json`。优先提供原帖，只有聚合或镜像时说明访问方式及缺失证据。
 4. 运行 `python scripts/build_catalog.py`，提交生成的目录、来源表和 CSV。外部待测用例保留在独立表中，不与玩法数相加。
 5. 更新提示词后，运行 `python scripts/build_skill.py <输出目录>`，提交更新后的提示词库和整包文本。每个玩法的可复制指令使用一个 `text` 代码块。
-6. 发布前运行 `python scripts/check_release.py <输出目录>/xiaodou-skill.zip`。CI 会重新构建并检查生成内容是否与仓库同步。
+6. 发布时从对应主分支提交的成功构建下载 `xiaodou-release-<完整提交号>`，按 `SHA256SUMS` 核对附件，再用同一提交打标签。本地可用 `python scripts/stage_release.py <空输出目录>` 生成同一组文件。
 
 ## 收录要求
 
