@@ -34,7 +34,7 @@
 
 包内含说明、提示词、出处和九张人物图。不同客户端的导入格式和权限以实际界面为准。本版已检查 ZIP 结构，豆包工作及小豆客户端导入尚未实测。
 
-候选工件同时附上两份开局纯文本、`CANDIDATE.txt` 和 `SHA256SUMS`。参加同一轮试用时，从 `CANDIDATE.txt` 打开固定版本页面。需要校验下载内容时，可在解开的工件目录运行 `sha256sum -c SHA256SUMS`，或用 PowerShell 的 `Get-FileHash -Algorithm SHA256` 核对文件。
+候选工件同时附上两份开局纯文本、`CANDIDATE.txt` 和 `SHA256SUMS`。真机首测从 `CANDIDATE.txt` 打开 `pilot`，首页冷读打开 `public_readme`。在解开的工件目录运行 `sha256sum -c SHA256SUMS`，或用 PowerShell 的 `Get-FileHash -Algorithm SHA256` 核对下载文件。
 
 [豆包工作官方技能说明](https://www.feishu.cn/content/article/7677519271848610746) · [Agent Skills 规范](https://agentskills.io/specification)
 

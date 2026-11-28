@@ -109,13 +109,12 @@ def summarize_comparisons(records):
 
 
 def summarize(data):
-    check_keys(data, ("as_of", "candidate_commit", "cold_reads", "trials", "comparisons"), "report")
+    check_keys(data, ("as_of", "candidate_commit", "public_readme_commit",
+                      "cold_reads", "trials", "comparisons"), "report")
     as_of = read_day(data.get("as_of"), "as_of")
-    candidate_commit = data.get("candidate_commit")
-    if "candidate_commit" in data and (
-        not isinstance(candidate_commit, str) or not re.fullmatch(r"[0-9a-f]{40}", candidate_commit)
-    ):
-        raise ValueError("candidate_commit must be the full lowercase Git commit ID")
+    for field in ("candidate_commit", "public_readme_commit"):
+        if field in data and (not isinstance(data[field], str) or not re.fullmatch(r"[0-9a-f]{40}", data[field])):
+            raise ValueError(f"{field} must be the full lowercase Git commit ID")
     reads, trials = data.get("cold_reads", []), data.get("trials", [])
     check_ids(reads, "cold_reads")
     check_ids(trials, "trials")
@@ -191,7 +190,8 @@ def summarize(data):
 
     return {
         "as_of": as_of.isoformat(),
-        "candidate_commit": candidate_commit,
+        "candidate_commit": data.get("candidate_commit"),
+        "public_readme_commit": data.get("public_readme_commit"),
         "cold_read": ratio(understood, len(reads)),
         "first_action": ratio(ready, len(trials)),
         "seven_day_completion": ratio(finished, seven_day_eligible),
@@ -208,7 +208,7 @@ def summarize(data):
         "prompted_return": ratio(prompted_returns, return_eligible),
         "matched_comparison": summarize_comparisons(data.get("comparisons", [])),
         "thresholds": {
-            "cold_read": len(reads) >= 12 and 12 * understood >= 10 * len(reads),
+            "cold_read": "public_readme_commit" in data and len(reads) >= 12 and 12 * understood >= 10 * len(reads),
             "first_action": len(trials) >= 100 and 100 * ready >= 80 * len(trials),
             "seven_day_completion": seven_day_eligible >= 100 and 100 * finished >= 60 * seven_day_eligible,
             "replanning": changes >= 30 and 100 * good_changes >= 85 * changes,

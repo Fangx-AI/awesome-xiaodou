@@ -6,15 +6,17 @@
 
 给从未看过项目的读者同一个 README 版本，记录入口为仓库根页或 README 直达、设备与浏览器视口。先让对方独立阅读，再依次问四件事：这是什么、在哪里使用、怎样开始、涉及发送或提醒时谁确认。观察对方实际找到入口。四项均答对且找得到入口，记录为冷读通过。保留脱敏原话用于改首页。
 
-冷读参与者可以没有小豆 App。观察者开场只说「请打开这页，用自己的话讲讲它是什么，再找到你会点的第一个入口」。关于名字、对象、按哪里复制等问题，等第一次完整反馈后再解释。观察版本用候选提交链接固定。
+冷读参与者可以没有小豆 App。观察者开场只说「请打开这页，用自己的话讲讲它是什么，再找到你会点的第一个入口」。关于名字、对象、按哪里复制等问题，等第一次完整反馈后再解释。
 
-从[通过的候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot)下载工件，使用 `CANDIDATE.txt` 里的固定页面链接给参与者。登记里的 `candidate_commit` 填同一文件中的完整提交号。同一批使用同一候选提交；只有分支链接的自报先作为反馈，能核对提交号再并入对应批次。
+从通过的候选构建下载工件。冷读用 `CANDIDATE.txt` 里的 `public_readme`，观察记录填对应的 `public_readme_commit`。如果测的是仓库根页，另外记下打开时的默认分支提交号。同一批按同一个公开首页版本汇总。只看到分支链接的自报先用来找问题，核对提交号后再并入对应批次。 [候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot) · [GitHub 文件永久链接](https://docs.github.com/en/repositories/working-with-files/using-files/getting-permanent-links-to-files)
 
 [公开冷读入口](cold-read.md)用于自愿参与和未观察反馈。自行反馈单独归类，只有记录了首次反应、入口选择和四项评分的观察才计入 12 人验收。
 
 ## 七天自选任务
 
 使用[七天试用页](seven-day.md)收集自愿登记，也可由观察者直接记录。核对开始日期与试用版本，同一人多次登记合为一个试用编号。公开自报和有观察者核对的记录分别保留来源；公开贴先用于发现问题，进入队列前需按同一口径核对。登记后没反馈的真实启动者仍在分母里。
+
+App 试用从工件里的 `readme`、`pilot` 或 `seven_day` 开始，记录 `candidate_commit`。若从公开首页复制，先核对所用开局文本与候选相同。`public_starter_matches_candidate` 只表示工件生成时的两个版本是否一致。
 
 [下载和开通](../install.md#下载和开通)收集 App 准入问题。记录受阻的系统、商店和步骤；正式发出开局消息前，归入准入记录。若后来开始试用，从实际开局日期起算七天。
 
@@ -34,6 +36,7 @@
 {
   "as_of": "2026-12-08",
   "candidate_commit": "91a7020c67480107c7e7f499d5993abb3cc92f11",
+  "public_readme_commit": "84de5d8efc6e6847c39f64b4b67e562fdd093d15",
   "cold_reads": [
     {
       "id": "P-0001",

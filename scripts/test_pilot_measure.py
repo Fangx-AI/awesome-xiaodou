@@ -12,6 +12,21 @@ class PilotMeasurementTests(unittest.TestCase):
             with self.subTest(invalid=invalid), self.assertRaises(ValueError):
                 summarize({"as_of": "2026-12-09", "candidate_commit": invalid})
 
+    def test_cold_read_threshold_uses_observed_public_readme_version(self):
+        report_input = {"as_of": "2026-12-09", "candidate_commit": "a" * 40, "cold_reads": [
+            {"id": f"P-{index:04}", "found_start": index < 10,
+             "answers": dict.fromkeys(("identity", "where", "how", "confirmation"), True)}
+            for index in range(12)
+        ]}
+        unversioned = summarize(report_input)
+        self.assertEqual(unversioned["cold_read"]["numerator"], 10)
+        self.assertFalse(unversioned["thresholds"]["cold_read"])
+        versioned = summarize({**report_input, "public_readme_commit": "b" * 40})
+        self.assertEqual(versioned["public_readme_commit"], "b" * 40)
+        self.assertTrue(versioned["thresholds"]["cold_read"])
+        with self.assertRaises(ValueError):
+            summarize({**report_input, "public_readme_commit": "main"})
+
     def test_explicit_incompletion_and_missing_reports_keep_the_same_denominator(self):
         report = summarize({"as_of": "2026-12-10", "trials": [
             {"id": "P-0001", "channel": "github", "started_on": "2026-12-01", "finished_on": "2026-12-08"},
