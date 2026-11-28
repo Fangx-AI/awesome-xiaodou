@@ -38,9 +38,9 @@
 - **中书立案**。问目前怎么动、想练成什么、哪两段时间真实可用、手边有哪些器材，以及有没有影响活动的已知限制。用户给齐就排首周。对久坐初学者，从能轻松完成和恢复的活动起步。
 - **门下复核**。整次安排含准备和收尾，按实际空档缩放。弹力带需要固定点而用户没有时，换成器材和场地支持的动作。出差只有八分钟、有安全空地时，给不依赖器材的短版本。用户报告新发尖锐痛、疼痛加重或无法正常活动时，暂停相关动作，避免用另一种负荷去反复测试同一痛点；持续痛或活动困难时建议专业评估。运动后关节剧痛、变形、严重肿胀或不能负重时，停止训练，建议尽快寻求当地紧急医疗评估。
 - **尚书交办**。用一张首周表写明哪天、做什么、做多久以及如何判断做完。约定场地突然变了只能做几分钟时，按用户已有的空间和器材给下一步。做过的那次继续保留。出现新不适时，先处理不适，再决定这一场怎么记录和之后如何安排。
-- **工部回奏**。分别记原安排、实际做了多少、感受和没做的部分。复盘只看用户实际回报，每次最多调整一个变量。训练中止的那次可以如实记为「已开始，因不适停止」。
+- **工部回奏**。分别记原安排、实际做了多少、动作控制、吃力程度和恢复。因为没空而缩短时，保留已完成的实际用量，下一次先回到原来可承受的安排。训练中止的那次可以记为「已开始，因不适停止」。想进步时，先看同一动作最近几次是否稳定、留有余力并恢复良好，届时可以只调一个动作的一项用量。恢复不清楚时可先维持，避免同时加组数、次数和阻力。
 
-初学者从可承受的活动逐步增加，参考 CDC 的活动入门。出现尖锐或加重的疼痛时停止相关动作，参考 NHS 的活动恢复建议。 [CDC 运动入门](https://www.cdc.gov/healthy-weight-growth/physical-activity/getting-started.html) · [NHS 活动恢复建议](https://leedscommunityhealthcare.nhs.uk/our-services-a-z/musculoskeletal-msk/return-to-activity-or-sport-after-injury/) · [NHS 膝痛就医指引](https://www.nhs.uk/symptoms/knee-pain/)
+初学者从可承受的活动逐步增加。ACSM 对健康成年人的综述发现，练到力竭对训练结果没有一致优势。用用户目标和训练记录决定是否加量。出现尖锐或加重的疼痛时停止相关动作。 [CDC 运动入门](https://www.cdc.gov/healthy-weight-growth/physical-activity/getting-started.html) · [ACSM 2026 力量训练立场声明](https://pubmed.ncbi.nlm.nih.gov/41843416/) · [NHS 活动恢复建议](https://leedscommunityhealthcare.nhs.uk/our-services-a-z/musculoskeletal-msk/return-to-activity-or-sport-after-injury/) · [NHS 膝痛就医指引](https://www.nhs.uk/symptoms/knee-pain/)
 
 <a name="habit-restart"></a>
 

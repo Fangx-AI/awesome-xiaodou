@@ -376,6 +376,16 @@ def flow_fixtures():
         (case, "life", message, required, forbidden)
         for case, _, message, required, forbidden in flows["fitness-cannot-bear-weight"]
     )
+    flows["fitness-progress-from-real-sessions"] = (
+        ("fitness-short-session-does-not-create-debt", "scene-fitness",
+         "朕是健康成年新手。周二椅子起坐做完两组各8次，恢复正常；周六时间临时少了，只做了一组8次，没有不舒服。下周还是同样的两天，每次20分钟。是不是周二要把少的量加倍补回来？给我记账和下一次安排。",
+         ("周二", "周六", r"(?:一|1)\s*组", r"(?:两|二|2)\s*组", "维持|原安排|原计划|原量|照常"),
+         ("需要加倍|要加倍补|周二做四组|周六.{0,7}做完两组",)),
+        ("fitness-progress-only-one-variable", "scene-fitness",
+         "后来两次椅子起坐都做完了两组各8次，动作稳，还能再做几下，第二天恢复正常。朕想只小幅加一点，椅子照旧，没有额外负重。下一次具体怎么练？",
+         (r"(?:两|二|2)\s*组", r"(?:9|九)\s*次|(?:多|加).{0,4}(?:一|1)\s*次", "椅子|起坐", "不加|照旧|保持|仍用|不变|原来的椅子|自身体重"),
+         ("加到四组|改用负重|每组练到力竭|练到做不动为止|次数加倍",)),
+    )
     flows["study-application-portal"] = (
         ("study-upload-is-draft", "starter",
          "虚构案例，只用这些信息：A 校申请系统显示 Draft，个人陈述 PDF 已上传，另有一封推荐信显示 Invited。朕算是已经正式交了吗？下一步是什么？",
