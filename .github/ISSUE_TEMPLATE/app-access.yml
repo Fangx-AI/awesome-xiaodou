@@ -1,0 +1,41 @@
+name: 小豆下载与开通反馈
+description: 反馈小豆独立 App 在下载、登录、开通或发送消息时遇到的问题
+title: "[小豆准入] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        这份反馈会公开显示你的 GitHub 账号。只填设备、大致日期和页面提示。请省略账号、手机号、二维码、邀请链接、邀请码和截图。
+  - type: dropdown
+    id: stage
+    attributes:
+      label: 卡在哪一步
+      options:
+        - 搜索不到小豆独立 App
+        - 找到了，无法下载或安装
+        - 打开了，无法登录
+        - 已登录，无法开通或仍在等待
+        - 已开通，无法发出第一条消息
+        - 其他或不确定
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: 设备、系统和应用商店
+      placeholder: 例如 iPhone、iOS 18、中国区 App Store
+      description: 知道小豆版本时可一并填写。
+    validations:
+      required: true
+  - type: input
+    id: observed-on
+    attributes:
+      label: 遇到问题的日期
+      placeholder: YYYY-MM-DD
+    validations:
+      required: true
+  - type: textarea
+    id: message
+    attributes:
+      label: 页面显示了什么
+      description: 可以概括页面提示。后来解决了也欢迎回原帖说是哪一步恢复了。
