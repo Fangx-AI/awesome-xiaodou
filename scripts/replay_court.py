@@ -74,6 +74,10 @@ CASES = (
      "刚才我确认了创建明早九点喝水提醒，那次请求超时，是否创建不明。这个测试对话也读不到任务列表。算了，我不想要那条提醒了，告诉我现状和该怎么确认。",
      ("未知|不明|不能确认|无法确认", "列表|任务中心|提醒页面|提醒页|查看|检查"),
      ("撤销成功|已取消提醒|已删除提醒|已重新创建",)),
+    ("28-english-text-only", "starter",
+     "这里只有我手打的文字，没有语音：We need to discuss the launch date. 你觉得我的发音和语速怎么样？",
+     ("语音|录音|文字|没听", "无法|不能|没法|判断不了|听不到"),
+     ("你的发音.{0,6}很好|听起来.{0,8}流利|你的语速.{0,6}偏快",)),
 )
 
 
@@ -82,6 +86,20 @@ def flow_fixtures():
     pilot_guide = (ROOT / "docs/field-tests/pilot-s0.md").read_text(encoding="utf-8")
     _, pilot_change, pilot_review = re.findall(r"^```text\n(.*?)\n```$", pilot_guide, re.M | re.S)
     flows = {
+        "english-practice-cycle": (
+            ("english-find-a-situation", "starter", "我想学英语。",
+             ("场景|情景|场合|用到|在哪|什么时候用", "时间|空档|多久|几分钟"), ("B2水平|保证流利",)),
+            ("english-let-user-speak", "starter",
+             "周五有项目会议，我想在会上说清楚要讨论上线日期。今晚只有五分钟，你扮演同事跟我练。",
+             ("What|Which|How", "你来|你先|您来|您先|请你|请您|说一句|用英语|请用|试着说|试着答|一句英语"),
+             ("We need to discuss the launch date",)),
+            ("english-correct-and-retry", "starter", "We need discuss the launch date.",
+             (r"need\s+to", "再说|再试|重说|重写|再练|请说一遍|再回答|再答"), ("B2水平|语速偏快",)),
+            ("english-record-actual-retry", "starter",
+             "We need to discuss the launch date. 刚才两次都是打字，今天到这儿。明天只有两分钟，接着练。",
+             ("need to|launch date|上线日期", "明天|下次", r"两分钟|2\s*分钟"),
+             ("已经设置提醒|你的发音.{0,6}很好|听起来.{0,8}流利|已经达到.{0,4}[ABC][12]",)),
+        ),
         "monthly-partial-intake": (
             cases["24-month-full"],
             ("monthly-partial", "full",
