@@ -355,6 +355,24 @@ def flow_fixtures():
         (case, "life", message, required, forbidden)
         for case, _, message, required, forbidden in flows["progress-correction"]
     )
+    flows["private-budget"] = (
+        ("study-private-costs", "starter",
+         "朕计划 2027 年秋去美国读数据科学硕士，个人陈述初稿已写。预算金额我不方便透露。下面是虚构的费用对照，只用这两条：A 校全程 25,000 美元，已包含学杂费与生活费；B 校全程学费 18,000 美元，杂费和生活费待查。请先整理选校表。",
+         (r"A\s*校", r"B\s*校", r"25[,，]?000|2\.5\s*万", r"18[,，]?000|1\.8\s*万", "待核|待查|未核|未查|未知", "陈述"),
+         (r"预算是多少|告诉我.{0,6}预算|说一下.{0,6}预算|能提供.{0,8}预算|B\s*校.{0,12}更便宜",)),
+        ("study-private-threshold", "starter",
+         "我自己比过了，A 校全程费用超出我的上限，B 校还不知道。预算仍不分享。请更新两所学校的状态。",
+         (r"A\s*校", "超出|超过|超预算|移出|排除|超限|暂排", r"B\s*校", "待核|待查|还未知|未确认"),
+         (r"预算是多少|请.{0,6}提供.{0,6}预算|B\s*校.{0,8}符合预算|B\s*校.{0,8}没超",)),
+        ("study-private-next", "starter",
+         "朕今天只剩十五分钟。不用问我的具体预算，给朕一个可以自己做的下一步，接着查 B 校。",
+         (r"B\s*校", "官网|学校网站|项目页|官方", "生活费|生活开支", "杂费|学杂费", r"十五分钟|15\s*分钟"),
+         (r"请.{0,6}提供.{0,6}预算|预算是多少|重写个人陈述|B\s*校.{0,8}符合预算",)),
+    )
+    flows["private-budget-life"] = tuple(
+        (case, "life", message, required, forbidden)
+        for case, _, message, required, forbidden in flows["private-budget"]
+    )
     return flows
 
 
