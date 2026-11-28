@@ -74,14 +74,16 @@ def build():
         lines.append('')
     (ROOT / 'docs/external-tests.md').write_text('\n'.join(lines), encoding='utf-8')
     lines = ['# 小豆 App 真机结果', '', f'已登记 **{len(runs)} 次**真机试用。', '',
-             '[复跑方法](../prompt-quality.md) · [提交结果](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=prompt-feedback.yml)', '']
+             '[已核对的下载入口](../install.md#下载和开通) · '
+             '[真机演练和回报](pilot-s0.md#把下面这几项回给观察者) · '
+             '[本地回放](../prompt-quality.md#本地候选回放)', '']
     if runs:
         lines += ['| 日期 | 场景 | App 版本 | 结果 | 脱敏证据 |', '| --- | --- | --- | --- | --- |']
         for run in runs:
             evidence = Path(run['evidence_path']).relative_to('docs/field-tests').as_posix()
             lines.append(f"| {run['date']} | {run['case_id']} | {run['version']} | {run['outcome']} | [查看记录]({evidence}) |")
     else:
-        lines.append('当前等待第一条小豆 App 实测。验收页的演示和预期结果单独存放。')
+        lines.append('当前等待第一条小豆 App 实测。安装、开通、发送开局及提醒创建与触发分别记录。')
     (ROOT / 'docs/field-tests').mkdir(exist_ok=True)
     (ROOT / 'docs/field-tests/README.md').write_text('\n'.join(lines) + '\n', encoding='utf-8')
     print(json.dumps({'playbooks':len(cases), 'source_records':len(sources), 'external_tests':len(external), 'categories':dict(counts)}, ensure_ascii=True))
