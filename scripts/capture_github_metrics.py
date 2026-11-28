@@ -10,10 +10,13 @@ from tempfile import NamedTemporaryFile
 REPOSITORY = "Fangx-AI/awesome-xiaodou"
 
 
-def github(path=""):
+def github(path="", *, paginate=False):
     endpoint = f"repos/{REPOSITORY}{path}"
+    command = ["gh", "api"]
+    if paginate:
+        command.extend(("--paginate", "--slurp"))
     result = subprocess.run(
-        ["gh", "api", endpoint], capture_output=True, text=True, encoding="utf-8", timeout=30, check=True,
+        [*command, endpoint], capture_output=True, text=True, encoding="utf-8", timeout=30, check=True,
     )
     return json.loads(result.stdout)
 
@@ -23,6 +26,19 @@ def capture():
     views = github("/traffic/views")
     clones = github("/traffic/clones")
     release = github("/releases/latest")
+    release_pages = github("/releases?per_page=100", paginate=True)
+    published_releases = {
+        item["tag_name"]: {
+            "id": item["id"],
+            "published_at_utc": item["published_at"],
+            "prerelease": item["prerelease"],
+            "assets": {
+                asset["name"]: {"id": asset["id"], "download_count": asset["download_count"]}
+                for asset in item["assets"]
+            },
+        }
+        for page in release_pages for item in page if not item["draft"]
+    }
     return {
         "observed_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "stars": repo["stargazers_count"],
@@ -37,6 +53,7 @@ def capture():
             "tag": release["tag_name"],
             "asset_downloads": {asset["name"]: asset["download_count"] for asset in release["assets"]},
         },
+        "published_releases": published_releases,
     }
 
 

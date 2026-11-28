@@ -21,7 +21,7 @@
 
 [项目仓库](https://github.com/Fangx-AI/awesome-xiaodou) · [GitHub 流量数据说明](https://docs.github.com/en/rest/metrics/traffic) · [项目真机登记](field-tests/README.md)
 
-周度记录使用 `python scripts/capture_github_metrics.py <仓库外的历史文件路径>`。读取需要有此仓库流量权限的 `gh` 登录状态。每次保存 GitHub 的 Star、Fork、14 天访问与克隆窗口、热门页面与引荐来源，以及当时最新 Release 的附件下载计数。同一天重跑更新当日 UTC 快照。访问与克隆的滚动独立人数不可跨窗口相加；热门页和来源只显示 GitHub 返回的前十项，缺席的页面无法据此判定无访问。实际启动和首步完成以试用登记为准。
+周度记录使用 `python scripts/capture_github_metrics.py <仓库外的历史文件路径>`。读取需要有此仓库流量权限的 `gh` 登录状态。每次保存 GitHub 的 Star、Fork、14 天访问与克隆窗口、热门页面与引荐来源，以及各个已发布 Release 的附件下载计数。历史快照继续保留原口径，旧记录里没观测的版本留空。按版本和附件 ID 对比下载数，同名附件换了 ID 时分别记录。GitHub 附件计数含维护者校验下载，不等于独立下载者。同一天重跑更新当日 UTC 快照。访问与克隆的滚动独立人数不可跨窗口相加；热门页和来源只显示 GitHub 返回的前十项，缺席的页面无法据此判定无访问。实际启动和首步完成以试用登记为准。
 
 | 参照仓库 | 当日 Star 快照 | 可复用的产品做法 |
 | --- | ---: | --- |
