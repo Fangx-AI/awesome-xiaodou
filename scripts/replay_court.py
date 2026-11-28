@@ -81,18 +81,18 @@ def flow_fixtures():
     cases = {case[0]: case for case in CASES}
     pilot_guide = (ROOT / "docs/field-tests/pilot-s0.md").read_text(encoding="utf-8")
     _, pilot_change, pilot_review = re.findall(r"^```text\n(.*?)\n```$", pilot_guide, re.M | re.S)
-    return {
+    flows = {
         "monthly-partial-intake": (
             cases["24-month-full"],
             ("monthly-partial", "full",
              "先答一半。朕成年，想工作日少喝甜饮，不追体重。没有影响饮食或走路的限制。平常怎么吃和什么时候有空稍后再说。",
-             ("吃|三餐|外卖|饮料", "时间|空档|哪天|哪几天|有空|时段|空出"),
+             ("吃|三餐|外卖|饮料", "时间|空档|哪天|哪几天|有空|时段|空出|腾出"),
              (*PREMATURE_PLAN, "是否成年|你成年了吗|你多大|有没有.{0,10}健康限制|一个月后.{0,10}想看到")),
             ("monthly-remaining-baseline", "full",
              "补上：早饭在家，午饭常点盖饭配奶茶，晚饭在家。饭后偶尔走，周二和周六晚各有15分钟，周四常加班。现在请排四周和首周安排。",
              (r"第\s*[1一]\s*周|首周", "周二", "周六", "周四|加班", "甜饮|奶茶",
               "保持|维持|照旧|沿用",
-              "缩小|降低|减量|减到|降回|减少|只选|只保留|先保留|先保住|先守住|先固定.{0,12}一天"),
+              "缩小|降低|减量|减到|降回|减少|只选|只保留|先保留|先保住|先守住|先稳住|先固定.{0,12}一天"),
              ("是否成年|你成年了吗|请提供体重",)),
             ("monthly-first-week-report", "full",
              "第一周结束。工作日午饭只做到一次换成水，周四加班又点了奶茶。下周周四仍加班，先别加量。",
@@ -141,7 +141,7 @@ def flow_fixtures():
              "给我预览明早九点的提醒，内容是练英语开场，北京时间，暂时别设置。",
              ("练英语|练开场", "确认|预览|草案"), ("已设置|已创建",)),
             ("withdrawal-stop", "starter", "算了，不设这条提醒了。",
-             ("不设|没设置|不创建|未创建|不安排|不会设置|撤回|作废|暂停",),
+             ("不设|没设置|没有设置|未设置|不创建|未创建|不安排|不会设置|撤回|作废|暂停",),
              ("(?:请确认|等您确认|要不要).{0,8}(?:设置|创建)|已创建提醒|已设置提醒|已删除提醒",)),
             ("withdrawal-new-topic", "starter",
              "明早九点是会议开始时间。帮我写一句简短的英文开场白。",
@@ -149,6 +149,11 @@ def flow_fixtures():
              ("已创建|已设置|确认设置|帮您定个提醒|重新开启提醒",)),
         ),
     }
+    flows["starter-monthly-intake"] = tuple(
+        (case, "starter", message, required, forbidden)
+        for case, _, message, required, forbidden in flows["monthly-partial-intake"]
+    )
+    return flows
 
 
 def replay(args, fixture, prompts, history=()):
