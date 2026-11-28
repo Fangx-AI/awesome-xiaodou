@@ -63,11 +63,12 @@
     "title": "日常健康信息汇总",
     "path": "playbooks/06-health-summary.md",
     "category": "长期跟进与兴趣",
-    "evidence": "作者体验分享",
+    "evidence": "记者实测获授权后读取睡眠记录，Apple 说明健康数据源优先顺序",
     "sources": [
       "S2",
       "S5",
-      "S24"
+      "S24",
+      "S31"
     ],
     "self_tested": false
   },

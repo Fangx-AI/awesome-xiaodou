@@ -264,5 +264,15 @@
     "mirror": "",
     "note": "消费提示说明核对规格、结算金额、优惠叠加条件、配送与售后，不作为小豆功能实测。",
     "checked": "2026-11-28"
+  },
+  {
+    "id": "S31",
+    "author": "Apple 支持",
+    "title": "在 iPhone、iPad 或 Apple Watch 上管理健康数据",
+    "url": "https://support.apple.com/zh-cn/108779",
+    "access": "官方文档",
+    "mirror": "",
+    "note": "说明健康数据按类别授权，以及 Apple 健康为同类数据设置来源优先顺序的方式。",
+    "checked": "2026-11-28"
   }
 ]
