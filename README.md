@@ -150,13 +150,13 @@
 <summary>下载、试用记录与建设计划</summary>
 
 - [含 30 个生活计划的候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot) · [历史版本](https://github.com/Fangx-AI/awesome-xiaodou/releases)
-- [试用案例](docs/prompt-quality.md) · [提示词出处](skills/xiaodou-skill/references/prompt-sources.md) · [建设计划](docs/roadmap.md) · [首页可读性反馈](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/cold-read.md)
+- [试用案例](docs/prompt-quality.md) · [提示词出处](skills/xiaodou-skill/references/prompt-sources.md) · [建设计划](docs/roadmap.md)
 - [玩法雷达](docs/radar.md) · [作者分享](docs/community.md) · [失败记录](docs/failures.md) · [来源登记](docs/source-ledger.md)
 
 </details>
 
 **哪件事被小豆帮你办成了？** 欢迎分享你说的那句话和实际结果。觉得有用，点个 Star，下次需要时回来找。
 
-[分享实际结果](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=prompt-feedback.yml) · [贡献玩法](CONTRIBUTING.md) · [保存示例图或复制转发文案](docs/share-cards.md)
+[分享实际结果](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=prompt-feedback.yml) · [第一次看首页？告诉我们你会从哪里开始](docs/field-tests/cold-read.md) · [贡献玩法](CONTRIBUTING.md) · [保存示例图或复制转发文案](docs/share-cards.md)
 
 社区项目 · [原创内容 CC BY 4.0](LICENSE)
