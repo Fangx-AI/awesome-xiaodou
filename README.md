@@ -165,7 +165,7 @@
 <details>
 <summary>下载、试用记录与建设计划</summary>
 
-- [S0 候选包与构建校验](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot) · [正式发布记录](docs/updates.md)
+- [下载 v2.2.0 · 含 30 个生活计划](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.2.0) · [S0 候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot)
 - [第一次看页面？参加冷读](docs/field-tests/cold-read.md) · [小豆真机首测](docs/field-tests/pilot-s0.md) · [试用案例](docs/prompt-quality.md) · [提示词出处](skills/xiaodou-skill/references/prompt-sources.md) · [建设计划](docs/roadmap.md)
 - [玩法雷达](docs/radar.md) · [作者分享](docs/community.md) · [失败记录](docs/failures.md) · [来源登记](docs/source-ledger.md)
 

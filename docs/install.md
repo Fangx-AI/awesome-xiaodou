@@ -36,13 +36,15 @@
 
 ## 豆包工作 / 支持 Agent Skills 的客户端
 
-1. 登录 GitHub，打开最近一次通过的[候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot)。在运行摘要的「小豆候选包」下点下载，打开压缩包里的 `xiaodou-skill.zip`。早期构建可在 Artifacts 区下载，过期后可选更新的构建。旧版可在 [Releases](https://github.com/Fangx-AI/awesome-xiaodou/releases) 取得。
+1. 下载 [v2.2.0 技能 ZIP](https://github.com/Fangx-AI/awesome-xiaodou/releases/download/skill-v2.2.0/xiaodou-skill.zip)。发布页也提供开局和生活计划的纯文本。 [版本与校验值](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.2.0)
 2. 解压，保留 `xiaodou-skill` 文件夹及其 `references`。在支持技能导入的客户端选择该技能文件夹，或按客户端要求上传技能。豆包工作的入口在「技能」中的本地导入。
 3. 在已启用技能的对话中说「用小豆 Skill 帮我做个减肥计划」，或在技能选择器中选择它。
 
 包内含说明、提示词、出处和九张人物图。不同客户端的导入格式和权限以实际界面为准。本版已检查 ZIP 结构，豆包工作及小豆客户端导入尚未实测。
 
 候选工件附有两份开局纯文本、生活计划整包和 `life-plans/` 下的五个分类复制版。真机演练从 `CANDIDATE.txt` 打开 `pilot`，首页冷读打开 `public_readme`。七天试用可从 `STARTERS.tsv` 选通用开局、计划整包或一个分类的固定版本。
+
+要参加固定版本试用，打开[通过的候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot)，在运行摘要的「小豆候选包」下载工件。该入口需要 GitHub 登录。
 
 在仓库根目录，用 Python 3.11 或更新版本运行 `python scripts/verify_candidate.py <解开的候选工件目录> --commit <Actions 上显示的完整提交号>`。它核对新候选包的文件校验值、版本和固定链接。历史候选包可在解压目录运行 `sha256sum -c SHA256SUMS` 查看当时登记的校验值。
 
