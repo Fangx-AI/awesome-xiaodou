@@ -24,7 +24,7 @@ PILOT = ROOT / "prompts" / "xiaodou-pilot-start.txt"
 MATCHED_FLOWS = ("pilot-reschedule", "monthly-partial-intake")
 MONTH_REQUEST = "朕想用一个月养成更好的饮食习惯。中午只能点外卖，晚上想散步，但可能要加班。"
 INTAKE_SIGNALS = ("变化|改变|目标|希望|先改|想改|养成.{0,8}哪|哪.{0,8}饮食习惯|有进步", "平时|平常|通常|三餐|常点",
-                  "时间|空档|加班", "成年|健康|限制|过敏|伤病")
+                  "时间|空档|有空|多久|腾出|几分钟", "成年|健康|限制|过敏|伤病")
 PREMATURE_PLAN = ("鸡肉饭|点一份|第.?周[：:]|(?:建议|安排|至少)每周.{0,8}走|今天午[饭餐].{0,12}(先|就).{0,10}(点|选)",)
 
 # Earlier replies described in an input are test fixtures, not recorded App replies.
@@ -278,9 +278,9 @@ def flow_fixtures():
             ("life-weight-start", "life", "帮我制定一个减肥计划。",
              (*INTAKE_SIGNALS, "运动|活动|锻炼"), PREMATURE_PLAN),
             ("life-weight-plan", "life",
-             "成年，想用四周改善习惯，暂时不看体重。工作日午饭常喝含糖饮料，想少喝些。久坐，周二和周六晚上各有15分钟，想散步，没有相关身体限制。请排首周和后续。",
+             "成年，想用四周改善习惯，不方便提供身高体重，也不想称重或计热量。工作日午饭常喝含糖饮料，想少喝些。久坐，周二和周六晚上各有15分钟，想散步，没有相关身体限制。请排首周和后续。",
              ("周二", "周六", "饮料|甜饮|含糖", r"首周|第\s*[一1]\s*周", "复盘|第七天|回顾|记录|回报"),
-             ("必须称重|请提供体重|每天跑",)),
+             ("必须称重|请提供体重|每天跑", r"\d[\d,]*\s*(?:大卡|千卡|kcal)|减\s*\d+\s*(?:斤|公斤)")),
             ("life-weight-reschedule", "life",
              "周一午饭已经换成水。周二晚没空了，周三午休有时间，周六仍有空。只改散步那次。",
              ("周一", "水", "周三", "周六"), ("周六.{0,6}取消|周一.{0,8}重做",)),
@@ -306,6 +306,11 @@ def flow_fixtures():
              ("周五|每周五", "清单", "缺|待|尚未|没有", "下次|下一次"), ("留存率提高|补编数字",)),
         ),
     }
+    for entry in ("starter", "weight"):
+        flows[f"{entry}-weight-follow-through"] = tuple(
+            (case, entry, message, required, forbidden)
+            for case, _, message, required, forbidden in flows["life-weight-follow-through"]
+        )
     flows["starter-monthly-intake"] = tuple(
         (case, "starter", message, required, forbidden)
         for case, _, message, required, forbidden in flows["monthly-partial-intake"]
