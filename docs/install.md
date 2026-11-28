@@ -1,5 +1,7 @@
 # 使用小豆 Skill
 
+[查看下载、回放和真机使用状态](compatibility.md)
+
 ## 小豆独立 App
 
 ### 下载和开通
