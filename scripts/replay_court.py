@@ -88,11 +88,29 @@ def replay(args, fixture, prompts):
     ]
     if args.model:
         command[-1:-1] = ["-m", args.model]
-    result = subprocess.run(
-        command, cwd=args.output.parent, input=request, capture_output=True, text=True,
-        encoding="utf-8", errors="replace", timeout=160, check=False,
-    )
-    events = [json.loads(line) for line in result.stdout.splitlines() if line.startswith("{")]
+    runner_errors = []
+    try:
+        result = subprocess.run(
+            command, cwd=args.output.parent, input=request, capture_output=True, text=True,
+            encoding="utf-8", errors="replace", timeout=160, check=False,
+        )
+        stdout, exit_code = result.stdout, result.returncode
+    except subprocess.TimeoutExpired as exc:
+        stdout, exit_code = (exc.stdout or b"").decode("utf-8", errors="replace"), None
+        runner_errors.append("CLI timed out before completing the response")
+    except OSError as exc:
+        stdout, exit_code = "", None
+        runner_errors.append(f"CLI could not start ({type(exc).__name__})")
+    events = []
+    for line in stdout.splitlines():
+        if line.startswith("{"):
+            try:
+                event = json.loads(line)
+            except json.JSONDecodeError:
+                runner_errors.append("CLI returned an incomplete JSON event")
+            else:
+                if isinstance(event, dict):
+                    events.append(event)
     messages = [
         event["item"]["text"] for event in events
         if event.get("type") == "item.completed" and event["item"].get("type") == "agent_message"
@@ -104,11 +122,13 @@ def replay(args, fixture, prompts):
         event["item"].get("type") for event in events
         if event.get("type") == "item.completed" and event["item"].get("type") not in ("agent_message", "reasoning")
     ]
+    completed = any(event.get("type") == "turn.completed" for event in events)
     return {
         "case": case, "mode": mode, "input": message, "output": output,
-        "passed": result.returncode == 0 and bool(output) and not (missing or present or tool_uses),
+        "passed": exit_code == 0 and completed and bool(output) and not (missing or present or tool_uses or runner_errors),
         "missing_patterns": missing, "forbidden_patterns_present": present, "tool_uses": tool_uses,
-        "exit_code": result.returncode,
+        "exit_code": exit_code,
+        "runner_errors": runner_errors,
         "model_errors": [event.get("message", event.get("error")) for event in events
                          if event.get("type") in ("error", "turn.failed")],
     }
