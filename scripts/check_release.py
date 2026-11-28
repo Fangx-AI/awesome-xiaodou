@@ -1,5 +1,6 @@
 """Check the staged Skill ZIP, clipboard entry, and README links."""
 import json
+import posixpath
 import re
 import sys
 from pathlib import Path
@@ -65,10 +66,35 @@ def verify(archive):
         assert bundle.testzip() is None, "damaged ZIP contents"
         for path, expected in copies.items():
             assert text(path) == expected, f"{path.name}: App copy text must match the Skill reference"
-        tracked_files = ["SKILL.md", "references/prompts.md", "references/court.md", "references/prompt-sources.md"]
+        tracked_files = [
+            "SKILL.md", "references/prompts.md", "references/court.md", "references/planning.md", "references/prompt-sources.md",
+            "references/divination.md", "references/guandi-lots.json", "scripts/birth-chart/chart.cjs",
+            "scripts/birth-chart/fortune.cjs",
+            "scripts/birth-chart/package.json",
+            "scripts/birth-chart/package-lock.json",
+        ]
+        upstream = skill / "vendor" / "ziwei-bazi"
+        upstream_files = [
+            "LICENSE", "README.md", "SKILL.md", "references/quality-audit-checklist.md",
+            "references/translation-dictionary.md", "scripts/dynamic_layer.py", "scripts/paipan_verify.py",
+            "scripts/sihua_lookup.py", "scripts/ziwei_chart.py", "tests/test_dynamic_layer.py",
+            "tests/test_paipan_verify.py", "tests/test_sihua_lookup.py", "tests/test_ziwei_chart.py",
+        ]
+        tracked_files.extend((upstream / name).relative_to(skill).as_posix() for name in upstream_files)
         tracked_files.extend(path.relative_to(skill).as_posix() for path in (PLAN_INDEX, *PLAN_FILES))
+        lots = json.loads(text(skill / "references" / "guandi-lots.json"))["lots"]
+        assert [lot["number"] for lot in lots] == list(range(1, 101))
+        assert all(len(lot["verse"]) == 4 and lot["traditionalCommentary"] for lot in lots)
         for path in tracked_files:
             assert bundle.read("xiaodou-skill/" + path).decode().replace("\r\n", "\n") == text(skill / path), path
+        archive_paths = set(bundle.namelist())
+        for path in ("SKILL.md", "references/planning.md", "references/divination.md"):
+            content = text(skill / path)
+            directory = posixpath.dirname(f"xiaodou-skill/{path}")
+            for target in re.findall(r"\]\(([^)]+)\)", content):
+                if "://" not in target and not target.startswith("#"):
+                    linked_path = posixpath.normpath(posixpath.join(directory, target.split("#")[0]))
+                    assert linked_path in archive_paths, f"{path} refers to missing file: {target}"
         assert bundle.read("xiaodou-skill/LICENSE") == (ROOT / "LICENSE").read_bytes()
         library = bundle.read("xiaodou-skill/references/prompts.md").decode()
         zip_ids = re.findall(r"^### ([A-Z]?\d{2}) · ", library, re.MULTILINE)

@@ -15,6 +15,14 @@ QUICK_PACK = ROOT / "prompts" / "xiaodou-quick-pack.txt"
 QUICK_IDS = ("G01", "H01", "09", "11", "36", "01", "07", "41", "42")
 COURT_ROLES = ROOT / "docs" / "studio" / "roles.json"
 COURT_REFERENCE = LIBRARY.parent / "court.md"
+PLANNING_REFERENCE = LIBRARY.parent / "planning.md"
+DIVINATION_REFERENCE = LIBRARY.parent / "divination.md"
+CHART_TOOLS = SKILL / "scripts" / "birth-chart"
+DIVINATION_UPSTREAM = SKILL / "vendor" / "ziwei-bazi"
+DIVINATION_FILES = (
+    DIVINATION_REFERENCE, LIBRARY.parent / "guandi-lots.json", CHART_TOOLS / "chart.cjs",
+    CHART_TOOLS / "fortune.cjs", CHART_TOOLS / "package.json", CHART_TOOLS / "package-lock.json",
+)
 
 
 def build_court():
@@ -66,10 +74,12 @@ def main(output_folder):
     routing = routing.replace("[提示词库](references/prompts.md)", "下方的提示词库")
     routing = routing.replace("[30 个生活计划](references/life-plans/README.md)", "当前对话已加载的生活计划资料（如有）")
     routing = routing.replace("[三省六部人物志](references/court.md)", "G01 中的角色分工")
+    routing = routing.replace("[计划手册](references/planning.md)", "G01 的常见奏请")
+    routing = routing.replace("[礼部 · 传统术数](references/divination.md)", "G01 的「御前问签」规则")
     intro = [
         "请在本次对话中启用下面的小豆 Skill。",
         routing,
-        "启用后回复：小豆 Skill 已在当前对话就绪。之后等我说要做哪件事。",
+        "已经收到目标就直接按 G01 办理。没有目标时问：皇上，今天想先办哪件事？",
         "以下是提示词库：",
     ]
     paste = intro.copy()
@@ -96,8 +106,12 @@ def main(output_folder):
     portraits = build_court()
     archive = output_folder / "xiaodou-skill.zip"
     with ZipFile(archive, "w", compression=ZIP_DEFLATED) as bundle:
-        for path in (SKILL / "SKILL.md", LIBRARY, LIBRARY.parent / "prompt-sources.md", COURT_REFERENCE,
-                     PLAN_INDEX, *PLAN_FILES):
+        upstream_files = sorted(path for path in DIVINATION_UPSTREAM.rglob("*")
+                                if path.is_file() and (path.suffix in {".md", ".py"} or path.name == "LICENSE"))
+        if not (DIVINATION_UPSTREAM / "SKILL.md").is_file():
+            raise ValueError("Missing vendored ziwei-bazi Skill")
+        for path in (SKILL / "SKILL.md", LIBRARY, LIBRARY.parent / "prompt-sources.md", COURT_REFERENCE, PLANNING_REFERENCE,
+                     PLAN_INDEX, *PLAN_FILES, *DIVINATION_FILES, *upstream_files):
             bundle.write(path, path.relative_to(SKILL.parent).as_posix())
         for portrait in portraits:
             bundle.write(portrait, f"xiaodou-skill/assets/roles/{portrait.name}")

@@ -4,6 +4,11 @@
 
 - 用实测余量重算补货时间。原提醒存在时先预览改期，原状态不清时先问用户核对，避免重复提醒。 [猫粮补货玩法](../playbooks/05-restock.md)
 
+## v2.5.0 · 完整计划手册、百签和排盘随包提供
+
+- 技能 ZIP 内可直接读取五类重点计划的交付标准。用户主动问签时可查随包百签，支持本地脚本的客户端可以运行排盘。 [术数说明与出典](../skills/xiaodou-skill/references/divination.md)
+- 从解压包核对了固定签文、四柱和紫微排盘样例。 [下载与校验值](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.5.0)
+
 ## v2.4.1 · 信息够了，先给能做的一步
 
 - 考试复习按剩余周数和薄弱题型先排首周。读书直接从当前进度开始。求职跟进先按已投数量给表，未知字段可后补。 [在线选计划](../skills/xiaodou-skill/references/life-plans/README.md#选一个你想做的计划)

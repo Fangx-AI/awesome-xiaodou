@@ -20,4 +20,4 @@
 
 ## 下载技能文件
 
-v2.4.1 的 App 开局 ZIP 按五类收录 30 条开局和通用开局。支持 Agent Skills 的客户端使用技能 ZIP，内有 30 个计划、48 条提示词和九张人物图。已核对两个 ZIP。客户端原生导入与权限仍待真机验证。 [下载 v2.4.1](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.4.1) · [候选包构建记录](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot) · [导入步骤](install.md#豆包工作--支持-agent-skills-的客户端)
+v2.5.0 的 App 开局 ZIP 按五类收录 30 条开局和通用开局。技能 ZIP 随附五类重点计划手册、30 个生活计划、48 条提示词、九张人物图、百签和排盘工具。已从解压包核对签文和历法输出。客户端原生导入与权限仍待真机验证。 [下载 v2.5.0](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.5.0) · [候选包构建记录](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot) · [导入步骤](install.md#豆包工作--支持-agent-skills-的客户端)

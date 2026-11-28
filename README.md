@@ -134,7 +134,7 @@
 - **财务与生活**　做月度预算、准备旅行、倒排搬家。 [复制生活开局](prompts/life-plans/household.txt)
 - **习惯与关系**　做起拖着的事、准备重要沟通、安排家庭分工。 [复制习惯开局](prompts/life-plans/habits.txt)
 
-[逐个复制 30 个计划开局](skills/xiaodou-skill/references/life-plans/README.md#选一个你想做的计划) · [复制计划整包](prompts/xiaodou-life-plans.txt) · [下载小豆 App 开局包](https://github.com/Fangx-AI/awesome-xiaodou/releases/download/skill-v2.4.1/xiaodou-app-starters.zip)
+[逐个复制 30 个计划开局](skills/xiaodou-skill/references/life-plans/README.md#选一个你想做的计划) · [复制计划整包](prompts/xiaodou-life-plans.txt) · [下载小豆 App 开局包](https://github.com/Fangx-AI/awesome-xiaodou/releases/download/skill-v2.5.0/xiaodou-app-starters.zip)
 
 | 你想做什么 | 可以这样开口 |
 | --- | --- |
@@ -157,7 +157,7 @@
 
 在同一个小豆对话里说「朕想看看最近的运势」。只聊天时，礼部直接用[关帝第二签节选](https://zh.wikisource.org/zh-hant/關聖帝君靈籤/2)做固定示例，聊聊这一句怎么理解、眼前有什么小事可做。还想聊工作或学业，就说「用同一支签继续」。
 
-有抽签工具和签库时可以抽。也可以从[关帝百签](https://zh.wikisource.org/zh-hant/關聖帝君靈籤)自选一支，把签文贴回来。 [问签和排盘说明](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/skills/xiaodou-skill/references/divination.md)
+有抽签工具和签库时可以抽。也可以从[关帝百签](https://zh.wikisource.org/zh-hant/關聖帝君靈籤)自选一支，把签文贴回来。 [问签和排盘说明](skills/xiaodou-skill/references/divination.md)
 
 ## 三省六部怎么帮忙
 
@@ -193,7 +193,7 @@
 <details>
 <summary>下载、试用记录与建设计划</summary>
 
-- [下载 v2.4.1 · 30 条可单独发送的开局](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.4.1) · [S0 候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot)
+- [下载 v2.5.0 · App 开局包与完整技能包](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.5.0) · [S0 候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot)
 - [试用案例](docs/prompt-quality.md) · [提示词出处](skills/xiaodou-skill/references/prompt-sources.md) · [建设计划](docs/roadmap.md)
 - [玩法雷达](docs/radar.md) · [作者分享](docs/community.md) · [失败记录](docs/failures.md) · [来源登记](docs/source-ledger.md)
 
