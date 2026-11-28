@@ -512,6 +512,28 @@ def flow_fixtures():
         (case, "life", message, required, forbidden)
         for case, _, message, required, forbidden in flows["reminder-timezone-change"]
     )
+    flows["replace-goal"] = (
+        ("goal-prior-progress", "starter",
+         "我在练英文会议发言。开场已写好两句，读过一次，周五原计划再练。请记下现在的进度。",
+         (r"两句|2\s*句", r"一次|1\s*次|一遍|1\s*遍", "周五"), ()),
+        ("goal-ambiguous-scope", "starter",
+         "改成读项目文档吧。先告诉我你还需要确认什么。",
+         ("会议|发言|开场", "文档", "原.{0,5}计划|暂停|另开|替代|替换|保留|新增"),
+         ("已取消|已结案|已暂停",)),
+        ("goal-confirm-replacement", "starter",
+         "是替换整个会议发言计划，以后不用安排那两句了，我想改练读英文项目文档。已经读过一次的记录留着。今天只剩十分钟，手头有项目 README，先给我一步。",
+         ("会议|发言|开场", "文档|README", r"十分钟|10\s*分钟", r"一次|1\s*次|一遍|1\s*遍",
+          "停止|停排|结案|收案|暂停|移[除出]|撤下|取消|不[再用必]"),
+         ("周五继续练|周五再练.{0,8}开场|今晚再练.{0,8}开场|已设置|已删除.{0,5}提醒",)),
+        ("goal-active-next-day", "starter",
+         "昨天已读 README 的安装一节，还记下了两个卡住的词。早朝，今天有五分钟，当前计划从哪里继续？",
+         ("README|文档", r"五分钟|5\s*分钟", r"两个|2\s*个|卡住.{0,4}词|生词"),
+         ("练会议开场|周五练开场|从头读",)),
+    )
+    flows["replace-goal-life"] = tuple(
+        (case, "life", message, required, forbidden)
+        for case, _, message, required, forbidden in flows["replace-goal"]
+    )
     return flows
 
 
