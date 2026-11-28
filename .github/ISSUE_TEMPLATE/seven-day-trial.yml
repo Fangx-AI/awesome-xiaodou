@@ -1,6 +1,7 @@
 name: 七天试用登记
 description: 已在小豆开局后自愿登记，可以同时回报第一步或遇到的阻碍
 title: "[七天试用] "
+labels: [seven-day-trial]
 body:
   - type: markdown
     attributes:
@@ -25,9 +26,7 @@ body:
     id: environment
     attributes:
       label: 手机系统和小豆 App 版本
-      description: 版本暂时找不到时，可以写「待核」
-    validations:
-      required: true
+      description: 手边找得到再填，例如「iOS，小豆 15.9.0」。
   - type: dropdown
     id: goal
     attributes:
@@ -39,8 +38,6 @@ body:
         - 财务与生活事务
         - 习惯、关系与复盘
         - 其他
-    validations:
-      required: true
   - type: input
     id: candidate
     attributes:
