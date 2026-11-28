@@ -5,14 +5,15 @@ import hashlib
 import re
 from pathlib import Path
 
-from build_life_plans import PLAN_FILES, PLAN_PACK
+from build_life_plans import PLAN_FILES, PLAN_PACK, SCENE_FILES
 
 REPOSITORY = "https://github.com/Fangx-AI/awesome-xiaodou"
 STARTERS = ("xiaodou-start.txt", PLAN_PACK.name, *(f"life-plans/{path.stem}.txt" for path in PLAN_FILES))
 EXPECTED = {"xiaodou-skill.zip", "xiaodou-pilot-start.txt", "CANDIDATE.txt", "STARTERS.tsv", *STARTERS}
+SCENE_STARTERS = tuple(f"life-plans/{path.name}" for path in SCENE_FILES.values())
 
 
-def verify_hashes(directory):
+def verify_hashes(directory, expected_files):
     recorded = {}
     manifest = (directory / "SHA256SUMS").read_text(encoding="utf-8")
     for line in manifest.splitlines():
@@ -20,11 +21,11 @@ def verify_hashes(directory):
         if not match:
             raise ValueError("invalid checksum row")
         digest, name = match.groups()
-        if name not in EXPECTED or name in recorded:
+        if name not in expected_files or name in recorded:
             raise ValueError(f"unexpected or duplicate checksum entry: {name}")
         recorded[name] = digest
-    if recorded.keys() != EXPECTED:
-        raise ValueError(f"missing checksum entries: {', '.join(sorted(EXPECTED - recorded.keys()))}")
+    if recorded.keys() != expected_files:
+        raise ValueError(f"missing checksum entries: {', '.join(sorted(expected_files - recorded.keys()))}")
 
     for name, digest in recorded.items():
         with (directory / name).open("rb") as file:
@@ -46,8 +47,12 @@ def read_candidate(directory):
 
 
 def verify(directory, expected_commit=None, repository=REPOSITORY):
-    verify_hashes(directory)
     fields = read_candidate(directory)
+    if fields.get("scene_starters") not in (None, "true"):
+        raise ValueError("invalid scene starter metadata")
+    scenes = SCENE_STARTERS if fields.get("scene_starters") == "true" else ()
+    starters = set(STARTERS + scenes)
+    verify_hashes(directory, EXPECTED.union(scenes))
     candidate_commit = fields["candidate_commit"]
     if expected_commit is not None and candidate_commit != expected_commit:
         raise ValueError("candidate commit does not match the expected commit")
@@ -68,7 +73,7 @@ def verify(directory, expected_commit=None, repository=REPOSITORY):
             raise ValueError("invalid starter table header")
         for row in reader:
             name, status = row["file"], row["public_status"]
-            if None in row or name not in STARTERS or name in statuses or status not in ("identical", "different", "missing"):
+            if None in row or name not in starters or name in statuses or status not in ("identical", "different", "missing"):
                 raise ValueError("invalid or duplicate starter table row")
             if row["candidate_url"] != f"{candidate}/prompts/{name}":
                 raise ValueError(f"candidate starter link does not match: {name}")
@@ -76,7 +81,7 @@ def verify(directory, expected_commit=None, repository=REPOSITORY):
             if row["public_url"] != expected_public:
                 raise ValueError(f"public starter link does not match: {name}")
             statuses[name] = status
-    if statuses.keys() != set(STARTERS):
+    if statuses.keys() != starters:
         raise ValueError("starter table must contain every public starter")
     opener_matches = "true" if statuses[STARTERS[0]] == "identical" else "false"
     if fields.get("public_starter_matches_candidate") != opener_matches:
@@ -94,7 +99,7 @@ def main():
         commit, statuses = verify(args.directory, args.commit, args.repository)
     except (ValueError, OSError) as exc:
         parser.exit(2, f"Candidate verification failed: {exc}\n")
-    print(f"Verified {len(EXPECTED)} checksummed files for {commit}.")
+    print(f"Verified {len(EXPECTED) + len(statuses) - len(STARTERS)} checksummed files for {commit}.")
     for name, status in statuses.items():
         print(f"{name}: {status}")
 

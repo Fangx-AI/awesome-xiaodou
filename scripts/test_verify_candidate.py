@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from verify_candidate import EXPECTED, REPOSITORY, STARTERS, verify
+from verify_candidate import EXPECTED, REPOSITORY, SCENE_STARTERS, STARTERS, verify
 
 
 class CandidateVerificationTests(unittest.TestCase):
@@ -59,6 +59,22 @@ class CandidateVerificationTests(unittest.TestCase):
         self.write_hashes(EXPECTED)
         with self.assertRaisesRegex(ValueError, "candidate starter link does not match"):
             verify(self.directory)
+
+    def test_advertised_scene_starters_require_every_checksum_and_pinned_link(self):
+        metadata = self.directory / "CANDIDATE.txt"
+        with metadata.open("a", encoding="utf-8") as file:
+            file.write("scene_starters=true\n")
+        self.write_hashes(EXPECTED)
+        with self.assertRaisesRegex(ValueError, "missing checksum entries: life-plans/scene-english.txt"):
+            verify(self.directory)
+        table = self.directory / "STARTERS.tsv"
+        with table.open("a", encoding="utf-8") as file:
+            for name in SCENE_STARTERS:
+                (self.directory / name).write_text("scene opener\n", encoding="utf-8")
+                file.write(f"{name}\t{REPOSITORY}/blob/{self.candidate_commit}/prompts/{name}\t\tmissing\n")
+        self.write_hashes(EXPECTED.union(SCENE_STARTERS))
+        _, statuses = verify(self.directory)
+        self.assertEqual({name: statuses[name] for name in SCENE_STARTERS}, dict.fromkeys(SCENE_STARTERS, "missing"))
 
 
 if __name__ == "__main__":
