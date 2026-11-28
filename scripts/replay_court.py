@@ -122,7 +122,8 @@ def flow_fixtures():
         "habit-restart": (
             ("habit-choose-one", "starter",
              "我想更自律，想读书、早点起床、少刷手机。最近晚饭后有五分钟，帮我开始。",
-             ("选|挑|先做|先试|先从", "一个|一件|一项|先从"), ("早起打卡提醒已|已设置提醒",)),
+             ("选|挑|先做|先试|先从|先抓", "一个|一件|一项|先从"),
+             ("早起打卡提醒已|已设置提醒|几点起|刷多久|每天几点")),
             ("habit-set-a-cue", "starter",
              "我先选读书。晚饭后我每天都会收拾桌子，桌边有一本书，我想读一页就算完成。",
              ("收拾|收完|收好", r"一页|1\s*页"), ("已设置提醒|已添加日程",)),
@@ -144,7 +145,7 @@ def flow_fixtures():
              ("What|Which|How", "你来|你先|您来|您先|请你|请您|说一句|用英语|请用|试着说|试着答|一句英语"),
              ("We need to discuss the launch date",)),
             ("english-correct-and-retry", "starter", "We need discuss the launch date.",
-             (r"need\s+to", "再说|再试|重说|重写|再练|请说一遍|再回答|再答"), ("B2水平|语速偏快",)),
+             (r"need\s+to", "再说|再试|重说|重写|再练|请说一遍|再回答|再答|再来一次"), ("B2水平|语速偏快",)),
             ("english-record-actual-retry", "starter",
              "We need to discuss the launch date. 刚才两次都是打字，今天到这儿。明天只有两分钟，接着练。",
              ("need to|launch date|上线日期", "明天|下次", r"两分钟|2\s*分钟"),
@@ -154,7 +155,7 @@ def flow_fixtures():
             cases["24-month-full"],
             ("monthly-partial", "full",
              "先答一半。朕成年，想工作日少喝甜饮，不追体重。没有影响饮食或走路的限制。平常怎么吃和什么时候有空稍后再说。",
-             ("吃|三餐|外卖|饮料", "时间|空档|哪天|哪几天|有空|时段|空出|腾出"),
+             ("吃|三餐|外卖|饮料|喝甜饮|甜饮.{0,8}几次", "时间|空档|哪天|哪几天|有空|时段|空出|腾出"),
              (*PREMATURE_PLAN, "是否成年|你成年了吗|你多大|有没有.{0,10}健康限制|一个月后.{0,10}想看到")),
             ("monthly-remaining-baseline", "full",
              "补上：早饭在家，午饭常点盖饭配奶茶，晚饭在家。饭后偶尔走，周二和周六晚各有15分钟，周四常加班。现在请排四周和首周安排。",
@@ -174,7 +175,7 @@ def flow_fixtures():
              "周一午饭已经换成水。周二晚现在也要加班，改到周三午休有空时走一会儿。周六晚还是有15分钟。只改要动的那一项。",
              ("周一", "换.{0,4}水|喝.{0,4}水", "周三"), ("周一.{0,8}未完成|周六.{0,8}取消",)),
             ("monthly-export", "full", "朕要换个对话，给朕一段可直接复制的续聊摘要。",
-             ("少喝甜饮|少喝.{0,4}含糖|减少.{0,5}甜饮", "周一", "周三", "周六", "摘要|新对话|复制"), ()),
+             ("少喝甜饮|少喝.{0,4}含糖|减少.{0,5}甜饮", "周一", "周三", "周六", "摘要|新对话|复制|请称我|接着帮我"), ()),
         ),
         "pilot-reschedule": (
             ("pilot-opening", "pilot", "", ("15|十五", "第一句|第一版|Hi|Lin|自我介绍"), ("已设置提醒|已创建提醒",)),
@@ -327,19 +328,21 @@ def replay_match(args, name, arm, fixtures, prompts):
 
 
 def main():
+    flows = flow_fixtures()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("output", type=Path)
     parser.add_argument("--model")
     parser.add_argument("--case", action="append", help="Run selected fixture IDs only")
-    parser.add_argument("--flow", action="append", choices=tuple(flow_fixtures()),
+    parser.add_argument("--flow", action="append", choices=tuple(flows),
                         help="Replay actual prior outputs for the selected scenario. Repeat for multiple flows.")
+    parser.add_argument("--all-flows", action="store_true", help="Replay all sequential scenarios.")
     parser.add_argument("--compare", action="store_true",
                         help="Replay monthly intake and pilot rescheduling with and without Skill instructions.")
     parser.add_argument("--workers", type=int, default=3)
     parser.add_argument("--codex", default=shutil.which("codex") or "codex")
     args = parser.parse_args()
-    if sum(bool(option) for option in (args.case, args.flow, args.compare)) > 1:
-        parser.error("--case, --flow, and --compare are separate runs")
+    if sum(bool(option) for option in (args.case, args.flow, args.all_flows, args.compare)) > 1:
+        parser.error("--case, --flow, --all-flows, and --compare are separate runs")
     args.output = args.output.resolve()
     args.output.parent.mkdir(parents=True, exist_ok=True)
     prompts = {
@@ -350,13 +353,11 @@ def main():
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
         if args.compare:
             prompts.update(plain="", pilot=PILOT.read_text(encoding="utf-8").strip())
-            flows = flow_fixtures()
             matches = [(name, arm, flows[name]) for name in MATCHED_FLOWS for arm in ("plain", "emperor")]
             records = list(pool.map(lambda match: replay_match(args, *match, prompts), matches))
-        elif args.flow:
+        elif args.flow or args.all_flows:
             prompts["pilot"] = PILOT.read_text(encoding="utf-8").strip()
-            flows = flow_fixtures()
-            selected_flows = [(name, flows[name]) for name in dict.fromkeys(args.flow)]
+            selected_flows = flows.items() if args.all_flows else ((name, flows[name]) for name in dict.fromkeys(args.flow))
             records = list(pool.map(lambda pair: replay_flow(args, *pair, prompts), selected_flows))
         else:
             selected = [fixture for fixture in CASES if not args.case or fixture[0] in args.case]
@@ -365,7 +366,8 @@ def main():
             records = list(pool.map(lambda fixture: replay(args, fixture, prompts), selected))
     evidence = {
         "environment": ("Codex CLI, actual preceding responses reinjected as dialogue history, no platform connectors"
-                        if args.flow or args.compare else "Codex CLI, independent sessions with synthetic fixture inputs, no platform connectors"),
+                        if args.flow or args.all_flows or args.compare
+                        else "Codex CLI, independent sessions with synthetic fixture inputs, no platform connectors"),
         "model": args.model or "Codex CLI default",
         "instruction_sha256": {key: hashlib.sha256(value.encode()).hexdigest() for key, value in prompts.items()},
         "records": records,

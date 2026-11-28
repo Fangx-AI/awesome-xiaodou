@@ -17,6 +17,10 @@
 
 2026 年 11 月 28 日，在 [S0 候选提交](https://github.com/Fangx-AI/awesome-xiaodou/tree/adc3190dbebcbbf251244a6d8930ce9064b9e6ca) 上用 Codex CLI 执行完整回归，26 个用例通过自动检查。覆盖一餐与月计划分流、已完成事项保留、续聊、外部动作确认和结果未知等。CLI 超时或输出中断时，保留已收到的回复并标为待复核。
 
+同日在[五种计划齐备的候选提交](https://github.com/Fangx-AI/awesome-xiaodou/tree/fb4e1a7a20fb7f18e6a71aaaaaf2a5f72ff3c21f)回放了 28 条独立用例，以及 10 段连续对话的 38 轮。独立用例都通过。连续对话有三轮经人工核对属等义表达，一轮发现确实多问了用户尚未选择的习惯。该构建的 ZIP、开局文本校验值及三种 GitHub 页面宽度已另行验证。 [固定版本构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/runs/46106374522)
+
+现在可用 `python scripts/replay_court.py <输出 JSON> --all-flows` 一次回放所有连续场景。独立用例仍用不带参数的命令。
+
 连续对话可用 `python scripts/replay_court.py <输出 JSON> --flow monthly-plan --flow pilot-reschedule --flow reminder-confirmation`。每一轮把前面实际生成的回复连同用户原话作为对话历史交给下一轮。用来观察计划能否从立案走到交付、改期和续聊，以及改提醒时会不会沿用旧的确认。记录会写明各轮输入、回复和通过条件；某轮中断时保留此前结果。这个回放使用 Codex CLI 与虚构输入，小豆 App 的记忆、工具授权和提醒回执仍由真机另测。
 
 用 `--flow monthly-partial-intake` 核对分次补答与首周复盘。先只给出饮食目标和限制，再补三餐及空档。检查回复是否沿用已答内容、给出具体的首周和有条件的四周路线。最后回报只做成一次、下周仍加班，核对小豆是否按这次结果安排下一周。
