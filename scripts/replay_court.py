@@ -337,6 +337,24 @@ def flow_fixtures():
         (case, "life", message, required, forbidden)
         for case, _, message, required, forbidden in flows["pause-and-close-plan"]
     )
+    flows["progress-correction"] = (
+        ("progress-original", "starter", "朕这周阅读一共完成两次。周一那次有记录，第二次暂时想不起是哪天。先只记进度。",
+         (r"两次|2\s*次", "周一", "待|暂|不确定|未|没"), ()),
+        ("progress-ambiguous-count", "starter", "阅读记录：周三午饭后读了一次。帮朕看看这条怎么记。",
+         ("周三", r"两次|2\s*次", "算在|包含|包括|算进|另外|还是|另一次|指的是|新增加", "[？?]|请确认"),
+         (r"(?:共|累计|合计|已记为)\s*(?:三|3)\s*次",)),
+        ("progress-correct-count", "starter", "刚才报错了。周一没有读，周三午饭后才是本周唯一一次。请更正总数。",
+         ("周一", "周三", r"一次|1\s*次", "没读|未读|未完成|没有读|撤掉|撤回|撤销|去掉|扣除"),
+         (r"(?:当前|现在|本周)(?:共|累计|实际)\s*(?:两|二|2|三|3)\s*次",)),
+        ("progress-duplicate-report", "starter", "刚才那条重新发一下：周三午饭后那一次，还是同一件事。告诉朕现在一共几次。",
+         ("周三", r"一次|1\s*次"), (r"(?:共|累计|合计)\s*(?:两|二|2|三|3)\s*次",)),
+        ("progress-new-report", "starter", "周四晚又读了一次。这是新的一次。现在报告已完成的日期和本周总数。",
+         ("周三", "周四", r"两次|2\s*次"), (r"(?:共|累计|合计)\s*(?:三|3|四|4)\s*次",)),
+    )
+    flows["progress-correction-life"] = tuple(
+        (case, "life", message, required, forbidden)
+        for case, _, message, required, forbidden in flows["progress-correction"]
+    )
     return flows
 
 
