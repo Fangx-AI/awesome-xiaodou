@@ -1,10 +1,12 @@
 # 小豆玩法雷达
 
-这里展示近 7 天的公开新闻和社区线索。GitHub Actions 配置为每 15 分钟触发，实际运行时间可在抓取记录中核对。下方时间为来源发布时间（北京时间）。
+这里收集近 7 天的公开新闻和社区线索。GitHub Actions 每 15 分钟排程，实际运行可能晚于排程。下方时间为来源发布时间（北京时间）。
 
 [回到玩法库](../README.md) · [抓取记录](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml) · [提交新玩法](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose)
 
 社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou) · [已经整理成指令的更新](updates.md)
+
+扫描日期：2026-11-28（北京时间）。本次读到 6/6 个配置来源。
 
 最新入列：2026-11-28 06:39（北京时间）
 
