@@ -2,19 +2,21 @@
 
 **皇上，您定目标，三省六部帮您办。**
 
-一个在小豆 App 里使用的个人助理 Skill。以明代朝堂为设定，借唐代三省走流程、明代六部分事务。您说想做什么，小豆交付今天能做的一步，收到进度后接着安排。
+一个在小豆独立 App 里使用的个人助理 Skill。以明代朝堂为设定，借唐代三省走流程、明代六部分事务。小事直接办，做月计划先问清您的情况。临时加班或预算变了，改受影响的安排，已完成的照样算。
 
 **中书省拟案 → 门下省审议 → 尚书省交办 → 六部按需出手。**
 
+**在小豆里试用**　[跟着「今晚只剩五分钟」试一次](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/pilot-s0.md) · [带自己的目标试七天](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/seven-day.md)
+
 [复制一句话开局](#一句话在小豆里开始) · [看朕怎么减肥](#朕要减肥) · [看三省六部怎么帮忙](#三省六部怎么帮忙)
 
-[打开 S0 试用版](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/README.md) · [没有小豆 App？也可以参加页面冷读](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/cold-read.md)
+[S0 试用版说明](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/README.md) · [没有小豆 App？参加页面冷读](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/cold-read.md)
 
 ![明代朝堂风格插画，殿前案上陈放奏折、卷轴和朱印](assets/xiaodou-imperial-court.jpg)
 
 ## 一句话在小豆里开始
 
-把下面这段作为**一条消息**发到小豆 App 的新对话。试用示例可以原样复制。办自己的事时，只换最后两行。
+把下面这段作为**一条消息**发到小豆 App 的新对话。示例只解决今天这一餐。要做自己的事，换掉最后两行；要排一个月，可以按[下面的月计划例子](#朕要减肥)开口。
 
 ```text
 开启皇帝模式，称我皇上。
@@ -48,7 +50,7 @@
 
 | 你想做什么 | 可以这样开口 |
 | --- | --- |
-| **朕要减肥** | 「午饭只能点外卖，今天怎么点？」 [减肥与每周复盘](prompts/41-weight-plan.md) |
+| **朕要改善饮食** | 「朕想改善一个月的饮食习惯。午饭只能点外卖，先问清楚再帮我排。」 [看四周计划怎么推进](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/weight-first-week.md) |
 | **朕要记日程** | 「这张截图里改过两次时间，先找最后定下来的约定。」 [截图记日历](playbooks/11-screenshot-calendar.md) |
 | **朕要交周报** | 「从这些飞书文档提取已交付、卡点和下周行动，每条附出处。」 [飞书周报](playbooks/36-weekly-report.md) |
 
