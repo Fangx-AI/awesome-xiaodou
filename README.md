@@ -144,7 +144,7 @@
 - **健康与运动**　改善睡眠、安排一周备餐、从零开始跑步。 [复制健康开局](prompts/life-plans/health.md#自填目标)
 - **学习与成长**　排考试复习、从零自学、把文章写到交稿。 [复制学习开局](prompts/life-plans/learning.md#自填目标)
 - **职业与工作**　准备转岗和面试、改简历。交付提前时，先找出哪道工序卡住，再算最早能交的时间。 [复制项目计划开局](prompts/life-plans/career.md#p18--工作项目里程碑) · [复制职业开局](prompts/life-plans/career.md#自填目标)
-- **财务与生活**　做月度预算、准备旅行、倒排搬家。 [复制生活开局](prompts/life-plans/household.md#自填目标)
+- **财务与生活**　做月度预算、倒排搬家。多人出游时按入住日期、房数和退改条件对比全程住宿费。 [复制旅行计划开局](prompts/life-plans/household.md#p22--旅行筹备与日程) · [复制生活开局](prompts/life-plans/household.md#自填目标)
 - **习惯与关系**　做起拖着的事、准备重要沟通、安排家庭分工。 [复制习惯开局](prompts/life-plans/habits.md#自填目标)
 
 [逐个复制 30 个计划开局](skills/xiaodou-skill/references/life-plans/README.md#选一个你想做的计划) · [复制计划整包](prompts/xiaodou-life-plans.md) · [下载小豆 App 开局包](https://github.com/Fangx-AI/awesome-xiaodou/releases/latest/download/xiaodou-app-starters.zip)
