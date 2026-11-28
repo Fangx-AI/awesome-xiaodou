@@ -502,6 +502,25 @@ def flow_fixtures():
         (case, "stale", message, required, forbidden)
         for case, _, message, required, forbidden in flows["stale-project-reminder"]
     )
+    flows["fortune-check-conflicting-number-and-text"] = (
+        ("fortune-mismatched-label", "starter",
+         "我手抄的关帝签标着第三签，诗句是「若問前程歸縮地，更須方寸好修為」。想聊工作。这个对话无法访问其他资料，请先判断这条该怎么处理。",
+         (r"第二[签籤]|第\s*2\s*[签籤]", r"第三[签籤]|第\s*3\s*[签籤]",
+          "不一致|对不上|不符|冲突|不同|出自第二|是第二|有出入|差异|不匹配|列在第二|见于.{0,12}第二", r"[？?]"),
+         ("第三签诗曰|第三签写的是「若問|已随机抽|发出生|放在工作上.{0,5}可以理解为",)),
+        ("fortune-confirm-corrected-source", "starter",
+         "我查对了，是我把签号写错。就按你说的第二签来，用我贴的两句聊工作，别新抽。",
+         (r"第二[签籤]|第\s*2\s*[签籤]", "工作", "方寸|縮地|缩地|修为|修為"),
+         ("第三签说|另抽一签|抽中第|保证升职|必定升职",)),
+        ("fortune-follow-up-keeps-corrected-lot", "starter",
+         "还是这支刚纠正的签，换个问题，聊学业。只给一个可以自己选的小行动。",
+         (r"第二[签籤]|第\s*2\s*[签籤]", "学业|学习|复习|复盘|作业|正在学|没弄懂"),
+         (r"第三[签籤]|第\s*3\s*[签籤]|另抽一签|保证录取|一定会录取",)),
+    )
+    flows["fortune-check-conflicting-number-and-text-full"] = tuple(
+        (case, "full", message, required, forbidden)
+        for case, _, message, required, forbidden in flows["fortune-check-conflicting-number-and-text"]
+    )
     flows["exam-update-scope-without-resetting-progress"] = (
         ("exam-prioritize-with-confirmed-scope", "plan-p08",
          "虚构考证演练。考试还有四周，当届官方大纲确认案例占60%、概念占30%、计算占10%。我已独立做对8道概念题，案例弱。本周只安排周二和周四各25分钟。请给可以照做的首周安排，不联网。",
