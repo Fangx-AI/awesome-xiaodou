@@ -96,6 +96,8 @@
 
 中书问目标和现状，门下核对空档和限制，尚书交四周路线和可照着做的首周表。第 7 天问「朕这周做得怎么样？」小豆按实际回报调整。 [看首周表和加班后怎么改](docs/weight-first-week.md) · [真机记录](docs/field-tests/README.md)
 
+[下载这张月计划分享图](assets/xiaodou-monthly-plan-share.png)
+
 ## 还能办什么
 
 - **健身**　先按真实空档排首周。出差没带弹力带，只改这次训练，已完成的照样算。 [看健身怎么改期](skills/xiaodou-skill/references/planning.md#fitness-start)

@@ -20,6 +20,8 @@
 
 [下载「今晚只剩五分钟」分享图](../assets/xiaodou-five-minutes-share.png)
 
+**月计划案例给想开始的人。** 用「午饭只能点外卖，四周计划怎么排？」开头。图上从中书先问情况讲到尚书交首周安排。转发时附完整对话，读者能接着复制开局。 [下载月计划分享图](../assets/xiaodou-monthly-plan-share.png) · [打开完整对话](weight-first-week.md)
+
 ### 可转发的试用邀请
 
 **给已经能进入小豆 App 的人**
