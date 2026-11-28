@@ -123,14 +123,19 @@ def markdown_text(value):
 def output_page(rows, now, failures):
     lines = [
         "# 小豆玩法雷达", "",
-        "这里收集近 7 天的公开新闻和社区线索。GitHub Actions 每 15 分钟排程，实际运行可能晚于排程。"
+        "这里收集近 7 天的公开新闻和社区线索。按 15 分钟排程，首页、玩法或来源更新时也会扫描。GitHub 定时运行可能延迟。"
         "线索来自公开检索；下方时间为来源发布时间（北京时间）。", "",
-        "[回到玩法库](../README.md) · [抓取记录](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml)"
+        "[回到玩法库](../README.md) · [查看最近一次扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml)"
         " · [提交新玩法](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose)", "",
         "社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou) · [已经整理成指令的更新](updates.md)", "",
     ]
     succeeded = len(FEEDS) - len(failures)
-    lines.extend([f"扫描日期：{now.date()}（北京时间）。本次读到 {succeeded}/{len(FEEDS)} 个检索入口。", ""])
+    lines.extend([f"本次读到 {succeeded}/{len(FEEDS)} 个检索入口。", ""])
+    scan = f"快照扫描时间：{now:%Y-%m-%d %H:%M}（北京时间）"
+    run_id = os.environ.get("GITHUB_RUN_ID", "")
+    if re.fullmatch(r"[0-9]+", run_id):
+        scan += f" · [生成此快照的扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/runs/{run_id})"
+    lines.extend([scan, ""])
     if failures:
         labels = "、".join(markdown_text(name) for name in failures)
         lines.extend([f"本次未读到：{labels}。", ""])
@@ -161,6 +166,14 @@ def output_page(rows, now, failures):
     return "\n".join(lines) + "\n"
 
 
+def write_page(rows, now, failures):
+    page = output_page(rows, now, failures)
+    previous_page = PAGE.read_text(encoding="utf-8") if PAGE.exists() else ""
+    stamp = r"^快照扫描时间：(\d{4}-\d{2}-\d{2})[^\n]*"
+    if re.sub(stamp, r"\1", page, flags=re.M) != re.sub(stamp, r"\1", previous_page, flags=re.M):
+        PAGE.write_text(page, encoding="utf-8")
+
+
 def main():
     now = datetime.now(CHINA)
     summary = []
@@ -182,7 +195,7 @@ def main():
             log.write("## 数据源扫描\n\n" + "\n".join(summary) + "\n")
     previous = json.loads(QUEUE.read_text(encoding="utf-8")) if QUEUE.exists() else []
     if len(failures) == len(FEEDS):
-        PAGE.write_text(output_page(previous, now, failures), encoding="utf-8")
+        write_page(previous, now, failures)
         raise SystemExit("All feed requests failed; preserved the existing queue.")
 
     existing = json.loads((ROOT / "data/sources.json").read_text(encoding="utf-8"))
@@ -205,7 +218,7 @@ def main():
     queue.sort(key=lambda row: (row["published"], row["url"]), reverse=True)
     queue = queue[:80]
     QUEUE.write_text(json.dumps(queue, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    PAGE.write_text(output_page(queue, now, failures), encoding="utf-8")
+    write_page(queue, now, failures)
     print(f"Radar: {len(queue)} leads in the rolling queue.")
 
 

@@ -2,7 +2,7 @@ import io
 import json
 import unittest
 from contextlib import redirect_stdout
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
@@ -35,6 +35,26 @@ class RadarTests(unittest.TestCase):
         self.assertIn("近 7 天暂无新线索", clean)
         self.assertIn("本次未读到：Bing 新闻", partial)
         self.assertNotIn("近 7 天暂无新线索", partial)
+
+    def test_snapshot_updates_only_on_new_day_or_changed_content(self):
+        now = datetime(2026, 11, 28, 12, 10, tzinfo=radar.CHINA)
+        with TemporaryDirectory() as folder:
+            page = Path(folder) / "radar.md"
+            with patch.object(radar, "PAGE", page):
+                with patch.dict(radar.os.environ, {"GITHUB_RUN_ID": "101"}):
+                    radar.write_page([], now, [])
+                first = page.read_text(encoding="utf-8")
+                self.assertIn("12:10", first)
+                self.assertIn("/runs/101)", first)
+                with patch.dict(radar.os.environ, {"GITHUB_RUN_ID": "102"}):
+                    radar.write_page([], now + timedelta(minutes=15), [])
+                    self.assertEqual(page.read_text(encoding="utf-8"), first)
+                    radar.write_page([], now + timedelta(minutes=15), ["Bing 新闻"])
+                    second = page.read_text(encoding="utf-8")
+                    self.assertIn("12:25", second)
+                    self.assertIn("/runs/102)", second)
+                    radar.write_page([], now + timedelta(days=1), ["Bing 新闻"])
+                self.assertIn("2026-11-29", page.read_text(encoding="utf-8"))
 
     def test_total_failure_refreshes_status_without_rewriting_queue(self):
         now = datetime.now(radar.CHINA).isoformat(timespec="minutes")
