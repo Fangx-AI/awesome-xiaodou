@@ -41,3 +41,4 @@
 40,围绕飞书资料做知识问答,办公与个人管理,作者帖二次聚合，待原帖,S16,False,playbooks/40-feishu-qa.md
 41,确认后发送测试邮件,办公与个人管理,第三方实测：收件箱收到邮件,S25,False,playbooks/41-mail-confirm-send.md
 42,筛选高铁并准备待支付订单,生活与出行,第三方实测：建单并停在待支付,S25,False,playbooks/42-rail-order-preview.md
+43,先列抖音账号基线，再做每周复盘,创作与内容整理,第三方体验：读账号概况、建议复盘节奏,S27,False,playbooks/43-douyin-weekly-review.md

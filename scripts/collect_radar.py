@@ -28,6 +28,10 @@ FEEDS = {
     "Google 新闻 · 实测": google('"小豆" "豆包" (实测 OR 体验 OR 玩法) when:7d'),
     "Google 新闻 · 工作流": google('"小豆" "豆包" (抖音 OR 飞书 OR 提示词) when:7d'),
     "Google 新闻 · 社区": google('"小豆" "豆包" (site:linux.do OR site:weibo.com OR site:watcha.cn OR site:github.com) when:7d'),
+    "Google 新闻 · 知乎与视频社区": google(
+        '"小豆" "豆包" (实测 OR 上手 OR 试用 OR 体验) '
+        '(site:zhihu.com OR site:bilibili.com OR site:xiaohongshu.com OR site:x.com) when:7d'
+    ),
     "Bing 新闻": "https://www.bing.com/news/search?" + urlencode(
         {"q": '"豆包" "小豆" 实测 玩法', "format": "rss"}
     ),
@@ -56,9 +60,15 @@ def normalize_title(title):
 
 
 def classify_headline(title):
-    if re.search(r"抓码站|邀请码(出售|交易|接力|互助)|求.{0,8}邀请码|邀请码.{0,12}(元|套利|炒)", title):
+    if re.search(
+        r"抓码站|买码|卖码|邀请码(出售|交易|接力|互助|主要靠)|求.{0,8}邀请码|"
+        r"邀请码.{0,12}(元|套利|炒)|邀请码\s*[:：]\s*[A-Z0-9]{5,12}\b",
+        title,
+    ):
         return None
-    if re.search(r"实测|上手|测评|玩法|复盘|搭建|整理|体验(?:小豆|[:：])|怎么用|教程", title):
+    if re.search(r"内测名额.{0,15}(手慢无|申请|招募)", title):
+        return None
+    if re.search(r"实测|上手|测评|玩法|复盘|搭建|整理|试用|体验(?:小豆|[:：])|怎么用|教程", title):
         return "体验与玩法"
     if re.search(r"公测|上线|发布", title):
         return None
@@ -109,13 +119,13 @@ def output_page(rows, now, failures):
     lines = [
         "# 小豆玩法雷达", "",
         "这里收集近 7 天的公开新闻和社区线索。GitHub Actions 每 15 分钟排程，实际运行可能晚于排程。"
-        "下方时间为来源发布时间（北京时间）。", "",
+        "线索来自公开检索；下方时间为来源发布时间（北京时间）。", "",
         "[回到玩法库](../README.md) · [抓取记录](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml)"
         " · [提交新玩法](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose)", "",
         "社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou) · [已经整理成指令的更新](updates.md)", "",
     ]
     succeeded = len(FEEDS) - len(failures)
-    lines.extend([f"扫描日期：{now.date()}（北京时间）。本次读到 {succeeded}/{len(FEEDS)} 个配置来源。", ""])
+    lines.extend([f"扫描日期：{now.date()}（北京时间）。本次读到 {succeeded}/{len(FEEDS)} 个检索入口。", ""])
     if failures:
         labels = "、".join(markdown_text(name) for name in failures)
         lines.extend([f"本次未读到：{labels}。", ""])

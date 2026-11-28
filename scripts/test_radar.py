@@ -14,6 +14,10 @@ class RadarTests(unittest.TestCase):
     def test_invite_code_boards_are_removed_without_hiding_experiences(self):
         self.assertIsNone(radar.classify_headline("小豆邀请码抓码站（社区收集）"))
         self.assertIsNone(radar.classify_headline("求小豆邀请码"))
+        self.assertIsNone(radar.classify_headline("小豆实测：邀请码：DEMO123 有效至明天"))
+        self.assertIsNone(radar.classify_headline("豆包小豆怎么注册：买码别交押金"))
+        self.assertIsNone(radar.classify_headline("豆包小豆 500 个内测名额，自己填表申请"))
+        self.assertEqual(radar.classify_headline("试用了豆包小豆，读取授权账号概况"), "体验与玩法")
         self.assertEqual(radar.classify_headline("小豆首发实测：一码难求但玩法不少"), "体验与玩法")
         self.assertEqual(radar.classify_headline("体验小豆App：支持主动AI"), "体验与玩法")
         self.assertEqual(radar.classify_headline("小豆 · 官方邀请开通说明"), "其他公开线索")

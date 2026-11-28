@@ -541,5 +541,20 @@
     "verification": "核对车站、日期、价格、乘车人和订单状态。支付与出票需分别核对。",
     "self_tested": false,
     "path": "playbooks/42-rail-order-preview.md"
+  },
+  {
+    "id": "43",
+    "slug": "douyin-weekly-review",
+    "title": "先列抖音账号基线，再做每周复盘",
+    "category": "创作与内容整理",
+    "sources": [
+      "S27"
+    ],
+    "evidence": "第三方体验：读账号概况、建议复盘节奏",
+    "observed": "作者报告小豆在读取已授权的抖音账号概况后，才给出每周复盘建议。",
+    "prompt": "我想每周复盘自己的抖音账号。先看我授权的账号在本周能读取哪些指标，列出指标、日期范围和来源。粉丝总数与周新增分开。缺数据就留待补，可以让我手填。用同一口径和上周比较，给一个下周试验及完成标准。只给复盘表和试验计划，提醒、发作品或改账号资料均等我另行确认。",
+    "verification": "对照抖音创作者后台核对指标和日期范围。首周缺基线可留作下一周的对照。只能读取账号概况时，作品层指标等待用户提供。",
+    "self_tested": false,
+    "path": "playbooks/43-douyin-weekly-review.md"
   }
 ]

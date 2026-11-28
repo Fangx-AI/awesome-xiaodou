@@ -22,7 +22,7 @@
 - **[30 个生活计划](../skills/xiaodou-skill/references/life-plans/README.md)**：在小豆 App 里复制对应分类或计划整包，带上自己的目标发送。
 - **整包提示词**：用于一段对话里选择多种场景，按下面的步骤使用。
 
-1. 打开[9 条常用指令](../prompts/xiaodou-quick-pack.txt)或[完整 44 条](../prompts/xiaodou-paste-pack.txt)，点 GitHub 文件工具栏中的复制按钮，或打开 Raw 后全选复制。
+1. 打开[9 条常用指令](../prompts/xiaodou-quick-pack.txt)或[完整 45 条](../prompts/xiaodou-paste-pack.txt)，点 GitHub 文件工具栏中的复制按钮，或打开 Raw 后全选复制。
 2. 在小豆中新开一个对话，粘贴发送选好的提示词包。
 3. 在同一个对话里说「开启皇帝模拟器」「帮我做个减肥计划」或「看菜单」。
 
