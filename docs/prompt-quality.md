@@ -49,6 +49,8 @@
 
 用 `--flow quoted-mail-approval --flow quoted-mail-playbook --flow quoted-mail-life` 检查邮件的当次确认。旧聊天的同意和文件里另一位收件人的审批都只作为背景。用户在当前对话明确确认原收件人后，由于没有连接邮箱，交发件账号、收件人、主题和正文供手动填写。这轮使用保留的测试域名，未发送邮件。
 
+用 `--flow daily-priority --flow daily-priority-life` 回放「早朝」。十分钟内先拿到临近截止的进度消息草稿。用户发出后，五分钟空档用于起报告提纲。报告延期且用户决定读书时，保留之前做过的事，从手边书页开始。这轮检查已知截止、当前空档、用户先后选择和草稿确认。
+
 连续对话可用 `python scripts/replay_court.py <输出 JSON> --flow monthly-plan --flow pilot-reschedule --flow reminder-confirmation`。每一轮把前面实际生成的回复连同用户原话作为对话历史交给下一轮。用来观察计划能否从立案走到交付、改期和续聊，以及改提醒时会不会沿用旧的确认。记录会写明各轮输入、回复和通过条件；某轮中断时保留此前结果。这个回放使用 Codex CLI 与虚构输入，小豆 App 的记忆、工具授权和提醒回执仍由真机另测。
 
 用 `--flow monthly-partial-intake` 核对分次补答与首周复盘。先只给出饮食目标和限制，再补三餐及空档。检查回复是否沿用已答内容、给出具体的首周和有条件的四周路线。最后回报只做成一次、下周仍加班，核对小豆是否按这次结果安排下一周。

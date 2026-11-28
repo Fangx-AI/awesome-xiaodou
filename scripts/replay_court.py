@@ -443,6 +443,25 @@ def flow_fixtures():
             (case, mode, message, required, forbidden)
             for case, _, message, required, forbidden in flows["quoted-mail-approval"]
         )
+    flows["daily-priority"] = (
+        ("morning-one-action", "starter",
+         "早朝。今天上午 10:50，朕有十分钟。11 点前要给同事一条项目进度，已知登录页通过验收，支付联调卡在测试账号。"
+         "下午要整理下周报告提纲，读书没有期限。这十分钟怎么用？能起草就给稿，别发消息。",
+         ("登录页", "验收", "支付", "测试账号", r"11\s*点|11:00|十一点", "进度|周报|同步"),
+         ("已发送|已发给|已经发送|先.{0,8}读书|先.{0,8}整理.{0,8}提纲",)),
+        ("morning-after-completion", "starter",
+         "进度消息朕自己发了。下午的报告提纲还没开始，资料已经齐。现在只剩五分钟，选下一个能做的动作。",
+         ("已.{0,6}发|发.{0,6}了|发完", "报告|提纲", r"五分钟|5\s*分钟", "写|列|标|打开"),
+         ("再发一遍|重发进度|已创建提醒",)),
+        ("morning-reprioritize", "starter",
+         "提纲的标题已经写好。刚收到消息，报告交付改到下周，不必今天做。今天剩两分钟，朕想先读手边已经翻开的书。现在先怎么办？",
+         ("读书|读一|读半|读几|看书|接着读", r"两分钟|2\s*分钟"),
+         ("先.{0,12}(?:整理提纲|写报告|重写标题)|提醒已设置",)),
+    )
+    flows["daily-priority-life"] = tuple(
+        (case, "life", message, required, forbidden)
+        for case, _, message, required, forbidden in flows["daily-priority"]
+    )
     return flows
 
 
