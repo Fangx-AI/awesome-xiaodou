@@ -98,6 +98,24 @@ class PilotMeasurementTests(unittest.TestCase):
             with self.subTest(invalid=invalid), self.assertRaisesRegex(ValueError, "supported file"):
                 summarize({"as_of": "2026-12-10", "trials": [{**entries[0], "starter": invalid}]})
 
+    def test_shared_scene_comes_from_reported_exposure_not_the_starter(self):
+        common = {"started_on": "2026-12-01", "starter": "life-plans/health.txt", "channel": "referral"}
+        entries = [
+            {**common, "id": "P-0001", "shared_scene": "fitness", "finished_on": "2026-12-03"},
+            {**common, "id": "P-0002", "shared_scene": "weight"},
+            {**common, "id": "P-0003", "finished_on": "2026-12-05"},
+        ]
+        report = summarize({"as_of": "2026-12-10", "trials": entries})
+        self.assertEqual(report["seven_day_by_shared_scene"], {
+            "fitness": {"started": 1, "completion": {"numerator": 1, "denominator": 1, "percent": 100.0}},
+            "unspecified": {"started": 1, "completion": {"numerator": 1, "denominator": 1, "percent": 100.0}},
+            "weight": {"started": 1, "completion": {"numerator": 0, "denominator": 1, "percent": 0.0}},
+        })
+        self.assertEqual(report["seven_day_by_starter"]["life-plans/health.txt"]["started"], 3)
+        self.assertEqual(report["seven_day_by_channel"]["referral"]["completion"]["numerator"], 2)
+        with self.assertRaisesRegex(ValueError, "one of the five"):
+            summarize({"as_of": "2026-12-10", "trials": [{**entries[0], "shared_scene": "health"}]})
+
     def test_zero_questions_and_a_failed_first_action_are_observed(self):
         report = summarize_comparisons([
             {"id": "P-0001", "order": "regular",

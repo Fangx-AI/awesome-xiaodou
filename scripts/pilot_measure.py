@@ -13,6 +13,7 @@ COMPARISON_ARMS = ("regular", "emperor")
 COMPARISON_FIELDS = ("first_action", "preserved", "affected_only", "replan_actionable")
 TRIAL_STARTERS = ("xiaodou-start.txt", PLAN_PACK.name,
                   *(f"life-plans/{path.stem}.txt" for path in PLAN_FILES))
+SHARED_SCENES = ("weight", "fitness", "reading", "english", "study-abroad")
 
 
 def check_keys(value, allowed, label):
@@ -142,9 +143,9 @@ def summarize(data):
     ready = seven_day_eligible = finished = reported_incomplete = changes = good_changes = 0
     unscored_changes = 0
     returned = prompted_returns = return_eligible = 0
-    channels, starters = {}, {}
+    channels, starters, shared_scenes = {}, {}, {}
     for item in trials:
-        check_keys(item, ("id", "channel", "starter", "started_on", "first_action", "finished_on",
+        check_keys(item, ("id", "channel", "starter", "shared_scene", "started_on", "first_action", "finished_on",
                           "no_completion_reported_on", "change", "return"), "trial")
         channel = item.get("channel", "unspecified")
         if not isinstance(channel, str) or not re.fullmatch(r"[a-z0-9-]{1,32}", channel):
@@ -152,6 +153,9 @@ def summarize(data):
         starter = item.get("starter", "unspecified")
         if "starter" in item and starter not in TRIAL_STARTERS:
             raise ValueError("trial starter must name a supported file from STARTERS.tsv")
+        shared_scene = item.get("shared_scene", "unspecified")
+        if "shared_scene" in item and shared_scene not in SHARED_SCENES:
+            raise ValueError("trial shared_scene must name one of the five public share cards")
         check_flags({key: item[key] for key in ("first_action",) if key in item}, ("first_action",), "trial")
         start = read_day(item.get("started_on"), "started_on")
         if start > as_of:
@@ -175,7 +179,7 @@ def summarize(data):
                 raise ValueError("no_completion_reported_on conflicts with on-time completion")
 
         on_time = end is not None and end <= due
-        for groups, label in ((channels, channel), (starters, starter)):
+        for groups, label in ((channels, channel), (starters, starter), (shared_scenes, shared_scene)):
             counts = groups.setdefault(label, {"started": 0, "eligible": 0, "finished": 0})
             counts["started"] += 1
             counts["eligible"] += matured
@@ -220,6 +224,7 @@ def summarize(data):
         "pending_seven_day_window": len(trials) - seven_day_eligible,
         "seven_day_by_channel": summarize_groups(channels),
         "seven_day_by_starter": summarize_groups(starters),
+        "seven_day_by_shared_scene": summarize_groups(shared_scenes),
         "replanning": ratio(good_changes, changes),
         "replanning_unscored": unscored_changes,
         "unprompted_return": ratio(returned, return_eligible),
