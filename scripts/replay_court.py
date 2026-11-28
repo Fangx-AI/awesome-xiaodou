@@ -11,6 +11,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 STARTER = ROOT / "prompts" / "xiaodou-start.txt"
 FULL = ROOT / "prompts" / "emperor-simulator.md"
+WEIGHT = ROOT / "prompts" / "41-weight-plan.md"
+MONTH_REQUEST = "朕想用一个月养成更好的饮食习惯。中午只能点外卖，晚上想散步，但可能要加班。"
+INTAKE_SIGNALS = ("变化|改变|目标|希望|先改|想改", "平时|平常|通常|三餐|常点",
+                  "时间|空档|加班", "成年|健康|限制|过敏|伤病")
+PREMATURE_PLAN = ("鸡肉饭|点一份|第.?周[：:]|每周.{0,8}走|今天午[饭餐].{0,12}(先|就).{0,10}(点|选)",)
 
 # Earlier replies described in an input are test fixtures, not recorded App replies.
 CASES = (
@@ -57,6 +62,12 @@ CASES = (
      ("已|读过|完成", "一次|1次", "休息|暂停"), ("补打卡|必须|已设置|已创建",)),
     ("22-recover", "full", "上周读了两次，昨晚漏了。朕今天晚饭后有五分钟，继续原来的读书计划，不想补昨天的。",
      (r"两次|2\s*次", "晚饭|吃完饭|吃过晚餐", r"5\s*分钟|五分钟"), ("今晚补读|必须|重新从零",)),
+    ("23-month-starter", "starter", MONTH_REQUEST, INTAKE_SIGNALS, PREMATURE_PLAN),
+    ("24-month-full", "full", MONTH_REQUEST, INTAKE_SIGNALS, PREMATURE_PLAN),
+    ("25-month-standalone", "weight", MONTH_REQUEST, INTAKE_SIGNALS, PREMATURE_PLAN),
+    ("26-month-with-baseline", "full",
+     "补充完了。朕成年，四周目标是工作日少喝甜饮，不追体重，没有影响饮食或走路的限制。工作日午饭常点盖饭配奶茶，晚饭在家吃。饭后偶尔走，周二和周六晚可用15分钟，周四常加班。现在请排四周和首周安排。",
+     (r"第\s*[1一]\s*周|首周", "周二", "周六", "周四|加班", "甜饮|奶茶"), ("请问.{0,5}成年|你是否成年|请提供体重",)),
 )
 
 
@@ -116,6 +127,7 @@ def main():
     prompts = {
         "starter": STARTER.read_text(encoding="utf-8").strip(),
         "full": re.search(r"```text\n(.*?)\n```", FULL.read_text(encoding="utf-8"), re.S)[1],
+        "weight": re.search(r"```text\n(.*?)\n```", WEIGHT.read_text(encoding="utf-8"), re.S)[1],
     }
     selected = [fixture for fixture in CASES if not args.case or fixture[0] in args.case]
     if not selected or (args.case and {case[0] for case in selected} != set(args.case)):
