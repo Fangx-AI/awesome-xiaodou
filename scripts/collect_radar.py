@@ -32,6 +32,9 @@ FEEDS = {
         '"小豆" "豆包" (实测 OR 上手 OR 试用 OR 体验) '
         '(site:zhihu.com OR site:bilibili.com OR site:xiaohongshu.com OR site:x.com) when:7d'
     ),
+    "Google 新闻 · 抖音与公众号": google(
+        '"小豆" "豆包" (site:douyin.com OR site:mp.weixin.qq.com) when:7d'
+    ),
     "Bing 新闻": "https://www.bing.com/news/search?" + urlencode(
         {"q": '"豆包" "小豆" 实测 玩法', "format": "rss"}
     ),
@@ -62,7 +65,7 @@ def normalize_title(title):
 def classify_headline(title, publisher=""):
     if re.search(
         r"抓码站|买码|卖码|邀请码(出售|交易|接力|互助|主要靠)|求.{0,8}邀请码|"
-        r"邀请码.{0,12}(元|块|套利|炒|卖到)|邀请码\s*[:：]\s*[A-Z0-9]{5,12}\b",
+        r"邀请码.{0,12}(元|块|套利|炒|卖到|被抢疯)|邀请码\s*[:：]\s*[A-Z0-9]{5,12}\b",
         title,
     ):
         return None
@@ -120,11 +123,11 @@ def markdown_text(value):
     return re.sub(r'([\\`*_\[\]~!|@])', r'\\\1', escape(value))
 
 
-def output_page(rows, now, failures):
+def output_page(rows, now, failures, candidate_counts=None):
     lines = [
         "# 小豆玩法雷达", "",
         "这里收集近 7 天的公开新闻和社区线索。按 15 分钟排程，首页、玩法或来源更新时也会扫描。GitHub 定时运行可能延迟。"
-        "线索来自公开检索；下方时间为来源发布时间（北京时间）。", "",
+        "只展示检索入口公开索引到的线索。下方时间为来源发布时间（北京时间）。", "",
         "[回到玩法库](../README.md) · [查看最近一次扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml)"
         " · [提交新玩法](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose)", "",
         "社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou) · [已经整理成指令的更新](updates.md)", "",
@@ -139,6 +142,14 @@ def output_page(rows, now, failures):
     if failures:
         labels = "、".join(markdown_text(name) for name in failures)
         lines.extend([f"本次未读到：{labels}。", ""])
+    if candidate_counts is not None:
+        lines.extend(["<details>", "<summary>查看各入口本轮命中的候选数</summary>", "",
+                      "候选数为去重前的数量。读到 0 条表示本轮没有匹配，不代表平台上没有内容。", ""])
+        for label in FEEDS:
+            count = candidate_counts.get(label)
+            status = "未读到" if count is None else f"{count} 条"
+            lines.append(f"- {markdown_text(label)}　{status}")
+        lines.extend(["", "</details>", ""])
     if not succeeded:
         lines.extend(["所有来源均未读到，以下保留上一次线索。", ""])
     groups = {"体验与玩法": [], "其他公开线索": []}
@@ -166,8 +177,8 @@ def output_page(rows, now, failures):
     return "\n".join(lines) + "\n"
 
 
-def write_page(rows, now, failures):
-    page = output_page(rows, now, failures)
+def write_page(rows, now, failures, candidate_counts=None):
+    page = output_page(rows, now, failures, candidate_counts)
     previous_page = PAGE.read_text(encoding="utf-8") if PAGE.exists() else ""
     stamp = r"^快照扫描时间：(\d{4}-\d{2}-\d{2})[^\n]*"
     if re.sub(stamp, r"\1", page, flags=re.M) != re.sub(stamp, r"\1", previous_page, flags=re.M):
@@ -179,12 +190,14 @@ def main():
     summary = []
     scanned = []
     failures = []
+    candidate_counts = {}
     with ThreadPoolExecutor(max_workers=len(FEEDS)) as pool:
         jobs = {label: pool.submit(collect, label, url, now) for label, url in FEEDS.items()}
         for label, job in jobs.items():
             try:
                 rows = job.result()
                 scanned.extend(rows)
+                candidate_counts[label] = len(rows)
                 summary.append(f"- {label}：{len(rows)} 条候选")
             except (OSError, ValueError, ET.ParseError) as error:
                 failures.append(label)
@@ -195,7 +208,7 @@ def main():
             log.write("## 数据源扫描\n\n" + "\n".join(summary) + "\n")
     previous = json.loads(QUEUE.read_text(encoding="utf-8")) if QUEUE.exists() else []
     if len(failures) == len(FEEDS):
-        write_page(previous, now, failures)
+        write_page(previous, now, failures, candidate_counts)
         raise SystemExit("All feed requests failed; preserved the existing queue.")
 
     existing = json.loads((ROOT / "data/sources.json").read_text(encoding="utf-8"))
@@ -218,7 +231,7 @@ def main():
     queue.sort(key=lambda row: (row["published"], row["url"]), reverse=True)
     queue = queue[:80]
     QUEUE.write_text(json.dumps(queue, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    write_page(queue, now, failures)
+    write_page(queue, now, failures, candidate_counts)
     print(f"Radar: {len(queue)} leads in the rolling queue.")
 
 

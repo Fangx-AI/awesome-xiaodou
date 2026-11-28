@@ -14,6 +14,7 @@ class RadarTests(unittest.TestCase):
     def test_invite_code_boards_are_removed_without_hiding_experiences(self):
         self.assertIsNone(radar.classify_headline("小豆邀请码抓码站（社区收集）"))
         self.assertIsNone(radar.classify_headline("求小豆邀请码"))
+        self.assertIsNone(radar.classify_headline("豆包小豆邀请码被抢疯了"))
         self.assertIsNone(radar.classify_headline("小豆实测：邀请码：DEMO123 有效至明天"))
         self.assertIsNone(radar.classify_headline("豆包小豆怎么注册：买码别交押金"))
         self.assertIsNone(radar.classify_headline("豆包小豆 500 个内测名额，自己填表申请"))
@@ -31,7 +32,12 @@ class RadarTests(unittest.TestCase):
     def test_empty_results_distinguish_failed_sources(self):
         now = datetime.now(radar.CHINA)
         clean = radar.output_page([], now, [])
-        partial = radar.output_page([], now, ["Bing 新闻"])
+        counts = {label: 0 for label in radar.FEEDS if label != "Bing 新闻"}
+        counts["Google 新闻 · 实测"] = 2
+        partial = radar.output_page([], now, ["Bing 新闻"], counts)
+        self.assertIn("Google 新闻 · 实测　2 条", partial)
+        self.assertIn("Google 新闻 · 抖音与公众号　0 条", partial)
+        self.assertIn("Bing 新闻　未读到", partial)
         self.assertIn("近 7 天暂无新线索", clean)
         self.assertIn("本次未读到：Bing 新闻", partial)
         self.assertNotIn("近 7 天暂无新线索", partial)
