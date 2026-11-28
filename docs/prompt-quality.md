@@ -33,6 +33,8 @@
 
 用 `--flow life-weight-follow-through --flow life-cash-flow-follow-through --flow life-interview-follow-through` 回放 30 计划聊天整包的续办。分别检查减肥补答后交首周、已到账退款与账单改期、面试答案重试与保存缺证据项。现金流改期之后再问两笔账各自的状态，核对已付的水电费没有被改回待付。
 
+2026 年 11 月 28 日，使用同一聊天整包对这三段合计 10 轮回复进行回放和人工核对。减肥计划保留了周一的完成和周六安排；现金流在退款入账后把缺口从 400 元更新为 200 元，改期后保留水电费已付；面试记录了实际重试和待补证据。 [所用聊天整包](https://github.com/Fangx-AI/awesome-xiaodou/blob/389c33c7cd574134591db210db74e31208304a3d/prompts/xiaodou-life-plans.txt)
+
 用 `--flow english-practice-cycle` 从「我想学英语」开局，补充会议场景后由用户先答一句。核对礼部是否只纠正一个点、用同一句让用户重试，以及第二天只剩两分钟时能否接回那一句。用 `--case 28-english-text-only` 检查只收到文字时的发音反馈边界。
 
 用 `--flow habit-restart` 核对一次只选一个习惯、用确实发生的日常动作确定开始时机。出差时改到午饭后，用电子书保留原目标。复盘核对读了三次、一次明确没读、一次没有记录、一次没有午饭后的机会，并给下一周一项安排。
