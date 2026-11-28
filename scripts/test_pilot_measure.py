@@ -31,6 +31,31 @@ class PilotMeasurementTests(unittest.TestCase):
         })
         self.assertEqual(summarize(first)["seven_day_completion"]["numerator"], 1)
 
+    def test_cumulative_dates_use_earliest_completion_and_recompute_corrections(self):
+        december = {"cohort": "december", "candidate_commit": "a" * 40, "as_of": "2027-01-15", "trials": [
+            {"id": "P-0001", "started_on": "2026-12-20", "finished_on": "2026-12-30"},
+            {"id": "P-0002", "started_on": "2026-12-20", "finished_on": "2026-12-31"},
+            {"id": "P-0003", "started_on": "2026-12-25"},
+        ]}
+        january = {"cohort": "january", "candidate_commit": "b" * 40, "as_of": "2027-01-20", "trials": [
+            {"id": "P-0001", "started_on": "2027-01-01", "finished_on": "2027-01-02"},
+            {"id": "P-0003", "started_on": "2027-01-01", "finished_on": "2027-01-04"},
+        ]}
+        initial = summarize_cumulative([january, december])
+        self.assertEqual(initial["first_completions_by_month"], {"2026-12": 2, "2027-01": 1})
+        self.assertEqual(initial["unique_completed"], 3)
+        self.assertEqual(summarize(december)["seven_day_completion"]["numerator"], 0)
+
+        corrected = {**december, "as_of": "2027-01-21", "trials": [
+            {key: value for key, value in trial.items() if key != "finished_on"}
+            for trial in december["trials"]
+        ]}
+        revised = summarize_cumulative([corrected, january])
+        self.assertEqual(revised["first_completions_by_month"], {"2027-01": 2})
+        self.assertEqual(revised["unique_started"], 3)
+        self.assertEqual(revised["unique_completed"], 2)
+        self.assertNotIn("P-0001", str(revised))
+
     def test_cumulative_rejects_duplicate_snapshots_and_unversioned_batches(self):
         source = {"as_of": "2026-12-12", "cohort": "first", "candidate_commit": "a" * 40}
         with self.assertRaisesRegex(ValueError, "one authoritative snapshot"):

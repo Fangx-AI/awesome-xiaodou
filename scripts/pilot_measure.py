@@ -275,7 +275,7 @@ def summarize(data):
 def summarize_cumulative(sources):
     cohorts = {}
     participant_channels = {}
-    completed = set()
+    first_completions = {}
     trial_rows = 0
     for source in sources:
         report = summarize(source)
@@ -293,7 +293,8 @@ def summarize_cumulative(sources):
             if channel != "unspecified":
                 channels.add(channel)
             if "finished_on" in trial:
-                completed.add(participant)
+                end = trial["finished_on"]
+                first_completions[participant] = min(end, first_completions.get(participant, end))
 
     by_channel = {}
     attribution_conflicts = 0
@@ -302,12 +303,18 @@ def summarize_cumulative(sources):
         channel = next(iter(channels)) if len(channels) == 1 else "unspecified"
         counts = by_channel.setdefault(channel, {"unique_started": 0, "unique_completed": 0})
         counts["unique_started"] += 1
-        counts["unique_completed"] += participant in completed
+        counts["unique_completed"] += participant in first_completions
+
+    by_month = {}
+    for end in first_completions.values():
+        month = end[:7]
+        by_month[month] = by_month.get(month, 0) + 1
 
     return {
         "cohorts": dict(sorted(cohorts.items())),
         "unique_started": len(participant_channels),
-        "unique_completed": len(completed),
+        "unique_completed": len(first_completions),
+        "first_completions_by_month": dict(sorted(by_month.items())),
         "duplicate_trial_rows": trial_rows - len(participant_channels),
         "attribution_conflicts": attribution_conflicts,
         "by_channel": dict(sorted(by_channel.items())),
