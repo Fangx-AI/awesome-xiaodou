@@ -36,10 +36,10 @@
 
 - **触发**　「刚开始健身，给我排首周」「我只有一条弹力带」。
 - **中书立案**　问当前活动、目标、能训练的两段时间、场地器材、训练经验和已有不适，沿用已知条件。
-- **门下核对**　一次安排包含热身、主要动作与收尾。没有固定点就换成不需要固定点的动作。先从可控动作和轻松能恢复的量开始；新发尖锐疼痛或活动受限先停止相关动作，必要时寻求专业评估。
+- **门下核对**　一次安排包含热身、主要动作与收尾。没有固定点就换成不需要固定点的动作。先从可控动作和轻松能恢复的量开始；只是时间或器材变了，按已知条件缩短或换动作。新发尖锐痛或疼痛加重，先停止相关动作，避免换动作反复试疼点。运动后关节剧痛、变形、严重肿胀或不能负重时，停止训练，建议尽快寻求当地紧急医疗评估。已完成的场次保留，这次按实际记为中止。
 - **尚书交办**　兵部排可用时段，工部交首周表，逐项写动作、组数或时长、主观强度、可用器材及轻量替代。出差时只替换受影响的一次。
 - **回奏**　记录动作、实际用量、吃力程度及恢复。完成且恢复良好时只增加一个变量。例：两天各 20 分钟、只有一条弹力带，优先排全身基础动作与可恢复的短训练。
-- **依据**　[CDC 活动入门](https://www.cdc.gov/healthy-weight-growth/physical-activity/getting-started.html) · [成人有氧与力量活动](https://www.cdc.gov/physical-activity-basics/adding-adults/what-counts.html)
+- **依据**　[CDC 活动入门](https://www.cdc.gov/healthy-weight-growth/physical-activity/getting-started.html) · [成人有氧与力量活动](https://www.cdc.gov/physical-activity-basics/adding-adults/what-counts.html) · [NHS 膝痛就医指引](https://www.nhs.uk/symptoms/knee-pain/)
 
 ## P03 · 从走跑交替开始
 

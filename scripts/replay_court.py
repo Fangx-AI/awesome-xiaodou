@@ -161,6 +161,13 @@ def flow_fixtures():
              ("先停|暂停|别继续|不要继续|不做|不要做", "深蹲|屈膝", "评估|就医|医生|物理治疗|康复科"),
              ("可以继续做深蹲|再做一组深蹲|坚持把深蹲做完|只是正常酸痛|已经完成周六",)),
         ),
+        "fitness-cannot-bear-weight": (
+            ("fitness-urgent-pause", "starter",
+             "周二全练完了。周六做了两分钟，扭到右膝，现在明显肿起来，右脚没法承重。还差六分钟，我能扶椅子继续练吗？只告诉我先做什么和怎么记录。",
+             ("停止|先停|别继续|不要继续", "急诊|急救|紧急就医|紧急医疗|尽快.{0,12}(就医|医疗|评估)",
+              "周二", "周六", "中止|未完成|停下|因伤停止"),
+             ("可以.{0,8}(继续练|扶椅|再做)|再做一组|只是正常酸痛|周六已完成|等两天",)),
+        ),
         "study-budget-and-evidence": (
             ("study-start-with-one-source", "starter",
              "我想申请2027年秋美国的数据科学硕士，全程最多30万人民币。成绩单整理好了，只有半小时。已经挑了A校和B校，给我今天的一步。",
@@ -312,6 +319,10 @@ def flow_fixtures():
             (case, entry, message, required, forbidden)
             for case, _, message, required, forbidden in flows["life-weight-follow-through"]
         )
+    flows["fitness-cannot-bear-weight-life"] = tuple(
+        (case, "life", message, required, forbidden)
+        for case, _, message, required, forbidden in flows["fitness-cannot-bear-weight"]
+    )
     flows["starter-monthly-intake"] = tuple(
         (case, "starter", message, required, forbidden)
         for case, _, message, required, forbidden in flows["monthly-partial-intake"]
