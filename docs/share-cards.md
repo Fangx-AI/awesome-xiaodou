@@ -8,6 +8,8 @@
 
 [制定减肥计划](#制定减肥计划) · [健身](#健身) · [自律](#自律) · [学英语](#学英语) · [留学](#留学)
 
+分享整个 Skill 时，可以附上[项目封面](../assets/xiaodou-github-preview.jpg)和[仓库链接](https://github.com/Fangx-AI/awesome-xiaodou#readme)。
+
 页面中的图片用虚构场景演示。 [查看小豆真机记录](field-tests/README.md)
 
 已在小豆发出开局消息？可以[带这件事试七天](field-tests/seven-day.md)，做完第一步就能回报。
