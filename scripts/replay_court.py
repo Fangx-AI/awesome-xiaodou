@@ -255,6 +255,37 @@ def flow_fixtures():
              ("Good morning|Hello|Hi|Thanks|Thank you",),
              ("已创建|已设置|确认设置|帮您定个提醒|重新开启提醒",)),
         ),
+        "life-weight-follow-through": (
+            ("life-weight-start", "life", "帮我制定一个减肥计划。",
+             (*INTAKE_SIGNALS, "运动|活动|锻炼"), PREMATURE_PLAN),
+            ("life-weight-plan", "life",
+             "成年，想用四周改善习惯，暂时不看体重。工作日午饭常喝含糖饮料，想少喝些。久坐，周二和周六晚上各有15分钟，想散步，没有相关身体限制。请排首周和后续。",
+             ("周二", "周六", "饮料|甜饮|含糖", r"首周|第\s*[一1]\s*周", "复盘|第七天|回顾|记录|回报"),
+             ("必须称重|请提供体重|每天跑",)),
+            ("life-weight-reschedule", "life",
+             "周一午饭已经换成水。周二晚没空了，周三午休有时间，周六仍有空。只改散步那次。",
+             ("周一", "水", "周三", "周六"), ("周六.{0,6}取消|周一.{0,8}重做",)),
+        ),
+        "life-cash-flow-follow-through": (
+            cases["34-life-cash-flow"],
+            ("life-cash-flow-updated", "life",
+             "今天收到200元退款，已入账。昨晚交的水电费已包含在原来报的余额里，别再扣。工资还是后天到账。明天房租还差多少？",
+             (r"200\s*元|[¥￥]200|两百|二百", r"1,?000\s*元|[¥￥]1,?000|一千", "房租|租金"), ("已经付.{0,4}房租|差400|差四百",)),
+            ("life-cash-flow-paid", "life",
+             "现在房东书面同意把房租改到工资到账之后。明天不付，已经交的水电费别改状态。只说这次变更和下一步。",
+             ("房租|租金", "工资|到账", "顺延|改到|推迟|改为|明天.{0,7}不.{0,4}付"), ("已交房租|已经支付房租",)),
+            ("life-cash-flow-status", "life", "给我两笔账各自的最新状态，列一下下一步。",
+             ("房租|租金", "水电", "工资|到账", "已付|已交|已缴|已支付|已结清|已扣"), ("已交房租|已经支付房租|水电.{0,6}仍待付",)),
+        ),
+        "life-interview-follow-through": (
+            cases["33-life-job-interview"],
+            ("life-interview-feedback", "life",
+             "我把回访从想到才做改成每周一次。我没有保存客户留存的数据。请给一个最重要的改进，再让我重答同一道题。",
+             ("回访", "重答|再答|再说|再试|重说|重新回答|重新作答"), ("留存率提高了|留存率提升了",)),
+            ("life-interview-progress", "life",
+             "我重答了一遍，讲清了每周五整理待回访清单，但结果还缺数据。今天先结束，只记录实际进展和下次怎么接。",
+             ("周五|每周五", "清单", "缺|待|尚未|没有", "下次|下一次"), ("留存率提高|补编数字",)),
+        ),
     }
     flows["starter-monthly-intake"] = tuple(
         (case, "starter", message, required, forbidden)
@@ -395,7 +426,9 @@ def main():
             records = list(pool.map(lambda match: replay_match(args, *match, prompts), matches))
         elif args.flow or args.all_flows:
             prompts["pilot"] = PILOT.read_text(encoding="utf-8").strip()
-            selected_flows = flows.items() if args.all_flows else ((name, flows[name]) for name in dict.fromkeys(args.flow))
+            selected_flows = list(flows.items()) if args.all_flows else [(name, flows[name]) for name in dict.fromkeys(args.flow)]
+            if any(fixture[1] == "life" for _, turns in selected_flows for fixture in turns):
+                prompts["life"] = LIFE_PACK.read_text(encoding="utf-8").strip()
             records = list(pool.map(lambda pair: replay_flow(args, *pair, prompts), selected_flows))
         else:
             selected = [fixture for fixture in CASES if not args.case or fixture[0] in args.case]
