@@ -112,7 +112,9 @@ def build():
              '[真机演练](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/pilot-s0.md) · '
              '[提交真机结果](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=s0-pilot.yml) · '
              '[其他玩法反馈](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=prompt-feedback.yml) · '
-             '[本地回放](../prompt-quality.md#本地候选回放)', '']
+             '[本地回放](../prompt-quality.md#本地候选回放)', '',
+             '[用同一套任务对比两种模式](replan-comparison.md)。公开自助对照先用于排查问题；'
+             '核对试用版本和两组材料后，再纳入正式对照汇总。', '']
     pilot = [run for run in runs if run['case_id'] == 'S0']
     other = [run for run in runs if run['case_id'] != 'S0']
     if pilot:
