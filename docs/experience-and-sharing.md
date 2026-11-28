@@ -20,7 +20,7 @@
 
 [五张场景分享图和开场示例](share-cards.md)
 
-图上从中书先问情况讲到尚书交首周安排。转发时附计划指南，读者可以接着复制开局。 [下载减肥计划分享图](../assets/xiaodou-monthly-plan-share.png) · [打开计划指南](weight-first-week.md)
+图上从中书先问情况讲到尚书交首周安排，再展示回奏只改受影响的一项。转发时附计划指南，读者可以接着复制开局。 [下载减肥计划分享图](../assets/xiaodou-weight-court-flow.png) · [打开计划指南](weight-first-week.md)
 
 ### 可转发的试用邀请
 

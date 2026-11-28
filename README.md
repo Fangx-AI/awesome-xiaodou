@@ -122,7 +122,16 @@
 >
 > **小豆**「皇上，周二照常记为已完成。周六那次改到周日，走 10 分钟。饮食记录照旧。」
 
-[复制减肥计划开局](prompts/life-plans/scenes.md#减肥) · [查看减肥计划指南](docs/weight-first-week.md) · [下载流程示例图](assets/xiaodou-monthly-plan-share.png)
+[复制减肥计划开局](prompts/life-plans/scenes.md#减肥) · [查看减肥计划指南](docs/weight-first-week.md) · [分享这套流程](docs/share-cards.md#制定减肥计划)
+
+<details>
+<summary>看五步流程图</summary>
+
+<img src="assets/xiaodou-weight-court-flow.png" width="440" alt="减肥计划的朝堂五步。中书问情况和拟方案，门下查条件，尚书交首周，回奏时保留已做的进度。">
+
+[打开原图](assets/xiaodou-weight-court-flow.png)
+
+</details>
 
 ## 30 个生活计划
 
