@@ -146,7 +146,7 @@
 - **学习与成长**　排考试复习、从零自学、把文章写到交稿。 [复制学习开局](prompts/life-plans/learning.md#自填目标)
 - **职业与工作**　准备转岗和面试、改简历。交付提前时，先找出哪道工序卡住，再算最早能交的时间。 [复制项目计划开局](prompts/life-plans/career.md#p18--工作项目里程碑) · [复制职业开局](prompts/life-plans/career.md#自填目标)
 - **财务与生活**　算清发薪前够不够付账单，或按房数、日期和退改条件对比多人住宿的总价。 [复制月度预算开局](prompts/life-plans/household.md#p19--个人月度预算) · [复制旅行计划开局](prompts/life-plans/household.md#p22--旅行筹备与日程) · [复制生活开局](prompts/life-plans/household.md#自填目标)
-- **习惯与关系**　做起拖着的事、准备重要沟通、安排家庭分工。 [复制习惯开局](prompts/life-plans/habits.md#自填目标)
+- **习惯与关系**　让拖着的事先动一步、安排家庭分工，或回顾这一周，选出下一周先做的事。 [复制周复盘开局](prompts/life-plans/habits.md#p30--每周回顾与下周安排) · [复制习惯开局](prompts/life-plans/habits.md#自填目标)
 
 [逐个复制 30 个计划开局](skills/xiaodou-skill/references/life-plans/README.md#选一个你想做的计划) · [复制计划整包](prompts/xiaodou-life-plans.md) · [下载小豆 App 开局包](https://github.com/Fangx-AI/awesome-xiaodou/releases/latest/download/xiaodou-app-starters.zip)
 
