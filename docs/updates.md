@@ -1,5 +1,9 @@
 # 小豆 Skill 更新记录
 
+## v2.2.0 · 30 个生活计划
+
+- Releases 现可下载完整技能、通用开局、30 个生活计划整包及提示词附件。 [查看发布包与校验值](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.2.0)
+
 ## 2026-11-28 · 简报按你的频率来
 
 - 行业早报降频时，先定位原任务并预览改动。改成周报会核对整周，读不到来源时标明覆盖不足。 [行业动态早报](../playbooks/07-daily-brief.md)
