@@ -18,6 +18,7 @@ jobs:
           python-version: '3.12'
       - name: Rebuild and check
         run: |
+          python -B scripts/test_pilot_measure.py
           python scripts/build_catalog.py
           python scripts/build_skill.py "$RUNNER_TEMP/xiaodou"
           python scripts/check_release.py "$RUNNER_TEMP/xiaodou/xiaodou-skill.zip"

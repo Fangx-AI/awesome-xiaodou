@@ -57,6 +57,8 @@ def summarize_comparisons(records):
         mode: {"pairs": 0, "emperor_only": 0, "regular_only": 0, "both": 0, "neither": 0}
         for mode in ("first_action", "replan")
     }
+    follow_ups = {"pairs": 0, "regular_total": 0, "emperor_total": 0,
+                  "emperor_fewer": 0, "regular_fewer": 0, "equal": 0}
     for item in records:
         check_keys(item, ("id", "order", *COMPARISON_ARMS), "comparison")
         if item.get("order") not in COMPARISON_ARMS:
@@ -64,7 +66,25 @@ def summarize_comparisons(records):
         arm_counts[item["order"]] += 1
         arms = [item.get(arm, {}) for arm in COMPARISON_ARMS]
         for result in arms:
-            check_flags(result, COMPARISON_FIELDS, "comparison arm")
+            check_keys(result, (*COMPARISON_FIELDS, "follow_up_questions"), "comparison arm")
+            check_flags({key: result[key] for key in COMPARISON_FIELDS if key in result},
+                        COMPARISON_FIELDS, "comparison arm")
+            if "follow_up_questions" in result:
+                count = result["follow_up_questions"]
+                if type(count) is not int or count < 0:
+                    raise ValueError("follow_up_questions must be a non-negative integer")
+
+        if all("follow_up_questions" in arm and "first_action" in arm for arm in arms):
+            regular, emperor = (arm["follow_up_questions"] for arm in arms)
+            follow_ups["pairs"] += 1
+            follow_ups["regular_total"] += regular
+            follow_ups["emperor_total"] += emperor
+            if emperor < regular:
+                follow_ups["emperor_fewer"] += 1
+            elif regular < emperor:
+                follow_ups["regular_fewer"] += 1
+            else:
+                follow_ups["equal"] += 1
 
         for name, fields in (("first_action", ("first_action",)), ("replan", COMPARISON_FIELDS[1:])):
             if not all(field in arm for arm in arms for field in fields):
@@ -79,7 +99,13 @@ def summarize_comparisons(records):
         values["unscored_pairs"] = len(records) - count
         delta = values["emperor_only"] - values["regular_only"]
         values["emperor_minus_regular_pp"] = round(100 * delta / count, 1) if count else None
-    return {"enrolled": len(records), "order_counts": arm_counts, "outcomes": scores}
+    count = follow_ups["pairs"]
+    follow_ups["unscored_pairs"] = len(records) - count
+    follow_ups["emperor_minus_regular_mean"] = (
+        round((follow_ups["emperor_total"] - follow_ups["regular_total"]) / count, 2) if count else None
+    )
+    return {"enrolled": len(records), "order_counts": arm_counts,
+            "outcomes": scores, "follow_up_questions": follow_ups}
 
 
 def summarize(data):
@@ -97,7 +123,8 @@ def summarize(data):
         check_flags({key: item[key] for key in ("found_start",) if key in item}, ("found_start",), "cold read")
         understood += bool(item.get("found_start") and all(answers.get(key) for key in READ_ANSWERS))
 
-    ready = seven_day_eligible = finished = changes = good_changes = returned = return_eligible = 0
+    ready = seven_day_eligible = finished = changes = good_changes = 0
+    returned = prompted_returns = return_eligible = 0
     for item in trials:
         check_keys(item, ("id", "channel", "started_on", "first_action", "finished_on", "change", "return"), "trial")
         channel = item.get("channel", "")
@@ -132,7 +159,11 @@ def summarize(data):
             day = read_day(back.get("day"), "return day")
             if not start <= day <= as_of:
                 raise ValueError("return day is outside the observed interval")
-            returned += return_matured and 6 <= (day - start).days <= 8 and not back["prompted"]
+            if return_matured and 6 <= (day - start).days <= 8:
+                if back["prompted"]:
+                    prompted_returns += 1
+                else:
+                    returned += 1
 
     return {
         "as_of": as_of.isoformat(),
@@ -142,6 +173,7 @@ def summarize(data):
         "pending_seven_day_window": len(trials) - seven_day_eligible,
         "replanning": ratio(good_changes, changes),
         "unprompted_return": ratio(returned, return_eligible),
+        "prompted_return": ratio(prompted_returns, return_eligible),
         "matched_comparison": summarize_comparisons(data.get("comparisons", [])),
         "thresholds": {
             "cold_read": len(reads) >= 12 and 12 * understood >= 10 * len(reads),
