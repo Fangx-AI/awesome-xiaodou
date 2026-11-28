@@ -4,10 +4,9 @@
 
 ## 小豆独立 App
 
-| 环节 | 截至 2026 年 11 月 28 日 | 对应证据 |
+| 环节 | 验证状态 | 对应证据 |
 | --- | --- | --- |
-| iPhone、iPad 下载入口 | 中国区 App Store 显示版本 15.9.0，要求 iOS 或 iPadOS 15.0 起，商店年龄分级为 18+ | [Apple 条目](https://apps.apple.com/cn/app/%E5%B0%8F%E8%B1%86-%E8%B1%86%E5%8C%85%E6%97%97%E4%B8%8B-ai-%E4%B8%AA%E4%BA%BA%E5%8A%A9%E7%90%86/id6815582077) |
-| Android 下载入口 | 小米应用商店有公开条目。网页提示部分下载服务维护，手机内能否下载仍待试 | [小米应用商店](https://app.mi.com/details?id=com.larus.doubaom) |
+| 下载入口 | 已核对中国区 App Store 和小米应用商店的公开条目，手机下载安装待实测 | [商店版本和网页状态](app-stores.md) · [下载步骤](install.md#下载和开通) |
 | 登录和开通 | 11 月 24 日公测以邀请制启动。账号能否开通以 App 所示为准 | [首都之窗公测报道](https://www.beijing.gov.cn/fuwu/lqfw/gggs/202611/t20261124_4957049.html) |
 | 一条消息开局、报进度、门下改案 | 已有本地对话回放，小豆独立 App 仍待实测 | [本地回放](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/prompt-quality.md#本地候选回放) |
 | 原生提醒 | 创建、读取回执、实际触发与撤销仍待实测 | [真机结果](field-tests/README.md) |

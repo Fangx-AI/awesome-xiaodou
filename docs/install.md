@@ -7,9 +7,11 @@
 ### 下载和开通
 
 1. **下载小豆独立 App。** 搜「小豆 - 豆包旗下 AI 个人助理」，认准开发者**北京春田知韵科技有限公司**。
-   - **iPhone / iPad**　打开中国区 App Store 条目，系统要求 iOS 或 iPadOS 15.0 起，商店年龄分级为 18+。 [App Store 中国区](https://apps.apple.com/cn/app/%E5%B0%8F%E8%B1%86-%E8%B1%86%E5%8C%85%E6%97%97%E4%B8%8B-ai-%E4%B8%AA%E4%BA%BA%E5%8A%A9%E7%90%86/id6815582077)
-   - **Android**　在手机自带的应用商店搜索「小豆」。小米官网已列出该应用，11 月 28 日网页显示部分下载服务维护，可在小米手机的应用商店搜索。 [小米应用商店](https://app.mi.com/details?id=com.larus.doubaom)
+   - **iPhone / iPad**　打开中国区 App Store 条目查看系统要求和年龄分级。 [App Store 中国区](https://apps.apple.com/cn/app/id6815582077)
+   - **Android**　在手机自带的应用商店搜索「小豆」。 [小米应用商店](https://app.mi.com/details?id=com.larus.doubaom)
 2. **打开小豆，按 App 提示登录。** 能进入新对话并发出消息，就可以[发一条消息开局](#发一条消息开局)。打开 App 后仍在等待或看到邀请码页面，按下面的方法处理。
+
+查看两家商店的[版本和网页下载状态](app-stores.md)。
 
 ### 没有邀请码怎么办
 

@@ -1,0 +1,18 @@
+{
+  "apple": {
+    "check": "success",
+    "observed_on": "2026-11-28",
+    "listing": {
+      "version": "15.9.0",
+      "minimum_ios": "15.0"
+    }
+  },
+  "xiaomi": {
+    "check": "success",
+    "observed_on": "2026-11-28",
+    "listing": {
+      "version": "16.0.0",
+      "download_maintenance": true
+    }
+  }
+}
