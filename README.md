@@ -6,13 +6,15 @@
 
 **中书省先问再拟案 → 门下省查条件、退回重排 → 尚书省派六部、交付计划。** 设提醒、发消息等操作，等你确认后再办。
 
-[已开通？复制开局](#一句话在小豆里开始) · [下载小豆 App](docs/install.md#下载和开通) · [缺邀请码](docs/install.md#没有邀请码怎么办)
+[已开通？复制开局](#一句话在小豆里开始) · [下载小豆 App](docs/install.md#下载和开通) · [开通或发送卡住了](docs/install.md#开通或发送卡住了)
 
 ## 一句话在小豆里开始
 
 选一个目标，点代码块右上角复制全文。到**小豆独立 App** 新建对话，一次发出。
 
 **复制场景开局**　[减肥](prompts/life-plans/scenes.md#减肥) · [健身](prompts/life-plans/scenes.md#健身) · [自律阅读](prompts/life-plans/scenes.md#自律阅读) · [学英语](prompts/life-plans/scenes.md#学英语) · [留学](prompts/life-plans/scenes.md#留学)
+
+[没找到怎么开始？告诉我们你卡在哪](docs/field-tests/cold-read.md)，没有小豆 App 也可以。
 
 <details>
 <summary><strong>自填目标 · 展开并复制开局</strong></summary>
@@ -210,6 +212,6 @@
 
 **哪件事被小豆帮你办成了？** 欢迎分享你说的那句话和实际结果。觉得有用，点个 Star，下次需要时回来找。
 
-[分享实际结果](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=prompt-feedback.yml) · [第一次看首页？告诉我们你会从哪里开始](docs/field-tests/cold-read.md) · [贡献玩法](CONTRIBUTING.md) · [保存示例图或复制转发文案](docs/share-cards.md)
+[分享实际结果](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=prompt-feedback.yml) · [贡献玩法](CONTRIBUTING.md) · [保存示例图或复制转发文案](docs/share-cards.md)
 
 社区项目 · [原创内容 CC BY 4.0](LICENSE)
