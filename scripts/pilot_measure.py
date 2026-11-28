@@ -146,7 +146,9 @@ def summarize(data):
         if item.get("assisted"):
             assisted_reads += 1
             continue
-        if "found_start" not in item or not all(key in answers for key in READ_ANSWERS):
+        if item.get("assisted") is not False or "found_start" not in item:
+            continue
+        if not all(key in answers for key in READ_ANSWERS):
             continue
         scored_reads += 1
         for key, correct in answers.items():

@@ -95,7 +95,7 @@ class PilotMeasurementTests(unittest.TestCase):
 
     def test_cold_read_threshold_uses_observed_public_readme_version(self):
         report_input = {"as_of": "2026-12-09", "candidate_commit": "a" * 40, "cold_reads": [
-            {"id": f"P-{index:04}", "found_start": index < 10,
+            {"id": f"P-{index:04}", "found_start": index < 10, "assisted": False,
              "answers": dict.fromkeys(("identity", "where", "how", "confirmation"), True)}
             for index in range(12)
         ]}
@@ -113,7 +113,7 @@ class PilotMeasurementTests(unittest.TestCase):
         reads = [{"id": f"P-{index:04}", "answers": all_correct, "found_start": True, "assisted": False}
                  for index in range(10)]
         reads.extend([
-            {"id": "P-0010", "answers": {"identity": True}},
+            {"id": "P-0010", "answers": all_correct, "found_start": True},
             {"id": "P-0011", "answers": all_correct, "found_start": True, "assisted": True},
         ])
         source = {"as_of": "2026-12-09", "public_readme_commit": "b" * 40, "cold_reads": reads}
@@ -123,9 +123,13 @@ class PilotMeasurementTests(unittest.TestCase):
         self.assertEqual(report["cold_read_assisted"], 1)
         self.assertFalse(report["thresholds"]["cold_read"])
 
+        reads.extend([{"id": "P-0098", "answers": all_correct, "found_start": True},
+                      {"id": "P-0099", "answers": all_correct, "found_start": True}])
+        self.assertFalse(summarize(source)["thresholds"]["cold_read"])
+
         reads.extend([
-            {"id": "P-0012", "answers": {**all_correct, "confirmation": False}, "found_start": True},
-            {"id": "P-0013", "answers": all_correct, "found_start": False},
+            {"id": "P-0012", "answers": {**all_correct, "confirmation": False}, "found_start": True, "assisted": False},
+            {"id": "P-0013", "answers": all_correct, "found_start": False, "assisted": False},
         ])
         report = summarize(source)
         self.assertEqual(report["cold_read"]["numerator"], 10)
