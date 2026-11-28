@@ -105,7 +105,7 @@
 - **学英语**　礼部扮演会议同事、面试官或问路对象，你先答一句，小豆只挑一处改，再用同一句重试。 [看英语陪练怎么走](skills/xiaodou-skill/references/planning.md#english-practice)
 - **留学**　先核这一届的官网截止日和全程费用。预算变了，重筛学校，已经写好的材料照样留用。 [看怎么核一所学校](skills/xiaodou-skill/references/planning.md#study-application)
 
-[查看五种计划怎么跑完](skills/xiaodou-skill/references/planning.md) · [截图记日历](playbooks/11-screenshot-calendar.md) · [飞书周报](playbooks/36-weekly-report.md)
+[查看五种计划怎么跑完](skills/xiaodou-skill/references/planning.md) · [五张场景分享图](docs/share-cards.md) · [截图记日历](playbooks/11-screenshot-calendar.md) · [飞书周报](playbooks/36-weekly-report.md)
 
 ## 御前问签
 
