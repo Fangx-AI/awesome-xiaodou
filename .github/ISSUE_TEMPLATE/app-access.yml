@@ -1,6 +1,7 @@
 name: 小豆下载与开通反馈
 description: 反馈小豆独立 App 在下载、登录、开通或发送消息时遇到的问题
 title: "[小豆准入] "
+labels: [app-access]
 body:
   - type: markdown
     attributes:

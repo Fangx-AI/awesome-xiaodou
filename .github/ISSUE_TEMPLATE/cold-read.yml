@@ -1,6 +1,7 @@
 name: 首页可读性反馈
 description: 第一次打开项目首页时，记下最先想点的位置和看不懂的地方
 title: "[S0 冷读] "
+labels: [cold-read]
 body:
   - type: markdown
     attributes:
