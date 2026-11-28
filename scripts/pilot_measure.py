@@ -128,6 +128,7 @@ def summarize(data):
         understood += bool(item.get("found_start") and all(answers.get(key) for key in READ_ANSWERS))
 
     ready = seven_day_eligible = finished = reported_incomplete = changes = good_changes = 0
+    unscored_changes = 0
     returned = prompted_returns = return_eligible = 0
     channels = {}
     for item in trials:
@@ -167,11 +168,14 @@ def summarize(data):
             counts["finished"] += on_time
             reported_incomplete += reported_no_completion or (end is not None and end > due)
 
-        change = item.get("change", {})
-        check_flags(change, CHANGE_SCORES, "change")
-        if all(key in change for key in CHANGE_SCORES):
+        if "change" in item:
+            change = item["change"]
+            check_flags(change, CHANGE_SCORES, "change")
             changes += 1
-            good_changes += all(change.values())
+            no_observed_failure = all(change.values())
+            complete_score = all(key in change for key in CHANGE_SCORES)
+            good_changes += no_observed_failure and complete_score
+            unscored_changes += no_observed_failure and not complete_score
 
         return_matured = start + timedelta(days=8) <= as_of
         return_eligible += return_matured
@@ -204,6 +208,7 @@ def summarize(data):
             for channel, counts in sorted(channels.items())
         },
         "replanning": ratio(good_changes, changes),
+        "replanning_unscored": unscored_changes,
         "unprompted_return": ratio(returned, return_eligible),
         "prompted_return": ratio(prompted_returns, return_eligible),
         "matched_comparison": summarize_comparisons(data.get("comparisons", [])),

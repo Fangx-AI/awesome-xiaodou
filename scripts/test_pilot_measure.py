@@ -102,6 +102,23 @@ class PilotMeasurementTests(unittest.TestCase):
             "emperor_fewer": 1, "regular_fewer": 1, "equal": 0, "emperor_minus_regular_mean": 0.5,
         })
 
+    def test_replanning_keeps_observed_changes_with_missing_evidence(self):
+        passed = {"preserved": True, "affected_only": True, "actionable": True}
+        scores = [passed] * 26 + [{"preserved": False}, {}, {"actionable": True}] + [passed]
+        trials = [{"id": f"P-{index:04}", "started_on": "2026-12-01", "change": change}
+                  for index, change in enumerate(scores)]
+        trials.append({"id": "P-0100", "started_on": "2026-12-01"})
+        report = summarize({"as_of": "2026-12-10", "trials": trials})
+        self.assertEqual(report["replanning"], {"numerator": 27, "denominator": 30, "percent": 90.0})
+        self.assertEqual(report["replanning_unscored"], 2)
+        self.assertTrue(report["thresholds"]["replanning"])
+
+        trials.extend({"id": f"P-{index:04}", "started_on": "2026-12-01", "change": {}}
+                      for index in (101, 102))
+        report = summarize({"as_of": "2026-12-10", "trials": trials})
+        self.assertEqual(report["replanning"], {"numerator": 27, "denominator": 32, "percent": 84.4})
+        self.assertFalse(report["thresholds"]["replanning"])
+
     def test_counts_are_nonnegative_integers(self):
         for invalid in (-1, True, 1.5, None):
             with self.subTest(invalid=invalid), self.assertRaises(ValueError):
