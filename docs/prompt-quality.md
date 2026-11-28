@@ -43,6 +43,8 @@
 
 用 `--flow progress-correction --flow progress-correction-life` 测进度更正。用户先报本周两次阅读、其中一次日期不详。后来提到周三读过时，先问这一回是否已计入两次。用户更正为周三一次后，重发同一条仍记一次；确认周四新增，才把总数记为两次。旧版回放曾直接把周三填进日期不详的那次。
 
+用 `--flow life-weight-follow-through --flow starter-weight-follow-through --flow weight-weight-follow-through` 回放减肥计划的三个入口。用户明确跳过身高、体重和热量记录后，三条路径都按饮食习惯和两个可用时段制定首周安排，保留周一已经做过的一次饮料替换，只改周二的散步。九轮本地回复中八轮首轮通过词句检查，另一轮用「每周日晚上回看」表达周复盘，人工核对后补进检查词。
+
 用 `--flow private-budget --flow private-budget-life` 检查留学预算保密时能否继续推进。两所学校和费用均为虚构。先整理用户给的费用和材料，再沿用用户自己比较出的结果，把超出上限的 A 校移开。B 校只有学费，下一步用十五分钟去学校官网核对杂费和生活费，保留原来的个人陈述初稿。
 
 2026 年 11 月 28 日，以 [候选提交 1a35b6a](https://github.com/Fangx-AI/awesome-xiaodou/tree/1a35b6ae3182ba5354409e535d38d59405a56e2f) 为基线，复跑 30 个生活计划、22 段连续对话的 86 轮回复，以及 8 条开局、续聊和确认用例。人工核对后，等义表达补进检查词，保留一处行为问题：英语首测已经提供场景、十五分钟空档和开头原句时，回复仍可能先追问参会者。开局改为信息足够就从现成句子直接练，改期时沿用已完成的内容并说清可用时长。 [基线候选包](https://github.com/Fangx-AI/awesome-xiaodou/actions/runs/46114650011)
