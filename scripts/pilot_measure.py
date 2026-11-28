@@ -125,12 +125,15 @@ def summarize(data):
 
     ready = seven_day_eligible = finished = reported_incomplete = changes = good_changes = 0
     returned = prompted_returns = return_eligible = 0
+    channels = {}
     for item in trials:
         check_keys(item, ("id", "channel", "started_on", "first_action", "finished_on",
                           "no_completion_reported_on", "change", "return"), "trial")
-        channel = item.get("channel", "")
-        if "channel" in item and (not isinstance(channel, str) or not re.fullmatch(r"[a-z0-9-]{1,32}", channel)):
+        channel = item.get("channel", "unspecified")
+        if not isinstance(channel, str) or not re.fullmatch(r"[a-z0-9-]{1,32}", channel):
             raise ValueError("trial channel must be an anonymous label")
+        counts = channels.setdefault(channel, {"started": 0, "eligible": 0, "finished": 0})
+        counts["started"] += 1
         check_flags({key: item[key] for key in ("first_action",) if key in item}, ("first_action",), "trial")
         start = read_day(item.get("started_on"), "started_on")
         if start > as_of:
@@ -154,7 +157,10 @@ def summarize(data):
                 raise ValueError("no_completion_reported_on conflicts with on-time completion")
 
         if matured:
-            finished += end is not None and end <= due
+            on_time = end is not None and end <= due
+            finished += on_time
+            counts["eligible"] += 1
+            counts["finished"] += on_time
             reported_incomplete += reported_no_completion or (end is not None and end > due)
 
         change = item.get("change", {})
@@ -186,6 +192,11 @@ def summarize(data):
         "seven_day_reported_incomplete": reported_incomplete,
         "seven_day_unreported": seven_day_eligible - finished - reported_incomplete,
         "pending_seven_day_window": len(trials) - seven_day_eligible,
+        "seven_day_by_channel": {
+            channel: {"started": counts["started"],
+                      "completion": ratio(counts["finished"], counts["eligible"])}
+            for channel, counts in sorted(channels.items())
+        },
         "replanning": ratio(good_changes, changes),
         "unprompted_return": ratio(returned, return_eligible),
         "prompted_return": ratio(prompted_returns, return_eligible),

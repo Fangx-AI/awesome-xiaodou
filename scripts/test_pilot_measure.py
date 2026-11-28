@@ -6,8 +6,8 @@ from pilot_measure import summarize, summarize_comparisons
 class PilotMeasurementTests(unittest.TestCase):
     def test_explicit_incompletion_and_missing_reports_keep_the_same_denominator(self):
         report = summarize({"as_of": "2026-12-10", "trials": [
-            {"id": "P-0001", "started_on": "2026-12-01", "finished_on": "2026-12-08"},
-            {"id": "P-0002", "started_on": "2026-12-01", "no_completion_reported_on": "2026-12-08"},
+            {"id": "P-0001", "channel": "github", "started_on": "2026-12-01", "finished_on": "2026-12-08"},
+            {"id": "P-0002", "channel": "github", "started_on": "2026-12-01", "no_completion_reported_on": "2026-12-08"},
             {"id": "P-0003", "started_on": "2026-12-01", "finished_on": "2026-12-09"},
             {"id": "P-0004", "started_on": "2026-12-01"},
             {"id": "P-0005", "started_on": "2026-12-05"},
@@ -16,6 +16,10 @@ class PilotMeasurementTests(unittest.TestCase):
         self.assertEqual(report["seven_day_reported_incomplete"], 2)
         self.assertEqual(report["seven_day_unreported"], 1)
         self.assertEqual(report["pending_seven_day_window"], 1)
+        self.assertEqual(report["seven_day_by_channel"], {
+            "github": {"started": 2, "completion": {"numerator": 1, "denominator": 2, "percent": 50.0}},
+            "unspecified": {"started": 3, "completion": {"numerator": 0, "denominator": 2, "percent": 0.0}},
+        })
 
     def test_explicit_incompletion_requires_the_completed_window_and_consistent_result(self):
         for evidence in ({"no_completion_reported_on": "2026-12-07"},
