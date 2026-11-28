@@ -534,6 +534,27 @@ def flow_fixtures():
         (case, "life", message, required, forbidden)
         for case, _, message, required, forbidden in flows["replace-goal"]
     )
+    flows["first-step-stall"] = (
+        ("first-step-stall-plan", "starter",
+         "周五要交一页数据简报。我手头有截取的周数据，简报要有两条发现和一个建议。先给我一个能开始的步骤。",
+         ("发现|趋势|变化|数据", "写|列|挑|圈|标"), ("我已经交了|已设置提醒",)),
+        ("first-step-stall-unknown-cause", "starter",
+         "计划看了，但一天过去了，一项也没开始。你先帮我看看卡在哪里。",
+         ("？|[?]|回.{0,10}哪", "缺.{0,8}(数据|材料|资料)|权限|打不开|没有.{0,5}(材料|资料|数据)", "从哪|怎么开始|标准|时间|精力|没空|不知道.{0,12}(挑|选|写)"),
+         ("现在就写|现在就打开|立刻打开|重新排一周|开始计时",)),
+        ("first-step-stall-blocked-access", "starter",
+         "数据链接失效了，负责人小林能重新授权。现在只有五分钟，先给我一个能做的动作。不要发消息。",
+         ("小林", "权限|授权|链接", "草稿|可以.{0,6}发|请.{0,8}(开通|补|发|帮)"),
+         ("已发送|已联系|已经发给|先编|随便填",)),
+        ("first-step-stall-return-to-new-progress", "starter",
+         "拿到数据了，也写好了一条发现：本周订单 120，较上周 100 多了 20。还剩四分钟，只给一个接着做的动作。",
+         (r"四分钟|4\s*分钟", "第二条|另一条|下一条|另一项"),
+         ("从头|重写第一条|一定是|已提交|已发给",)),
+    )
+    flows["first-step-stall-life"] = tuple(
+        (case, "life", message, required, forbidden)
+        for case, _, message, required, forbidden in flows["first-step-stall"]
+    )
     return flows
 
 
