@@ -1,5 +1,10 @@
 # 小豆 Skill 更新记录
 
+## v2.2.1 · 按实际进展接着办
+
+- 减肥按做过的次数复盘，健身区分缺器材和受伤，留学分别核对上传、递交及材料收齐。
+- 英语分开记录文字和朗读，自律计划缩小目标时保留旧进展。 [下载发布包](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.2.1)
+
 ## v2.2.0 · 30 个生活计划
 
 - Releases 现可下载完整技能、通用开局、30 个生活计划整包及提示词附件。 [查看发布包与校验值](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.2.0)
