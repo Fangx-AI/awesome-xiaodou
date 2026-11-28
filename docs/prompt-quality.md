@@ -23,6 +23,8 @@
 
 现在可用 `python scripts/replay_court.py <输出 JSON> --all-flows` 一次回放所有连续场景。独立用例仍用不带参数的命令。
 
+用 `--flow health-summary-coverage` 检查步数汇总。三轮虚构记录分别覆盖未授权时给手填表、用已核对的日总数和零步日算出 2,600 步均值、两处汇总不一致时把该日转为待核。手表和手机的重叠数值保持独立，缺记录始终留空。Apple 健康的实际连接仍待真机验证。 [健康记录玩法](../playbooks/06-health-summary.md)
+
 五条分享开局可用 `--flow scene-weight --flow scene-fitness --flow scene-reading --flow scene-english --flow scene-study-abroad` 单独回放。第一次回放发现减肥首轮没有列完整问题，英语在续练时没带出原句和时间。补充开局提问及英语交付规则后，五段合计 11 轮均完成。减肥以「想通过减肥改善什么」询问目标，人工复核后纳入等义检查。其余场景覆盖 8 分钟徒手改案、漏读后在午饭后接着读、用现成开场句练 5 分钟，以及留学预算变动后保留个人陈述。回放只用虚构输入，未调用小豆 App。
 
 用 `python scripts/replay_court.py <输出 JSON> --all-life` 逐项回放 30 个生活计划。每条从自然请求开始，使用完整的 App 聊天整包。测试覆盖相近目标的区分、实际约束、交付物和权限。报告中的词句检查用于发现要人工复核的回复，最后按实际内容判断是否兑现计划要求。

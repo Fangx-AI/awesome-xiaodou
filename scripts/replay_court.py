@@ -21,6 +21,7 @@ WEEKLY = ROOT / "playbooks" / "36-weekly-report.md"
 MAIL = ROOT / "playbooks" / "41-mail-confirm-send.md"
 SHOPPING = ROOT / "playbooks" / "15-shopping-card.md"
 STALE = ROOT / "playbooks" / "46-stale-project-reminder.md"
+HEALTH_SUMMARY = ROOT / "playbooks" / "06-health-summary.md"
 TRIAGE = ROOT / "playbooks" / "45-feishu-reply-triage.md"
 INTEREST = ROOT / "playbooks" / "13-interest-updates.md"
 LIFE_PACK = ROOT / "prompts" / "xiaodou-life-plans.txt"
@@ -816,6 +817,20 @@ def flow_fixtures():
          ("个人陈述", r"22\s*万|二十二万", r"A\s*校", r"B\s*校", "待核|未查|没查|待确认|待补|不能判断"),
          ("已提交|保证录取|B校符合预算",)),
     )
+    flows["health-summary-coverage"] = (
+        ("health-summary-manual-entry", "health-summary",
+         "用北京时间回顾 11 月 23 日周一到 25 日周三的步数。现在没有健康读取权限。我只愿意给每天步数，不授权其他数据。",
+         ("日期", "步数|数值|数字", "来源", "没|无|未"), ("已读取|已授权|已同步|已创建",)),
+        ("health-summary-conflict-and-zero", "health-summary",
+         "回报实际数字。周一 11 月 23 日是同一天，手机记录 3000 步、手表记录 4000 步，Apple 健康日汇总 5200 步。周二 11 月 24 日健康页明确记录 0 步。周三 11 月 25 日没有记录。请汇总和算平均。",
+         (r"5[,]?200", r"2[,]?600", r"两天|2\s*天|2\s*日|两日|2\s*/\s*3|2\s*个完整自然日", "无记录|未记录|缺失"),
+         (r"7[,]?000|1[,]?733|已同步",)),
+        ("health-summary-ignore-discrepant-day", "health-summary",
+         "补充：周一小豆显示 4900 步，健康当日汇总 5200 步。两次查看时间和设备来源还没对上。周二、周三照旧。只用已核对的完整日算平均。",
+         (r"4[,]?900", r"5[,]?200", "待核|未核|核对", r"一天|1\s*天|一日|1\s*日|1\s*/\s*3|1\s*个完整自然日",
+          "无记录|未记录|缺失", r"(?:日均|平均)[^\d\n]{0,10}0\s*步"),
+         ("已找到原因|已改权限|已设置提醒",)),
+    )
     return flows
 
 
@@ -951,6 +966,7 @@ def main():
         "mail": re.search(r"```text\n(.*?)\n```", MAIL.read_text(encoding="utf-8"), re.S)[1],
         "shopping": re.search(r"```text\n(.*?)\n```", SHOPPING.read_text(encoding="utf-8"), re.S)[1],
         "stale": re.search(r"```text\n(.*?)\n```", STALE.read_text(encoding="utf-8"), re.S)[1],
+        "health-summary": re.search(r"```text\n(.*?)\n```", HEALTH_SUMMARY.read_text(encoding="utf-8"), re.S)[1],
         "triage": re.search(r"```text\n(.*?)\n```", TRIAGE.read_text(encoding="utf-8"), re.S)[1],
         "interest": re.search(r"```text\n(.*?)\n```", INTEREST.read_text(encoding="utf-8"), re.S)[1],
     }
