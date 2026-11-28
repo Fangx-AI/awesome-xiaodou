@@ -19,6 +19,8 @@
 
 同日在[五种计划齐备的候选提交](https://github.com/Fangx-AI/awesome-xiaodou/tree/fb4e1a7a20fb7f18e6a71aaaaaf2a5f72ff3c21f)回放了 28 条独立用例，以及 10 段连续对话的 38 轮。独立用例都通过。连续对话有三轮经人工核对属等义表达，一轮发现确实多问了用户尚未选择的习惯。该构建的 ZIP、开局文本校验值及三种 GitHub 页面宽度已另行验证。 [固定版本构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/runs/46106374522)
 
+修改开局后单独复跑了自律四轮。用户同时提到读书、早起和少刷手机时，回复利用已知的晚饭后五分钟，提议先读一页，只问手边有没有想读的书。随后保住已完成次数，将出差时的阅读放进午饭后空档，并标明未回报的日期。
+
 现在可用 `python scripts/replay_court.py <输出 JSON> --all-flows` 一次回放所有连续场景。独立用例仍用不带参数的命令。
 
 连续对话可用 `python scripts/replay_court.py <输出 JSON> --flow monthly-plan --flow pilot-reschedule --flow reminder-confirmation`。每一轮把前面实际生成的回复连同用户原话作为对话历史交给下一轮。用来观察计划能否从立案走到交付、改期和续聊，以及改提醒时会不会沿用旧的确认。记录会写明各轮输入、回复和通过条件；某轮中断时保留此前结果。这个回放使用 Codex CLI 与虚构输入，小豆 App 的记忆、工具授权和提醒回执仍由真机另测。
