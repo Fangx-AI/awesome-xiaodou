@@ -4,6 +4,7 @@ import json
 import re
 from datetime import date, timedelta
 from pathlib import Path
+from statistics import median
 
 from build_life_plans import PLAN_FILES, PLAN_PACK, SCENE_FILES
 
@@ -62,6 +63,18 @@ def summarize_groups(groups):
         label: {"started": counts["started"],
                 "completion": ratio(counts["finished"], counts["eligible"])}
         for label, counts in sorted(groups.items())
+    }
+
+
+def summarize_first_action_timing(observations):
+    rounds = [row["response_round"] for row in observations if "response_round" in row]
+    seconds = [row["elapsed_seconds"] for row in observations if "elapsed_seconds" in row]
+    return {
+        "qualified": len(observations),
+        "on_first_reply": ratio(rounds.count(1), len(rounds)),
+        "median_response_round": median(rounds) if rounds else None,
+        "elapsed_observed": len(seconds),
+        "median_elapsed_seconds": median(seconds) if seconds else None,
     }
 
 
@@ -243,9 +256,10 @@ def summarize(data):
     unscored_changes = 0
     returned = prompted_returns = return_eligible = 0
     channels, starters, shared_scenes = {}, {}, {}
+    first_action_timing = {}
     starts = {}
     for item in trials:
-        check_keys(item, ("id", "channel", "starter", "shared_scene", "started_on", "first_action", "finished_on",
+        check_keys(item, ("id", "channel", "starter", "shared_scene", "started_on", "first_action", "first_action_observation", "finished_on",
                           "no_completion_reported_on", "change", "return"), "trial")
         channel = item.get("channel", "unspecified")
         if not isinstance(channel, str) or not re.fullmatch(r"[a-z0-9-]{1,32}", channel):
@@ -263,6 +277,16 @@ def summarize(data):
         starts[item["id"]] = start
         first_action_observed += "first_action" in item
         ready += item.get("first_action", False)
+        timing = item.get("first_action_observation", {})
+        if "first_action_observation" in item:
+            check_keys(timing, ("response_round", "elapsed_seconds"), "first action observation")
+            if not timing or item.get("first_action") is not True:
+                raise ValueError("first action observation needs a qualified first action and at least one measurement")
+            for key, minimum in (("response_round", 1), ("elapsed_seconds", 0)):
+                if key in timing and (type(timing[key]) is not int or timing[key] < minimum):
+                    raise ValueError(f"{key} must be an integer of at least {minimum}")
+        if item.get("first_action") is True:
+            first_action_timing.setdefault(starter, []).append(timing)
         due = start + timedelta(days=7)
         matured = due <= as_of
         seven_day_eligible += matured
@@ -325,6 +349,12 @@ def summarize(data):
         "first_action": ratio(ready, len(trials)),
         "first_action_observed_not_ready": first_action_observed - ready,
         "first_action_unobserved": len(trials) - first_action_observed,
+        "first_action_timing": summarize_first_action_timing([
+            row for group in first_action_timing.values() for row in group
+        ]),
+        "first_action_timing_by_starter": {
+            starter: summarize_first_action_timing(group) for starter, group in sorted(first_action_timing.items())
+        },
         "seven_day_completion": ratio(finished, seven_day_eligible),
         "seven_day_reported_incomplete": reported_incomplete,
         "seven_day_unreported": seven_day_eligible - finished - reported_incomplete,

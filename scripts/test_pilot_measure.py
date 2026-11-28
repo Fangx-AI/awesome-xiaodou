@@ -5,6 +5,43 @@ from pilot_measure import summarize, summarize_comparisons, summarize_cumulative
 
 
 class PilotMeasurementTests(unittest.TestCase):
+    def test_first_action_latency_uses_only_measured_qualified_replies(self):
+        common = {"started_on": "2026-12-01", "starter": "xiaodou-start.txt"}
+        report = summarize({"as_of": "2026-12-12", "trials": [
+            {**common, "id": "P-0001", "first_action": True,
+             "first_action_observation": {"response_round": 1, "elapsed_seconds": 40}},
+            {**common, "id": "P-0002", "first_action": True,
+             "first_action_observation": {"response_round": 2}},
+            {**common, "id": "P-0003", "starter": "life-plans/scene-weight.txt", "first_action": True,
+             "first_action_observation": {"elapsed_seconds": 101}},
+            {**common, "id": "P-0004", "first_action": True},
+            {**common, "id": "P-0005", "first_action": False},
+        ]})
+        self.assertEqual(report["first_action"]["denominator"], 5)
+        self.assertEqual(report["first_action_timing"], {
+            "qualified": 4, "on_first_reply": {"numerator": 1, "denominator": 2, "percent": 50.0},
+            "median_response_round": 1.5, "elapsed_observed": 2, "median_elapsed_seconds": 70.5,
+        })
+        scene = report["first_action_timing_by_starter"]["life-plans/scene-weight.txt"]
+        self.assertEqual(scene["qualified"], 1)
+        self.assertIsNone(scene["median_response_round"])
+        self.assertEqual(scene["median_elapsed_seconds"], 101)
+        self.assertEqual(report["seven_day_completion"]["numerator"], 0)
+
+    def test_first_action_latency_requires_observed_qualification_and_valid_units(self):
+        base = {"id": "P-0001", "started_on": "2026-12-01", "first_action": True}
+        for fields in ({"first_action": False, "first_action_observation": {"response_round": 2}},
+                       {"first_action_observation": {}},
+                       {"first_action_observation": {"response_round": 0}},
+                       {"first_action_observation": {"response_round": True}},
+                       {"first_action_observation": {"elapsed_seconds": -1}},
+                       {"first_action_observation": {"elapsed_seconds": 1.7}}):
+            with self.subTest(fields=fields), self.assertRaisesRegex(ValueError, "first action observation|integer"):
+                summarize({"as_of": "2026-12-12", "trials": [{**base, **fields}]})
+        measured = {**base, "first_action_observation": {"elapsed_seconds": 0}}
+        report = summarize({"as_of": "2026-12-12", "trials": [measured]})
+        self.assertEqual(report["first_action_timing"]["median_elapsed_seconds"], 0)
+
     def test_carryover_is_private_until_scores_are_restored(self):
         record = {"id": "P-0001", "order": "regular", "task": "练会议开场",
                   "regular": "写第一句。", "emperor": "先读第一句。", "carryover": "replan"}
