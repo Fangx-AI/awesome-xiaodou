@@ -6,22 +6,22 @@
 
 社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou) · [已整理的玩法更新](updates.md) · [来源登记](source-ledger.md)
 
-本次读到 3/8 个检索入口。
+本次读到 7/8 个检索入口。
 
-快照扫描时间：2026-11-28 17:59（北京时间） · [生成此快照的扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/runs/46132978292)
+快照扫描时间：2026-11-28 18:11（北京时间） · [生成此快照的扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/runs/46133938757)
 
-本次未读到：Google 新闻 · 实测、Google 新闻 · 工作流、Google 新闻 · 社区、Google 新闻 · 知乎与视频社区、Google 新闻 · 抖音与公众号。
+本次未读到：Google 新闻 · 社区。
 
 <details>
 <summary>查看各入口本轮命中的候选数</summary>
 
 候选数为去重前的数量。读到 0 条表示本轮没有匹配，不代表平台上没有内容。
 
-- Google 新闻 · 实测　未读到
-- Google 新闻 · 工作流　未读到
+- Google 新闻 · 实测　8 条
+- Google 新闻 · 工作流　2 条
 - Google 新闻 · 社区　未读到
-- Google 新闻 · 知乎与视频社区　未读到
-- Google 新闻 · 抖音与公众号　未读到
+- Google 新闻 · 知乎与视频社区　11 条
+- Google 新闻 · 抖音与公众号　0 条
 - Bing 新闻　3 条
 - 华尔街见闻　0 条
 - IT之家　0 条
