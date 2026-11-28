@@ -275,6 +275,26 @@ class PilotMeasurementTests(unittest.TestCase):
         self.assertEqual(emperor_first["outcomes"]["first_action"]["emperor_minus_regular_pp"], -100)
         self.assertEqual(emperor_first["follow_up_questions"]["emperor_minus_regular_mean"], 2)
 
+    def test_paired_replan_scores_observed_failures_and_keeps_unknowns_separate(self):
+        passed = {"preserved": True, "affected_only": True, "replan_actionable": True}
+        report = summarize_comparisons([
+            {"id": "P-0001", "order": "regular", "regular": {"preserved": False}, "emperor": passed},
+            {"id": "P-0002", "order": "emperor", "regular": {"preserved": True}, "emperor": passed},
+            {"id": "P-0003", "order": "emperor", "regular": {"affected_only": False},
+             "emperor": {"replan_actionable": False}},
+            {"id": "P-0004", "order": "regular", "emperor": passed},
+        ])
+        self.assertEqual(report["outcomes"]["replan"], {
+            "pairs": 2, "unscored_pairs": 2, "emperor_only": 1, "regular_only": 0,
+            "both": 0, "neither": 1, "emperor_minus_regular_pp": 50.0,
+        })
+        self.assertEqual(report["replan_checks"]["preserved"], {
+            "pairs": 2, "unscored_pairs": 2, "emperor_only": 1, "regular_only": 0,
+            "both": 1, "neither": 0, "emperor_minus_regular_pp": 50.0,
+        })
+        self.assertEqual(report["replan_checks"]["affected_only"]["pairs"], 0)
+        self.assertEqual(report["by_order"]["emperor"]["outcomes"]["replan"]["neither"], 1)
+
     def test_zero_questions_and_a_failed_first_action_are_observed(self):
         report = summarize_comparisons([
             {"id": "P-0001", "order": "regular",

@@ -10,7 +10,8 @@ from build_life_plans import PLAN_FILES, PLAN_PACK
 READ_ANSWERS = ("identity", "where", "how", "confirmation")
 CHANGE_SCORES = ("preserved", "affected_only", "actionable")
 COMPARISON_ARMS = ("regular", "emperor")
-COMPARISON_FIELDS = ("first_action", "preserved", "affected_only", "replan_actionable")
+COMPARISON_REPLAN_FIELDS = ("preserved", "affected_only", "replan_actionable")
+COMPARISON_FIELDS = ("first_action", *COMPARISON_REPLAN_FIELDS)
 TRIAL_STARTERS = ("xiaodou-start.txt", PLAN_PACK.name,
                   *(f"life-plans/{path.stem}.txt" for path in PLAN_FILES))
 SHARED_SCENES = ("weight", "fitness", "reading", "english", "study-abroad")
@@ -61,12 +62,24 @@ def summarize_groups(groups):
     }
 
 
+def score_required_checks(scores, checks):
+    grades = [scores.get(check) for check in checks]
+    if False in grades:
+        return False
+    return None if None in grades else True
+
+
 def score_comparison_pairs(records):
     outcomes = {(True, True): "both", (True, False): "regular_only",
                 (False, True): "emperor_only", (False, False): "neither"}
+    criteria = {
+        "first_action": ("first_action",),
+        "replan": COMPARISON_REPLAN_FIELDS,
+        **{field: (field,) for field in COMPARISON_REPLAN_FIELDS},
+    }
     scores = {
-        mode: {"pairs": 0, "emperor_only": 0, "regular_only": 0, "both": 0, "neither": 0}
-        for mode in ("first_action", "replan")
+        name: {"pairs": 0, "emperor_only": 0, "regular_only": 0, "both": 0, "neither": 0}
+        for name in criteria
     }
     follow_ups = {"pairs": 0, "regular_total": 0, "emperor_total": 0,
                   "emperor_fewer": 0, "regular_fewer": 0, "equal": 0}
@@ -84,13 +97,12 @@ def score_comparison_pairs(records):
             else:
                 follow_ups["equal"] += 1
 
-        for name, fields in (("first_action", ("first_action",)), ("replan", COMPARISON_FIELDS[1:])):
-            if not all(field in arm for arm in arms for field in fields):
-                continue
-            regular, emperor = (all(arm[field] for field in fields) for arm in arms)
-            result = scores[name]
-            result["pairs"] += 1
-            result[outcomes[regular, emperor]] += 1
+        for name, fields in criteria.items():
+            pair = tuple(score_required_checks(arm, fields) for arm in arms)
+            if None not in pair:
+                result = scores[name]
+                result["pairs"] += 1
+                result[outcomes[pair]] += 1
 
     for values in scores.values():
         count = values["pairs"]
@@ -102,7 +114,12 @@ def score_comparison_pairs(records):
     follow_ups["emperor_minus_regular_mean"] = (
         round((follow_ups["emperor_total"] - follow_ups["regular_total"]) / count, 2) if count else None
     )
-    return {"enrolled": len(records), "outcomes": scores, "follow_up_questions": follow_ups}
+    return {
+        "enrolled": len(records),
+        "outcomes": {name: scores[name] for name in ("first_action", "replan")},
+        "replan_checks": {name: scores[name] for name in COMPARISON_REPLAN_FIELDS},
+        "follow_up_questions": follow_ups,
+    }
 
 
 def summarize_comparisons(records):
@@ -219,10 +236,9 @@ def summarize(data):
             change = item["change"]
             check_flags(change, CHANGE_SCORES, "change")
             changes += 1
-            no_observed_failure = all(change.values())
-            complete_score = all(key in change for key in CHANGE_SCORES)
-            good_changes += no_observed_failure and complete_score
-            unscored_changes += no_observed_failure and not complete_score
+            outcome = score_required_checks(change, CHANGE_SCORES)
+            good_changes += outcome is True
+            unscored_changes += outcome is None
 
         return_matured = start + timedelta(days=8) <= as_of
         return_eligible += return_matured
