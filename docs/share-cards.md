@@ -141,6 +141,8 @@ https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/share-cards.md#%E8%87
 
 从你写好的那句开始。先试一遍，小豆挑一处改，再用剩下的时间练一次。
 
+**开场已经熟了？** 在同一对话说「朕已经能说清会议议题。明天改跟海外客户开会，今天只有三分钟。你当客户，给朕一条没练过的英文追问，先别给答案。」卡住时再请小豆给一个句首。下次换一道题，试试自己能不能问清楚。
+
 [下载或开通小豆](install.md#下载和开通) · [查看英语陪练计划](../skills/xiaodou-skill/references/life-plans/learning.md#p07--英语真实场景陪练)
 
 <details>

@@ -68,6 +68,8 @@
 | 求职面试 | 面试官听懂你做过什么、你负责哪一部分。 |
 | 旅行问路 | 对方听懂目的地与问题，你能复述一个转向或站名。 |
 
+开场已熟练后，可以练陌生追问。比如海外客户说了一句没听懂的话，先让用户自己决定该请对方重说、确认哪个词，还是用自己的话复述。卡住时给半句，重试后记录「提示下能做到」。下一次用一条不同的追问验证独立作答。只有文字时按书面表达记录。
+
 按具体交际任务设完成标准，可参照欧洲委员会的口语互动描述；分级示例可取英国文化教育协会的练习。给提示后让学习者重试的做法参考课堂纠错研究，实际在小豆中的效果由试用观察。 [CEFR 口语互动描述](https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4) · [British Council 分级口语练习](https://learnenglish.britishcouncil.org/free-resources/speaking) · [课堂口语纠错研究](https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/abs/oral-feedback-in-classroom-sla/4999EE1C8379B2BF026B148EAF373CA1)
 
 <a name="study-application"></a>
