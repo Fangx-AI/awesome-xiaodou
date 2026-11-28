@@ -2,7 +2,7 @@
 
 **计划做过几次，后来总要重来？** 看看小豆怎么问清情况、排出第一步，在条件变化时保留你已经做完的事。
 
-选一个场景，复制对应开局，把下面的示例换成自己的情况，一起发到[小豆独立 App](install.md#下载和开通)的新对话。每一节都能展开流程图或复制转发文案。
+选一件你想做的事。每节都有第一次可以怎么说、对应的开局，以及可转发的流程图。
 
 [制定减肥计划](#制定减肥计划) · [健身](#健身) · [自律](#自律) · [学英语](#学英语) · [留学](#留学)
 
@@ -12,11 +12,15 @@
 
 ## 制定减肥计划
 
-在小豆里可以说「帮我制定一个减肥计划。」
+**第一次说**「帮我制定一个减肥计划。」
+
+[复制健康与运动开局](../prompts/life-plans/health.txt)，把你的目标加在末尾，一起发到小豆新对话。
+
+**在原对话接着说**「这周我按计划走了两次，下周只有一个空档，帮我重排。」
 
 小豆先问目标、饮食、活动和限制。你回答之后，才会定阶段目标和首周安排。
 
-[复制健康与运动开局](../prompts/life-plans/health.txt) · [查看五步减肥计划](weight-first-week.md)
+[下载或开通小豆](install.md#下载和开通) · [查看五步减肥计划](weight-first-week.md)
 
 <details>
 <summary>看流程图</summary>
@@ -41,11 +45,15 @@ https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/share-cards.md#%E5%88
 
 ## 健身
 
-在小豆里可以说「周二练完了。周六要出差，没带弹力带，只有八分钟，有块安全空地。帮我只改周六。」
+**第一次说**「朕想从零开始练力量，每周有两个空档，帮我排首周。」
+
+[复制健康与运动开局](../prompts/life-plans/health.txt)，把你的目标加在末尾，一起发到小豆新对话。
+
+**在原对话接着说**「周二练完了。周六要出差，没带弹力带，只有八分钟，有块安全空地。帮我只改周六。」
 
 已经练过的保留。门下核对时间、器材和场地，尚书只交一份周六能做的安排。
 
-[复制健康与运动开局](../prompts/life-plans/health.txt) · [查看力量与体能计划](../skills/xiaodou-skill/references/life-plans/health.md#p02--新手力量与体能)
+[下载或开通小豆](install.md#下载和开通) · [查看力量与体能计划](../skills/xiaodou-skill/references/life-plans/health.md#p02--新手力量与体能)
 
 <details>
 <summary>看流程图</summary>
@@ -70,11 +78,15 @@ https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/share-cards.md#%E5%81
 
 ## 自律
 
-在小豆里可以说「这周已经读了两次，昨晚漏了。出差后晚上没空，只有午饭后五分钟，手机里有电子书。朕今天怎么接着读？」
+**第一次说**「朕总是读两天就停，帮我把阅读接到每天做完的一件事后面。」
+
+[复制习惯养成开局](../prompts/life-plans/habits.txt)，把你的目标加在末尾，一起发到小豆新对话。
+
+**在原对话接着说**「这周已经读了两次，昨晚漏了。出差后晚上没空，只有午饭后五分钟，手机里有电子书。朕今天怎么接着读？」
 
 保留已经完成的两次。从下一个真实空档接着读，首步可以是午饭后读五分钟。
 
-[复制习惯养成开局](../prompts/life-plans/habits.txt) · [查看习惯养成计划](../skills/xiaodou-skill/references/life-plans/habits.md#p25--建立一个可持续的习惯)
+[下载或开通小豆](install.md#下载和开通) · [查看习惯养成计划](../skills/xiaodou-skill/references/life-plans/habits.md#p25--建立一个可持续的习惯)
 
 <details>
 <summary>看流程图</summary>
@@ -99,11 +111,15 @@ https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/share-cards.md#%E8%87
 
 ## 学英语
 
-在小豆里可以说「朕的会议开场已经写好第一句。今晚只剩五分钟。怎么练？」
+**第一次说**「朕想练英语会议开场，帮我从第一句开始。」
+
+[复制学习与成长开局](../prompts/life-plans/learning.txt)，把你的目标加在末尾，一起发到小豆新对话。
+
+**在原对话接着说**「朕的会议开场已经写好第一句。今晚只剩五分钟。怎么练？」
 
 从你写好的那句开始。先试一遍，小豆挑一处改，再用剩下的时间练一次。
 
-[复制学习与成长开局](../prompts/life-plans/learning.txt) · [查看英语陪练计划](../skills/xiaodou-skill/references/life-plans/learning.md#p07--英语真实场景陪练)
+[下载或开通小豆](install.md#下载和开通) · [查看英语陪练计划](../skills/xiaodou-skill/references/life-plans/learning.md#p07--英语真实场景陪练)
 
 <details>
 <summary>看流程图</summary>
@@ -128,11 +144,15 @@ https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/share-cards.md#%E5%AD
 
 ## 留学
 
-在小豆里可以说「个人陈述已写完。全程预算从 30 万降到 22 万。A 校的官网总费用是 25 万，B 校还没查齐。朕该怎么改清单？」
+**第一次说**「朕准备申请留学，先帮我核对选校条件和当届申请时间。」
+
+[复制学习与成长开局](../prompts/life-plans/learning.txt)，把你的目标加在末尾，一起发到小豆新对话。
+
+**在原对话接着说**「个人陈述已写完。全程预算从 30 万降到 22 万。A 校的官网总费用是 25 万，B 校还没查齐。朕该怎么改清单？」
 
 沿用写好的个人陈述。门下审核当届官方费用，费用缺项的学校留待核对。
 
-[复制学习与成长开局](../prompts/life-plans/learning.txt) · [查看留学申请计划](../skills/xiaodou-skill/references/life-plans/learning.md#p11--留学申请与选校)
+[下载或开通小豆](install.md#下载和开通) · [查看留学申请计划](../skills/xiaodou-skill/references/life-plans/learning.md#p11--留学申请与选校)
 
 <details>
 <summary>看流程图</summary>
