@@ -14,7 +14,7 @@
 13,追踪游戏和赛事动态,长期跟进与兴趣,作者体验分享,S5;S26,False,playbooks/13-interest-updates.md
 14,用对话准备打车,生活与出行,媒体体验,S6,False,playbooks/14-ride-hailing.md
 15,按需求选品并生成提单,购物与消费,第三方选品与提单体验；另有商品卡未覆盖其他平台的实例,S6;S26;S30,False,playbooks/15-shopping-card.md
-16,跟进演出开票,长期跟进与兴趣,媒体任务创建记录,S6,False,playbooks/16-ticket-alert.md
+16,跟进演出开票,长期跟进与兴趣,媒体任务创建记录,S6;S33,False,playbooks/16-ticket-alert.md
 17,播客更新主动提醒,长期跟进与兴趣,媒体体验,S6,False,playbooks/17-podcast-update.md
 18,在百度网盘找文件,办公与个人管理,媒体功能描述,S6,False,playbooks/18-netdisk-search.md
 19,将行情数据整理为 Excel,办公与个人管理,媒体体验,S9,False,playbooks/19-wind-excel.md
