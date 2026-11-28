@@ -124,3 +124,5 @@
 用 `--flow fitness-adapt-and-stop --flow fitness-cannot-bear-weight --flow fitness-cannot-bear-weight-life` 区分器材变动和受伤。临时没带弹力带时，只换周六为八分钟徒手安排，保留周二进度。报告膝痛后，两条入口都先停练；在无法负重的虚构情境，明确给出当地急诊评估，并记录周六两分钟后停止。六轮本地回复中四轮首轮通过，另两轮的「先别做」和「停止，剩余未做」经过人工核对后补进检查词。
 
 用 `--flow study-application-portal --flow study-application-portal-life` 回放留学申请材料状态。两套开局都识别了「PDF 已上传、主申请仍是草稿」；主申请提交回执出现后只拟催信，没有声称已发；老师说已上传、门户仍待收时并列两条状态。收到校方门户已收齐的回报后，仅更新 A 校。八轮本地回复中五轮首轮通过，后三条词句差异经人工核对后补入检查词。使用虚构门户状态，未登录学校门户或发送邮件。
+
+用 `--flow english-transcript-and-retry --flow english-transcript-and-retry-life` 回放只有语音转写的英语陪练。两条开局都先改 `responsible of` 为 `responsible for`，然后请用户重试。文字重写和自报朗读分开记录，发音与语速未做评定。六轮本地回复中五轮首轮通过，另一轮用「口头练习 0 次」记录尚未朗读，人工核对后补入检查词。是否能在小豆 App 中取得可分析的原始语音，仍需真机确认。
