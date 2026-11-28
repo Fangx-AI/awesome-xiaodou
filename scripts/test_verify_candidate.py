@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from verify_candidate import EXPECTED, REPOSITORY, SCENE_STARTERS, STARTERS, verify
+from verify_candidate import EXPECTED, PLAN_STARTERS, REPOSITORY, SCENE_STARTERS, STARTERS, verify
 
 
 class CandidateVerificationTests(unittest.TestCase):
@@ -75,6 +75,23 @@ class CandidateVerificationTests(unittest.TestCase):
         self.write_hashes(EXPECTED.union(SCENE_STARTERS))
         _, statuses = verify(self.directory)
         self.assertEqual({name: statuses[name] for name in SCENE_STARTERS}, dict.fromkeys(SCENE_STARTERS, "missing"))
+
+    def test_all_thirty_plan_starters_are_checksummed_and_versioned(self):
+        metadata = self.directory / "CANDIDATE.txt"
+        with metadata.open("a", encoding="utf-8") as file:
+            file.write("plan_starters=true\n")
+        self.write_hashes(EXPECTED)
+        with self.assertRaisesRegex(ValueError, "life-plans/p30.txt"):
+            verify(self.directory)
+
+        with (self.directory / "STARTERS.tsv").open("a", encoding="utf-8") as file:
+            for name in PLAN_STARTERS:
+                (self.directory / name).write_text("plan opener\n", encoding="utf-8")
+                file.write(f"{name}\t{REPOSITORY}/blob/{self.candidate_commit}/prompts/{name}\t\tmissing\n")
+        self.write_hashes(EXPECTED.union(PLAN_STARTERS))
+        _, statuses = verify(self.directory)
+        self.assertEqual(len(PLAN_STARTERS), 30)
+        self.assertEqual({name: statuses[name] for name in PLAN_STARTERS}, dict.fromkeys(PLAN_STARTERS, "missing"))
 
 
 if __name__ == "__main__":
