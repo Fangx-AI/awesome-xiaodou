@@ -23,6 +23,7 @@ SCENES = {
 SCENE_FILES = {scene: PLAN_COPY_DIR / f"scene-{scene}.txt" for scene in SCENES}
 SCENE_TITLES = {"weight": "减肥", "fitness": "健身", "reading": "自律阅读", "english": "学英语", "study-abroad": "留学"}
 SCENE_COPY_PAGE = PLAN_COPY_DIR / "scenes.md"
+APP_SCENE_DIR = "五个常用开局"
 PLAN_GOALS = {
     "P01": "帮我制定一个减肥计划。",
     "P02": "帮我制定一个适合我基础的首周力量训练计划。",
@@ -166,17 +167,25 @@ def app_pack_files(copies):
     """Return the indexed offline files people can paste into the standalone App."""
     readme = [
         "把日常交给小豆", "",
-        "1. 挑一个生活计划，打开与它同名的文本文件，复制全文。",
-        "2. 打开小豆独立 App，开始一条新对话，粘贴并发送。",
-        "3. 回答小豆的提问。做完一步或条件有变化时，回到同一条对话告诉它。", "",
-        "有自己的目标？打开相应分类里的「自填目标.txt」，在末尾写上你的事一起发送。",
-        "还没选分类？打开「通用开局.txt」。需要跨分类安排几件事时，可以用「30个生活计划整包.txt」。",
-        "下载与开通小豆 https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/install.md", "",
+        f"第一次用？打开「{APP_SCENE_DIR}」，选一件现在想做的事。",
+        " · ".join(SCENE_TITLES.values()), "",
+        "1. 打开对应的文本文件，把全文复制下来。",
+        "2. 打开小豆独立 App，在新对话里粘贴。想换成自己的情况，可在发送前改最后一行「我的目标」。",
+        "3. 回答小豆的提问。做完一步或条件有变化时，回到同一条对话告诉它。",
+        "要换到新对话时，先在原对话发「给我一份续聊摘要」，再把摘要全文发到新对话。", "",
+        "找其他计划，在下面的目录里按分类找文件。",
+        "有自己的目标，用对应分类的「自填目标.txt」，在末尾写上你的事一起发送。",
+        "还没选分类，可以用「通用开局.txt」。要一起安排几件事，可以用「30个生活计划整包.txt」。",
+        "下载与开通小豆 https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/install.md#下载和开通",
+        "文本文件不方便复制时，可打开网页，从对应代码块右上角复制。",
+        f"{PUBLIC_PLAN_URL}/scenes.md", "",
     ]
     files = {
-        "通用开局.txt": (ROOT / "prompts/xiaodou-start.txt").read_text(encoding="utf-8"),
-        "30个生活计划整包.txt": copies[PLAN_PACK],
+        f"{APP_SCENE_DIR}/{title}.txt": copies[SCENE_FILES[scene]]
+        for scene, title in SCENE_TITLES.items()
     }
+    files["通用开局.txt"] = (ROOT / "prompts/xiaodou-start.txt").read_text(encoding="utf-8")
+    files["30个生活计划整包.txt"] = copies[PLAN_PACK]
     for chapter in PLAN_FILES:
         source = chapter.read_text(encoding="utf-8")
         category = source.splitlines()[0].removeprefix("# ")
