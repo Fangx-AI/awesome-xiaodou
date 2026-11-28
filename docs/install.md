@@ -31,7 +31,7 @@
 
 - **[开局纯文本](../prompts/xiaodou-start.txt)**：复制后加上你的目标，发成一条消息。
 - **[正式版完整指令](../prompts/emperor-simulator.md)**：包含三省六部分工、进展更新和跨对话续聊摘要。
-- **[30 个生活计划](../skills/xiaodou-skill/references/life-plans/README.md)**：可在线逐条复制，也可[下载小豆 App 开局包](https://github.com/Fangx-AI/awesome-xiaodou/releases/download/skill-v2.5.0/xiaodou-app-starters.zip)。解压后打开「先读这里.txt」，按文件名选一个计划，把全文发到小豆新对话。
+- **[30 个生活计划](../skills/xiaodou-skill/references/life-plans/README.md)**：可在线逐条复制，也可[下载小豆 App 开局包](https://github.com/Fangx-AI/awesome-xiaodou/releases/latest/download/xiaodou-app-starters.zip)。解压后打开「先读这里.txt」，按文件名选一个计划，把全文发到小豆新对话。有自己的目标时，可以打开对应分类的「自填目标.txt」。
 - **整包提示词**：用于一段对话里选择多种场景，按下面的步骤使用。
 
 1. 打开[9 条常用指令](../prompts/xiaodou-quick-pack.txt)或[完整 48 条](../prompts/xiaodou-paste-pack.txt)，点 GitHub 文件工具栏中的复制按钮，或打开 Raw 后全选复制。
@@ -42,7 +42,7 @@
 
 ## 豆包工作 / 支持 Agent Skills 的客户端
 
-1. 下载 [v2.5.0 技能 ZIP](https://github.com/Fangx-AI/awesome-xiaodou/releases/download/skill-v2.5.0/xiaodou-skill.zip)。 [版本与校验值](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.5.0)
+1. 下载 [最新技能 ZIP](https://github.com/Fangx-AI/awesome-xiaodou/releases/latest/download/xiaodou-skill.zip)。 [版本与校验值](https://github.com/Fangx-AI/awesome-xiaodou/releases/latest)
 2. 解压，保留 `xiaodou-skill` 文件夹及其 `references`。在支持技能导入的客户端选择该技能文件夹，或按客户端要求上传技能。豆包工作的入口在「技能」中的本地导入。
 3. 在已启用技能的对话中说「用小豆 Skill 帮我做个减肥计划」，或在技能选择器中选择它。
 
