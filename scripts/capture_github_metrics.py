@@ -27,7 +27,12 @@ def capture():
         "observed_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "stars": repo["stargazers_count"],
         "forks": repo["forks_count"],
-        "traffic": {"views": views, "clones": clones},
+        "traffic": {
+            "views": views,
+            "clones": clones,
+            "popular_paths": github("/traffic/popular/paths"),
+            "popular_referrers": github("/traffic/popular/referrers"),
+        },
         "latest_release": {
             "tag": release["tag_name"],
             "asset_downloads": {asset["name"]: asset["download_count"] for asset in release["assets"]},
