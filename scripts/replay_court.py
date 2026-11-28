@@ -613,6 +613,28 @@ def flow_fixtures():
          ("C1", "海报", "周五", "待|未|没"),
          ("报价仍待|催乙|海报已交|已发送",)),
     )
+    flows["expired-reminder-preview"] = (
+        ("expiry-preview", "starter",
+         "测试里的现在是北京时间 2026 年 12 月 9 日 10:00。预览两分钟后的临时提醒「御前测试 · 练会议开场」，先别创建。",
+         (r"10[:：]02|10点02", r"北京时间|UTC\+0?8", "练会议开场"),
+         ("已创建|已设置",)),
+        ("expiry-confirmation-too-late", "starter",
+         "我这边时间已经到同一天北京时间 10:04 了。现在确认刚才 10:02 的那条提醒。",
+         ("已过|过期|过去", "新时间|新的提醒时间|现在几点|几点|重新.{0,8}时|改到"),
+         ("已创建|已设置|自动顺延|已改到|现在提醒您",)),
+        ("expiry-new-preview", "starter",
+         "改成同日北京时间 10:08，内容不变，先让我看这次预览。",
+         (r"10[:：]08|10点08", "练会议开场", "确认|核对"),
+         ("已创建|已设置",)),
+        ("expiry-new-confirmation-no-host-tool", "starter",
+         "现在北京时间 10:05。我确认新预览的 10:08 那一条。这个测试对话没有提醒工具，给一行可手填的内容。",
+         (r"10[:：]08|10点08", "练会议开场", r"北京时间|UTC\+0?8"),
+         ("已创建|已设置|创建成功",)),
+    )
+    flows["expired-reminder-life"] = tuple(
+        (case, "life", message, required, forbidden)
+        for case, _, message, required, forbidden in flows["expired-reminder-preview"]
+    )
     return flows
 
 
