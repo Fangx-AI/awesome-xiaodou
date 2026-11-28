@@ -1,9 +1,37 @@
 import unittest
 
+from pilot_blind import anonymize, restore
 from pilot_measure import summarize, summarize_comparisons
 
 
 class PilotMeasurementTests(unittest.TestCase):
+    def test_blind_packet_round_trip_preserves_missing_arms(self):
+        reviewer, key = anonymize([
+            {"id": "P-0001", "order": "emperor", "task": "练会议开场",
+             "regular": "请先写一句。", "emperor": "先读已经写好的一句。"},
+            {"id": "P-0002", "order": "regular", "task": "练会议开场", "regular": "请先写一句。"},
+        ])
+        self.assertTrue(all(set(row) == {"code", "task", "excerpt", "scores"} for row in reviewer))
+        for row in reviewer:
+            row["scores"]["first_action"] = row["excerpt"].startswith("先读")
+        rows = restore(key, reviewer)
+        report = summarize_comparisons(rows)
+        self.assertEqual(report["order_counts"], {"emperor": 1, "regular": 1})
+        self.assertEqual(report["outcomes"]["first_action"]["emperor_only"], 1)
+        self.assertEqual(report["outcomes"]["first_action"]["unscored_pairs"], 1)
+        self.assertNotIn("emperor", rows[1])
+
+    def test_blind_review_rejects_role_labels_and_unmatched_codes(self):
+        with self.assertRaisesRegex(ValueError, "role or group"):
+            anonymize([{"id": "P-0001", "order": "regular", "task": "练英语", "emperor": "皇上，请先读一句。"}])
+        reviewer, key = anonymize([{"id": "P-0001", "order": "regular", "task": "练英语", "regular": "请先读一句。"}])
+        for invalid in (reviewer * 2, [{"code": "unmatched"}]):
+            with self.subTest(invalid=invalid), self.assertRaisesRegex(ValueError, "unknown or duplicate"):
+                restore(key, invalid)
+        reviewer[0]["scores"] = {"first_action": "yes"}
+        with self.assertRaisesRegex(ValueError, "scores must be true or false"):
+            restore(key, reviewer)
+
     def test_candidate_is_retained_and_must_identify_an_immutable_commit(self):
         commit = "91a7020c67480107c7e7f499d5993abb3cc92f11"
         report = summarize({"as_of": "2026-12-09", "candidate_commit": commit})
