@@ -1,0 +1,59 @@
+name: 小豆三省六部真机结果
+description: 回报一条开局、保留进度改案或原生提醒的实际结果
+title: "[小豆真机] "
+labels: [s0-pilot]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        只回报你实际检查过的步骤，填脱敏文字即可。请省略姓名、账号、邀请码和无关日程。
+        [查看演练步骤](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/pilot-s0.md) · [反馈下载或开通问题](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=app-access.yml)
+  - type: input
+    id: environment
+    attributes:
+      label: 测试日期、系统和小豆版本
+      placeholder: 例如 YYYY-MM-DD、iOS 版本、小豆版本
+      description: 暂时查不到的版本可以写待核。
+    validations:
+      required: true
+  - type: input
+    id: candidate
+    attributes:
+      label: 试用的版本链接或提交号
+      description: 如果从候选版本复制了开局，贴对应 GitHub 链接。
+  - type: textarea
+    id: observed
+    attributes:
+      label: 实际观察到什么
+      description: 填试过的步骤即可。开局给了什么首步、缩短时间后保留了什么、回报进度后小豆让你从哪里继续？
+    validations:
+      required: true
+  - type: textarea
+    id: reminder-checks
+    attributes:
+      label: 预览、撤回或过期确认
+      description: 如果做过，写预览显示的内容和时间。撤回后、预览过期后再确认时，分别核对任务列表有没有新提醒。
+  - type: dropdown
+    id: reminder-created
+    attributes:
+      label: 确认后有这条提醒吗
+      options:
+        - 未测或只看了预览
+        - 已确认，在任务列表看到该条提醒
+        - 已确认，任务列表没有该条提醒
+        - 功能或权限受限
+        - 无法核对
+  - type: dropdown
+    id: reminder-triggered
+    attributes:
+      label: 到点收到这条提醒了吗
+      options:
+        - 未测或尚未到点
+        - 实际收到该条提醒
+        - 已到约定时间，观察期间未收到
+        - 无法核对
+  - type: textarea
+    id: reminder-timing
+    attributes:
+      label: 提醒约定时间与实际到达时间
+      description: 写日期、时区、约定时间和实际到达时间。未收到时写观察到几点，以便与创建记录对应。

@@ -12,10 +12,12 @@ S0_CHECKS = {
     'replan': '门下退回与改案',
     'progress': '报进度',
     'withdrawal': '撤回后未创建',
+    'expired_preview': '过期确认未创建',
     'reminder_preview': '确认前预览',
     'reminder_created': '确认后创建',
     'reminder_triggered': '到点触发',
 }
+S0_REQUIRED_CHECKS = S0_CHECKS.keys() - {'expired_preview'}
 S0_STATUSES = {'通过', '未通过', '权限受限', '未测'}
 
 def read(name):
@@ -50,7 +52,7 @@ def check_s0(run):
     commit = run.get('candidate_commit')
     assert isinstance(commit, str) and re.fullmatch(r'[0-9a-f]{40}', commit), 'S0 requires a pinned candidate commit'
     checks = run.get('checks')
-    assert isinstance(checks, dict) and checks.keys() == S0_CHECKS.keys(), 'record every S0 check'
+    assert isinstance(checks, dict) and S0_REQUIRED_CHECKS <= checks.keys() <= S0_CHECKS.keys(), 'record required S0 checks and use known keys'
     assert all(isinstance(status, str) and status in S0_STATUSES for status in checks.values()), 'unknown S0 check status'
     assert any(status != '未测' for status in checks.values()), 'S0 requires at least one observed result'
     assert checks['reminder_triggered'] != '通过' or checks['reminder_created'] == '通过', 'check the trigger against a confirmed task'
@@ -107,7 +109,9 @@ def build():
     (ROOT / 'docs/external-tests.md').write_text('\n'.join(lines), encoding='utf-8')
     lines = ['# 小豆 App 真机结果', '', f'已登记 **{len(runs)} 次**真机试用。', '',
              '[已核对的下载入口](../install.md#下载和开通) · '
-             '[真机演练和回报](pilot-s0.md#把下面这几项回给观察者) · '
+             '[真机演练](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/pilot-s0.md) · '
+             '[提交真机结果](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=s0-pilot.yml) · '
+             '[其他玩法反馈](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=prompt-feedback.yml) · '
              '[本地回放](../prompt-quality.md#本地候选回放)', '']
     pilot = [run for run in runs if run['case_id'] == 'S0']
     other = [run for run in runs if run['case_id'] != 'S0']
@@ -120,8 +124,8 @@ def build():
             candidate = f'[{commit[:7]}](https://github.com/Fangx-AI/awesome-xiaodou/tree/{commit})'
             checks = run['checks']
             conversation = '、'.join(f'{S0_CHECKS[name]}{checks[name]}' for name in ('opening', 'replan', 'progress'))
-            reminder = '、'.join(f'{S0_CHECKS[name]}{checks[name]}' for name in
-                                 ('withdrawal', 'reminder_preview', 'reminder_created', 'reminder_triggered'))
+            reminder = '、'.join(f"{S0_CHECKS[name]}{checks.get(name, '未测')}" for name in
+                                 ('reminder_preview', 'withdrawal', 'expired_preview', 'reminder_created', 'reminder_triggered'))
             environment = f"{run['platform']} {run['os_version']} / 小豆 {run['version']}"
             lines.append(f"| {run['date']} | {environment} | {candidate} | {conversation} | {reminder} | [查看记录]({evidence}) |")
         lines.append('')

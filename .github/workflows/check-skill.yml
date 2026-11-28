@@ -21,6 +21,7 @@ jobs:
           python -B scripts/test_pilot_measure.py
           python -B scripts/test_capture_github_metrics.py
           python -B scripts/test_verify_candidate.py
+          python -B scripts/test_build_catalog.py
           python scripts/build_catalog.py
           python scripts/build_skill.py "$RUNNER_TEMP/xiaodou"
           python scripts/check_release.py "$RUNNER_TEMP/xiaodou/xiaodou-skill.zip"
