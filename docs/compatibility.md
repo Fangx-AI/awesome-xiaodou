@@ -18,6 +18,8 @@
 
 在 Chrome 打开 GitHub 仓库的公开首页，检查了 1440px 浅色、390px 浅色和 320px 深色三个视口。都能点到开局、展开并复制，剪贴板内容与对应提交的文本一致，下载入口也能跳到公开指南。320px 下长行在代码框内横向滚动。 [核对过的 README 版本](https://github.com/Fangx-AI/awesome-xiaodou/blob/43bf9023069a46222df6e133fab1da20f5a9b8de/README.md)
 
+新版首页在 Chrome 的 1440px 浅色、390px 浅色和 320px 深色视口下，均能从首屏跳到开局、复制完整指令，并从开局区跳到 30 个生活计划。窄屏以触摸模式核对复制。 [本轮验证的首页版本](https://github.com/Fangx-AI/awesome-xiaodou/blob/837421e8135fcb96501a1cf8cf99821e32dc787e/README.md)
+
 ## 下载技能文件
 
 v2.5.1 的 App 开局 ZIP 收录 30 个单独开局、五个分类的自填目标、通用开局和整包。技能 ZIP 随附五类重点计划手册、30 个生活计划、48 条提示词、九张人物图、百签和排盘工具。已从解压包核对签文和历法输出。客户端原生导入与权限仍待真机验证。 [下载 v2.5.1](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.5.1) · [候选包构建记录](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot) · [导入步骤](install.md#豆包工作--支持-agent-skills-的客户端)
