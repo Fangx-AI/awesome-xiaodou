@@ -8,7 +8,7 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from build_life_plans import SCENE_FILES
+from build_life_plans import PLAN_STARTER_FILES, SCENE_FILES
 from life_plan_cases import LIFE_CASES
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -130,6 +130,15 @@ def flow_fixtures():
     pilot_guide = (ROOT / "docs/field-tests/pilot-s0.md").read_text(encoding="utf-8")
     _, pilot_change, pilot_review = re.findall(r"^```text\n(.*?)\n```$", pilot_guide, re.M | re.S)
     flows = {
+        "individual-plan-switch": (
+            ("individual-plan-first", "plan-p23",
+             "我要安排同城搬家，周六搬出，周日取新房钥匙，物品已整理成清单，一家公司给过报价。请先核对哪件事。",
+             ("周六", "周日", "钥匙", "存放|暂存|保管|改期|延后|交接"), ("已预订|已付款",)),
+            ("individual-plan-changed-goal", "plan-p23",
+             "搬家这件暂停，清单已经做好。现在改办一件别的事：明天向客户报进展，我已有三条完成项，只有五分钟，请给一条能直接用的消息模板。",
+             ("暂停|暂缓|先放", "清单", "客户|您好|你好", r"三条|3条|1\.|①", "进展|完成"),
+             ("已发送|已取消提醒|已联系客户|已预约",)),
+        ),
         "restock-existing-reminder": (
             ("restock-estimate", "restock",
              "2026 年 11 月 28 日上午 9 点，北京时间实测还有 1200 克猫粮。每天用 100 克，提前两天提醒。先给我预览。",
@@ -951,6 +960,27 @@ def replay_match(args, name, arm, fixtures, prompts):
     return {"arm": arm, **replay_flow(args, name, turns, prompts)}
 
 
+def replay_individual_life(args, fixtures, pool):
+    selected = [fixture for fixture in fixtures if not args.case or fixture[0] in args.case]
+    if not selected or (args.case and {case[0] for case in selected} != set(args.case)):
+        raise ValueError("select a plan ID from p01 to p30")
+    prompts = {}
+    for plan_id, goal, _, _ in selected:
+        text = PLAN_STARTER_FILES[plan_id.upper()].read_text(encoding="utf-8").strip()
+        instructions, marker, _ = text.rpartition("\n我的目标：")
+        if not marker:
+            raise ValueError(f"{plan_id} does not have an editable goal")
+        prompts[plan_id] = f"{instructions}{marker}{goal}"
+
+    def run(fixture):
+        plan_id, goal, required, forbidden = fixture
+        record = replay(args, (plan_id, plan_id, "", required, forbidden), prompts)
+        record["input"] = goal
+        return record
+
+    return prompts, list(pool.map(run, selected))
+
+
 def main():
     flows = flow_fixtures()
     parser = argparse.ArgumentParser(description=__doc__)
@@ -958,6 +988,8 @@ def main():
     parser.add_argument("--model")
     parser.add_argument("--case", action="append", help="Run selected fixture IDs only")
     parser.add_argument("--all-life", action="store_true", help="Run one independent case for each of the 30 plans")
+    parser.add_argument("--individual-life", action="store_true",
+                        help="Replace the final goal and send each selected standalone plan as one opening")
     parser.add_argument("--life-pack", type=Path, default=LIFE_PACK, help="Use the selected life planning copy text")
     parser.add_argument("--flow", action="append", choices=tuple(flows),
                         help="Replay actual prior outputs for the selected scenario. Repeat for multiple flows.")
@@ -967,8 +999,8 @@ def main():
     parser.add_argument("--workers", type=int, default=3)
     parser.add_argument("--codex", default=shutil.which("codex") or "codex")
     args = parser.parse_args()
-    if sum(bool(option) for option in (args.case, args.all_life, args.flow, args.all_flows, args.compare)) > 1:
-        parser.error("--case, --all-life, --flow, --all-flows, and --compare are separate runs")
+    if sum(bool(option) for option in (args.case or args.individual_life, args.all_life, args.flow, args.all_flows, args.compare)) > 1:
+        parser.error("use one replay mode; --individual-life can also take --case")
     args.output = args.output.resolve()
     args.output.parent.mkdir(parents=True, exist_ok=True)
     prompts = {
@@ -1000,7 +1032,15 @@ def main():
             for scene, path in SCENE_FILES.items():
                 if (mode := f"scene-{scene}") in modes:
                     prompts[mode] = path.read_text(encoding="utf-8").strip()
+            for plan_id, path in PLAN_STARTER_FILES.items():
+                if (mode := f"plan-{plan_id.lower()}") in modes:
+                    prompts[mode] = path.read_text(encoding="utf-8").strip()
             records = list(pool.map(lambda pair: replay_flow(args, *pair, prompts), selected_flows))
+        elif args.individual_life:
+            try:
+                prompts, records = replay_individual_life(args, LIFE_CASES, pool)
+            except ValueError as exc:
+                parser.error(str(exc))
         else:
             life_cases = [(case_id, "life", message, required, forbidden)
                           for case_id, message, required, forbidden in LIFE_CASES]
@@ -1014,10 +1054,13 @@ def main():
             if any(fixture[1] == "life" for fixture in selected):
                 prompts["life"] = args.life_pack.read_text(encoding="utf-8").strip()
             records = list(pool.map(lambda fixture: replay(args, fixture, prompts), selected))
+    environment = "independent sessions with synthetic fixture inputs"
+    if args.individual_life:
+        environment = "one standalone opening per synthetic goal"
+    elif args.flow or args.all_flows or args.compare:
+        environment = "actual preceding responses reinjected as dialogue history"
     evidence = {
-        "environment": ("Codex CLI, actual preceding responses reinjected as dialogue history, no platform connectors"
-                        if args.flow or args.all_flows or args.compare
-                        else "Codex CLI, independent sessions with synthetic fixture inputs, no platform connectors"),
+        "environment": f"Codex CLI, {environment}, no platform connectors",
         "model": args.model or "Codex CLI default",
         "instruction_sha256": {key: hashlib.sha256(value.encode()).hexdigest() for key, value in prompts.items()},
         "records": records,
