@@ -74,6 +74,32 @@ class PilotMeasurementTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             summarize({**report_input, "public_readme_commit": "main"})
 
+    def test_cold_read_requires_twelve_complete_unaided_observations(self):
+        all_correct = dict.fromkeys(("identity", "where", "how", "confirmation"), True)
+        reads = [{"id": f"P-{index:04}", "answers": all_correct, "found_start": True, "assisted": False}
+                 for index in range(10)]
+        reads.extend([
+            {"id": "P-0010", "answers": {"identity": True}},
+            {"id": "P-0011", "answers": all_correct, "found_start": True, "assisted": True},
+        ])
+        source = {"as_of": "2026-12-09", "public_readme_commit": "b" * 40, "cold_reads": reads}
+        report = summarize(source)
+        self.assertEqual(report["cold_read"], {"numerator": 10, "denominator": 10, "percent": 100.0})
+        self.assertEqual(report["cold_read_incomplete"], 1)
+        self.assertEqual(report["cold_read_assisted"], 1)
+        self.assertFalse(report["thresholds"]["cold_read"])
+
+        reads.extend([
+            {"id": "P-0012", "answers": {**all_correct, "confirmation": False}, "found_start": True},
+            {"id": "P-0013", "answers": all_correct, "found_start": False},
+        ])
+        report = summarize(source)
+        self.assertEqual(report["cold_read"]["numerator"], 10)
+        self.assertEqual(report["cold_read"]["denominator"], 12)
+        self.assertEqual(report["cold_read_checks"]["confirmation"]["numerator"], 11)
+        self.assertEqual(report["cold_read_checks"]["found_start"]["numerator"], 11)
+        self.assertTrue(report["thresholds"]["cold_read"])
+
     def test_explicit_incompletion_and_missing_reports_keep_the_same_denominator(self):
         report = summarize({"as_of": "2026-12-10", "trials": [
             {"id": "P-0001", "channel": "github", "started_on": "2026-12-01", "finished_on": "2026-12-08"},

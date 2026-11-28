@@ -8,6 +8,10 @@
 
 冷读参与者可以没有小豆 App。观察者开场只说「请打开这页，用自己的话讲讲它是什么，再找到你会点的第一个入口」。关于名字、对象、按哪里复制等问题，等第一次完整反馈后再解释。
 
+评分时分别核对四件事。理解它是帮自己做计划并推进的 Skill，记 `identity`。知道在小豆独立 App 对话里用，记 `where`。能说清复制开局、加自己的目标并一起发送，记 `how`。知道发送或设置提醒由用户确认，记 `confirmation`。实际在页面找到开局入口，记 `found_start`。首次点下载指南也可以，继续观察能否独立找到发送开局的说明。
+
+观察完整且评审前未提示时，填写四项 `answers` 和 `found_start` 的真假结果。读者明确答错或在约定时间里没找到，记录 `false`。因中途退出或记录遗失而无法判断时留空。观察者在评分前解释过关键位置或答案时填 `assisted: true`，这条用于找问题。报告只用完整、未提示的观察判断是否达到 10/12，另列不完整、提前提示以及各项通过数。
+
 从通过的候选构建下载工件。冷读用 `CANDIDATE.txt` 里的 `public_readme`，观察记录填对应的 `public_readme_commit`。如果测的是仓库根页，另外记下打开时的默认分支提交号。同一批按同一个公开首页版本汇总。只看到分支链接的自报先用来找问题，核对提交号后再并入对应批次。 [候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot) · [GitHub 文件永久链接](https://docs.github.com/en/repositories/working-with-files/using-files/getting-permanent-links-to-files)
 
 [公开冷读入口](cold-read.md)用于自愿参与和未观察反馈。自行反馈单独归类，只有记录了首次反应、入口选择和四项评分的观察才计入 12 人验收。
@@ -43,6 +47,7 @@ App 试用从工件里的 `seven_day` 开始，记录 `candidate_commit`。`STAR
     {
       "id": "P-0001",
       "answers": {"identity": true, "where": true, "how": true, "confirmation": true},
+      "assisted": false,
       "found_start": true
     }
   ],

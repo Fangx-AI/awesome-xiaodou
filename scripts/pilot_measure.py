@@ -132,13 +132,24 @@ def summarize(data):
     check_ids(reads, "cold_reads")
     check_ids(trials, "trials")
 
-    understood = 0
+    understood = scored_reads = assisted_reads = 0
+    read_checks = dict.fromkeys((*READ_ANSWERS, "found_start"), 0)
     for item in reads:
-        check_keys(item, ("id", "answers", "found_start"), "cold read")
+        check_keys(item, ("id", "answers", "found_start", "assisted"), "cold read")
         answers = item.get("answers", {})
         check_flags(answers, READ_ANSWERS, "cold read answers")
-        check_flags({key: item[key] for key in ("found_start",) if key in item}, ("found_start",), "cold read")
-        understood += bool(item.get("found_start") and all(answers.get(key) for key in READ_ANSWERS))
+        flags = ("found_start", "assisted")
+        check_flags({key: item[key] for key in flags if key in item}, flags, "cold read")
+        if item.get("assisted"):
+            assisted_reads += 1
+            continue
+        if "found_start" not in item or not all(key in answers for key in READ_ANSWERS):
+            continue
+        scored_reads += 1
+        for key, correct in answers.items():
+            read_checks[key] += correct
+        read_checks["found_start"] += item["found_start"]
+        understood += item["found_start"] and all(answers.values())
 
     ready = seven_day_eligible = finished = reported_incomplete = changes = good_changes = 0
     unscored_changes = 0
@@ -216,7 +227,10 @@ def summarize(data):
         "as_of": as_of.isoformat(),
         "candidate_commit": data.get("candidate_commit"),
         "public_readme_commit": data.get("public_readme_commit"),
-        "cold_read": ratio(understood, len(reads)),
+        "cold_read": ratio(understood, scored_reads),
+        "cold_read_assisted": assisted_reads,
+        "cold_read_incomplete": len(reads) - scored_reads - assisted_reads,
+        "cold_read_checks": {key: ratio(correct, scored_reads) for key, correct in read_checks.items()},
         "first_action": ratio(ready, len(trials)),
         "seven_day_completion": ratio(finished, seven_day_eligible),
         "seven_day_reported_incomplete": reported_incomplete,
@@ -231,7 +245,7 @@ def summarize(data):
         "prompted_return": ratio(prompted_returns, return_eligible),
         "matched_comparison": summarize_comparisons(data.get("comparisons", [])),
         "thresholds": {
-            "cold_read": "public_readme_commit" in data and len(reads) >= 12 and 12 * understood >= 10 * len(reads),
+            "cold_read": "public_readme_commit" in data and scored_reads >= 12 and 12 * understood >= 10 * scored_reads,
             "first_action": len(trials) >= 100 and 100 * ready >= 80 * len(trials),
             "seven_day_completion": seven_day_eligible >= 100 and 100 * finished >= 60 * seven_day_eligible,
             "replanning": changes >= 30 and 100 * good_changes >= 85 * changes,
