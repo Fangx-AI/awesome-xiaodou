@@ -1,14 +1,16 @@
 # 小豆玩法雷达
 
-这里收集近 7 天的公开新闻和社区线索。GitHub Actions 每 15 分钟排程，实际运行可能晚于排程。线索来自公开检索；下方时间为来源发布时间（北京时间）。
+这里收集近 7 天的公开新闻和社区线索。按 15 分钟排程，首页、玩法或来源更新时也会扫描。GitHub 定时运行可能延迟。线索来自公开检索；下方时间为来源发布时间（北京时间）。
 
-[回到玩法库](../README.md) · [抓取记录](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml) · [提交新玩法](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose)
+[回到玩法库](../README.md) · [查看最近一次扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml) · [提交新玩法](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose)
 
 社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou) · [已经整理成指令的更新](updates.md)
 
-扫描日期：2026-11-28（北京时间）。本次读到 7/7 个检索入口。
+本次读到 7/7 个检索入口。
 
-最新入列：2026-11-28 15:21（北京时间）
+快照扫描时间：2026-11-28 16:02（北京时间） · [生成此快照的扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/runs/46123972155)
+
+最新入列：2026-11-28 16:02（北京时间）
 
 ## 体验与玩法
 
@@ -29,6 +31,7 @@
 
 ## 其他公开线索
 
+- 2026-11-27 17:26 · [继Meta「Muse」后，字节「小豆」也来了！个人智能体竞赛再升温！](<https://news.google.com/rss/articles/CBMiXEFVX3lxTE93NTFTaE90ZWN5NENabUJDSnNIUHNjNHVram80LUNILXR1T2pxd2dRSk42TU90U2RGSmpWTmgwQ2Y5SVd1NnVvZlVZRk5COHp3X1FnZmVYb2ZiTm9D>) · 知乎专栏
 - 2026-11-26 04:35 · [能帮你蹲周杰伦门票的“小豆”，可能是字节今年最重要的产品](<https://news.google.com/rss/articles/CBMiUEFVX3lxTE9ILTJGQmhFaDh3elRsLXdqSWp6QXRQQk9qYmxPWnhhNmpzWDhQYXZBOVk4UWVPNHhPcXNpbkxjc016RmdUbDFiSjhSSF8zd3Mz>) · 36Kr
 - 2026-11-25 08:53 · [试完了一下豆包小豆，可能小豆的最大对手是自己。 逐条分析： 初始化就让链接各类 app 与数据我认为不是很好的策略，因为用户没用过是不会轻易点链接的，而且渐进式推进更合理。 国内确实没办法做到大一统的 agen，毕竟生态割裂，但是字节基本上已经能够打通](<https://news.google.com/rss/articles/CBMiXkFVX3lxTE1Lal9lNEE3SkRLd2VPb2lORENSYVRMZkstSVVyYjZTMjh2U1FGNWV3bE1FLUJiOUpZelNleFdiaTdmZnJrWWwyVTRLa0pveEgwTFJVTmxWMm9aUXZ2cFE>) · X
 - 2026-11-25 01:39 · [太恶心了！豆包新 AI 助理小豆一码难求！全是黄牛！\_哔哩哔哩](<https://news.google.com/rss/articles/CBMiVkFVX3lxTE5paXVZbnpZaGhmRkpnWFhia1hyZ1M5Z1NOZUtBU3JCU1JvMHBpMFgtMW9BWUZxWkE4UWlVNlBRTjQ4V0RhOUY2WGNnbjd4WmZmYXJYa3VR>) · Bilibili
