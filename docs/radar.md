@@ -8,7 +8,7 @@
 
 本次读到 8/8 个检索入口。
 
-快照扫描时间：2026-11-29 01:04（北京时间） · [生成此快照的扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/runs/46168503640)
+快照扫描时间：2026-11-29 01:10（北京时间） · [生成此快照的扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/runs/46169096012)
 
 <details>
 <summary>查看各入口本轮命中的候选数</summary>
@@ -16,9 +16,9 @@
 候选数为去重前的数量。读到 0 条表示本轮没有匹配，不代表平台上没有内容。
 
 - Google 新闻 · 实测　8 条
-- Google 新闻 · 工作流　3 条
+- Google 新闻 · 工作流　2 条
 - Google 新闻 · 社区　5 条
-- Google 新闻 · 知乎与视频社区　11 条
+- Google 新闻 · 知乎与视频社区　12 条
 - Google 新闻 · 抖音与公众号　0 条
 - Bing 新闻　3 条
 - 华尔街见闻　0 条
