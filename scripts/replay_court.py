@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 STARTER = ROOT / "prompts" / "xiaodou-start.txt"
 FULL = ROOT / "prompts" / "emperor-simulator.md"
 WEIGHT = ROOT / "prompts" / "41-weight-plan.md"
+CALENDAR = ROOT / "playbooks" / "11-screenshot-calendar.md"
 LIFE_PACK = ROOT / "prompts" / "xiaodou-life-plans.txt"
 PILOT = ROOT / "prompts" / "xiaodou-pilot-start.txt"
 MATCHED_FLOWS = ("pilot-reschedule", "monthly-partial-intake")
@@ -373,6 +374,30 @@ def flow_fixtures():
         (case, "life", message, required, forbidden)
         for case, _, message, required, forbidden in flows["private-budget"]
     )
+    flows["calendar-confirmation"] = (
+        ("calendar-find-agreement", "starter",
+         "帮朕把聊天文字记日历。甲：周三下午3点做项目对齐？乙：那天不行，改周四下午4点，A3会议室。甲：周四可以，就这么定。乙：要不周五上午10点备选？后面没有回复。截图裁去了发送日期。",
+         ("周四", r"16[:：]00|下午\s*4\s*点|下午四点", "A3", "发送日期|截图.{0,8}日期|哪一周|消息.{0,8}日期|哪天发|具体日期"),
+         ("已添加|已写入|已创建|周五.{0,5}已定",)),
+        ("calendar-date-preview", "starter",
+         "这些消息都是北京时间 2026 年 11 月 23 日星期一发的，说的是那一周。目标是工作日历。先给预览，不要添加。",
+         (r"11\s*月\s*26\s*日|2026-11-26", r"16[:：]00|下午\s*4\s*点|下午四点", "工作日历", "A3"),
+         ("已添加|已写入|已创建",)),
+        ("calendar-approve-preview", "starter", "方案没问题，预览看起来是对的。",
+         ("确认|待执行|等您明确说|等您下令", "添加|写入|工作日历"), ("已添加|已写入|已创建|(?:请|也请).{0,16}(?:告诉我|补充|提供).{0,6}(?:结束时间|时长)",)),
+        ("calendar-confirm-offline", "starter",
+         "确认把刚才的项目对齐加进工作日历。当前对话无日历写入权限，给朕能手填的一行。",
+         (r"11\s*月\s*26\s*日|2026-11-26", r"16[:：]00|下午\s*4\s*点|下午四点", "工作日历", "A3", "手填|手动|自行|工作日历[｜|]"),
+         ("已添加|已写入|已创建",)),
+        ("calendar-cancel-after-update", "starter",
+         "收到后续消息，甲乙都确认取消周四的项目对齐，周五还是没人确定。朕只要现在该怎么处理。",
+         ("周四", "取消|停止添加|不要添加", "周五", "未定|没定|备选|待确认|未确认"),
+         ("已删除|已移除|周五.{0,5}已定|已添加",)),
+    )
+    flows["calendar-playbook"] = tuple(
+        (case, "calendar", message, required, forbidden)
+        for case, _, message, required, forbidden in flows["calendar-confirmation"]
+    )
     return flows
 
 
@@ -502,6 +527,7 @@ def main():
         "starter": STARTER.read_text(encoding="utf-8").strip(),
         "full": re.search(r"```text\n(.*?)\n```", FULL.read_text(encoding="utf-8"), re.S)[1],
         "weight": re.search(r"```text\n(.*?)\n```", WEIGHT.read_text(encoding="utf-8"), re.S)[1],
+        "calendar": re.search(r"```text\n(.*?)\n```", CALENDAR.read_text(encoding="utf-8"), re.S)[1],
     }
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
         if args.compare:
