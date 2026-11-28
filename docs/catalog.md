@@ -54,7 +54,7 @@
 | --- | --- | --- | --- |
 | 06 | [日常健康信息汇总](../playbooks/06-health-summary.md) | 作者体验分享 | S2, S5, S24 |
 | 07 | [行业动态早报](../playbooks/07-daily-brief.md) | 社区文章 | S4 |
-| 13 | [追踪游戏和赛事动态](../playbooks/13-interest-updates.md) | 作者体验分享 | S5 |
+| 13 | [追踪游戏和赛事动态](../playbooks/13-interest-updates.md) | 作者体验分享 | S5, S26 |
 | 16 | [跟进演出开票](../playbooks/16-ticket-alert.md) | 媒体任务创建记录 | S6 |
 | 17 | [播客更新主动提醒](../playbooks/17-podcast-update.md) | 媒体体验 | S6 |
 | 21 | [口述作息并建立回顾任务](../playbooks/21-habit-log.md) | 媒体任务创建记录 | S7 |

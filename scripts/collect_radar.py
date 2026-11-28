@@ -55,12 +55,14 @@ def normalize_title(title):
     return re.sub(r"[^\w]+", "", unicodedata.normalize("NFKC", title).casefold())
 
 
-def is_playbook_lead(title):
-    if re.search(r"邀请码(出售|交易|接力|互助)|求.{0,8}邀请码|邀请码.{0,12}(元|套利|炒)", title):
-        return False
+def classify_headline(title):
+    if re.search(r"抓码站|邀请码(出售|交易|接力|互助)|求.{0,8}邀请码|邀请码.{0,12}(元|套利|炒)", title):
+        return None
+    if re.search(r"实测|上手|测评|玩法|复盘|搭建|整理|体验(?:小豆|[:：])|怎么用|教程", title):
+        return "体验与玩法"
     if re.search(r"公测|上线|发布", title):
-        return bool(re.search(r"实测|上手|测评|玩法|复盘|搭建|整理|体验[:：]|怎么用|教程", title))
-    return True
+        return None
+    return "其他公开线索"
 
 
 def collect(label, url, now):
@@ -84,7 +86,7 @@ def collect(label, url, now):
         text = headline + " " + description
         if "小豆" not in headline or not any(term in text for term in ("豆包", "字节", "个人助理", "Personal Agent")):
             continue
-        if not is_playbook_lead(headline):
+        if classify_headline(headline) is None:
             continue
         try:
             link = canonical_url(item.findtext("link", ""))
@@ -119,17 +121,27 @@ def output_page(rows, now, failures):
         lines.extend([f"本次未读到：{labels}。", ""])
     if not succeeded:
         lines.extend(["所有来源均未读到，以下保留上一次线索。", ""])
-    if rows:
-        latest = max(row["first_seen"] for row in rows)
-        lines.extend([f"最新入列：{latest[:16].replace('T', ' ')}（北京时间）", ""])
+    groups = {"体验与玩法": [], "其他公开线索": []}
     for row in rows:
-        link = quote(row["url"], safe=":/?&=%+-._~#")
-        source = markdown_text(row["publisher"] or row["feed"])
-        title = markdown_text(row["title"])
-        lines.append(f'- {row["published"][:16].replace("T", " ")} · [{title}](<{link}>) · {source}')
-    if not rows and not failures:
+        category = classify_headline(row["title"])
+        if category:
+            groups[category].append(row)
+    latest = max((row["first_seen"] for leads in groups.values() for row in leads), default=None)
+    if latest:
+        lines.extend([f"最新入列：{latest[:16].replace('T', ' ')}（北京时间）", ""])
+    for category, leads in groups.items():
+        if not leads:
+            continue
+        lines.extend([f"## {category}", ""])
+        for row in leads:
+            link = quote(row["url"], safe=":/?&=%+-._~#")
+            source = markdown_text(row["publisher"] or row["feed"])
+            title = markdown_text(row["title"])
+            lines.append(f'- {row["published"][:16].replace("T", " ")} · [{title}](<{link}>) · {source}')
+        lines.append("")
+    if not latest and not failures:
         lines.append("近 7 天暂无新线索。")
-    elif not rows:
+    elif not latest:
         lines.append("目前没有可展示的线索，仍有来源待检查。")
     return "\n".join(lines) + "\n"
 
@@ -161,12 +173,13 @@ def main():
     existing = json.loads((ROOT / "data/sources.json").read_text(encoding="utf-8"))
     urls = {canonical_url(source["url"]) for source in existing}
     titles = {normalize_title("豆包推出小豆，大厂争夺个人AI入口")}
+    titles.update(normalize_title(source["title"]) for source in existing if source.get("title"))
     queue = []
     # Keep prior metadata stable across scans and retain results through partial outages.
     for row in previous + scanned:
         if datetime.fromisoformat(row["published"]) < now - timedelta(days=7):
             continue
-        if not is_playbook_lead(row["title"]):
+        if classify_headline(row["title"]) is None:
             continue
         title = normalize_title(row["title"])
         if title in titles or row["url"] in urls:
