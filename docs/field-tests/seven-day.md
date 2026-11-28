@@ -8,7 +8,7 @@
 
 1. [复制首页的开局消息](../../README.md#一句话在小豆里开始)，在小豆独立 App 的新对话发出去。末尾加你的真实目标和最近能用的时间。
 2. 看小豆给的第一步。月计划可以先回答它的问题。把第一步定成自己能判断是否做完的动作，比如「读一遍会议开场，记下卡住的词」。
-3. 如果愿意参加七天试用，实际发出开局消息后，可以[在 GitHub 公开登记][start]。登录后填写开局日期、App 版本和笼统的目标类别；从哪里看到试用可选填。有观察者时也可以直接告诉观察者。
+3. 实际发出开局消息后，可以[在 GitHub 自愿登记][trial-form]，填写日期、设备和目标类别。有观察者时也可以直接告诉观察者。
 
 有观察者发来的固定版本链接时，请从该链接复制开局。登记时可以附这个链接，方便核对你试的版本。
 
@@ -29,4 +29,4 @@
 
 GitHub 登记会用你的 GitHub 账号公开显示。只写愿意公开的内容，例如「英语」「练习开场一次」。请省略真实身份、病史、体重、学校名单、公司名和对话截图。用虚构素材检查改案或提醒，可以走[固定的真机演练](pilot-s0.md)。
 
-[start]: https://github.com/Fangx-AI/awesome-xiaodou/issues/new?title=%5B%E4%B8%83%E5%A4%A9%E8%AF%95%E7%94%A8%5D%20%E5%B7%B2%E5%BC%80%E5%A7%8B&body=%E6%88%91%E5%B7%B2%E5%9C%A8%E5%B0%8F%E8%B1%86%E7%8B%AC%E7%AB%8B%20App%20%E5%8F%91%E5%87%BA%E7%AC%AC%E4%B8%80%E6%9D%A1%E5%BC%80%E5%B1%80%E6%B6%88%E6%81%AF%EF%BC%9A%E6%98%AF%0A%E5%BC%80%E5%B1%80%E6%97%A5%E6%9C%9F%EF%BC%88%E5%B9%B4%E6%9C%88%E6%97%A5%EF%BC%89%EF%BC%9A%0A%E7%B3%BB%E7%BB%9F%E5%92%8C%E5%B0%8F%E8%B1%86%E7%89%88%E6%9C%AC%EF%BC%9A%0A%E7%9B%AE%E6%A0%87%E7%B1%BB%E5%88%AB%EF%BC%88%E8%8B%B1%E8%AF%AD%E3%80%81%E9%98%85%E8%AF%BB%E7%AD%89%EF%BC%89%EF%BC%9A%0A%E4%BB%8E%E5%93%AA%E9%87%8C%E7%9C%8B%E5%88%B0%E8%AF%95%E7%94%A8%EF%BC%88%E9%80%89%E5%A1%AB%EF%BC%89%EF%BC%9A%0A%E7%9B%AE%E5%89%8D%E6%8B%BF%E5%88%B0%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%88%E9%80%89%E5%A1%AB%EF%BC%89%EF%BC%9A%0A%0A%E8%AF%B7%E5%8B%BF%E8%B4%B4%E5%AF%B9%E8%AF%9D%E3%80%81%E8%BA%AB%E4%BB%BD%E6%88%96%E5%81%A5%E5%BA%B7%E7%AD%89%E7%A7%81%E4%BA%BA%E4%BF%A1%E6%81%AF%E3%80%82%E7%AC%AC%E4%B8%83%E5%A4%A9%E5%8F%AF%E5%9C%A8%E5%90%8C%E4%B8%80%E5%B8%96%E8%A1%A5%E5%85%85%E5%AE%9E%E9%99%85%E7%BB%93%E6%9E%9C%E3%80%82
+[trial-form]: https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=seven-day-trial.yml
