@@ -150,7 +150,7 @@
 
 ## 玩法目录
 
-[44 条提示词](skills/xiaodou-skill/references/prompts.md) · [9 条常用指令整包](prompts/xiaodou-quick-pack.txt) · [42 个社区案例与出处](docs/catalog.md)
+[45 条提示词](skills/xiaodou-skill/references/prompts.md) · [9 条常用指令整包](prompts/xiaodou-quick-pack.txt) · [43 个社区案例与出处](docs/catalog.md)
 
 <details>
 <summary>下载、试用记录与建设计划</summary>

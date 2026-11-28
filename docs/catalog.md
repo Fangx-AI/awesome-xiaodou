@@ -1,6 +1,6 @@
 # 小豆玩法目录
 
-**42 个小豆玩法**
+**43 个小豆玩法**
 
 [回到首页](../README.md) · [最新线索](radar.md) · [下载 CSV](../data/playbooks.csv) · [来源登记](source-ledger.md)
 
@@ -72,3 +72,4 @@
 | 34 | [尝试调用 Seedance 生成视频](../playbooks/34-seedance.md) | 功能介绍，未见成品 | S11 |
 | 35 | [查抖音热点辅助选题](../playbooks/35-douyin-trends.md) | 功能介绍，未见执行过程 | S11 |
 | 39 | [为抖音评论拟回复](../playbooks/39-comment-replies.md) | 作者帖二次聚合，待原帖 | S16 |
+| 43 | [先列抖音账号基线，再做每周复盘](../playbooks/43-douyin-weekly-review.md) | 第三方体验：读账号概况、建议复盘节奏 | S27 |
