@@ -103,15 +103,22 @@ def markdown_text(value):
     return re.sub(r'([\\`*_\[\]~!|@])', r'\\\1', escape(value))
 
 
-def output_page(rows):
+def output_page(rows, now, failures):
     lines = [
         "# 小豆玩法雷达", "",
-        "这里展示近 7 天的公开新闻和社区线索。GitHub Actions 配置为每 15 分钟触发，实际运行时间可在抓取记录中核对。"
+        "这里收集近 7 天的公开新闻和社区线索。GitHub Actions 每 15 分钟排程，实际运行可能晚于排程。"
         "下方时间为来源发布时间（北京时间）。", "",
         "[回到玩法库](../README.md) · [抓取记录](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml)"
         " · [提交新玩法](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose)", "",
         "社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou) · [已经整理成指令的更新](updates.md)", "",
     ]
+    succeeded = len(FEEDS) - len(failures)
+    lines.extend([f"扫描日期：{now.date()}（北京时间）。本次读到 {succeeded}/{len(FEEDS)} 个配置来源。", ""])
+    if failures:
+        labels = "、".join(markdown_text(name) for name in failures)
+        lines.extend([f"本次未读到：{labels}。", ""])
+    if not succeeded:
+        lines.extend(["所有来源均未读到，以下保留上一次线索。", ""])
     if rows:
         latest = max(row["first_seen"] for row in rows)
         lines.extend([f"最新入列：{latest[:16].replace('T', ' ')}（北京时间）", ""])
@@ -120,8 +127,10 @@ def output_page(rows):
         source = markdown_text(row["publisher"] or row["feed"])
         title = markdown_text(row["title"])
         lines.append(f'- {row["published"][:16].replace("T", " ")} · [{title}](<{link}>) · {source}')
-    if not rows:
+    if not rows and not failures:
         lines.append("近 7 天暂无新线索。")
+    elif not rows:
+        lines.append("目前没有可展示的线索，仍有来源待检查。")
     return "\n".join(lines) + "\n"
 
 
@@ -129,25 +138,26 @@ def main():
     now = datetime.now(CHINA)
     summary = []
     scanned = []
-    successes = 0
+    failures = []
     with ThreadPoolExecutor(max_workers=len(FEEDS)) as pool:
         jobs = {label: pool.submit(collect, label, url, now) for label, url in FEEDS.items()}
         for label, job in jobs.items():
             try:
                 rows = job.result()
                 scanned.extend(rows)
-                successes += 1
                 summary.append(f"- {label}：{len(rows)} 条候选")
             except (OSError, ValueError, ET.ParseError) as error:
+                failures.append(label)
                 summary.append(f"- {label}：失败 ({type(error).__name__})")
     print("\n".join(summary))
     if os.environ.get("GITHUB_STEP_SUMMARY"):
         with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as log:
             log.write("## 数据源扫描\n\n" + "\n".join(summary) + "\n")
-    if not successes:
+    previous = json.loads(QUEUE.read_text(encoding="utf-8")) if QUEUE.exists() else []
+    if len(failures) == len(FEEDS):
+        PAGE.write_text(output_page(previous, now, failures), encoding="utf-8")
         raise SystemExit("All feed requests failed; preserved the existing queue.")
 
-    previous = json.loads(QUEUE.read_text(encoding="utf-8")) if QUEUE.exists() else []
     existing = json.loads((ROOT / "data/sources.json").read_text(encoding="utf-8"))
     urls = {canonical_url(source["url"]) for source in existing}
     titles = {normalize_title("豆包推出小豆，大厂争夺个人AI入口")}
@@ -167,7 +177,7 @@ def main():
     queue.sort(key=lambda row: (row["published"], row["url"]), reverse=True)
     queue = queue[:80]
     QUEUE.write_text(json.dumps(queue, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    PAGE.write_text(output_page(queue), encoding="utf-8")
+    PAGE.write_text(output_page(queue, now, failures), encoding="utf-8")
     print(f"Radar: {len(queue)} leads in the rolling queue.")
 
 

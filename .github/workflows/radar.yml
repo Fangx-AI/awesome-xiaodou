@@ -8,6 +8,7 @@ on:
     paths:
       - .github/workflows/radar.yml
       - scripts/collect_radar.py
+      - scripts/test_radar.py
 permissions:
   contents: write
 concurrency:
@@ -20,9 +21,13 @@ jobs:
     timeout-minutes: 4
     steps:
       - uses: actions/checkout@v6
+      - name: Test scan status and queue preservation
+        run: python3 -B scripts/test_radar.py
       - name: Collect public feed leads
+        id: scan
         run: python3 scripts/collect_radar.py
       - name: Publish updated radar
+        if: ${{ !cancelled() && (steps.scan.outcome == 'success' || steps.scan.outcome == 'failure') }}
         run: |
           git add data/radar.json docs/radar.md
           if git diff --cached --quiet; then
