@@ -12,11 +12,11 @@
 ## P26 · 拖延任务的起步
 
 - **触发**　「总拖着不开始」「计划写完了，就是不动」。
-- **中书立案**　问具体在拖哪件事、何时需要、已做了哪些，以及卡在不会做、怕交付、没有材料还是不知道从哪开始。
-- **门下核对**　拆到能验证的动作。缺材料先找一个来源，卡在标准先写一个粗稿。区分需要休息的状态和能短时启动的状态。
+- **中书立案**　沿用已知的事项、期限和已完成部分。卡点不清时，只问一句看看是缺条件、不会做、起步太大，还是此刻没有精力。用户说清后直接帮他处理当前卡点。
+- **门下核对**　缺材料或权限时先找一个可取得的来源，或交一份请求材料的草稿。卡在标准或做法时，给一小段能照着写的示例。此刻没有空档时，把动作放到一个确实有机会的时段。
 - **尚书交办**　定一个现成时机、一段短时尝试、一个能看见的产物和停下的标准。不要额外塞一套复杂效率系统。
 - **回奏**　结束时说做成、卡住或决定暂停。例：不敢写初稿，先在已有文档写三个小标题，写出来即完成这一轮。
-- **依据**　[Gollwitzer 实施意图](https://bpb-us-e1.wpmucdn.com/wp.nyu.edu/dist/c/6235/files/2019/02/gollwitzer-1999-implementation-intentions.pdf) · [Superpowers 的小步完成判据](https://github.com/obra/superpowers/blob/main/skills/writing-plans/SKILL.md)
+- **依据**　[Gollwitzer 实施意图](https://bpb-us-e1.wpmucdn.com/wp.nyu.edu/dist/c/6235/files/2019/02/gollwitzer-1999-implementation-intentions.pdf) · [Michie 等人的 COM-B 行为模型](https://pmc.ncbi.nlm.nih.gov/articles/PMC3096582/) · [Superpowers 的小步完成判据](https://github.com/obra/superpowers/blob/main/skills/writing-plans/SKILL.md)
 
 ## P27 · 降低手机与屏幕干扰
 
