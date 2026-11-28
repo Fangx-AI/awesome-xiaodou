@@ -81,7 +81,8 @@ INTRO = (
 def copy_packs():
     chapters = {}
     plans = {}
-    index_links = []
+    sections = {}
+    expected_links = []
     for path in PLAN_FILES:
         source = path.read_text(encoding="utf-8").strip()
         blocks = re.split(r"^## (P\d{2}) · ", source, flags=re.MULTILINE)
@@ -94,17 +95,20 @@ def copy_packs():
             if plan_id in plans:
                 raise ValueError(f"Duplicate plan: {plan_id}")
             plans[plan_id] = f"## {plan_id} · {body.strip()}"
-            index_links.append((plan_id.lower(), path.name, plan_id.lower()))
+            title = body.splitlines()[0]
+            sections.setdefault(path.stem, []).append((plan_id, title))
+            anchor = f"{plan_id.lower()}--{title.lower().replace(' ', '-')}"
+            expected_links.append((path.name, anchor, path.name, anchor))
         chapters[path.stem] = source
     if list(plans) != [f"P{number:02}" for number in range(1, 31)] or plans.keys() != PLAN_GOALS.keys():
         raise ValueError("Expected one workflow and opening goal for each plan P01–P30 in order")
     actual_links = re.findall(
-        rf"^[-] \[[^\]]+\]\({re.escape(PUBLIC_PLAN_URL)}/(p\d{{2}})\.txt\) · "
-        r"\[流程与依据\]\(([\w-]+\.md)#(p\d{2})--[^)]+\)$",
+        rf"^- \[[^\]]+\]\({re.escape(PUBLIC_PLAN_URL)}/([\w-]+\.md)#([^\)]+)\) · "
+        r"\[流程与依据\]\(([\w-]+\.md)#([^\)]+)\)$",
         PLAN_INDEX.read_text(encoding="utf-8"),
         re.MULTILINE,
     )
-    if actual_links != index_links:
+    if actual_links != expected_links:
         raise ValueError("Each life-plan index entry must link to its opener and matching workflow")
     intro = "\n".join(INTRO) + "\n\n"
     copies = {PLAN_PACK: intro + "\n\n".join(chapters.values()) + "\n"}
@@ -117,6 +121,13 @@ def copy_packs():
         )
     for plan_id, goal in PLAN_GOALS.items():
         copies[PLAN_STARTER_FILES[plan_id]] = plan_starter(intro, plans[plan_id], goal)
+    for category, entries in sections.items():
+        heading = chapters[category].splitlines()[0]
+        rows = [heading + " · 一句话开局", "", "点代码块右上角的复制按钮，把整段发到小豆 App 的新对话。", ""]
+        for plan_id, title in entries:
+            starter = copies[PLAN_STARTER_FILES[plan_id]].rstrip()
+            rows.extend([f"## {plan_id} · {title}", "", "```text", starter, "```", ""])
+        copies[PLAN_COPY_DIR / f"{category}.md"] = "\n".join(rows)
     for scene, (plan_id, goal) in SCENES.items():
         copies[SCENE_FILES[scene]] = plan_starter(intro, plans[plan_id], goal)
     return copies
