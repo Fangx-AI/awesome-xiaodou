@@ -15,6 +15,7 @@ STARTER = ROOT / "prompts" / "xiaodou-start.txt"
 FULL = ROOT / "prompts" / "emperor-simulator.md"
 WEIGHT = ROOT / "prompts" / "41-weight-plan.md"
 CALENDAR = ROOT / "playbooks" / "11-screenshot-calendar.md"
+BRIEF = ROOT / "playbooks" / "07-daily-brief.md"
 WEEKLY = ROOT / "playbooks" / "36-weekly-report.md"
 MAIL = ROOT / "playbooks" / "41-mail-confirm-send.md"
 TRIAGE = ROOT / "playbooks" / "45-feishu-reply-triage.md"
@@ -640,6 +641,34 @@ def flow_fixtures():
         (case, "life", message, required, forbidden)
         for case, _, message, required, forbidden in flows["expired-reminder-preview"]
     )
+    flows["brief-notification-reduction"] = (
+        ("narrow-which-task", "starter",
+         "任务列表有行业早报（每天北京时间 08:00）和读书提醒（每天晚上）。提醒太多了，帮我少一点。",
+         ("早报", "读书", "哪|保留|想先"), ("已经(?:调整|暂停|关闭)|已(?:调整|暂停|关闭|修改)",)),
+        ("preview-only-requested-update", "starter",
+         "只改原来的行业早报，改成每周五北京时间 08:00，主题和来源照旧，读书提醒照旧。先给预览。",
+         ("早报", "周五", r"(?:08|8)[:：]00|八点|8点", r"北京时间|UTC\+0?8", "读书", "确认"),
+         ("已经(?:调整|暂停|关闭)|已(?:调整|暂停|关闭|修改)|(?:另外|再|为您)新建",)),
+        ("no-connector-on-confirmation", "starter",
+         "确认按预览改原来的行业早报，不要新建。当前对话没有任务编辑工具。告诉我手动怎么改。",
+         ("早报", "周五", "手动|任务列表|任务卡", "没改|未改|无法|不能|没有"),
+         ("已经(?:调整|暂停|关闭)|已(?:调整|暂停|关闭|修改|创建)|(?:另外|再|为您)新建",)),
+    )
+    flows["brief-quiet-preview"] = (
+        ("one-off-no-results", "brief",
+         "今天先试跑行业早报，只用我提供的两条虚构材料。我只关心原厂正式发布的新接口。来源一只有旧公告转发，来源二今天核对过没有新公告。正式任务我只想有更新才收到。这轮仅交预览，别创建任务。",
+         ("无.{0,6}(更新|发布|公告)|没有.{0,8}(更新|发布|公告)|(?:不|未)符合",
+          "静默|不发|不推送|才发|才通知"),
+         ("已(?:设置|创建)|已经(?:设置|创建)",)),
+        ("weekly-window-covers-the-week", "brief",
+         "先给周报样例。截稿时间是北京时间 11 月 27 日周五 08:00。覆盖过去整整 7 天。甲是我已核对的原厂公告，11 月 23 日首次发布新接口。乙这个来源没有读取权限。只预览，不建任务。",
+         ("新接口", r"11\s*月\s*23\s*日|11[-/]23|11[.。]23", "乙", "覆盖|未核|待核|无权|读不到|无法访问"),
+         ("全部来源已核对|已(?:设置|创建)|已经(?:设置|创建)",)),
+        ("quiet-unsupported", "brief",
+         "已核对 App 只支持每天定时发，不支持无更新时不发。我也不接受每日空简报。别建任务，给一个手动方案。",
+         ("手动|需要时|想看时|按需", "不建|未建|没有创建|未创建|不创建|不支持"),
+         ("已(?:设置|创建)|已经(?:设置|创建)|已经关闭",)),
+    )
     return flows
 
 
@@ -770,6 +799,7 @@ def main():
         "full": re.search(r"```text\n(.*?)\n```", FULL.read_text(encoding="utf-8"), re.S)[1],
         "weight": re.search(r"```text\n(.*?)\n```", WEIGHT.read_text(encoding="utf-8"), re.S)[1],
         "calendar": re.search(r"```text\n(.*?)\n```", CALENDAR.read_text(encoding="utf-8"), re.S)[1],
+        "brief": re.search(r"```text\n(.*?)\n```", BRIEF.read_text(encoding="utf-8"), re.S)[1],
         "weekly": re.search(r"```text\n(.*?)\n```", WEEKLY.read_text(encoding="utf-8"), re.S)[1],
         "mail": re.search(r"```text\n(.*?)\n```", MAIL.read_text(encoding="utf-8"), re.S)[1],
         "triage": re.search(r"```text\n(.*?)\n```", TRIAGE.read_text(encoding="utf-8"), re.S)[1],
