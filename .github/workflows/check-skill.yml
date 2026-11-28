@@ -19,6 +19,7 @@ jobs:
       - name: Rebuild and check
         run: |
           python -B scripts/test_pilot_measure.py
+          python -B scripts/test_verify_candidate.py
           python scripts/build_catalog.py
           python scripts/build_skill.py "$RUNNER_TEMP/xiaodou"
           python scripts/check_release.py "$RUNNER_TEMP/xiaodou/xiaodou-skill.zip"
@@ -68,7 +69,6 @@ jobs:
           cp prompts/xiaodou-start.txt prompts/xiaodou-pilot-start.txt prompts/xiaodou-life-plans.txt "$RUNNER_TEMP/xiaodou/"
           cp -r prompts/life-plans "$RUNNER_TEMP/xiaodou/"
           cd "$RUNNER_TEMP/xiaodou"
-          sha256sum xiaodou-skill.zip xiaodou-start.txt xiaodou-pilot-start.txt xiaodou-life-plans.txt life-plans/*.txt STARTERS.tsv > SHA256SUMS
           {
             printf 'candidate_commit=%s\n' "$GITHUB_SHA"
             printf 'readme=%s/%s/blob/%s/README.md\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_SHA"
@@ -79,6 +79,8 @@ jobs:
             printf 'pilot=%s/%s/blob/%s/docs/field-tests/pilot-s0.md\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_SHA"
             printf 'seven_day=%s/%s/blob/%s/docs/field-tests/seven-day.md\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_SHA"
           } > CANDIDATE.txt
+          sha256sum xiaodou-skill.zip xiaodou-start.txt xiaodou-pilot-start.txt xiaodou-life-plans.txt life-plans/*.txt STARTERS.tsv CANDIDATE.txt > SHA256SUMS
+          python -B "$GITHUB_WORKSPACE/scripts/verify_candidate.py" . --commit "$GITHUB_SHA" --repository "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
       - name: Upload checked S0 candidate
         if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/codex/s0-pilot'
         uses: actions/upload-artifact@v7
