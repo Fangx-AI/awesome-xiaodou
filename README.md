@@ -28,6 +28,8 @@
 长期计划先问实际情况。
 问目标、现状和空档。
 健康计划问已有的限制。
+健身先问基础和器材。
+有新疼痛就先停相关动作。
 已说过的就沿用。
 问清再排，不提前配餐。
 首周排实，后续只列条件。
@@ -90,7 +92,7 @@
 
 ## 还能办什么
 
-- **健身**　根据现有器材和真实空档排首周，场地变了就换成能做的训练。
+- **健身**　先按真实空档排首周。出差没带弹力带，只改这次训练，已完成的照样算。 [看健身怎么改期](skills/xiaodou-skill/references/planning.md#fitness-start)
 - **自律**　晚饭后读书碰上出差？保留已经读的次数，把下一次放到真正有空的时段。 [看漏做后怎么继续](skills/xiaodou-skill/references/planning.md#habit-restart)
 - **学英语**　礼部扮演会议同事、面试官或问路对象，你先答一句，小豆只挑一处改，再用同一句重试。 [看英语陪练怎么走](skills/xiaodou-skill/references/planning.md#english-practice)
 - **留学**　先核这一届的官网截止日和全程费用。预算变了，重筛学校，已经写好的材料照样留用。 [看怎么核一所学校](skills/xiaodou-skill/references/planning.md#study-application)

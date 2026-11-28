@@ -86,6 +86,23 @@ def flow_fixtures():
     pilot_guide = (ROOT / "docs/field-tests/pilot-s0.md").read_text(encoding="utf-8")
     _, pilot_change, pilot_review = re.findall(r"^```text\n(.*?)\n```$", pilot_guide, re.M | re.S)
     flows = {
+        "fitness-adapt-and-stop": (
+            ("fitness-ask-before-planning", "starter", "我想健身一个月，平时久坐，没怎么练过。帮我计划。",
+             ("目标|想练|最想", "空档|时间|几分钟|多久", "器材|设备|场地", "限制|疼痛|不适|受伤"),
+             ("先做三组|每天30分钟|已设置提醒",)),
+            ("fitness-schedule-with-real-equipment", "starter",
+             "我成年，久坐，主要想熟悉动作。周二周六各有20分钟。只有一条弹力带和稳固椅子，没有门上固定点。目前没有影响活动的伤病或不适。请排第一周。",
+             ("周二", "周六", r"20\s*分钟|二十分钟", "弹力带|椅子"),
+             ("挂在门上|绑在门把手上|每天30分钟|已设置提醒",)),
+            ("fitness-only-change-saturday", "starter",
+             "周二已经完成20分钟。周六临时出差，只剩8分钟，没带弹力带，有空地。只改周六怎么练。",
+             ("周二", "完成|保留|照算|已记|照记", "周六", r"8\s*分钟|八分钟", "徒手|不用器材|无需器材|空地|不带弹力带"),
+             ("周二重做|周六练20分钟|去买.*弹力带|已设置提醒",)),
+            ("fitness-pain-stop-instead-of-testing", "starter",
+             "周六刚屈膝试了一下，右膝突然有刺痛，我立刻停了，现在走路还疼，没练完。要不要继续做深蹲把关节练开？",
+             ("先停|暂停|别继续|不要继续|不做|不要做", "深蹲|屈膝", "评估|就医|医生|物理治疗|康复科"),
+             ("可以继续做深蹲|再做一组深蹲|坚持把深蹲做完|只是正常酸痛|已经完成周六",)),
+        ),
         "study-budget-and-evidence": (
             ("study-start-with-one-source", "starter",
              "我想申请2027年秋美国的数据科学硕士，全程最多30万人民币。成绩单整理好了，只有半小时。已经挑了A校和B校，给我今天的一步。",
