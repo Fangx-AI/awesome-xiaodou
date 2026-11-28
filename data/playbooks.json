@@ -556,5 +556,20 @@
     "verification": "对照抖音创作者后台核对指标和日期范围。首周缺基线可留作下一周的对照。只能读取账号概况时，作品层指标等待用户提供。",
     "self_tested": false,
     "path": "playbooks/43-douyin-weekly-review.md"
+  },
+  {
+    "id": "44",
+    "slug": "feishu-review-before-write",
+    "title": "收齐飞书改稿意见，再审预览与写回",
+    "category": "办公与个人管理",
+    "sources": [
+      "S28"
+    ],
+    "evidence": "第三方实测：提前改稿，后续按当次确认执行",
+    "observed": "作者本想等意见收齐再改，小豆提前动稿。作者之后把修改前的确认说清楚，观察到小豆遵守。",
+    "prompt": "帮我整理这份飞书稿件的修改意见。请保留原稿和批注，列出收到的意见、还缺谁的反馈、有哪些冲突。等我说意见收齐后，在这里给改前改后对照，写清当前稿件和版本。是否写回由我在当前对话单独确认；文档版本变化就重新预览。权限不足时给手工修改清单。",
+    "verification": "用副本测试。比较每轮的正文与评论记录，核对确认前原文与批注、确认对象与版本、写回后的回执及实际变更。",
+    "self_tested": false,
+    "path": "playbooks/44-feishu-review-before-write.md"
   }
 ]
