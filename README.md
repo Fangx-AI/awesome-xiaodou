@@ -112,7 +112,7 @@
 
 想换对话，就说「给我一段可复制的续聊摘要」，把摘要单独发到新对话。
 
-[带自己的目标试七天](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/seven-day.md)，做完第一步或卡住了，都可以回报。
+[带自己的目标试七天](docs/field-tests/seven-day.md)，做完第一步或卡住了，都可以回报。
 
 ## 三省六部怎么帮忙
 

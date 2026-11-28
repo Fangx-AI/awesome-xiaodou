@@ -16,7 +16,7 @@
 
 ## GitHub 入口验证
 
-在 Chrome 打开 GitHub 仓库的公开首页，检查了 1440px 浅色、390px 浅色和 320px 深色三个视口。都能点到开局、展开并复制，剪贴板内容与对应提交的文本一致，下载入口也能跳到公开指南。320px 下长行在代码框内横向滚动。 [核对过的 README 版本](https://github.com/Fangx-AI/awesome-xiaodou/blob/4dbb830a235f73f625f0b0b36c100fd224dafd3d/README.md)
+在 Chrome 打开 GitHub 仓库的公开首页，检查了 1440px 浅色、390px 浅色和 320px 深色三个视口。都能点到开局、展开并复制，剪贴板内容与对应提交的文本一致，下载入口也能跳到公开指南。320px 下长行在代码框内横向滚动。 [核对过的 README 版本](https://github.com/Fangx-AI/awesome-xiaodou/blob/43bf9023069a46222df6e133fab1da20f5a9b8de/README.md)
 
 ## 下载技能文件
 
