@@ -2,6 +2,8 @@
 
 ## 2026-11-28 · 玩法补充
 
+- [飞书待回复与待办](../playbooks/45-feishu-reply-triage.md)按你的约定判断表情回复，保留真正未完成的交付。
+
 - [飞书批注改稿](../playbooks/44-feishu-review-before-write.md)先收齐意见，再给前后对照。确认写回时核对文档版本和要改的段落。
 
 - [每周抖音复盘](../playbooks/43-douyin-weekly-review.md)先核对账号基线与日期口径，再定一个下周试验。拿不到作品层数据时可以手填。

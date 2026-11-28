@@ -17,6 +17,7 @@ WEIGHT = ROOT / "prompts" / "41-weight-plan.md"
 CALENDAR = ROOT / "playbooks" / "11-screenshot-calendar.md"
 WEEKLY = ROOT / "playbooks" / "36-weekly-report.md"
 MAIL = ROOT / "playbooks" / "41-mail-confirm-send.md"
+TRIAGE = ROOT / "playbooks" / "45-feishu-reply-triage.md"
 INTEREST = ROOT / "playbooks" / "13-interest-updates.md"
 LIFE_PACK = ROOT / "prompts" / "xiaodou-life-plans.txt"
 PILOT = ROOT / "prompts" / "xiaodou-pilot-start.txt"
@@ -591,6 +592,24 @@ def flow_fixtures():
          (r"12[:：]05|119", "通知|送达|系统"),
          ("已经收到|已成功送达|已重发|已重建",)),
     )
+    flows["feishu-reply-triage"] = (
+        ("triage-context-for-emoji", "triage",
+         "这是本周北京时间的测试摘录。A1 甲说「资料收到点赞就行」，我点了 👍。B1 乙问「报价周五 16:00 前能给我吗」，我只点了 👍，没约定表情代表承诺。C1 丙要海报，我文字答「周五发」，目前没交。D1 项目群无权读取。先列清单。",
+         ("A1", "已处理|已确认收到", "B1", "16[:：]00", "C1", "待办|待交|未交", "D1", "待核|无权|未纳入"),
+         ("已发送|已经发给|海报已交|D1已处理",)),
+        ("triage-reclassify-only-reported-change", "triage",
+         "补充 B2：我已经给乙发了报价，乙确认收到了。丙的海报仍没交。只告诉我哪些状态变了，引用出处。",
+         ("B2", "已处理|已回复|已完成|已交"),
+         ("海报已交|我已替您发|重新催乙",)),
+        ("triage-draft-for-one-thread", "triage",
+         "海报预计周五下午交，但具体时间还没定。请只给我一条回丙的草稿，保持事实，先不发。",
+         ("周五下午", "预计|计划|争取"),
+         (r"已发送|已经发给|15[:：]00|16[:：]00|海报已交|下周五|\d+\s*月\s*\d+\s*日",)),
+        ("triage-draft-is-still-pending", "triage",
+         "刚才只写了草稿。我现在只想看还有哪件待交付的事，请写出处。",
+         ("C1", "海报", "周五", "待|未|没"),
+         ("报价仍待|催乙|海报已交|已发送",)),
+    )
     return flows
 
 
@@ -723,6 +742,7 @@ def main():
         "calendar": re.search(r"```text\n(.*?)\n```", CALENDAR.read_text(encoding="utf-8"), re.S)[1],
         "weekly": re.search(r"```text\n(.*?)\n```", WEEKLY.read_text(encoding="utf-8"), re.S)[1],
         "mail": re.search(r"```text\n(.*?)\n```", MAIL.read_text(encoding="utf-8"), re.S)[1],
+        "triage": re.search(r"```text\n(.*?)\n```", TRIAGE.read_text(encoding="utf-8"), re.S)[1],
         "interest": re.search(r"```text\n(.*?)\n```", INTEREST.read_text(encoding="utf-8"), re.S)[1],
     }
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
