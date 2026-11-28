@@ -8,6 +8,8 @@ import shutil
 import subprocess
 from pathlib import Path
 
+from life_plan_cases import LIFE_CASES
+
 ROOT = Path(__file__).resolve().parents[1]
 STARTER = ROOT / "prompts" / "xiaodou-start.txt"
 FULL = ROOT / "prompts" / "emperor-simulator.md"
@@ -402,6 +404,7 @@ def main():
     parser.add_argument("output", type=Path)
     parser.add_argument("--model")
     parser.add_argument("--case", action="append", help="Run selected fixture IDs only")
+    parser.add_argument("--all-life", action="store_true", help="Run one independent case for each of the 30 plans")
     parser.add_argument("--flow", action="append", choices=tuple(flows),
                         help="Replay actual prior outputs for the selected scenario. Repeat for multiple flows.")
     parser.add_argument("--all-flows", action="store_true", help="Replay all sequential scenarios.")
@@ -410,8 +413,8 @@ def main():
     parser.add_argument("--workers", type=int, default=3)
     parser.add_argument("--codex", default=shutil.which("codex") or "codex")
     args = parser.parse_args()
-    if sum(bool(option) for option in (args.case, args.flow, args.all_flows, args.compare)) > 1:
-        parser.error("--case, --flow, --all-flows, and --compare are separate runs")
+    if sum(bool(option) for option in (args.case, args.all_life, args.flow, args.all_flows, args.compare)) > 1:
+        parser.error("--case, --all-life, --flow, --all-flows, and --compare are separate runs")
     args.output = args.output.resolve()
     args.output.parent.mkdir(parents=True, exist_ok=True)
     prompts = {
@@ -431,7 +434,13 @@ def main():
                 prompts["life"] = LIFE_PACK.read_text(encoding="utf-8").strip()
             records = list(pool.map(lambda pair: replay_flow(args, *pair, prompts), selected_flows))
         else:
-            selected = [fixture for fixture in CASES if not args.case or fixture[0] in args.case]
+            life_cases = [(case_id, "life", message, required, forbidden)
+                          for case_id, message, required, forbidden in LIFE_CASES]
+            selected = CASES
+            if args.all_life:
+                selected = life_cases
+            elif args.case:
+                selected = [fixture for fixture in (*CASES, *life_cases) if fixture[0] in args.case]
             if not selected or (args.case and {case[0] for case in selected} != set(args.case)):
                 parser.error("unknown fixture ID")
             if any(fixture[1] == "life" for fixture in selected):
