@@ -1,11 +1,16 @@
-name: 提示词试用反馈
-description: 分享你在小豆实际试了什么，以及结果如何
+name: 小豆实际使用反馈
+description: 报告一次小豆试用结果、改期问题，或一次提醒没有按预期触发
 title: "[提示词反馈] "
 body:
+  - type: markdown
+    attributes:
+      value: |
+        这份反馈会公开显示。请只贴脱敏文字，隐去姓名、账号、邀请码、通知和原有日程。涉及提醒、日历或发送时，可以在下方补充你实际看到了什么。
   - type: input
     id: prompt
     attributes:
-      label: 提示词名称或链接
+      label: 试了哪个玩法或开局
+      placeholder: 例如减肥计划、通用开局，或你复制的 GitHub 链接
     validations:
       required: true
   - type: dropdown
@@ -22,11 +27,32 @@ body:
   - type: textarea
     id: example
     attributes:
-      label: 你给的输入和小豆的结果
-      description: 请先隐去私人信息。写下第一句话、实际输出、是否完成。如果中途改过计划，也请写下改后的结果。
+      label: 你说了什么，小豆怎么回
+      description: 写下最短的一段脱敏对话。如果改过计划，也请补上哪一步已做完、后来改了什么、最后还能从哪里接着做。
+      placeholder: |
+        我说「……」
+        小豆回「……」
+        我实际做到「……」
     validations:
       required: true
   - type: input
     id: environment
     attributes:
       label: 小豆版本、设备与日期
+      placeholder: 例如小豆版本、iOS 或 Android 版本、试用日期
+  - type: dropdown
+    id: action-receipt
+    attributes:
+      label: 外部操作的回执（选填）
+      description: 适用于提醒、日历、发送等操作。按你在任务卡或目标 App 看到的结果选择。
+      options:
+        - 只给了预览或草稿
+        - 已确认，核对到本次操作的任务卡或新记录
+        - 已确认，出现明确失败提示
+        - 已确认，未看到回执或结果未知
+        - 确认前撤回，检查到没有新记录
+  - type: textarea
+    id: observed-effect
+    attributes:
+      label: 后来实际发生了什么（选填）
+      description: 如果是提醒，写下预定时间和时区、到点有没有收到，以及你在哪里核对。只收到创建回执时可写「触发未核对」。
