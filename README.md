@@ -87,6 +87,10 @@
 
 [开局纯文本](prompts/xiaodou-start.txt) · [下载和开通小豆](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/install.md#下载和开通) · [使用方法](docs/install.md)
 
+**想试一件自己的事？** 选一个你本来就想做的目标，用七天看看能不能完成第一步。暂时进不了小豆 App，也可以帮忙看看首页好不好懂。
+
+[带自己的目标试七天](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/seven-day.md) · [参加首页冷读](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/cold-read.md)
+
 ## 三省六部怎么帮忙
 
 一句话能办的，小豆直接办。目标跨几天、撞了时间或牵涉预算时，三省先走一轮，尚书省再按需要找对应的部。想看方案怎么定的，就说「展开朝议」。

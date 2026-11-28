@@ -1,0 +1,56 @@
+name: 七天试用登记
+description: 已在小豆开局后登记一件真实任务，第七天回到同一帖补结果
+title: "[七天试用] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        这个表单会公开显示你的 GitHub 账号。只写能公开的类别和结果，省略真实姓名、体重、病史、学校、单位、邀请码和对话截图。由观察者带领试用时，也可以直接向观察者回报。
+  - type: checkboxes
+    id: started
+    attributes:
+      label: 我已开始试用
+      options:
+        - label: 我已在小豆独立 App 发出开局消息
+          required: true
+  - type: input
+    id: started-on
+    attributes:
+      label: 开局日期
+      placeholder: YYYY-MM-DD
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: 手机系统和小豆 App 版本
+      description: 版本暂时找不到时，可以写「待核」
+    validations:
+      required: true
+  - type: dropdown
+    id: goal
+    attributes:
+      label: 你的目标属于哪一类
+      options:
+        - 健康与运动
+        - 学习与成长
+        - 职业与工作
+        - 财务与生活事务
+        - 习惯、关系与复盘
+        - 其他
+    validations:
+      required: true
+  - type: input
+    id: candidate
+    attributes:
+      label: 使用的开局链接
+      description: 观察者发了固定版本链接时可以填这里
+  - type: input
+    id: channel
+    attributes:
+      label: 最早在哪里看到试用
+      placeholder: 例如 GitHub 首页、朋友、社区，或留空
+  - type: markdown
+    attributes:
+      value: |
+        第七天在同一帖回复「做到了／还没做到」「哪天完成的（如有）」。计划真有变化时，可以再补变化和保留下来的进度。
