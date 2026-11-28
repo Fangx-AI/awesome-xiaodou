@@ -122,9 +122,12 @@ def summarize_comparisons(records):
 
 
 def summarize(data):
-    check_keys(data, ("as_of", "candidate_commit", "public_readme_commit",
+    check_keys(data, ("as_of", "cohort", "candidate_commit", "public_readme_commit",
                       "cold_reads", "trials", "comparisons"), "report")
     as_of = read_day(data.get("as_of"), "as_of")
+    cohort = data.get("cohort")
+    if "cohort" in data and (not isinstance(cohort, str) or not re.fullmatch(r"[a-z0-9-]{1,40}", cohort)):
+        raise ValueError("cohort must be a stable anonymous batch label")
     for field in ("candidate_commit", "public_readme_commit"):
         if field in data and (not isinstance(data[field], str) or not re.fullmatch(r"[0-9a-f]{40}", data[field])):
             raise ValueError(f"{field} must be the full lowercase Git commit ID")
@@ -253,13 +256,58 @@ def summarize(data):
     }
 
 
+def summarize_cumulative(sources):
+    cohorts = {}
+    participant_channels = {}
+    completed = set()
+    trial_rows = 0
+    for source in sources:
+        report = summarize(source)
+        cohort = source.get("cohort")
+        if cohort is None or report["candidate_commit"] is None:
+            raise ValueError("cumulative records need a cohort label and candidate commit")
+        if cohort in cohorts:
+            raise ValueError("supply only one authoritative snapshot for each cohort")
+        cohorts[cohort] = {"as_of": report["as_of"], "candidate_commit": report["candidate_commit"]}
+        for trial in source.get("trials", []):
+            trial_rows += 1
+            participant = trial["id"]
+            channels = participant_channels.setdefault(participant, set())
+            channel = trial.get("channel", "unspecified")
+            if channel != "unspecified":
+                channels.add(channel)
+            if "finished_on" in trial:
+                completed.add(participant)
+
+    by_channel = {}
+    attribution_conflicts = 0
+    for participant, channels in participant_channels.items():
+        attribution_conflicts += len(channels) > 1
+        channel = next(iter(channels)) if len(channels) == 1 else "unspecified"
+        counts = by_channel.setdefault(channel, {"unique_started": 0, "unique_completed": 0})
+        counts["unique_started"] += 1
+        counts["unique_completed"] += participant in completed
+
+    return {
+        "cohorts": dict(sorted(cohorts.items())),
+        "unique_started": len(participant_channels),
+        "unique_completed": len(completed),
+        "duplicate_trial_rows": trial_rows - len(participant_channels),
+        "attribution_conflicts": attribution_conflicts,
+        "by_channel": dict(sorted(by_channel.items())),
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("records", type=Path)
+    parser.add_argument("records", type=Path, nargs="+")
+    parser.add_argument("--cumulative", action="store_true", help="Count unique people across cohort snapshots")
     args = parser.parse_args()
+    if not args.cumulative and len(args.records) != 1:
+        parser.error("supply one records file or use --cumulative")
     try:
-        source = json.loads(args.records.read_text(encoding="utf-8-sig"))
-        report = summarize(source)
+        sources = (json.loads(path.read_text(encoding="utf-8-sig")) for path in args.records)
+        report = summarize_cumulative(sources) if args.cumulative else summarize(next(sources))
     except (OSError, ValueError) as exc:
         parser.exit(2, f"Invalid pilot data: {exc}\n")
     print(json.dumps(report, indent=2))

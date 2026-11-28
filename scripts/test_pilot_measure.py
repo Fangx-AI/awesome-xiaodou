@@ -1,10 +1,44 @@
 import unittest
 
 from pilot_blind import anonymize, restore
-from pilot_measure import summarize, summarize_comparisons
+from pilot_measure import summarize, summarize_comparisons, summarize_cumulative
 
 
 class PilotMeasurementTests(unittest.TestCase):
+    def test_cumulative_counts_people_once_across_verified_cohorts(self):
+        first = {"as_of": "2026-12-12", "cohort": "first", "candidate_commit": "a" * 40, "trials": [
+            {"id": "P-0001", "channel": "github", "started_on": "2026-12-01", "finished_on": "2026-12-10"},
+            {"id": "P-0002", "started_on": "2026-12-01"},
+            {"id": "P-0003", "channel": "github", "started_on": "2026-12-01", "finished_on": "2026-12-03"},
+        ]}
+        second = {"as_of": "2026-12-20", "cohort": "second", "candidate_commit": "b" * 40, "trials": [
+            {"id": "P-0001", "started_on": "2026-12-13", "finished_on": "2026-12-14"},
+            {"id": "P-0002", "channel": "referral", "started_on": "2026-12-13", "finished_on": "2026-12-15"},
+            {"id": "P-0003", "channel": "community", "started_on": "2026-12-13"},
+            {"id": "P-0004", "channel": "community", "started_on": "2026-12-15"},
+        ]}
+        report = summarize_cumulative([first, second])
+        self.assertEqual(report, summarize_cumulative([second, first]))
+        self.assertEqual(report["unique_started"], 4)
+        self.assertEqual(report["unique_completed"], 3)
+        self.assertEqual(report["duplicate_trial_rows"], 3)
+        self.assertEqual(report["attribution_conflicts"], 1)
+        self.assertEqual(report["by_channel"], {
+            "community": {"unique_started": 1, "unique_completed": 0},
+            "github": {"unique_started": 1, "unique_completed": 1},
+            "referral": {"unique_started": 1, "unique_completed": 1},
+            "unspecified": {"unique_started": 1, "unique_completed": 1},
+        })
+        self.assertEqual(summarize(first)["seven_day_completion"]["numerator"], 1)
+
+    def test_cumulative_rejects_duplicate_snapshots_and_unversioned_batches(self):
+        source = {"as_of": "2026-12-12", "cohort": "first", "candidate_commit": "a" * 40}
+        with self.assertRaisesRegex(ValueError, "one authoritative snapshot"):
+            summarize_cumulative([source, {**source, "as_of": "2026-12-20"}])
+        for field in ("cohort", "candidate_commit"):
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, "cohort label and candidate commit"):
+                summarize_cumulative([{key: value for key, value in source.items() if key != field}])
+
     def test_blind_packet_round_trip_preserves_missing_arms(self):
         reviewer, key = anonymize([
             {"id": "P-0001", "order": "emperor", "task": "练会议开场",
