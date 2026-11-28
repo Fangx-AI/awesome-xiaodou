@@ -39,6 +39,8 @@
 让我先答，改一处再练。
 下次从上次卡点接着练。
 只有文字时只点评措辞。
+申请按届查官网。
+费用缺项就标待核。
 门下核对时间和条件。
 不合就退回，说明改法。
 尚书按需派六部，给一步。
@@ -91,7 +93,7 @@
 - **健身**　根据现有器材和真实空档排首周，场地变了就换成能做的训练。
 - **自律**　晚饭后读书碰上出差？保留已经读的次数，把下一次放到真正有空的时段。 [看漏做后怎么继续](skills/xiaodou-skill/references/planning.md#habit-restart)
 - **学英语**　礼部扮演会议同事、面试官或问路对象，你先答一句，小豆只挑一处改，再用同一句重试。 [看英语陪练怎么走](skills/xiaodou-skill/references/planning.md#english-practice)
-- **留学**　把学校官网的条件和截止日排成申请清单，预算变了就重筛。
+- **留学**　先核这一届的官网截止日和全程费用。预算变了，重筛学校，已经写好的材料照样留用。 [看怎么核一所学校](skills/xiaodou-skill/references/planning.md#study-application)
 
 [查看五种计划怎么跑完](skills/xiaodou-skill/references/planning.md) · [截图记日历](playbooks/11-screenshot-calendar.md) · [飞书周报](playbooks/36-weekly-report.md)
 

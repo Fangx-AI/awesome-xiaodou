@@ -66,9 +66,19 @@
 
 按具体交际任务设完成标准，可参照欧洲委员会的口语互动描述；分级示例可取英国文化教育协会的练习。给提示后让学习者重试的做法参考课堂纠错研究，实际在小豆中的效果由试用观察。 [CEFR 口语互动描述](https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4) · [British Council 分级口语练习](https://learnenglish.britishcouncil.org/free-resources/speaking) · [课堂口语纠错研究](https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/article/abs/oral-feedback-in-classroom-sla/4999EE1C8379B2BF026B148EAF373CA1)
 
+<a name="study-application"></a>
+
 ### 留学 · 先核一个项目，再倒排申请
 
-- **立案**。收集国家或地区、入学季、专业和预算。先列目标校，再按官方要求核截止、学费和材料，区分已核与待核事项。
-- **封驳**。学校官网和非官方列表冲突时标注分歧，只用校方规定排截止。预算下降时保留完成的材料，重排受影响的学校。确认入学季和项目不同批次，不填猜测的日期。
-- **交办与复盘**。户部做可承担费用清单，礼部准备咨询或推荐信邀约，工部交学校、链接、查阅日期、材料、负责人和待核清单。尚书给今天第一步，例如查一所目标校的项目页，把申请截止和材料要求写进去。
-- **完成标准**。至少一个项目有官方链接及查证状态、有截止前的下一步，变更后已有材料仍可复用。美国申请流程可参照 EducationUSA，其他地区用相应官方渠道和校方资料。 [EducationUSA 申请流程](https://educationusa.state.gov/educationusa.state.gov/your-5-steps-us-study.html)
+- **中书立案**。先确认国家或地区、入学季、学位及专业，预算是每年还是全程、用哪种币。沿用用户已经写好的材料，缺一个会改变选择的条件再问。尚未选校时，先筛出一个值得查的项目，或请用户发来一所想核的学校。
+- **门下复核**。以对应项目、入学季、校区和申请人类别的校方材料核准。申请、奖助和补交材料的截止分别记录；校方给出时区就一并记录。旧届时间和第三方帖子可作核查线索。无法访问当届官网时，保留原话、来源和待核项，请用户补原文或联系校方。只收到用户贴来的校方摘录时，写明是摘录及其提供日期。
+- **户部核算**。列出学费、学校杂费、生活费和用户明确纳入的其他项目，换算标日期与口径。只有学费时，留作学费小计，整段费用仍待核。奖助分已确认和未确认；未确认奖助先单列。预算变动时，比较同币种、同覆盖期的费用，已超预算的说明哪项超了，缺项的保留待核。
+- **尚书交办**。工部交一行项目表，包含项目和入学季、核查来源、截止与费用状态、已完成材料及下一步。优先核最挡住申请的一项。礼部可以拟一封问招生办的邮件，先给用户确认。截止待核时，可先给一条「查官方截止」的待办草稿。提交、付款、发邮件分别核对对象、内容和权限。
+
+| 遇到的情况 | 怎样推进 |
+| --- | --- |
+| 只看到上一届截止日期 | 把本届截止记为待核，先核当届项目页。 |
+| 学费 18 万，生活费和杂费还没核 | 先记学费。若预算 22 万，等总费用口径齐全再判断。 |
+| 新预算下有一所已超支 | 先从当前清单移开该项目，已完成的成绩单和陈述保留，之后按新项目要求微调。 |
+
+美国研究生申请的选校、费用和材料核查参考 EducationUSA。其他地区从当地官方渠道和学校项目页查起。 [选校](https://educationusa.state.gov/your-5-steps-us-study/research-your-options/graduate/research-and-narrow-your-options-graduate) · [费用](https://www.educationusa.state.gov/your-5-steps-us-study/finance-your-studies/graduate) · [申请材料](https://educationusa.state.gov/complete-your-us-application-graduate)

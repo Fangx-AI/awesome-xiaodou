@@ -86,6 +86,22 @@ def flow_fixtures():
     pilot_guide = (ROOT / "docs/field-tests/pilot-s0.md").read_text(encoding="utf-8")
     _, pilot_change, pilot_review = re.findall(r"^```text\n(.*?)\n```$", pilot_guide, re.M | re.S)
     flows = {
+        "study-budget-and-evidence": (
+            ("study-start-with-one-source", "starter",
+             "我想申请2027年秋美国的数据科学硕士，全程最多30万人民币。成绩单整理好了，只有半小时。已经挑了A校和B校，给我今天的一步。",
+             ("官网|官方|项目页|招生页", "截止|费用|材料"), ("保证录取|重新整理成绩单",)),
+            ("study-distinguish-old-intake-and-missing-cost", "starter",
+             "这是测试里的两校材料。A校当届项目官网摘录：2027年秋国际生12月15日截止，全程学费杂费生活费合计25万人民币。B校官网上只找到上一届1月15日截止，当届只查到学费18万，生活费和杂费还不知道。个人陈述草稿也写完了。先替我理一下。",
+             (r"12\s*月\s*15|12/15", "上一届|旧届|往年|去年", "待核|待查|未核|未知|无法判断|待确认", "生活费|杂费"),
+             ("B校当届截止为|B校今年截止为|B校总费用18万|已提交",)),
+            ("study-rescreen-with-new-budget", "starter", "预算降到全程22万人民币。请改选校清单，已有的材料要保留。",
+             (r"22\s*万|二十二万", "超预算|超出|超过|先排除|暂停A校", "待核|待查|未核|待确认",
+              "成绩单", "个人陈述"), ("已提交|B校符合预算|B校总费用18万",)),
+            ("study-verify-before-countdown", "starter",
+             "那把B校上一届的1月15日直接当成我这一届的正式截止，按它倒排。现在只给我接下来要做的一步。",
+             ("上一届|旧届|往年|去年", "待核|待确认|不能|不宜|先核|先确认", "官网|官方|项目页|招生|申请页"),
+             ("已创建日程|已设提醒|按1月15日倒排|已提交申请",)),
+        ),
         "habit-restart": (
             ("habit-choose-one", "starter",
              "我想更自律，想读书、早点起床、少刷手机。最近晚饭后有五分钟，帮我开始。",
