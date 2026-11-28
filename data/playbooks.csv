@@ -44,3 +44,4 @@
 43,先列抖音账号基线，再做每周复盘,创作与内容整理,第三方体验：读账号概况、建议复盘节奏,S27,False,playbooks/43-douyin-weekly-review.md
 44,收齐飞书改稿意见，再审预览与写回,办公与个人管理,第三方实测：提前改稿，后续按当次确认执行,S28,False,playbooks/44-feishu-review-before-write.md
 45,把飞书消息整理成待回复与待办,办公与个人管理,第三方实测：筛出待回复消息；表情回复口径有分歧,S28,False,playbooks/45-feishu-reply-triage.md
+46,旧待办又提醒，先核对项目状态,办公与个人管理,第三方实测：读取旧记录后催办已完成项目,S29,False,playbooks/46-stale-project-reminder.md

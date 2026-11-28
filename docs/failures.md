@@ -11,6 +11,7 @@
 | 连接器上手 | 作者反馈百度网盘等连接不够顺畅 | [向阳乔木，S10](https://x.com/vista8/status/2125144453157626308)，经毛毛AI聚合页读取 | 记录具体账号权限和失败步骤，不能泛化为全部账号不可用 |
 | 视频号素材导出 | Leaf称自己没跑通，并引用Kin声称成功；抖音导出也提到需重试 | [Leaf镜像，S17](https://zamantika.com/zh/profile/leaf_sanren) | 原帖和运行记录未齐；保持待追溯，不承诺跨平台下载能力 |
 | 飞书协作改稿 | 意见没收齐就改稿，恢复时仍有批注需要人工找回 | [AI 新榜原文，S28](https://www.newrank.cn/article/detail/34872) | 用副本核对意见收集、版本变化、当次确认、正文和批注写回。 [改稿流程](../playbooks/44-feishu-review-before-write.md) |
+| 旧文档反复催办 | 已完成的项目仍在旧记录里显示缺图，作者收到补图提示 | [凤凰网科技实测，S29](https://original.ifeng.com/c/8yLT38Uc7Ug) | 核对项目、阶段和实际交付结果。停止原提醒前核对任务对象与确认。 [旧提醒处理](../playbooks/46-stale-project-reminder.md) |
 
 既有边界另见[实测边界](limitations.md)：购物是否需要人工付款、电话服务范围、消息主动推送等。不把“连接器在列表里”当作“每个动作均已成功执行”。
 

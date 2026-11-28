@@ -18,6 +18,7 @@ CALENDAR = ROOT / "playbooks" / "11-screenshot-calendar.md"
 BRIEF = ROOT / "playbooks" / "07-daily-brief.md"
 WEEKLY = ROOT / "playbooks" / "36-weekly-report.md"
 MAIL = ROOT / "playbooks" / "41-mail-confirm-send.md"
+STALE = ROOT / "playbooks" / "46-stale-project-reminder.md"
 TRIAGE = ROOT / "playbooks" / "45-feishu-reply-triage.md"
 INTEREST = ROOT / "playbooks" / "13-interest-updates.md"
 LIFE_PACK = ROOT / "prompts" / "xiaodou-life-plans.txt"
@@ -380,6 +381,28 @@ def flow_fixtures():
     flows["habit-restart-with-a-new-minimum-life"] = tuple(
         (case, "life", message, required, forbidden)
         for case, _, message, required, forbidden in flows["habit-restart-with-a-new-minimum"]
+    )
+    flows["stale-project-reminder"] = (
+        ("stale-document-closed-stage", "starter",
+         "小豆又催我给「展览」第一阶段补图。旧文档写缺五张，但我昨天交了，第一阶段已经结案。第二阶段是另一个清单，今天还要核对工期。别改飞书，你先说现在要做什么。",
+         ("第一阶段", "结案|已交|已完成", "第二阶段", "工期"),
+         ("(?:现在|先|需要|还要).{0,6}补.{0,6}五张|已停止提醒|已改飞书|第二阶段.{0,6}已结案",)),
+        ("stale-reminder-exact-preview", "starter",
+         "任务列表里 H1 是展览第一阶段补图提醒，H2 是展览第二阶段工期提醒。请预览只关闭 H1。我确认前别操作。",
+         ("H1", "第一阶段|补图", "确认|预览", "H2"),
+         ("已关闭|已停止|已取消|已撤销",)),
+        ("stale-reminder-no-edit-access", "starter",
+         "确认只关闭 H1，H2 保留。当前没有任务编辑工具。告诉我手动怎么做。",
+         ("H1", "H2", "手动|任务列表|任务卡", "不能|无法|未关闭|未停|没有"),
+         ("已关闭|已停止|已取消|已撤销",)),
+        ("stale-reminder-user-verified", "starter",
+         "我在任务列表手动关了 H1，明确显示已关闭。H2 仍开启。只记这一条结果。",
+         ("H1", "已关闭|关闭了|您关闭|关掉了", "H2", "仍开启|保留|照旧|未改"),
+         ("我已关闭|我已改写|H2.{0,8}也(?:关闭|停止)",)),
+    )
+    flows["stale-project-reminder-playbook"] = tuple(
+        (case, "stale", message, required, forbidden)
+        for case, _, message, required, forbidden in flows["stale-project-reminder"]
     )
     flows["starter-monthly-intake"] = tuple(
         (case, "starter", message, required, forbidden)
@@ -871,6 +894,7 @@ def main():
         "brief": re.search(r"```text\n(.*?)\n```", BRIEF.read_text(encoding="utf-8"), re.S)[1],
         "weekly": re.search(r"```text\n(.*?)\n```", WEEKLY.read_text(encoding="utf-8"), re.S)[1],
         "mail": re.search(r"```text\n(.*?)\n```", MAIL.read_text(encoding="utf-8"), re.S)[1],
+        "stale": re.search(r"```text\n(.*?)\n```", STALE.read_text(encoding="utf-8"), re.S)[1],
         "triage": re.search(r"```text\n(.*?)\n```", TRIAGE.read_text(encoding="utf-8"), re.S)[1],
         "interest": re.search(r"```text\n(.*?)\n```", INTEREST.read_text(encoding="utf-8"), re.S)[1],
     }

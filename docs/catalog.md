@@ -1,6 +1,6 @@
 # 小豆玩法目录
 
-**45 个小豆玩法**
+**46 个小豆玩法**
 
 [回到首页](../README.md) · [最新线索](radar.md) · [下载 CSV](../data/playbooks.csv) · [来源登记](source-ledger.md)
 
@@ -36,6 +36,7 @@
 | 41 | [确认后发送测试邮件](../playbooks/41-mail-confirm-send.md) | 第三方实测：收件箱收到邮件 | S25 |
 | 44 | [收齐飞书改稿意见，再审预览与写回](../playbooks/44-feishu-review-before-write.md) | 第三方实测：提前改稿，后续按当次确认执行 | S28 |
 | 45 | [把飞书消息整理成待回复与待办](../playbooks/45-feishu-reply-triage.md) | 第三方实测：筛出待回复消息；表情回复口径有分歧 | S28 |
+| 46 | [旧待办又提醒，先核对项目状态](../playbooks/46-stale-project-reminder.md) | 第三方实测：读取旧记录后催办已完成项目 | S29 |
 
 ## 生活与出行
 
