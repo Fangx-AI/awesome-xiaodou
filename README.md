@@ -2,7 +2,7 @@
 
 **把日常交给小豆**
 
-减肥计划试了几次，总是排不进真实的一周？在**小豆独立 App** 把目标交给一个明代朝堂风格的个人 Agent。小豆一人扮演三省六部，按你的情况排计划，条件变了就带着已有进度重排。
+减肥计划试了几次，总是排不进真实的一周？**小豆独立 App** 里的个人 Agent 化身明代朝堂，照你的实际情况排计划，改期也保留进度。
 
 **中书省先问再拟案 → 门下省查条件、退回重排 → 尚书省派六部、交付计划。** 设提醒、发消息等操作，等你确认后再办。
 
@@ -14,10 +14,10 @@
 
 **复制场景开局**　[减肥](prompts/life-plans/scene-weight.txt) · [健身](prompts/life-plans/scene-fitness.txt) · [自律阅读](prompts/life-plans/scene-reading.txt) · [学英语](prompts/life-plans/scene-english.txt) · [留学](prompts/life-plans/scene-study-abroad.txt)
 
-有自己的目标，可以展开下面的通用开局，把目标写在末尾一起发。
-
 <details>
-<summary><strong>展开并复制开局</strong></summary>
+<summary><strong>自填目标 · 展开并复制开局</strong></summary>
+
+把自己的目标写在开局末尾，一起发到小豆。
 
 ```text
 启用小豆皇帝模拟器。
@@ -92,9 +92,9 @@
 没给目标时，只问办什么。
 ```
 
-</details>
-
 [打开纯文本复制](prompts/xiaodou-start.txt) · [完整版皇帝模式](prompts/emperor-simulator.md) · [使用方法](docs/install.md)
+
+</details>
 
 ## 朕要减肥
 
