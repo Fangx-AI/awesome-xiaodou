@@ -1,18 +1,31 @@
 # 小豆皇帝模拟器 · 五件事怎么推进
 
-想试一次？打开小豆独立 App 的新对话，从下方选一个场景，复制对应开局，在末尾加上自己的情况再发出。想分享给朋友，可以保存流程图，或者复制附链接的转发文案。
+**计划做过几次，后来总要重来？** 看看小豆怎么问清情况、排出第一步，在条件变化时保留你已经做完的事。
+
+选一个场景，复制对应开局，把下面的示例换成自己的情况，一起发到[小豆独立 App](install.md#下载和开通)的新对话。每一节都能展开流程图或复制转发文案。
 
 [制定减肥计划](#制定减肥计划) · [健身](#健身) · [自律](#自律) · [学英语](#学英语) · [留学](#留学)
 
 页面中的图片用虚构场景演示。 [查看小豆真机记录](field-tests/README.md)
 
-已在小豆发出开局消息？可以[登记七天试用](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=seven-day-trial.yml)，选填最初看到的分享卡。
+已在小豆发出开局消息？可以[带这件事试七天](field-tests/seven-day.md)，做完第一步就能回报。
 
 ## 制定减肥计划
 
 在小豆里可以说「帮我制定一个减肥计划。」
 
-[复制对应分类开局](../prompts/life-plans/health.txt) · [减肥计划流程示例](../assets/xiaodou-monthly-plan-share.png)
+小豆先问目标、饮食、活动和限制。你回答之后，才会定阶段目标和首周安排。
+
+[复制健康与运动开局](../prompts/life-plans/health.txt) · [查看五步减肥计划](weight-first-week.md)
+
+<details>
+<summary>看流程图</summary>
+
+<img src="../assets/xiaodou-monthly-plan-share.png" width="480" alt="减肥计划五步流程。了解情况，评估起点，核对方案，排出首周，按进展调整。">
+
+[打开原图](../assets/xiaodou-monthly-plan-share.png)
+
+</details>
 
 <details>
 <summary>复制转发文案</summary>
@@ -30,7 +43,18 @@ https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/share-cards.md#%E5%88
 
 在小豆里可以说「周二练完了。周六要出差，没带弹力带，只有八分钟，有块安全空地。帮我只改周六。」
 
-[复制对应分类开局](../prompts/life-plans/health.txt) · [出差没带弹力带，只剩八分钟](../assets/xiaodou-fitness-share.png)
+已经练过的保留。门下核对时间、器材和场地，尚书只交一份周六能做的安排。
+
+[复制健康与运动开局](../prompts/life-plans/health.txt) · [查看力量与体能计划](../skills/xiaodou-skill/references/life-plans/health.md#p02--新手力量与体能)
+
+<details>
+<summary>看流程图</summary>
+
+<img src="../assets/xiaodou-fitness-share.png" width="480" alt="健身改案示例。保留周二的训练，按八分钟和无弹力带的条件重排周六。">
+
+[打开原图](../assets/xiaodou-fitness-share.png)
+
+</details>
 
 <details>
 <summary>复制转发文案</summary>
@@ -48,7 +72,18 @@ https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/share-cards.md#%E5%81
 
 在小豆里可以说「这周已经读了两次，昨晚漏了。出差后晚上没空，只有午饭后五分钟，手机里有电子书。朕今天怎么接着读？」
 
-[复制对应分类开局](../prompts/life-plans/habits.txt) · [昨晚漏读一页，今天照样接着读](../assets/xiaodou-reading-share.png)
+保留已经完成的两次。从下一个真实空档接着读，首步可以是午饭后读五分钟。
+
+[复制习惯养成开局](../prompts/life-plans/habits.txt) · [查看习惯养成计划](../skills/xiaodou-skill/references/life-plans/habits.md#p25--建立一个可持续的习惯)
+
+<details>
+<summary>看流程图</summary>
+
+<img src="../assets/xiaodou-reading-share.png" width="480" alt="阅读改案示例。漏了一次后，从午饭后的五分钟接着读。">
+
+[打开原图](../assets/xiaodou-reading-share.png)
+
+</details>
 
 <details>
 <summary>复制转发文案</summary>
@@ -66,7 +101,18 @@ https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/share-cards.md#%E8%87
 
 在小豆里可以说「朕的会议开场已经写好第一句。今晚只剩五分钟。怎么练？」
 
-[复制对应分类开局](../prompts/life-plans/learning.txt) · [今晚只剩五分钟](../assets/xiaodou-five-minutes-share.png)
+从你写好的那句开始。先试一遍，小豆挑一处改，再用剩下的时间练一次。
+
+[复制学习与成长开局](../prompts/life-plans/learning.txt) · [查看英语陪练计划](../skills/xiaodou-skill/references/life-plans/learning.md#p07--英语真实场景陪练)
+
+<details>
+<summary>看流程图</summary>
+
+<img src="../assets/xiaodou-five-minutes-share.png" width="480" alt="英语练习示例。保留已经写好的开场，从这一句开始练五分钟。">
+
+[打开原图](../assets/xiaodou-five-minutes-share.png)
+
+</details>
 
 <details>
 <summary>复制转发文案</summary>
@@ -84,7 +130,18 @@ https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/share-cards.md#%E5%AD
 
 在小豆里可以说「个人陈述已写完。全程预算从 30 万降到 22 万。A 校的官网总费用是 25 万，B 校还没查齐。朕该怎么改清单？」
 
-[复制对应分类开局](../prompts/life-plans/learning.txt) · [留学预算从 30 万降到 22 万](../assets/xiaodou-study-abroad-share.png)
+沿用写好的个人陈述。门下审核当届官方费用，费用缺项的学校留待核对。
+
+[复制学习与成长开局](../prompts/life-plans/learning.txt) · [查看留学申请计划](../skills/xiaodou-skill/references/life-plans/learning.md#p11--留学申请与选校)
+
+<details>
+<summary>看流程图</summary>
+
+<img src="../assets/xiaodou-study-abroad-share.png" width="480" alt="留学改案示例。沿用个人陈述，按新预算核查和重排学校清单。">
+
+[打开原图](../assets/xiaodou-study-abroad-share.png)
+
+</details>
 
 <details>
 <summary>复制转发文案</summary>
