@@ -4,16 +4,16 @@
 
 ## 当前进展
 
-截至 2026 年 11 月 28 日 17:55（北京时间）。
+观测时间为 2026 年 11 月 29 日 00:42（北京时间）。GitHub 流量接口返回的最新访问与克隆记录为 11 月 27 日（UTC）。
 
 | 观测项 | 已有结果 |
 | --- | --- |
-| GitHub | 2 Star、0 Fork。GitHub 最近 14 天统计为 68 次浏览、31 个独立访客。 [仓库与实时 Star](https://github.com/Fangx-AI/awesome-xiaodou/stargazers) |
-| 公开发布 | v2.5.2 提供 30 个 App 开局、分类自填目标和独立技能 ZIP。v2.3.0 技能 ZIP 截至上次统计累计 2 次下载，包含维护校验下载。 [发布包与校验值](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.5.2) |
+| GitHub | 2 Star、0 Fork。最近 14 天记录 68 次浏览、31 个独立访客，以及 271 次克隆、115 个独立克隆者。 [仓库与实时 Star](https://github.com/Fangx-AI/awesome-xiaodou/stargazers) |
+| 公开发布 | v2.5.2 的 App 开局 ZIP 和完整技能 ZIP 各有 2 次下载，计数包含发布校验时的下载。 [发布包与校验值](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.5.2) |
 | 已校验的入口 | GitHub 页面已检查 320px、390px 和桌面宽度的复制路径。五份场景开局可直接从示例进入。 [使用状态](compatibility.md) · [场景入口](share-cards.md) |
-| 用户证据 | 已登记的独立 App 真机测试为 0。首页冷读暂无公开回报，外部 7 天试用和两种模式的真实对照均待收集。 [真机登记](field-tests/README.md) · [公开冷读回报](https://github.com/Fangx-AI/awesome-xiaodou/issues?q=is%3Aissue+label%3Acold-read) |
+| 用户证据 | 已登记的小豆独立 App 真机测试为 0。公开入口尚未收到冷读、七天试用或两种模式对照的回报，尚无经核对的首步完成人数。 [真机登记](field-tests/README.md) · [七天试用回报](https://github.com/Fangx-AI/awesome-xiaodou/issues?q=is%3Aissue+label%3Aseven-day-trial) · [两种模式对照回报](https://github.com/Fangx-AI/awesome-xiaodou/issues?q=is%3Aissue+label%3Amode-comparison) |
 
-浏览和独立访客采用 GitHub 的滚动窗口。首步完成人数按经核对的用户实际回报去重统计。 [GitHub 流量口径](https://docs.github.com/en/rest/metrics/traffic) · [试用观察与统计](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/pilot-observer.md)
+访问和克隆用 GitHub 的滚动窗口，附件下载量按版本累计。第一个真实任务的完成人数按核对过的用户回报去重。浏览、克隆和下载可以观察传播，只有实际发出开局消息才进入试用统计。 [GitHub 流量口径](https://docs.github.com/en/rest/metrics/traffic) · [试用观察与统计](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/pilot-observer.md)
 
 对照试用可用同一套阅读或读书会任务，核对新条件下是否保留进度、能否继续。真实结果随试用汇总发布。 [配对测试材料](field-tests/replan-comparison.md)
 
