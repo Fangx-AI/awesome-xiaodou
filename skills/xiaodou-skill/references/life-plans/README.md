@@ -28,4 +28,5 @@
 
 - **Edict** 提供三省拟案、审议与交办的分工参考。小豆由同一个 Agent 扮演相关角色。 [Edict 流转设计](https://github.com/cft0808/edict/blob/main/docs/task-dispatch-architecture.md)
 - **Anthropic Skills** 的分层结构用于按任务加载资料。**Superpowers** 的计划写法用于明确产物和检验步骤。 [Skill Creator](https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md) · [Writing Plans](https://github.com/obra/superpowers/blob/main/skills/writing-plans/SKILL.md)
-- **prompts.chat** 提供自然开场的样例，职业方向另参考开源 **Career Skills** 的先核证据再出稿。每个计划的专业依据在自己章节末尾。 [prompts.chat](https://github.com/f/prompts.chat) · [Career Skills](https://github.com/basseko/career-skills)
+- **prompts.chat** 的 Personal Trainer 用现有体能和生活习惯来定运动方案，对应 P01、P02。Study planner 用课程、时段和截止倒排，对应 P08。Spoken English Teacher and Improver 用一问一答练口语，对应 P07。Career Counselor、Travel Guide 和 Life Coach 分别给职业探索、同区域行程、生活习惯提供起步结构，对应 P13、P22、P25。 [公开 Prompt 数据](https://github.com/f/prompts.chat/blob/main/prompts.csv)
+- **Career Skills** 的简历审查顺序用于 P16，先核事实与证据，再改表述。每个计划的专业依据在章节末尾。 [Resume Writer Skill](https://github.com/basseko/career-skills/blob/main/resume-writer/SKILL.md)
