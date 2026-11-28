@@ -326,11 +326,11 @@ def flow_fixtures():
     flows["study-application-portal"] = (
         ("study-upload-is-draft", "starter",
          "虚构案例，只用这些信息：A 校申请系统显示 Draft，个人陈述 PDF 已上传，另有一封推荐信显示 Invited。朕算是已经正式交了吗？下一步是什么？",
-         ("草稿|Draft", "个人陈述|PDF", "待.{0,5}(提交|收|发送)|已邀请|Invited", "未递交|未提交|还没提交|尚未提交|没有正式提交"),
+         ("草稿|Draft", "个人陈述|PDF", "待.{0,5}(提交|收|发送)|已邀请|Invited", "未递交|未提交|还没(?:正式)?(?:提交|递交)|尚未提交|没有正式提交"),
          ("已经正式提交|申请已经完成|已经替您提交|推荐信已经收到",)),
         ("study-submitted-but-incomplete", "starter",
          "我现在确实收到主申请递交回执。门户写 Submitted / Checklist Incomplete，推荐信显示 Awaiting。官网写推荐信还有两天。帮我起草一句问进度的话，别替我发。",
-         ("已递交|已提交|Submitted", "未齐|未收齐|不完整|Incomplete", "推荐信", "两天|2天", "草稿|可发|您好"),
+         ("已(?:正式)?递交|已提交|Submitted", "未齐|未收齐|不完整|Incomplete", "推荐信", "两天|2天", "草稿|可发|您好"),
          ("已经催了|已经发给|邮件已发送|校方已收齐|再交一次|重新付费",)),
         ("study-reported-sent-not-received", "starter",
          "老师说推荐信已经上传，门户仍显示 Awaiting。学校说明状态可能延迟同步。先不要催，帮我更新这一项。",
