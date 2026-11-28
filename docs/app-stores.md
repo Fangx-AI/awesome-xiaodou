@@ -7,4 +7,4 @@
 | 商店 | 商店显示 | 上次成功读取（北京时间） | 本轮检查 |
 | --- | --- | --- | --- |
 | [中国区 App Store](https://apps.apple.com/cn/app/id6815582077) | 15.9.0 · 最低 iOS 15.0 | 2026-11-29 | 已读到 |
-| [小米应用商店](https://app.mi.com/details?id=com.larus.doubaom) | 16.0.0 · 网页显示维护中 | 2026-11-29 | 已读到 |
+| [小米应用商店](https://app.mi.com/details?id=com.larus.doubaom) | 16.0.0 · 网页显示维护中 | 2026-11-29 | 暂未读到 |
