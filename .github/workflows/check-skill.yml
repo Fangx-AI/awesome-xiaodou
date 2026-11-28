@@ -79,6 +79,7 @@ jobs:
             printf 'public_starter_matches_candidate=%s\n' "$public_starter_matches_candidate"
             printf 'starter_versions=STARTERS.tsv\n'
             printf 'scene_starters=true\n'
+            printf 'plan_starters=true\n'
             printf 'pilot=%s/%s/blob/%s/docs/field-tests/pilot-s0.md\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_SHA"
             printf 'seven_day=%s/%s/blob/%s/docs/field-tests/seven-day.md\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_SHA"
           } > CANDIDATE.txt

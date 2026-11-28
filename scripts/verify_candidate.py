@@ -5,12 +5,13 @@ import hashlib
 import re
 from pathlib import Path
 
-from build_life_plans import PLAN_FILES, PLAN_PACK, SCENE_FILES
+from build_life_plans import PLAN_FILES, PLAN_PACK, PLAN_STARTER_FILES, SCENE_FILES
 
 REPOSITORY = "https://github.com/Fangx-AI/awesome-xiaodou"
 STARTERS = ("xiaodou-start.txt", PLAN_PACK.name, *(f"life-plans/{path.stem}.txt" for path in PLAN_FILES))
 EXPECTED = {"xiaodou-skill.zip", "xiaodou-pilot-start.txt", "CANDIDATE.txt", "STARTERS.tsv", *STARTERS}
 SCENE_STARTERS = tuple(f"life-plans/{path.name}" for path in SCENE_FILES.values())
+PLAN_STARTERS = tuple(f"life-plans/{path.name}" for path in PLAN_STARTER_FILES.values())
 
 
 def verify_hashes(directory, expected_files):
@@ -48,11 +49,13 @@ def read_candidate(directory):
 
 def verify(directory, expected_commit=None, repository=REPOSITORY):
     fields = read_candidate(directory)
-    if fields.get("scene_starters") not in (None, "true"):
-        raise ValueError("invalid scene starter metadata")
-    scenes = SCENE_STARTERS if fields.get("scene_starters") == "true" else ()
-    starters = set(STARTERS + scenes)
-    verify_hashes(directory, EXPECTED.union(scenes))
+    starters = set(STARTERS)
+    for field, files in (("scene_starters", SCENE_STARTERS), ("plan_starters", PLAN_STARTERS)):
+        if fields.get(field) not in (None, "true"):
+            raise ValueError(f"invalid {field} metadata")
+        if fields.get(field) == "true":
+            starters.update(files)
+    verify_hashes(directory, EXPECTED | starters)
     candidate_commit = fields["candidate_commit"]
     if expected_commit is not None and candidate_commit != expected_commit:
         raise ValueError("candidate commit does not match the expected commit")

@@ -8,6 +8,7 @@ PLAN_FILES = tuple(PLAN_DIR / name for name in ("health.md", "learning.md", "car
 PLAN_INDEX = PLAN_DIR / "README.md"
 PLAN_PACK = ROOT / "prompts/xiaodou-life-plans.txt"
 PLAN_COPY_DIR = ROOT / "prompts/life-plans"
+PUBLIC_PLAN_URL = "https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans"
 PLAN_FIELDS = ("触发", "中书立案", "门下核对", "尚书交办", "回奏", "依据")
 SCENES = {
     "weight": ("P01", "帮我制定一个减肥计划。"),
@@ -17,6 +18,39 @@ SCENES = {
     "study-abroad": ("P11", "朕准备申请留学，先帮我核对选校条件和当届申请时间。"),
 }
 SCENE_FILES = {scene: PLAN_COPY_DIR / f"scene-{scene}.txt" for scene in SCENES}
+PLAN_GOALS = {
+    "P01": "帮我制定一个减肥计划。",
+    "P02": "帮我制定一个适合我基础的首周力量训练计划。",
+    "P03": "我想开始跑步，帮我从适合当前水平的走跑计划起步。",
+    "P04": "我想把作息调规律，帮我选一个这周能做的调整。",
+    "P05": "帮我安排一周备餐，按实际用餐次数做菜单和购物清单。",
+    "P06": "我想少久坐，帮我在日常安排里找一个容易执行的活动间歇。",
+    "P07": "我想练英语口语，帮我从最需要的真实场景开练。",
+    "P08": "帮我按考试日期、科目和薄弱点倒排复习。",
+    "P09": "我想读懂一本书并能讲出来，帮我安排阅读和输出。",
+    "P10": "我想从零学一项技能，帮我定第一个能验收的小作品。",
+    "P11": "帮我排留学申请，先确认当届学校要求和申请时间。",
+    "P12": "帮我把写作任务排到交稿，按进度拆出这周该交的部分。",
+    "P13": "我想找更适合的职业方向，帮我比较几条值得先验证的路。",
+    "P14": "我有转岗的方向，帮我核对能力差距并安排过渡计划。",
+    "P15": "帮我制定求职投递和跟进计划，按我实际有的时间排。",
+    "P16": "帮我按目标岗位优化简历或作品集，先确认我能提供的真实经历和证据。",
+    "P17": "我想备战一次面试，帮我按岗位和剩余时间安排练习。",
+    "P18": "帮我把工作项目拆成有交付物和日期的里程碑。",
+    "P19": "帮我做一份月度预算，按实际收入和支出安排。",
+    "P20": "我想存一笔应急金，帮我制定能照着做的存钱计划。",
+    "P21": "帮我梳理几笔债的还款顺序，用真实条款比较方案。",
+    "P22": "帮我筹备一次旅行，按同行人、日期和预算排日程。",
+    "P23": "帮我从搬家日期往前倒排，先找必须提前确认的事。",
+    "P24": "帮我整理家里的一块区域，安排一次有明确完成标准的行动。",
+    "P25": "我想养成一个习惯，帮我找一个每天已有的动作作为起点。",
+    "P26": "有件事我一直没开始，帮我弄清卡点并定下第一个能做的动作。",
+    "P27": "我想减少手机干扰，帮我先选一个具体时段做调整。",
+    "P28": "我有一场重要沟通要准备，先帮我理清目标，再给一段开场草稿。",
+    "P29": "帮我们安排家庭分工，写清谁负责、何时做、怎么交接。",
+    "P30": "帮我回顾这周的实际进展，并排出下周先做的事。",
+}
+PLAN_STARTER_FILES = {plan_id: PLAN_COPY_DIR / f"{plan_id.lower()}.txt" for plan_id in PLAN_GOALS}
 INTRO = (
     "启用小豆皇帝模拟器。用白话称我「皇上」。按我的自然话选下面最贴近的一个计划。",
     "先沿用我说过的情况，缺关键条件才提问。中书拟案，门下查条件，尚书交计划，六部按需出手。",
@@ -47,6 +81,7 @@ INTRO = (
 def copy_packs():
     chapters = {}
     plans = {}
+    index_links = []
     for path in PLAN_FILES:
         source = path.read_text(encoding="utf-8").strip()
         blocks = re.split(r"^## (P\d{2}) · ", source, flags=re.MULTILINE)
@@ -59,9 +94,18 @@ def copy_packs():
             if plan_id in plans:
                 raise ValueError(f"Duplicate plan: {plan_id}")
             plans[plan_id] = f"## {plan_id} · {body.strip()}"
+            index_links.append((plan_id.lower(), path.name, plan_id.lower()))
         chapters[path.stem] = source
-    if list(plans) != [f"P{number:02}" for number in range(1, 31)]:
-        raise ValueError("Expected unique plan IDs in P01–P30 order")
+    if list(plans) != [f"P{number:02}" for number in range(1, 31)] or plans.keys() != PLAN_GOALS.keys():
+        raise ValueError("Expected one workflow and opening goal for each plan P01–P30 in order")
+    actual_links = re.findall(
+        rf"^[-] \[[^\]]+\]\({re.escape(PUBLIC_PLAN_URL)}/(p\d{{2}})\.txt\) · "
+        r"\[流程与依据\]\(([\w-]+\.md)#(p\d{2})--[^)]+\)$",
+        PLAN_INDEX.read_text(encoding="utf-8"),
+        re.MULTILINE,
+    )
+    if actual_links != index_links:
+        raise ValueError("Each life-plan index entry must link to its opener and matching workflow")
     intro = "\n".join(INTRO) + "\n\n"
     copies = {PLAN_PACK: intro + "\n\n".join(chapters.values()) + "\n"}
     for category, chapter in chapters.items():
@@ -71,9 +115,15 @@ def copy_packs():
             + chapter
             + "\n\n我的目标：\n"
         )
+    for plan_id, goal in PLAN_GOALS.items():
+        copies[PLAN_STARTER_FILES[plan_id]] = plan_starter(intro, plans[plan_id], goal)
     for scene, (plan_id, goal) in SCENES.items():
-        copies[SCENE_FILES[scene]] = (
-            f"{intro}下面是本次目标对应的计划。缺关键资料时，直接列出要我回答的具体问题，等我回答后再排计划。\n\n"
-            f"{plans[plan_id]}\n\n我的目标：{goal}\n"
-        )
+        copies[SCENE_FILES[scene]] = plan_starter(intro, plans[plan_id], goal)
     return copies
+
+
+def plan_starter(intro, plan, goal):
+    return (
+        f"{intro}下面是本次目标对应的计划。缺关键资料时，直接列出要我回答的具体问题，等我回答后再排计划。\n\n"
+        f"{plan}\n\n我的目标：{goal}\n"
+    )

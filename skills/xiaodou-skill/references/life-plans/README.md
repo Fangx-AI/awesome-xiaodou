@@ -1,10 +1,10 @@
 # 小豆的 30 个生活计划
 
-在小豆里说 **「帮我制定一个减肥计划」**、**「我想从零开始跑步」** 或 **「帮我排一下留学申请」**。小豆先问关键情况，再给你能用的计划。说出自己的目标就行。
+在小豆里说 **「帮我制定一个减肥计划」**、**「我想从零开始跑步」** 或 **「帮我排一下留学申请」**。小豆先问关键情况，再给你能用的计划。每个计划都有一条开局，复制后即可发送。
 
 ## 怎么使用
 
-- **小豆 App 聊天**　先选一个分类，点「复制开局」打开纯文本。把自己的事写在末尾「我的目标」后面，整段发到小豆新对话。需要多个分类时，可以用[生活计划整包](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/xiaodou-life-plans.txt)。
+- **小豆 App 聊天**　点选一个计划，复制全文到小豆新对话。末尾已经写好目标，有需要再改成你自己的说法。想一次带上多个分类，可以用[生活计划整包](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/xiaodou-life-plans.txt)。
 - **支持 Agent Skills 的客户端**　导入包含本目录的小豆 Skill。说自然话就会按目标选择计划。有多个目标时，先确认你要优先推进哪一个。
 
 ## 选一个你想做的计划
@@ -15,41 +15,56 @@
 
 [复制开局 · 健康与运动](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/health.txt) · [查看本类全部方案](health.md)
 
-- [制定减肥计划](health.md#p01--减肥与体重管理) · [开始力量训练](health.md#p02--新手力量与体能)
-- [从零开始跑步](health.md#p03--从走跑交替开始) · [整理睡眠作息](health.md#p04--睡眠作息整理)
-- [安排一周备餐](health.md#p05--一周备餐与购物) · [减少久坐](health.md#p06--久坐活动间歇)
+- [制定减肥计划](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p01.txt) · [流程与依据](health.md#p01--减肥与体重管理)
+- [开始力量训练](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p02.txt) · [流程与依据](health.md#p02--新手力量与体能)
+- [从零开始跑步](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p03.txt) · [流程与依据](health.md#p03--从走跑交替开始)
+- [整理睡眠作息](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p04.txt) · [流程与依据](health.md#p04--睡眠作息整理)
+- [安排一周备餐](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p05.txt) · [流程与依据](health.md#p05--一周备餐与购物)
+- [减少久坐](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p06.txt) · [流程与依据](health.md#p06--久坐活动间歇)
 
 ### 学习与成长
 
 [复制开局 · 学习与成长](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/learning.txt) · [查看本类全部方案](learning.md)
 
-- [练英语口语](learning.md#p07--英语真实场景陪练) · [排考试复习](learning.md#p08--考试倒排与错题复习)
-- [读书并整理输出](learning.md#p09--阅读理解与输出) · [零基础自学](learning.md#p10--零基础自学一项技能)
-- [准备留学申请](learning.md#p11--留学申请与选校) · [把文章写到交稿](learning.md#p12--从选题到交稿)
+- [练英语口语](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p07.txt) · [流程与依据](learning.md#p07--英语真实场景陪练)
+- [排考试复习](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p08.txt) · [流程与依据](learning.md#p08--考试倒排与错题复习)
+- [读书并整理输出](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p09.txt) · [流程与依据](learning.md#p09--阅读理解与输出)
+- [零基础自学](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p10.txt) · [流程与依据](learning.md#p10--零基础自学一项技能)
+- [准备留学申请](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p11.txt) · [流程与依据](learning.md#p11--留学申请与选校)
+- [把文章写到交稿](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p12.txt) · [流程与依据](learning.md#p12--从选题到交稿)
 
 ### 职业与工作
 
 [复制开局 · 职业与工作](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/career.txt) · [查看本类全部方案](career.md)
 
-- [找职业方向](career.md#p13--职业方向探索) · [准备转岗](career.md#p14--转岗过渡与能力补齐)
-- [投简历并跟进](career.md#p15--求职投递与跟进) · [改简历和作品集](career.md#p16--简历与作品集)
-- [准备面试](career.md#p17--面试备战和模拟) · [排项目里程碑](career.md#p18--工作项目里程碑)
+- [找职业方向](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p13.txt) · [流程与依据](career.md#p13--职业方向探索)
+- [准备转岗](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p14.txt) · [流程与依据](career.md#p14--转岗过渡与能力补齐)
+- [投简历并跟进](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p15.txt) · [流程与依据](career.md#p15--求职投递与跟进)
+- [改简历和作品集](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p16.txt) · [流程与依据](career.md#p16--简历与作品集)
+- [准备面试](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p17.txt) · [流程与依据](career.md#p17--面试备战和模拟)
+- [排项目里程碑](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p18.txt) · [流程与依据](career.md#p18--工作项目里程碑)
 
 ### 财务与生活
 
 [复制开局 · 财务与生活](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/household.txt) · [查看本类全部方案](household.md)
 
-- [做月度预算](household.md#p19--个人月度预算) · [存应急金](household.md#p20--应急金与存钱计划)
-- [安排还债顺序](household.md#p21--债务偿还顺序) · [准备旅行](household.md#p22--旅行筹备与日程)
-- [倒排搬家时间](household.md#p23--搬家倒排) · [整理家务和物品](household.md#p24--家务整理与物品去留)
+- [做月度预算](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p19.txt) · [流程与依据](household.md#p19--个人月度预算)
+- [存应急金](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p20.txt) · [流程与依据](household.md#p20--应急金与存钱计划)
+- [安排还债顺序](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p21.txt) · [流程与依据](household.md#p21--债务偿还顺序)
+- [准备旅行](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p22.txt) · [流程与依据](household.md#p22--旅行筹备与日程)
+- [倒排搬家时间](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p23.txt) · [流程与依据](household.md#p23--搬家倒排)
+- [整理家务和物品](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p24.txt) · [流程与依据](household.md#p24--家务整理与物品去留)
 
 ### 习惯与关系
 
 [复制开局 · 习惯与关系](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/habits.txt) · [查看本类全部方案](habits.md)
 
-- [养成一个习惯](habits.md#p25--建立一个可持续的习惯) · [开始拖着没做的事](habits.md#p26--拖延任务的起步)
-- [减少屏幕干扰](habits.md#p27--降低手机与屏幕干扰) · [准备一次重要沟通](habits.md#p28--重要对话与冲突沟通)
-- [安排家庭分工](habits.md#p29--家庭分工和交接) · [回顾这周、安排下周](habits.md#p30--每周回顾与下周安排)
+- [养成一个习惯](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p25.txt) · [流程与依据](habits.md#p25--建立一个可持续的习惯)
+- [开始拖着没做的事](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p26.txt) · [流程与依据](habits.md#p26--拖延任务的起步)
+- [减少屏幕干扰](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p27.txt) · [流程与依据](habits.md#p27--降低手机与屏幕干扰)
+- [准备一次重要沟通](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p28.txt) · [流程与依据](habits.md#p28--重要对话与冲突沟通)
+- [安排家庭分工](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p29.txt) · [流程与依据](habits.md#p29--家庭分工和交接)
+- [回顾这周、安排下周](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans/p30.txt) · [流程与依据](habits.md#p30--每周回顾与下周安排)
 
 ## 小豆按这套流程办
 

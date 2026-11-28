@@ -6,7 +6,7 @@ from datetime import date, timedelta
 from pathlib import Path
 from statistics import median
 
-from build_life_plans import PLAN_FILES, PLAN_PACK, SCENE_FILES
+from build_life_plans import PLAN_FILES, PLAN_PACK, PLAN_STARTER_FILES, SCENE_FILES
 
 READ_ANSWERS = ("identity", "where", "how", "confirmation")
 CHANGE_SCORES = ("preserved", "affected_only", "actionable")
@@ -16,7 +16,8 @@ COMPARISON_FIELDS = ("first_action", *COMPARISON_REPLAN_FIELDS)
 CARRYOVER_STAGES = ("none", "first_action", "replan")
 TRIAL_STARTERS = ("xiaodou-start.txt", PLAN_PACK.name,
                   *(f"life-plans/{path.stem}.txt" for path in PLAN_FILES),
-                  *(f"life-plans/{path.name}" for path in SCENE_FILES.values()))
+                  *(f"life-plans/{path.name}" for path in SCENE_FILES.values()),
+                  *(f"life-plans/{path.name}" for path in PLAN_STARTER_FILES.values()))
 SHARED_SCENES = ("weight", "fitness", "reading", "english", "study-abroad")
 ACCESS_STAGES = ("find", "install", "login", "activate", "send", "other")
 
