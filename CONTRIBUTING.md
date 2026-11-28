@@ -25,6 +25,8 @@
 
 ## 登记小豆 App 真机结果
 
+只想回报一次结果，可以用[公开反馈表](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=prompt-feedback.yml)。请写明复现需要的开局和实际回复。若涉及外部操作，分别记录是否看到本次操作的回执，以及后来有没有收到提醒、日历有没有出现对应事件、或收件箱有没有收到邮件。只观察到创建回执时，把实际触发或送达标为未核对。
+
 在 `docs/field-tests/` 中添加脱敏 Markdown，写下实际输入、输出、回执或观察结果。然后在 `data/self-tests.json` 添加 `case_id`、`date`（YYYY-MM-DD）、`client`（小豆 App）、`version`、`outcome`（通过、部分通过、未通过、权限受限之一）和 `evidence_path`（相对仓库路径）。目录内的玩法同步将 `self_tested` 设为 true，再运行目录生成器。G01 和 H01 直接登记，不用改目录数据。
 
 跑完「今晚只剩五分钟」后，用 `case_id: S0` 登记，沿用日期、客户端、App 版本和脱敏证据路径。再填写 `platform`、`os_version`、候选工件的完整 `candidate_commit` 和下面七项 `checks`，逐项填「通过」「未通过」「权限受限」或「未测」。S0 以逐项结果展示，省略汇总 `outcome`。每次演练单独留一份证据，实际触发需与已确认创建的同一条提醒对应。
