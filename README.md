@@ -20,6 +20,10 @@
 
 [查看减肥计划指南](docs/weight-first-week.md) · [下载流程示例图](assets/xiaodou-monthly-plan-share.png)
 
+## 30 个生活计划
+
+想改善睡眠、准备面试、规划存钱，或把拖着没开始的事做起来？在小豆里说你想做什么，就能从相应的计划开始。 [浏览全部 30 个计划](skills/xiaodou-skill/references/life-plans/README.md) · [复制计划整包](prompts/xiaodou-life-plans.txt)
+
 | 你想做什么 | 可以这样开口 |
 | --- | --- |
 | **朕要记日程** | 「这张截图里改过两次时间，先找最后定下来的约定。」 [截图记日历](playbooks/11-screenshot-calendar.md) |
@@ -115,7 +119,7 @@
 <details>
 <summary>下载、试用记录与建设计划</summary>
 
-- [Agent Skills ZIP](https://github.com/Fangx-AI/awesome-xiaodou/releases/latest/download/xiaodou-skill.zip) · [版本记录](docs/updates.md)
+- [含 30 个生活计划的候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot) · [历史版本](https://github.com/Fangx-AI/awesome-xiaodou/releases)
 - [试用案例](docs/prompt-quality.md) · [提示词出处](skills/xiaodou-skill/references/prompt-sources.md) · [建设计划](docs/roadmap.md)
 - [玩法雷达](docs/radar.md) · [作者分享](docs/community.md) · [失败记录](docs/failures.md) · [来源登记](docs/source-ledger.md)
 

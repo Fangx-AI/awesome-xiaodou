@@ -7,6 +7,7 @@
 - **[试用版开局](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/README.md#一句话在小豆里开始)**：适合办自己的事、做多周计划、报进度和改期。
 - **[开局纯文本](../prompts/xiaodou-start.txt)**：复制后加上你的目标，发成一条消息。
 - **[正式版完整指令](../prompts/emperor-simulator.md)**：包含三省六部分工、进展更新和跨对话续聊摘要。
+- **[30 个生活计划](../skills/xiaodou-skill/references/life-plans/README.md)**：在小豆 App 里复制对应分类或计划整包，带上自己的目标发送。
 - **整包提示词**：用于一段对话里选择多种场景，按下面的步骤使用。
 
 1. 打开[9 条常用指令](../prompts/xiaodou-quick-pack.txt)或[完整 44 条](../prompts/xiaodou-paste-pack.txt)，点 GitHub 文件工具栏中的复制按钮，或打开 Raw 后全选复制。
@@ -17,7 +18,7 @@
 
 ## 豆包工作 / 支持 Agent Skills 的客户端
 
-1. [下载 xiaodou-skill.zip](https://github.com/Fangx-AI/awesome-xiaodou/releases/latest/download/xiaodou-skill.zip)。
+1. 从[候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot)下载通过校验的工件，解出含 30 个生活计划的 `xiaodou-skill.zip`。旧版在 [Releases](https://github.com/Fangx-AI/awesome-xiaodou/releases)。
 2. 解压，保留 `xiaodou-skill` 文件夹及其 `references`。在支持技能导入的客户端选择该技能文件夹，或按客户端要求上传技能。豆包工作的入口在「技能」中的本地导入。
 3. 在已启用技能的对话中说「用小豆 Skill 帮我做个减肥计划」，或在技能选择器中选择它。
 

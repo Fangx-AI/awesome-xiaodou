@@ -5,6 +5,8 @@ import sys
 from pathlib import Path
 from zipfile import ZipFile
 
+from build_life_plans import PLAN_FILES, PLAN_INDEX, PLAN_PACK, plan_content
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -46,7 +48,9 @@ def verify(archive):
     roles = json.loads(text(ROOT / "docs/studio/roles.json"))
     with ZipFile(archive) as bundle:
         assert bundle.testzip() is None, "damaged ZIP contents"
+        assert text(PLAN_PACK) == plan_content(), "App copy pack must match the 30 Skill plans"
         tracked_files = ["SKILL.md", "references/prompts.md", "references/court.md", "references/prompt-sources.md"]
+        tracked_files.extend(path.relative_to(skill).as_posix() for path in (PLAN_INDEX, *PLAN_FILES))
         for path in tracked_files:
             assert bundle.read("xiaodou-skill/" + path).decode().replace("\r\n", "\n") == text(skill / path), path
         assert bundle.read("xiaodou-skill/LICENSE") == (ROOT / "LICENSE").read_bytes()

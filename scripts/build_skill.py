@@ -5,6 +5,8 @@ import sys
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
+from build_life_plans import PLAN_FILES, PLAN_INDEX, PLAN_PACK, plan_content
+
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skills" / "xiaodou-skill"
 LIBRARY = SKILL / "references" / "prompts.md"
@@ -46,6 +48,7 @@ def read_prompt(path):
 
 
 def main(output_folder):
+    PLAN_PACK.write_text(plan_content(), encoding="utf-8", newline="\n")
     cases = json.loads((ROOT / "data/playbooks.json").read_text(encoding="utf-8"))
     cases.append({"id": "H01", "path": "prompts/41-weight-plan.md",
                   "title": "一个月减肥计划与每周复盘", "category": "健康与习惯"})
@@ -58,6 +61,7 @@ def main(output_folder):
     markdown = ["# 小豆提示词库", "", f"共 {len(cases)} 条。可按场景或编号选用。", ""]
     routing = (SKILL / "SKILL.md").read_text(encoding="utf-8").split("---", 2)[2].strip()
     routing = routing.replace("[提示词库](references/prompts.md)", "下方的提示词库")
+    routing = routing.replace("[30 个生活计划](references/life-plans/README.md)", "当前对话已加载的生活计划资料（如有）")
     routing = routing.replace("[三省六部人物志](references/court.md)", "G01 中的角色分工")
     intro = [
         "请在本次对话中启用下面的小豆 Skill。",
@@ -89,7 +93,8 @@ def main(output_folder):
     portraits = build_court()
     archive = output_folder / "xiaodou-skill.zip"
     with ZipFile(archive, "w", compression=ZIP_DEFLATED) as bundle:
-        for path in (SKILL / "SKILL.md", LIBRARY, LIBRARY.parent / "prompt-sources.md", COURT_REFERENCE):
+        for path in (SKILL / "SKILL.md", LIBRARY, LIBRARY.parent / "prompt-sources.md", COURT_REFERENCE,
+                     PLAN_INDEX, *PLAN_FILES):
             bundle.write(path, path.relative_to(SKILL.parent).as_posix())
         for portrait in portraits:
             bundle.write(portrait, f"xiaodou-skill/assets/roles/{portrait.name}")
