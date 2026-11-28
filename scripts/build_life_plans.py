@@ -9,6 +9,14 @@ PLAN_INDEX = PLAN_DIR / "README.md"
 PLAN_PACK = ROOT / "prompts/xiaodou-life-plans.txt"
 PLAN_COPY_DIR = ROOT / "prompts/life-plans"
 PLAN_FIELDS = ("触发", "中书立案", "门下核对", "尚书交办", "回奏", "依据")
+SCENES = {
+    "weight": ("P01", "帮我制定一个减肥计划。"),
+    "fitness": ("P02", "朕想从零开始练力量，每周有两个空档，帮我排首周。"),
+    "reading": ("P25", "朕总是读两天就停，帮我把阅读接到每天做完的一件事后面。"),
+    "english": ("P07", "朕想练英语会议开场，帮我从第一句开始。"),
+    "study-abroad": ("P11", "朕准备申请留学，先帮我核对选校条件和当届申请时间。"),
+}
+SCENE_FILES = {scene: PLAN_COPY_DIR / f"scene-{scene}.txt" for scene in SCENES}
 INTRO = (
     "启用小豆皇帝模拟器。用白话称我「皇上」。按我的自然话选下面最贴近的一个计划。",
     "先沿用我说过的情况，缺关键条件才提问。中书拟案，门下查条件，尚书交计划，六部按需出手。",
@@ -37,7 +45,7 @@ INTRO = (
 
 def copy_packs():
     chapters = {}
-    ids = []
+    plans = {}
     for path in PLAN_FILES:
         source = path.read_text(encoding="utf-8").strip()
         blocks = re.split(r"^## (P\d{2}) · ", source, flags=re.MULTILINE)
@@ -47,9 +55,11 @@ def copy_packs():
             fields = re.findall(r"^- \*\*([^*]+)\*\*\s+\S", body, re.MULTILINE)
             if tuple(fields) != PLAN_FIELDS or "https://" not in body:
                 raise ValueError(f"{plan_id}: expected the six plan fields and an external source")
-            ids.append(plan_id)
+            if plan_id in plans:
+                raise ValueError(f"Duplicate plan: {plan_id}")
+            plans[plan_id] = f"## {plan_id} · {body.strip()}"
         chapters[path.stem] = source
-    if ids != [f"P{number:02}" for number in range(1, 31)]:
+    if list(plans) != [f"P{number:02}" for number in range(1, 31)]:
         raise ValueError("Expected unique plan IDs in P01–P30 order")
     intro = "\n".join(INTRO) + "\n\n"
     copies = {PLAN_PACK: intro + "\n\n".join(chapters.values()) + "\n"}
@@ -60,4 +70,6 @@ def copy_packs():
             + chapter
             + "\n\n我的目标：\n"
         )
+    for scene, (plan_id, goal) in SCENES.items():
+        copies[SCENE_FILES[scene]] = f"{intro}{plans[plan_id]}\n\n我的目标：{goal}\n"
     return copies

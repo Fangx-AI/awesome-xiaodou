@@ -2,7 +2,7 @@
 
 **计划做过几次，后来总要重来？** 看看小豆怎么问清情况、排出第一步，在条件变化时保留你已经做完的事。
 
-选一件你想做的事。每节都有第一次可以怎么说、对应的开局，以及可转发的流程图。
+选一件你想做的事，复制对应开局的全文，发到小豆 App 的新对话。开局已带上本节目标，想换成自己的情况时改最后一行即可。 [下载或开通小豆](install.md#下载和开通)
 
 [制定减肥计划](#制定减肥计划) · [健身](#健身) · [自律](#自律) · [学英语](#学英语) · [留学](#留学)
 
@@ -14,7 +14,7 @@
 
 **第一次说**「帮我制定一个减肥计划。」
 
-[复制健康与运动开局](../prompts/life-plans/health.txt)，把你的目标加在末尾，一起发到小豆新对话。
+**[复制减肥计划开局](../prompts/life-plans/scene-weight.txt)**，整段发到小豆新对话。
 
 **在原对话接着说**「这周我按计划走了两次，下周只有一个空档，帮我重排。」
 
@@ -47,7 +47,7 @@ https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/share-cards.md#%E5%88
 
 **第一次说**「朕想从零开始练力量，每周有两个空档，帮我排首周。」
 
-[复制健康与运动开局](../prompts/life-plans/health.txt)，把你的目标加在末尾，一起发到小豆新对话。
+**[复制健身开局](../prompts/life-plans/scene-fitness.txt)**，整段发到小豆新对话。
 
 **在原对话接着说**「周二练完了。周六要出差，没带弹力带，只有八分钟，有块安全空地。帮我只改周六。」
 
@@ -80,7 +80,7 @@ https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/share-cards.md#%E5%81
 
 **第一次说**「朕总是读两天就停，帮我把阅读接到每天做完的一件事后面。」
 
-[复制习惯养成开局](../prompts/life-plans/habits.txt)，把你的目标加在末尾，一起发到小豆新对话。
+**[复制自律阅读开局](../prompts/life-plans/scene-reading.txt)**，整段发到小豆新对话。
 
 **在原对话接着说**「这周已经读了两次，昨晚漏了。出差后晚上没空，只有午饭后五分钟，手机里有电子书。朕今天怎么接着读？」
 
@@ -113,7 +113,7 @@ https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/share-cards.md#%E8%87
 
 **第一次说**「朕想练英语会议开场，帮我从第一句开始。」
 
-[复制学习与成长开局](../prompts/life-plans/learning.txt)，把你的目标加在末尾，一起发到小豆新对话。
+**[复制英语陪练开局](../prompts/life-plans/scene-english.txt)**，整段发到小豆新对话。
 
 **在原对话接着说**「朕的会议开场已经写好第一句。今晚只剩五分钟。怎么练？」
 
@@ -146,7 +146,7 @@ https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/share-cards.md#%E5%AD
 
 **第一次说**「朕准备申请留学，先帮我核对选校条件和当届申请时间。」
 
-[复制学习与成长开局](../prompts/life-plans/learning.txt)，把你的目标加在末尾，一起发到小豆新对话。
+**[复制留学申请开局](../prompts/life-plans/scene-study-abroad.txt)**，整段发到小豆新对话。
 
 **在原对话接着说**「个人陈述已写完。全程预算从 30 万降到 22 万。A 校的官网总费用是 25 万，B 校还没查齐。朕该怎么改清单？」
 

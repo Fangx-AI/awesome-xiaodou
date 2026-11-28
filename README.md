@@ -105,7 +105,7 @@
 
 身高、体重都可以跳过。首周照样能排，也可以只记饮食和活动做到了几次。
 
-[查看减肥计划指南](docs/weight-first-week.md) · [下载流程示例图](assets/xiaodou-monthly-plan-share.png)
+[复制减肥计划开局](prompts/life-plans/scene-weight.txt) · [查看减肥计划指南](docs/weight-first-week.md) · [下载流程示例图](assets/xiaodou-monthly-plan-share.png)
 
 ## 30 个生活计划
 
