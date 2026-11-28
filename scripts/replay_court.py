@@ -865,8 +865,22 @@ def flow_fixtures():
          ("皇上", "会议|参会|同事", "英文|英语|开场|分钟"), ("[ABC][12]水平|保证流利",)),
         ("english-scene-resume", "scene-english",
          "朕已经写好第一句 We need to discuss the launch date. 今晚只剩五分钟。请扮同事和朕练，不要说完朕的回答。只有文字，没发录音。",
-         ("launch date", r"五分钟|5\s*分钟", "你来|你先|请你|试着|你答|等你|皇上来|轮到您|请您"),
+         ("launch date", r"五分钟|5\s*分钟", "你来|你先|请你|试着|你答|等你|皇上来|轮到您|请您|您先|您答"),
          ("你的发音.{0,6}很好|听起来.{0,8}流利|你的语速.{0,6}偏快",)),
+    )
+    flows["english-unfamiliar-question"] = (
+        ("english-preserve-opening-before-repair", "scene-english",
+         "这周我用文字练了会议开场，已经能说清要讨论上线日期。明天改成海外客户会，有三分钟练习。我最怕对方问题里有词听不懂。直接扮客户，用英文给一个关于上线日期的新追问，让我自己澄清，先别给答案。今天只有文字。",
+         ("上线日期|launch date", r"三分钟|3\s*分钟", r"\b(?:when|what|which|can|could|does|is|are|how|will)\b[^?\n]+\?", "澄清|请对方|问清|想确认|请用英文回|你来|您来|你先|您先"),
+         (r"你可以说.{0,8}(?:Could|Can|Do)|你的发音.{0,6}(?:很好|标准)",)),
+        ("english-prompted-repair-not-independent", "scene-english",
+         "我看懂了，但刚才没自己问出来。我照你下一条给的句首重试一次就算这轮结束。等我答完，分开记我原来能独立做什么、这次在提示下做了什么。",
+         ("句首|从.{0,5}开头|开头|起头|半句", "上线日期|开场|会议议题|launch date", "等你|等您|你答|您答|你来|您来|待|请.{0,10}补完|发来"),
+         ("你已经独立完成.{0,6}澄清|已成功.{0,6}澄清|发音.{0,8}(?:很好|正确)",)),
+        ("english-track-written-and-transfer", "scene-english",
+         "我用文字打了：Could you say that again more slowly? 没有录音。今天到这里，只给两条记录：这轮算什么，下次要怎么检验我能独立应对。",
+         ("文字|打字", "提示|句首|在帮助下|带提示", "下次|下一轮", "无提示|不提示|不看|独立", "(?:新|换|不同|没见过|陌生).{0,15}(题|追问|问题|场景)"),
+         ("发音.{0,6}(?:过关|合格|改善了)|本轮已经独立应对|你的口语已经过关",)),
     )
     flows["scene-study-abroad"] = (
         ("study-scene-start", "scene-study-abroad", "",
