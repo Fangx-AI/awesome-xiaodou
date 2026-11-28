@@ -62,22 +62,44 @@ def normalize_title(title):
     return re.sub(r"[^\w]+", "", unicodedata.normalize("NFKC", title).casefold())
 
 
+def article_key(url):
+    parts = urlsplit(canonical_url(url))
+    host = parts.hostname
+    if host in {"www.sohu.com", "m.sohu.com"} and re.fullmatch(r"/a/\d+_\d+/?", parts.path):
+        return "sohu:" + parts.path.rstrip("/")
+    if host in {"www.nbd.com.cn", "m.nbd.com.cn"} and re.fullmatch(r"/articles/\d{4}-\d{2}-\d{2}/\d+\.html", parts.path):
+        return "nbd:" + parts.path
+    if host in {"x.com", "www.x.com", "twitter.com", "mobile.twitter.com", "www.twitter.com"}:
+        post = re.fullmatch(r"/[^/]+/status/(\d+)/?", parts.path)
+        if post:
+            return "x:" + post[1]
+    return parts.geturl()
+
+
+def google_article(url):
+    parts = urlsplit(url)
+    return parts.hostname == "news.google.com" and parts.path.startswith(("/rss/articles/", "/articles/"))
+
+
 def classify_headline(title, publisher=""):
     if re.search(
         r"抓码站|买码|卖码|邀请码(出售|交易|接力|互助|主要靠)|求.{0,8}邀请码|"
-        r"邀请码.{0,12}(元|块|套利|炒|卖到|被抢疯)|邀请码\s*[:：]\s*[A-Z0-9]{5,12}\b",
+        r"邀请码.{0,12}(元|块|套利|炒|卖到|被抢疯)|邀请码\s*[:：]\s*[A-Z0-9]{5,12}\b|"
+        r"一码难求.{0,10}(全是黄牛|黄牛开价)",
         title,
     ):
         return None
     if re.search(r"内测招募|内测名额.{0,15}(手慢无|申请|招募)", title):
         return None
+    if re.search(r"帮大家梳理.{0,18}实测|一手评测来了.{0,8}这个说|转述.{0,12}(测评|实测)|转载.{0,12}(测评|实测)", title):
+        return "其他公开线索"
     if publisher.casefold() == "x" and not re.search(
         r"^实测|试用[了过]|试完|我.{0,12}(用小豆|让小豆|实测|刚用|刚试|测了)",
         title,
     ):
         return None
     if re.search(r"实测|上手|测评|玩法|复盘|搭建|整理|试用|体验(?:小豆|[:：])|怎么用|教程", title):
-        return "体验与玩法"
+        return "上手体验线索"
     if re.search(r"公测|上线|发布", title):
         return None
     return "其他公开线索"
@@ -104,12 +126,14 @@ def collect(label, url, now):
         text = headline + " " + description
         if "小豆" not in headline or not any(term in text for term in ("豆包", "字节", "个人助理", "Personal Agent")):
             continue
-        if classify_headline(headline, publisher) is None:
-            continue
         try:
             link = canonical_url(item.findtext("link", ""))
             published = parsedate_to_datetime(item.findtext("pubDate", "")).astimezone(CHINA)
         except (ValueError, TypeError, OverflowError):
+            continue
+        if not publisher and article_key(link).startswith("x:"):
+            publisher = "X"
+        if classify_headline(headline, publisher) is None:
             continue
         if link and now - timedelta(days=7) <= published <= now + timedelta(hours=1):
             candidates.append({"title": headline[:140], "url": link,
@@ -127,10 +151,10 @@ def output_page(rows, now, failures, candidate_counts=None):
     lines = [
         "# 小豆玩法雷达", "",
         "这里收集近 7 天的公开新闻和社区线索。按 15 分钟排程，首页、玩法或来源更新时也会扫描。GitHub 定时运行可能延迟。"
-        "只展示检索入口公开索引到的线索。下方时间为来源发布时间（北京时间）。", "",
+        "下方是检索入口索引的标题和发布时间（北京时间）。已读原文并纳入玩法的报道可在来源登记里查到。", "",
         "[回到玩法库](../README.md) · [查看最近一次扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml)"
         " · [提交新玩法](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose)", "",
-        "社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou) · [已经整理成指令的更新](updates.md)", "",
+        "社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou) · [已整理的玩法更新](updates.md) · [来源登记](source-ledger.md)", "",
     ]
     succeeded = len(FEEDS) - len(failures)
     lines.extend([f"本次读到 {succeeded}/{len(FEEDS)} 个检索入口。", ""])
@@ -152,7 +176,7 @@ def output_page(rows, now, failures, candidate_counts=None):
         lines.extend(["", "</details>", ""])
     if not succeeded:
         lines.extend(["所有来源均未读到，以下保留上一次线索。", ""])
-    groups = {"体验与玩法": [], "其他公开线索": []}
+    groups = {"上手体验线索": [], "其他公开线索": []}
     for row in rows:
         category = classify_headline(row["title"], row["publisher"])
         if category:
@@ -185,6 +209,30 @@ def write_page(rows, now, failures, candidate_counts=None):
         PAGE.write_text(page, encoding="utf-8")
 
 
+def merge_queue(previous, scanned, existing, now):
+    reviewed_urls = {article_key(source["url"]) for source in existing}
+    reviewed_titles = {normalize_title("豆包推出小豆，大厂争夺个人AI入口")}
+    reviewed_titles.update(normalize_title(source["title"]) for source in existing if source.get("title"))
+    by_title, by_url, queue = {}, {}, []
+    for row in previous + scanned:
+        if datetime.fromisoformat(row["published"]) < now - timedelta(days=7):
+            continue
+        title = normalize_title(row["title"])
+        url = article_key(row["url"])
+        publisher = "X" if url.startswith("x:") else row["publisher"]
+        if title in reviewed_titles or url in reviewed_urls or classify_headline(row["title"], publisher) is None:
+            continue
+        position = by_url.get(url, by_title.get(title))
+        if position is None:
+            position = len(queue)
+            queue.append({**row, "publisher": publisher})
+        elif google_article(queue[position]["url"]) and not google_article(row["url"]):
+            queue[position] = {**row, "publisher": publisher, "first_seen": queue[position]["first_seen"]}
+        by_title[title] = by_url[url] = position
+    queue.sort(key=lambda row: (row["published"], row["url"]), reverse=True)
+    return queue[:80]
+
+
 def main():
     now = datetime.now(CHINA)
     summary = []
@@ -212,24 +260,7 @@ def main():
         raise SystemExit("All feed requests failed; preserved the existing queue.")
 
     existing = json.loads((ROOT / "data/sources.json").read_text(encoding="utf-8"))
-    urls = {canonical_url(source["url"]) for source in existing}
-    titles = {normalize_title("豆包推出小豆，大厂争夺个人AI入口")}
-    titles.update(normalize_title(source["title"]) for source in existing if source.get("title"))
-    queue = []
-    # Keep prior metadata stable across scans and retain results through partial outages.
-    for row in previous + scanned:
-        if datetime.fromisoformat(row["published"]) < now - timedelta(days=7):
-            continue
-        if classify_headline(row["title"], row["publisher"]) is None:
-            continue
-        title = normalize_title(row["title"])
-        if title in titles or row["url"] in urls:
-            continue
-        titles.add(title)
-        urls.add(row["url"])
-        queue.append(row)
-    queue.sort(key=lambda row: (row["published"], row["url"]), reverse=True)
-    queue = queue[:80]
+    queue = merge_queue(previous, scanned, existing, now)
     QUEUE.write_text(json.dumps(queue, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     write_page(queue, now, failures, candidate_counts)
     print(f"Radar: {len(queue)} leads in the rolling queue.")
