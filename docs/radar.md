@@ -8,7 +8,7 @@
 
 本次读到 8/8 个检索入口。
 
-快照扫描时间：2026-11-28 20:27（北京时间） · [生成此快照的扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/runs/46144784193)
+快照扫描时间：2026-11-28 20:46（北京时间） · [生成此快照的扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/runs/46146285321)
 
 <details>
 <summary>查看各入口本轮命中的候选数</summary>
@@ -18,7 +18,7 @@
 - Google 新闻 · 实测　8 条
 - Google 新闻 · 工作流　2 条
 - Google 新闻 · 社区　5 条
-- Google 新闻 · 知乎与视频社区　11 条
+- Google 新闻 · 知乎与视频社区　12 条
 - Google 新闻 · 抖音与公众号　0 条
 - Bing 新闻　3 条
 - 华尔街见闻　0 条
@@ -26,7 +26,7 @@
 
 </details>
 
-最新入列：2026-11-28 20:27（北京时间）
+最新入列：2026-11-28 20:46（北京时间）
 
 ## 上手体验线索
 
@@ -49,6 +49,7 @@
 - 2026-11-27 17:26 · [继Meta「Muse」后，字节「小豆」也来了！个人智能体竞赛再升温！](<https://news.google.com/rss/articles/CBMiXEFVX3lxTE93NTFTaE90ZWN5NENabUJDSnNIUHNjNHVram80LUNILXR1T2pxd2dRSk42TU90U2RGSmpWTmgwQ2Y5SVd1NnVvZlVZRk5COHp3X1FnZmVYb2ZiTm9D>) · 知乎专栏
 - 2026-11-25 15:06 · [😮卧槽，所以国产版 Personal Agent「小豆」到底值不值得冲？ 新的一手评测来了。这个说小豆自带云端 Linux 电脑 + 继承豆包长期记忆，还挺打动我的。帮大家梳理下这篇我觉得最炸的 4 个实测玩法： 1️⃣ 真能替你打电话订座 支持境内餐厅、酒店、咖啡店等生活商家](<https://news.google.com/rss/articles/CBMiYkFVX3lxTE1TRTdtazN6QlpMa0p3bzNkQ01QbDhlRnZYUHpCUzcteXZ2S1V1bWQ5SG9lMkpWSDJZdE5xOWRndXhWUVV2dk1YNTVibGdYS3U0QkdWeG80bmgzY1g2cHk2Nlpn>) · X
 - 2026-11-25 08:53 · [试完了一下豆包小豆，可能小豆的最大对手是自己。 逐条分析： 初始化就让链接各类 app 与数据我认为不是很好的策略，因为用户没用过是不会轻易点链接的，而且渐进式推进更合理。 国内确实没办法做到大一统的 agen，毕竟生态割裂，但是字节基本上已经能够打通](<https://news.google.com/rss/articles/CBMiXkFVX3lxTE1Lal9lNEE3SkRLd2VPb2lORENSYVRMZkstSVVyYjZTMjh2U1FGNWV3bE1FLUJiOUpZelNleFdiaTdmZnJrWWwyVTRLa0pveEgwTFJVTmxWMm9aUXZ2cFE>) · X
+- 2026-11-24 20:34 · [豆包旗下 AI 个人助理“小豆”入门指南（附我个人邀请码和申请链接）](<https://news.google.com/rss/articles/CBMiXEFVX3lxTE1hcWRpZ3I1MHNJZldneVdkVXEzdkFkX1hsWU45WV8tcGtSWFNXZUtrQS13Y0xnNGEzSmVhQmZaX3BRSmd0YlN0UEhFbTVYd1B4ZlZWQ0QtczluME9w>) · 知乎专栏
 - 2026-11-24 17:42 · [用户期待豆包小豆的日程管理能力 助力打理繁杂时间](<https://news.google.com/rss/articles/CBMib0FVX3lxTFA2bVJ4c2NiOUY2Uk9YYzFyZ3Fwb3p1dTJVR0xoZkRMT2NKSkVaZXVvajhTQ3ZWQ2JtdDFTZ3JQelgxRTRSbHVoTXk3VkpOQkZJS2l0NVFzdi04OEtvNTBFbnVqLUFaUkdNZjU5UDQxcw>) · 微博
 - 2026-11-24 17:23 · [TCL空调率先适配豆包旗下“小豆”AI助理，已深度布局三大主流AI平台](<https://news.google.com/rss/articles/CBMijAFBVV95cUxQWFBONW5wVGN4Si1WQWQ5S3FRNEhMbldiWjllLUZ1YVhSRUdKUHF6SGp4NmpyRFpyZkx3bjZjOXRPVWZJa1J3YXlLYl9GLTlFY0ZzZlZhYmJ6b2Z4Ni03TUptQVREaUJjb19fYnJrQ3FCR1BPdmtxRTVNODhDTW92RFJNandjdllfSWlXUw>) · Sohu
 - 2026-11-24 13:46 · [豆包旗下AI个人助理产品小豆需邀请码 可下载了解](<https://news.google.com/rss/articles/CBMiVkFVX3lxTFBRVzltRlYxaUpWbHNTWllQMGpyaUsyMHhJMDZqWllSRUFtX0tqT0ZMd09aSnROVkZNRktiSWFoay0yYVNDQ1ZodjRmOWxMMXpkS1BaTHJ3>) · 微博
