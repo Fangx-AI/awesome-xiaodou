@@ -36,6 +36,8 @@
 
 包内含说明、提示词、出处和九张人物图。不同客户端的导入格式和权限以实际界面为准。本版已检查 ZIP 结构，豆包工作及小豆客户端导入尚未实测。
 
+下载新候选包后，可在仓库根目录用 Python 3.11 或更新版本运行 `python scripts/verify_candidate.py <解压目录> --commit <Actions 上显示的完整提交号>`，核对文件校验值和固定版本链接。
+
 [豆包工作官方技能说明](https://www.feishu.cn/content/article/7677519271848610746) · [Agent Skills 规范](https://agentskills.io/specification)
 
 [access-feedback]: https://github.com/Fangx-AI/awesome-xiaodou/issues/new?title=%5B%E5%B0%8F%E8%B1%86%E5%87%86%E5%85%A5%5D%20&body=%E6%89%8B%E6%9C%BA%E4%B8%8E%E7%B3%BB%E7%BB%9F%EF%BC%9A%0A%E4%BD%BF%E7%94%A8%E7%9A%84%E5%BA%94%E7%94%A8%E5%95%86%E5%BA%97%EF%BC%9A%0A%E5%8D%A1%E5%9C%A8%E5%93%AA%E4%B8%80%E6%AD%A5%EF%BC%9A%0A%E9%A1%B5%E9%9D%A2%E6%98%BE%E7%A4%BA%EF%BC%9A%0A
