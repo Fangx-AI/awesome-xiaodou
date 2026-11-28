@@ -69,6 +69,10 @@ def article_key(url):
         return "sohu:" + parts.path.rstrip("/")
     if host in {"www.nbd.com.cn", "m.nbd.com.cn"} and re.fullmatch(r"/articles/\d{4}-\d{2}-\d{2}/\d+\.html", parts.path):
         return "nbd:" + parts.path
+    if host in {"weibo.com", "www.weibo.com", "m.weibo.cn", "sina.cn", "www.sina.cn"}:
+        post = re.fullmatch(r"/(?:\d+/|news/)?detail/(\d+)(?:\.html)?/?", parts.path)
+        if post:
+            return "weibo:" + post[1]
     if host in {"x.com", "www.x.com", "twitter.com", "mobile.twitter.com", "www.twitter.com"}:
         post = re.fullmatch(r"/[^/]+/status/(\d+)/?", parts.path)
         if post:
@@ -151,8 +155,10 @@ def output_page(rows, now, failures, candidate_counts=None):
     lines = [
         "# 小豆玩法雷达", "",
         "这里收集近 7 天的公开新闻和社区线索。按 15 分钟排程，首页、玩法或来源更新时也会扫描。GitHub 定时运行可能延迟。"
+        "线索未变时，页面保留最近的内容快照。每次扫描的实际时间和读取结果见运行摘要。"
         "下方是检索入口索引的标题和发布时间（北京时间）。已读原文并纳入玩法的报道可在来源登记里查到。", "",
         "[回到玩法库](../README.md) · [查看最近一次扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml)"
+        " · [仅看自动定时扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml?query=event%3Aschedule)"
         " · [提交新玩法](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose)", "",
         "社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou) · [已整理的玩法更新](updates.md) · [来源登记](source-ledger.md)", "",
     ]
@@ -210,7 +216,12 @@ def write_page(rows, now, failures, candidate_counts=None):
 
 
 def merge_queue(previous, scanned, existing, now):
-    reviewed_urls = {article_key(source["url"]) for source in existing}
+    reviewed_urls = {
+        article_key(url)
+        for source in existing
+        for url in (source["url"], source.get("mirror"))
+        if url
+    }
     reviewed_titles = {normalize_title("豆包推出小豆，大厂争夺个人AI入口")}
     reviewed_titles.update(normalize_title(source["title"]) for source in existing if source.get("title"))
     by_title, by_url, queue = {}, {}, []
@@ -253,7 +264,9 @@ def main():
     print("\n".join(summary))
     if os.environ.get("GITHUB_STEP_SUMMARY"):
         with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as log:
-            log.write("## 数据源扫描\n\n" + "\n".join(summary) + "\n")
+            log.write(f"## 数据源扫描\n\n实际检查时间 {now:%Y-%m-%d %H:%M}（北京时间）。"
+                      f"读到 {len(FEEDS) - len(failures)}/{len(FEEDS)} 个入口。\n\n"
+                      + "\n".join(summary) + "\n")
     previous = json.loads(QUEUE.read_text(encoding="utf-8")) if QUEUE.exists() else []
     if len(failures) == len(FEEDS):
         write_page(previous, now, failures, candidate_counts)

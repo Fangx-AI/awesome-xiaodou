@@ -55,6 +55,23 @@ class RadarTests(unittest.TestCase):
         self.assertEqual(result, [{**new_link, "first_seen": detected}])
         self.assertEqual(radar.merge_queue(result, [previous], [], now), result)
 
+    def test_reviewed_aliases_and_mirrors_stay_out_of_the_queue(self):
+        now = datetime(2026, 11, 28, 12, 10, tzinfo=radar.CHINA)
+        reviewed = [
+            {"url": "https://weibo.com/2/detail/5368835221753457"},
+            {"url": "https://original.ifeng.com/c/8yLT38Uc7Ug",
+             "mirror": "https://www.huxiu.com/article/4908495.html"},
+        ]
+        common = {"first_seen": now.isoformat(), "published": now.isoformat(), "publisher": ""}
+        sources = [
+            {**common, "title": "作者体验小豆收藏工作流", "url": "https://sina.cn/news/detail/5368835221753457.html"},
+            {**common, "title": "小豆深度实测转载", "url": "https://www.huxiu.com/article/4908495.html?utm_medium=rss"},
+            {**common, "title": "实测小豆生活服务", "url": "https://m.weibo.cn/detail/5368835221753458"},
+        ]
+        self.assertEqual(radar.merge_queue([], sources, reviewed, now), [sources[2]])
+        self.assertEqual(radar.article_key("https://m.weibo.cn/detail/5368835221753457"),
+                         radar.article_key(reviewed[0]["url"]))
+
     def test_empty_results_distinguish_failed_sources(self):
         now = datetime.now(radar.CHINA)
         clean = radar.output_page([], now, [])
@@ -67,6 +84,7 @@ class RadarTests(unittest.TestCase):
         self.assertIn("近 7 天暂无新线索", clean)
         self.assertIn("本次未读到：Bing 新闻", partial)
         self.assertNotIn("近 7 天暂无新线索", partial)
+        self.assertIn("仅看自动定时扫描", clean)
 
     def test_snapshot_updates_only_on_new_day_or_changed_content(self):
         now = datetime(2026, 11, 28, 12, 10, tzinfo=radar.CHINA)
