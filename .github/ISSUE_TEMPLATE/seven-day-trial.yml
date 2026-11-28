@@ -1,5 +1,5 @@
 name: 七天试用登记
-description: 已在小豆开局后自愿登记，做完第一步就回原帖留言
+description: 已在小豆开局后自愿登记，可以同时回报第一步或遇到的阻碍
 title: "[七天试用] "
 body:
   - type: markdown
@@ -17,6 +17,7 @@ body:
     id: started-on
     attributes:
       label: 开局日期
+      description: 填你在小豆实际发出开局消息的日期。
       placeholder: YYYY-MM-DD
     validations:
       required: true
@@ -44,7 +45,7 @@ body:
     id: candidate
     attributes:
       label: 使用的开局链接
-      description: 观察者发了固定版本链接时可以填这里
+      description: 有开局链接就贴链接，只记得开局名称也可以填。
   - type: input
     id: channel
     attributes:
@@ -61,7 +62,15 @@ body:
         - 自律阅读
         - 学英语
         - 留学
+  - type: textarea
+    id: first-update
+    attributes:
+      label: 第一步做到哪了
+      description: 已有进展就现在填。写明第一步、实际完成日期或卡点。改过计划时也可以说什么变了、保留什么、下一步是什么。
+      placeholder: |
+        第一步是练一遍开场。我在 2026-11-24 练完了。
+        周四没空，小豆保留了这一遍，把下次练习挪到周六。
   - type: markdown
     attributes:
       value: |
-        发帖后可以收藏链接。做完第一步当天即可回原帖留言，到第七天仍未完成也欢迎回报。写下「原先定的第一步」「做到哪了（全部完成／做了一部分／还没做）」「全部完成是哪一天（如有）」。计划有变化时，可以再写小豆保留了哪些进度、改成了什么下一步。
+        发帖后可以收藏链接。做完或想补充时直接回原帖，到第七天仍未完成也欢迎说说卡在哪里。
