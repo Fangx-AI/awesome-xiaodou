@@ -4,12 +4,13 @@
 
 ## 当前进展
 
-观测时间为 2026 年 11 月 29 日 00:42（北京时间）。GitHub 流量接口返回的最新访问与克隆记录为 11 月 27 日（UTC）。
+观测时间为 2026 年 11 月 29 日 01:39（北京时间）。GitHub 流量接口返回的最新访问与克隆记录为 11 月 27 日（UTC）。
 
 | 观测项 | 已有结果 |
 | --- | --- |
 | GitHub | 2 Star、0 Fork。最近 14 天记录 68 次浏览、31 个独立访客，以及 271 次克隆、115 个独立克隆者。 [仓库与实时 Star](https://github.com/Fangx-AI/awesome-xiaodou/stargazers) |
-| 公开发布 | v2.5.2 的 App 开局 ZIP 和完整技能 ZIP 各有 2 次下载，计数包含发布校验时的下载。 [发布包与校验值](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.5.2) |
+| 最常打开的页面 | 仓库首页记录 44 次浏览、26 个独立访客，是接口返回中访问最多的页面。 [仓库首页](https://github.com/Fangx-AI/awesome-xiaodou#readme) |
+| 公开发布 | 观测时最新版为 v2.6.2，GitHub 接口返回 App 开局 ZIP 和完整技能 ZIP 的下载数均为 0。附件计数可包含维护者的校验下载。 [发布包与校验值](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.6.2) |
 | 已校验的入口 | GitHub 页面已检查 320px、390px 和桌面宽度的复制路径。五份场景开局可直接从示例进入。 [使用状态](compatibility.md) · [场景入口](share-cards.md) |
 | 用户证据 | 已登记的小豆独立 App 真机测试为 0。公开入口尚未收到冷读、七天试用或两种模式对照的回报，尚无经核对的首步完成人数。 [真机登记](field-tests/README.md) · [七天试用回报](https://github.com/Fangx-AI/awesome-xiaodou/issues?q=is%3Aissue+label%3Aseven-day-trial) · [两种模式对照回报](https://github.com/Fangx-AI/awesome-xiaodou/issues?q=is%3Aissue+label%3Amode-comparison) |
 
