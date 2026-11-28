@@ -42,7 +42,7 @@ body:
     id: candidate
     attributes:
       label: 使用的开局链接
-      description: 有开局链接就贴链接，只记得开局名称也可以填。
+      description: 可以填复制开局的页面链接。用离线包时可写版本和文件名，例如 v2.4.0、P23 搬家倒排。只记得计划名称也可以填。
   - type: input
     id: channel
     attributes:

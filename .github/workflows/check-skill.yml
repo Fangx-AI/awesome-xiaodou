@@ -21,6 +21,7 @@ jobs:
           python -B scripts/test_pilot_measure.py
           python -B scripts/test_capture_github_metrics.py
           python -B scripts/test_verify_candidate.py
+          python -B scripts/test_build_trial_starter_guide.py
           python -B scripts/test_build_catalog.py
           python scripts/build_catalog.py
           python scripts/build_skill.py "$RUNNER_TEMP/xiaodou"
@@ -80,10 +81,12 @@ jobs:
             printf 'starter_versions=STARTERS.tsv\n'
             printf 'scene_starters=true\n'
             printf 'plan_starters=true\n'
+            printf 'starter_guide=STARTERS.md\n'
             printf 'pilot=%s/%s/blob/%s/docs/field-tests/pilot-s0.md\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_SHA"
             printf 'seven_day=%s/%s/blob/%s/docs/field-tests/seven-day.md\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_SHA"
           } > CANDIDATE.txt
-          sha256sum xiaodou-skill.zip xiaodou-start.txt xiaodou-pilot-start.txt xiaodou-life-plans.txt life-plans/*.txt STARTERS.tsv CANDIDATE.txt > SHA256SUMS
+          python -B "$GITHUB_WORKSPACE/scripts/build_trial_starter_guide.py" . --repository "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
+          sha256sum xiaodou-skill.zip xiaodou-start.txt xiaodou-pilot-start.txt xiaodou-life-plans.txt life-plans/*.txt STARTERS.tsv STARTERS.md CANDIDATE.txt > SHA256SUMS
           python -B "$GITHUB_WORKSPACE/scripts/verify_candidate.py" . --commit "$GITHUB_SHA" --repository "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
       - name: Upload checked S0 candidate
         id: candidate_artifact
@@ -100,6 +103,7 @@ jobs:
             ${{ runner.temp }}/xiaodou/SHA256SUMS
             ${{ runner.temp }}/xiaodou/CANDIDATE.txt
             ${{ runner.temp }}/xiaodou/STARTERS.tsv
+            ${{ runner.temp }}/xiaodou/STARTERS.md
           if-no-files-found: error
       - name: Show candidate download and trial links
         if: steps.candidate_artifact.outputs.artifact-id != ''
@@ -128,4 +132,6 @@ jobs:
               "$GITHUB_RUN_ID" "$GITHUB_REPOSITORY" "$GITHUB_SHA" "$GITHUB_RUN_ID"
             printf 'python scripts/verify_candidate.py xiaodou-s0-%s --commit %s\n' "$GITHUB_RUN_ID" "$GITHUB_SHA"
             printf '```\n'
+            printf '\n'
+            cat STARTERS.md
           } >> "$GITHUB_STEP_SUMMARY"

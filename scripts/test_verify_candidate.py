@@ -92,6 +92,14 @@ class CandidateVerificationTests(unittest.TestCase):
         _, statuses = verify(self.directory)
         self.assertEqual(len(PLAN_STARTERS), 30)
         self.assertEqual({name: statuses[name] for name in PLAN_STARTERS}, dict.fromkeys(PLAN_STARTERS, "missing"))
+        with metadata.open("a", encoding="utf-8") as file:
+            file.write("starter_guide=STARTERS.md\n")
+        self.write_hashes(EXPECTED.union(PLAN_STARTERS))
+        with self.assertRaisesRegex(ValueError, "missing checksum entries: STARTERS.md"):
+            verify(self.directory)
+        (self.directory / "STARTERS.md").write_text("checked copy links\n", encoding="utf-8")
+        self.write_hashes(EXPECTED.union(PLAN_STARTERS, {"STARTERS.md"}))
+        verify(self.directory)
 
 
 if __name__ == "__main__":

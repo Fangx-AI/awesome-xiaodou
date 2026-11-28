@@ -48,7 +48,7 @@
 
 包内含说明、提示词、出处和九张人物图。不同客户端的导入格式和权限以实际界面为准。本版已检查 ZIP 结构，豆包工作及小豆客户端导入尚未实测。
 
-候选工件附有两份开局纯文本、生活计划整包和 `life-plans/` 下的五个分类复制版。真机演练从 `CANDIDATE.txt` 打开 `pilot`，首页冷读打开 `public_readme`。七天试用可从 `STARTERS.tsv` 选通用开局、计划整包或一个分类的固定版本。
+固定版本的七天试用，在候选构建摘要的「手机可复制的固定开局」里选目标。观察者也可以把工件内 `STARTERS.md` 里的固定链接发给参与者。每条开局的纯文本版本见 `STARTERS.tsv`。真机演练从 `CANDIDATE.txt` 打开 `pilot`，首页冷读打开 `public_readme`。
 
 要参加固定版本试用，打开[通过的候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot)，在运行摘要的「小豆候选包」下载工件。该入口需要 GitHub 登录。
 

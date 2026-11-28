@@ -55,7 +55,11 @@ def verify(directory, expected_commit=None, repository=REPOSITORY):
             raise ValueError(f"invalid {field} metadata")
         if fields.get(field) == "true":
             starters.update(files)
-    verify_hashes(directory, EXPECTED | starters)
+    guide = fields.get("starter_guide")
+    if guide is not None and (guide != "STARTERS.md" or fields.get("plan_starters") != "true"):
+        raise ValueError("invalid starter guide metadata")
+    guide_files = {guide} if guide else set()
+    verify_hashes(directory, EXPECTED | starters | guide_files)
     candidate_commit = fields["candidate_commit"]
     if expected_commit is not None and candidate_commit != expected_commit:
         raise ValueError("candidate commit does not match the expected commit")
@@ -102,7 +106,8 @@ def main():
         commit, statuses = verify(args.directory, args.commit, args.repository)
     except (ValueError, OSError) as exc:
         parser.exit(2, f"Candidate verification failed: {exc}\n")
-    print(f"Verified {len(EXPECTED) + len(statuses) - len(STARTERS)} checksummed files for {commit}.")
+    files = (args.directory / "SHA256SUMS").read_text(encoding="utf-8").splitlines()
+    print(f"Verified {len(files)} checksummed files for {commit}.")
     for name, status in statuses.items():
         print(f"{name}: {status}")
 
