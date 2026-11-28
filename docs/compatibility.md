@@ -20,4 +20,4 @@
 
 ## 下载技能文件
 
-v2.2.0 的技能 ZIP 含 30 个生活计划、47 条提示词和九张人物图。已核对 ZIP 结构和开局文本。各客户端的实际导入与权限仍待复测。 [下载 v2.2.0](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.2.0) · [候选包构建记录](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot) · [导入步骤](install.md#豆包工作--支持-agent-skills-的客户端)
+v2.2.1 的技能 ZIP 含 30 个生活计划、47 条提示词和九张人物图。已核对 ZIP 结构和开局文本。各客户端的实际导入与权限仍待复测。 [下载 v2.2.1](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.2.1) · [候选包构建记录](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot) · [导入步骤](install.md#豆包工作--支持-agent-skills-的客户端)

@@ -34,7 +34,7 @@
 
 ## 豆包工作 / 支持 Agent Skills 的客户端
 
-1. 下载 [v2.2.0 技能 ZIP](https://github.com/Fangx-AI/awesome-xiaodou/releases/download/skill-v2.2.0/xiaodou-skill.zip)。发布页也提供开局和生活计划的纯文本。 [版本与校验值](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.2.0)
+1. 下载 [v2.2.1 技能 ZIP](https://github.com/Fangx-AI/awesome-xiaodou/releases/download/skill-v2.2.1/xiaodou-skill.zip)。发布页也提供开局和生活计划的纯文本。 [版本与校验值](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.2.1)
 2. 解压，保留 `xiaodou-skill` 文件夹及其 `references`。在支持技能导入的客户端选择该技能文件夹，或按客户端要求上传技能。豆包工作的入口在「技能」中的本地导入。
 3. 在已启用技能的对话中说「用小豆 Skill 帮我做个减肥计划」，或在技能选择器中选择它。
 
