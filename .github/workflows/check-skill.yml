@@ -33,6 +33,9 @@ jobs:
           done
           node "$skill/scripts/birth-chart/fortune.cjs" 2 > "$RUNNER_TEMP/xiaodou/lot.json"
           python -c 'import json, sys; lot = json.load(open(sys.argv[1], encoding="utf-8")); assert lot["number"] == 2 and len(lot["verse"]) == 4' "$RUNNER_TEMP/xiaodou/lot.json"
+          charts="$skill/scripts/birth-chart"
+          npm ci --prefix "$charts" --ignore-scripts --no-audit --no-fund
+          node scripts/check_packed_charts.cjs "$charts"
       - name: Prepare checksums and source links for the S0 candidate
         if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/codex/s0-pilot'
         env:

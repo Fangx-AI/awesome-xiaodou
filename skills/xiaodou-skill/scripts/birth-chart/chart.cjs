@@ -44,11 +44,13 @@ function ziwei(birth) {
   const { astro, version } = require('iztro');
   const [hour] = birth.clock;
   const hourIndex = Math.floor((hour + 1) / 2);
+  const dayDivide = 'forward';
+  astro.config({ dayDivide });
   const chart = astro.bySolar(birth.date, hourIndex, birth.sex, true, 'zh-CN');
   return {
     engine: 'iztro',
     version,
-    settings: { calendar: 'gregorian', timeBasis: 'local-civil', hourIndex, fixLeap: true },
+    settings: { calendar: 'gregorian', timeBasis: 'local-civil', hourIndex, fixLeap: true, dayDivide },
     lunarDate: chart.lunarDate,
     timeRange: chart.timeRange,
     palaces: chart.palaces.map(palace => ({
