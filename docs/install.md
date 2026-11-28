@@ -46,7 +46,7 @@
 
 包内含说明、提示词、出处和九张人物图。不同客户端的导入格式和权限以实际界面为准。本版已检查 ZIP 结构，豆包工作及小豆客户端导入尚未实测。
 
-要参加固定版本试用，打开[通过的候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot)，在运行摘要的「小豆候选包」下载工件。该入口需要 GitHub 登录。
+要参加固定版本试用，在候选构建摘要的「手机可复制的固定开局」选一个目标。观察者可以把对应的固定链接发给参与者。下载候选工件验证文本时，需要登录 GitHub。 [打开候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot)
 
 下载新候选包后，可在仓库根目录用 Python 3.11 或更新版本运行 `python scripts/verify_candidate.py <解压目录> --commit <Actions 上显示的完整提交号>`，核对文件校验值和固定版本链接。
 
