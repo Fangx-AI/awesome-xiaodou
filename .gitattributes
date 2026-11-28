@@ -1,5 +1,6 @@
 data/playbooks.csv text eol=lf
 prompts/xiaodou-paste-pack.txt text eol=lf
+prompts/xiaodou-pilot-start.txt text eol=lf
 prompts/xiaodou-quick-pack.txt text eol=lf
 skills/xiaodou-skill/references/court.md text eol=lf
 skills/xiaodou-skill/references/prompts.md text eol=lf

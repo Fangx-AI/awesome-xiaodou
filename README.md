@@ -14,6 +14,8 @@
 
 ## 一句话在小豆里开始
 
+这个分支是 S0 试用版。打开小豆独立 App 的新对话，试真实目标或跟着[三步真机演练](docs/field-tests/pilot-s0.md)走一遍。 [小豆 App Store 页面](https://apps.apple.com/cn/app/id6815582077)
+
 点文本框右上角复制，把整段作为**一条消息**发到小豆独立 App 的新对话。可以在消息末尾加一句你的目标，也可以等小豆问你。
 
 ```text
@@ -118,7 +120,7 @@
 <details>
 <summary>下载、试用记录与建设计划</summary>
 
-- [Agent Skills ZIP](https://github.com/Fangx-AI/awesome-xiaodou/releases/latest/download/xiaodou-skill.zip) · [版本记录](docs/updates.md)
+- [S0 候选包与构建校验](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot) · [正式发布记录](docs/updates.md)
 - [小豆真机首测](docs/field-tests/pilot-s0.md) · [试用案例](docs/prompt-quality.md) · [提示词出处](skills/xiaodou-skill/references/prompt-sources.md) · [建设计划](docs/roadmap.md)
 - [玩法雷达](docs/radar.md) · [作者分享](docs/community.md) · [失败记录](docs/failures.md) · [来源登记](docs/source-ledger.md)
 

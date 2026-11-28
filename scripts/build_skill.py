@@ -10,6 +10,9 @@ SKILL = ROOT / "skills" / "xiaodou-skill"
 LIBRARY = SKILL / "references" / "prompts.md"
 PASTE_PACK = ROOT / "prompts" / "xiaodou-paste-pack.txt"
 QUICK_PACK = ROOT / "prompts" / "xiaodou-quick-pack.txt"
+STARTER = ROOT / "prompts" / "xiaodou-start.txt"
+PILOT_STARTER = ROOT / "prompts" / "xiaodou-pilot-start.txt"
+PILOT_GUIDE = ROOT / "docs" / "field-tests" / "pilot-s0.md"
 QUICK_IDS = ("G01", "H01", "09", "11", "36", "01", "07", "41", "42")
 COURT_ROLES = ROOT / "docs" / "studio" / "roles.json"
 COURT_REFERENCE = LIBRARY.parent / "court.md"
@@ -95,6 +98,11 @@ def main(output_folder):
     PASTE_PACK.write_text("\n\n".join(paste) + "\n", encoding="utf-8", newline="\n")
     quick = intro + [by_id[prompt_id] for prompt_id in QUICK_IDS]
     QUICK_PACK.write_text("\n\n".join(quick) + "\n", encoding="utf-8", newline="\n")
+    example = re.search(r"^```text\n(.*?)\n```$", PILOT_GUIDE.read_text(encoding="utf-8"), re.M | re.S)
+    if not example or not example[1].strip():
+        raise ValueError("Missing first message in the S0 guide")
+    pilot_text = STARTER.read_text(encoding="utf-8").strip() + "\n\n" + example[1].strip()
+    PILOT_STARTER.write_text(pilot_text + "\n", encoding="utf-8", newline="\n")
     output_folder.mkdir(parents=True, exist_ok=True)
     portraits = build_court()
     archive = output_folder / "xiaodou-skill.zip"

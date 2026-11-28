@@ -17,6 +17,10 @@ def verify(archive):
     starter = text(ROOT / "prompts/xiaodou-start.txt").strip()
     block = re.search(r"^`{3}text\n(.*?)\n`{3}$", readme, re.MULTILINE | re.DOTALL)
     assert block and block[1] == starter, "README starter must match its copyable text"
+    guide = text(ROOT / "docs/field-tests/pilot-s0.md")
+    sample = re.search(r"^```text\n(.*?)\n```$", guide, re.MULTILINE | re.DOTALL)
+    pilot = text(ROOT / "prompts/xiaodou-pilot-start.txt").strip()
+    assert sample and pilot == starter + "\n\n" + sample[1].strip(), "S0 opening must combine the current starter and first fixture"
     intro = readme.split("## 一句话在小豆里开始", maxsplit=1)[0]
     assert intro.startswith("# 小豆皇帝模拟器\n"), "README must identify the Skill at the top"
     assert all(role in intro for role in ("中书省", "门下省", "尚书省", "六部")), "the court workflow belongs in the README intro"

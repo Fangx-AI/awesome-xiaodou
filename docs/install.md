@@ -14,9 +14,11 @@
 
 也可以复制[单条提示词](../skills/xiaodou-skill/references/prompts.md)。一句话和提示词包都通过当前对话使用，小豆独立 App 的原生技能安装入口仍待核实。
 
+这版正准备真机试用。[三步真机演练](field-tests/pilot-s0.md)可以直接复制；[实测登记](field-tests/README.md)记录已观察到的设备、版本和结果。
+
 ## 豆包工作 / 支持 Agent Skills 的客户端
 
-1. [下载 xiaodou-skill.zip](https://github.com/Fangx-AI/awesome-xiaodou/releases/latest/download/xiaodou-skill.zip)。
+1. 登录 GitHub，打开[S0 分支构建记录](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot)，从通过的运行下载候选工件并解出 `xiaodou-skill.zip`。历史稳定版在 [Releases](https://github.com/Fangx-AI/awesome-xiaodou/releases)。
 2. 解压，保留 `xiaodou-skill` 文件夹及其 `references`。在支持技能导入的客户端选择该技能文件夹，或按客户端要求上传技能。豆包工作的入口在「技能」中的本地导入。
 3. 在已启用技能的对话中说「用小豆 Skill 帮我做个减肥计划」，或在技能选择器中选择它。
 
