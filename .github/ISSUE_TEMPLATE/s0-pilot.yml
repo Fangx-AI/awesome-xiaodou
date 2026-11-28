@@ -55,5 +55,10 @@ body:
   - type: textarea
     id: reminder-timing
     attributes:
-      label: 提醒约定时间与实际到达时间
-      description: 写日期、时区、约定时间和实际到达时间。未收到时写观察到几点，以便与创建记录对应。
+      label: 提醒约定时间、实际到达时间和看到的位置
+      description: 写日期、时区、约定时间和实际到达时间。是在小豆里看到的到点消息，还是手机系统也发了通知？未收到时写观察到几点，以及当时是否打开了小豆、是否允许它发送通知。查不到就写待核。
+  - type: textarea
+    id: skill-import
+    attributes:
+      label: 小豆里的技能导入入口（选填）
+      description: 如果见到导入外部技能的入口，写下在小豆 App 中从哪一级菜单进入、页面支持的文件格式。已经导入并在新对话调用成功的，可以再写看到的回执或实际结果。
