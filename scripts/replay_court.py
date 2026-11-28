@@ -16,7 +16,7 @@ PILOT = ROOT / "prompts" / "xiaodou-pilot-start.txt"
 MONTH_REQUEST = "朕想用一个月养成更好的饮食习惯。中午只能点外卖，晚上想散步，但可能要加班。"
 INTAKE_SIGNALS = ("变化|改变|目标|希望|先改|想改", "平时|平常|通常|三餐|常点",
                   "时间|空档|加班", "成年|健康|限制|过敏|伤病")
-PREMATURE_PLAN = ("鸡肉饭|点一份|第.?周[：:]|每周.{0,8}走|今天午[饭餐].{0,12}(先|就).{0,10}(点|选)",)
+PREMATURE_PLAN = ("鸡肉饭|点一份|第.?周[：:]|(?:建议|安排|至少)每周.{0,8}走|今天午[饭餐].{0,12}(先|就).{0,10}(点|选)",)
 
 # Earlier replies described in an input are test fixtures, not recorded App replies.
 CASES = (
@@ -77,6 +77,22 @@ def flow_fixtures():
     pilot_guide = (ROOT / "docs/field-tests/pilot-s0.md").read_text(encoding="utf-8")
     _, pilot_change, pilot_review = re.findall(r"^```text\n(.*?)\n```$", pilot_guide, re.M | re.S)
     return {
+        "monthly-partial-intake": (
+            cases["24-month-full"],
+            ("monthly-partial", "full",
+             "先答一半。朕成年，想工作日少喝甜饮，不追体重。没有影响饮食或走路的限制。平常怎么吃和什么时候有空稍后再说。",
+             ("吃|三餐|外卖|饮料", "时间|空档|哪天|哪几天|有空|时段|空出"),
+             (*PREMATURE_PLAN, "是否成年|你成年了吗|你多大|有没有.{0,10}健康限制|一个月后.{0,10}想看到")),
+            ("monthly-remaining-baseline", "full",
+             "补上：早饭在家，午饭常点盖饭配奶茶，晚饭在家。饭后偶尔走，周二和周六晚各有15分钟，周四常加班。现在请排四周和首周安排。",
+             (r"第\s*[1一]\s*周|首周", "周二", "周六", "周四|加班", "甜饮|奶茶",
+              "保持|维持|照旧|沿用", "缩小|降低|减量|减到|降回|减少|只选|只保留|先保留|先保住"),
+             ("是否成年|你成年了吗|请提供体重",)),
+            ("monthly-first-week-report", "full",
+             "第一周结束。工作日午饭只做到一次换成水，周四加班又点了奶茶。下周周四仍加班，先别加量。",
+             (r"一\s*次|1\s*次", "周四|加班", "保持|维持|照旧|先保留|换到|挪到|不加|一次"),
+             ("(?:必须|需要|安排你)补做|(?:要|就)加倍|每天都换|一天两次",)),
+        ),
         "monthly-plan": (
             cases["24-month-full"],
             cases["26-month-with-baseline"],
