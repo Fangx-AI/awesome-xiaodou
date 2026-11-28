@@ -19,6 +19,8 @@ SCENES = {
     "study-abroad": ("P11", "朕准备申请留学，先帮我核对选校条件和当届申请时间。"),
 }
 SCENE_FILES = {scene: PLAN_COPY_DIR / f"scene-{scene}.txt" for scene in SCENES}
+SCENE_TITLES = {"weight": "减肥", "fitness": "健身", "reading": "自律阅读", "english": "学英语", "study-abroad": "留学"}
+SCENE_COPY_PAGE = PLAN_COPY_DIR / "scenes.md"
 PLAN_GOALS = {
     "P01": "帮我制定一个减肥计划。",
     "P02": "帮我制定一个适合我基础的首周力量训练计划。",
@@ -129,8 +131,15 @@ def copy_packs():
             starter = copies[PLAN_STARTER_FILES[plan_id]].rstrip()
             rows.extend([f"## {plan_id} · {title}", "", "```text", starter, "```", ""])
         copies[PLAN_COPY_DIR / f"{category}.md"] = "\n".join(rows)
+    scene_rows = [
+        "# 五个场景 · 一句话开局", "",
+        "点对应代码块右上角的复制按钮，把全文发到小豆 App 的新对话。想用自己的情况，可以改最后一行。", "",
+        " · ".join(f"[{title}](#{title})" for title in SCENE_TITLES.values()), "",
+    ]
     for scene, (plan_id, goal) in SCENES.items():
         copies[SCENE_FILES[scene]] = plan_starter(intro, plans[plan_id], goal)
+        scene_rows.extend([f"## {SCENE_TITLES[scene]}", "", "```text", copies[SCENE_FILES[scene]].rstrip(), "```", ""])
+    copies[SCENE_COPY_PAGE] = "\n".join(scene_rows)
     return copies
 
 

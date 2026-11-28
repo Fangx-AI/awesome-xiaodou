@@ -10,9 +10,9 @@
 
 ## 一句话在小豆里开始
 
-选一个目标，打开开局文本并复制全文。到**小豆独立 App** 新建对话，一次发出。
+选一个目标，点代码块右上角复制全文。到**小豆独立 App** 新建对话，一次发出。
 
-**复制场景开局**　[减肥](prompts/life-plans/scene-weight.txt) · [健身](prompts/life-plans/scene-fitness.txt) · [自律阅读](prompts/life-plans/scene-reading.txt) · [学英语](prompts/life-plans/scene-english.txt) · [留学](prompts/life-plans/scene-study-abroad.txt)
+**复制场景开局**　[减肥](prompts/life-plans/scenes.md#减肥) · [健身](prompts/life-plans/scenes.md#健身) · [自律阅读](prompts/life-plans/scenes.md#自律阅读) · [学英语](prompts/life-plans/scenes.md#学英语) · [留学](prompts/life-plans/scenes.md#留学)
 
 <details>
 <summary><strong>自填目标 · 展开并复制开局</strong></summary>
@@ -122,7 +122,7 @@
 >
 > **小豆**「皇上，周二照常记为已完成。周六那次改到周日，走 10 分钟。饮食记录照旧。」
 
-[复制减肥计划开局](prompts/life-plans/scene-weight.txt) · [查看减肥计划指南](docs/weight-first-week.md) · [下载流程示例图](assets/xiaodou-monthly-plan-share.png)
+[复制减肥计划开局](prompts/life-plans/scenes.md#减肥) · [查看减肥计划指南](docs/weight-first-week.md) · [下载流程示例图](assets/xiaodou-monthly-plan-share.png)
 
 ## 30 个生活计划
 

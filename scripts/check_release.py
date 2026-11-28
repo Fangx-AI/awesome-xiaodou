@@ -5,7 +5,9 @@ import sys
 from pathlib import Path
 from zipfile import ZipFile
 
-from build_life_plans import APP_PACK_NAME, PLAN_FILES, PLAN_INDEX, app_pack_files, copy_packs
+from build_life_plans import (
+    APP_PACK_NAME, PLAN_FILES, PLAN_INDEX, SCENE_COPY_PAGE, SCENE_TITLES, app_pack_files, copy_packs,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -22,6 +24,12 @@ def verify(archive):
     intro = readme.split("## 一句话在小豆里开始", maxsplit=1)[0]
     assert intro.startswith("# 小豆皇帝模拟器\n"), "README must identify the Skill at the top"
     assert all(role in intro for role in ("中书省", "门下省", "尚书省", "六部")), "the court workflow belongs in the README intro"
+
+    share_page = text(ROOT / "docs/share-cards.md")
+    gallery_path = SCENE_COPY_PAGE.relative_to(ROOT).as_posix()
+    for title in SCENE_TITLES.values():
+        target = f"{gallery_path}#{title})"
+        assert target in readme and target in share_page, f"Missing mobile copy route for {title}"
 
     markdown_targets = re.findall(r"\]\(([^)]+)\)", readme)
     image_targets = re.findall(r'src="([^"]+)"', readme)
