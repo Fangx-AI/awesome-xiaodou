@@ -29,9 +29,9 @@
 <details>
 <summary>看流程图</summary>
 
-<img src="../assets/xiaodou-monthly-plan-share.png" width="480" alt="减肥计划五步流程。了解情况，评估起点，核对方案，排出首周，按进展调整。">
+<img src="../assets/xiaodou-weight-court-flow.png" width="480" alt="减肥计划的朝堂五步。中书问情况和拟方案，门下查条件，尚书交首周，回奏时保留已做的进度。">
 
-[打开原图](../assets/xiaodou-monthly-plan-share.png)
+[打开原图](../assets/xiaodou-weight-court-flow.png)
 
 </details>
 

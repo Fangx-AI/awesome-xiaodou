@@ -12,10 +12,10 @@
 
 例如，你想少喝甜饮，周二和周六各有一段时间能散步。首周可以先选两次午餐把甜饮换成水，再把散步排进这两个空档。如果哪天走不了，回报是哪一天，已做过的照常计入。第 7 天看看甜饮换了几次、散步做了几次，选一项保持或调整。
 
-[复制小豆开局](../README.md#一句话在小豆里开始) · [查看可选的专业细则](../prompts/41-weight-plan.md)
+[复制减肥计划开局](../prompts/life-plans/scenes.md#减肥) · [查看可选的专业细则](../prompts/41-weight-plan.md)
 
 已经在用手机或手表记步？先核对记录来源与日期，再用实际步数回顾这一周。 [查看健康数据怎么核对](../playbooks/06-health-summary.md)
 
-<img src="../assets/xiaodou-monthly-plan-share.png" width="480" alt="减肥计划五步流程。了解情况，评估起点，核对方案，排出首周，按进展调整。">
+<img src="../assets/xiaodou-weight-court-flow.png" width="480" alt="减肥计划的朝堂五步。中书问情况和拟方案，门下查条件，尚书交首周，回奏时保留已做的进度。">
 
 [CDC 体重管理指南](https://www.cdc.gov/healthy-weight-growth/losing-weight/index.html)
