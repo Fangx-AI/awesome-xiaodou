@@ -20,7 +20,8 @@ def verify(archive):
     guide = text(ROOT / "docs/field-tests/pilot-s0.md")
     sample = re.search(r"^```text\n(.*?)\n```$", guide, re.MULTILINE | re.DOTALL)
     pilot = text(ROOT / "prompts/xiaodou-pilot-start.txt").strip()
-    assert sample and pilot == starter + "\n\n" + sample[1].strip(), "S0 opening must combine the current starter and first fixture"
+    assert sample and sample[1] == pilot, "S0 guide opening must match the staged pilot text"
+    assert pilot.startswith(starter + "\n\n"), "S0 opening must include the current starter"
     intro = readme.split("## 一句话在小豆里开始", maxsplit=1)[0]
     assert intro.startswith("# 小豆皇帝模拟器\n"), "README must identify the Skill at the top"
     assert all(role in intro for role in ("中书省", "门下省", "尚书省", "六部")), "the court workflow belongs in the README intro"

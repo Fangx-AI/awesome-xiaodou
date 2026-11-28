@@ -74,6 +74,8 @@ CASES = (
 
 def flow_fixtures():
     cases = {case[0]: case for case in CASES}
+    pilot_guide = (ROOT / "docs/field-tests/pilot-s0.md").read_text(encoding="utf-8")
+    _, pilot_change, pilot_review = re.findall(r"^```text\n(.*?)\n```$", pilot_guide, re.M | re.S)
     return {
         "monthly-plan": (
             cases["24-month-full"],
@@ -87,11 +89,11 @@ def flow_fixtures():
         "pilot-reschedule": (
             ("pilot-opening", "pilot", "", ("15|十五", "第一句|第一版|Hi|Lin|自我介绍"), ("已设置提醒|已创建提醒",)),
             ("pilot-change", "pilot",
-             "朕刚收到加班通知，今晚只剩五分钟。第一句已经写好。只改受影响的部分。直接告诉朕现在该做什么。",
+             pilot_change,
              (r"5\s*分钟|五分钟", "第一句|Hi|Lin|开头", "读|说|练"),
              ("今晚练.{0,3}15|重写第一句|重新写第一句",)),
             ("pilot-review", "pilot",
-             "朕把第一句读了一遍，在 Lin 之后卡住了。今天先到这儿，明天继续。",
+             pilot_review,
              ("Lin", "第一句|开头|Hi.{0,8}Lin", "明天|下次"), ("已经设置提醒|已创建提醒",)),
         ),
         "reminder-confirmation": (

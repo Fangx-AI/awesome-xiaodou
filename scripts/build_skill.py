@@ -101,7 +101,9 @@ def main(output_folder):
     example = re.search(r"^```text\n(.*?)\n```$", PILOT_GUIDE.read_text(encoding="utf-8"), re.M | re.S)
     if not example or not example[1].strip():
         raise ValueError("Missing first message in the S0 guide")
-    pilot_text = STARTER.read_text(encoding="utf-8").strip() + "\n\n" + example[1].strip()
+    pilot_text = example[1].strip()
+    if not pilot_text.startswith(STARTER.read_text(encoding="utf-8").strip() + "\n\n"):
+        raise ValueError("The first message in the S0 guide must start with the current starter")
     PILOT_STARTER.write_text(pilot_text + "\n", encoding="utf-8", newline="\n")
     output_folder.mkdir(parents=True, exist_ok=True)
     portraits = build_court()
