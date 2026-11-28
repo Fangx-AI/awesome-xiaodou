@@ -7,6 +7,7 @@ PLAN_DIR = ROOT / "skills/xiaodou-skill/references/life-plans"
 PLAN_FILES = tuple(PLAN_DIR / name for name in ("health.md", "learning.md", "career.md", "household.md", "habits.md"))
 PLAN_INDEX = PLAN_DIR / "README.md"
 PLAN_PACK = ROOT / "prompts/xiaodou-life-plans.txt"
+PLAN_COPY_DIR = ROOT / "prompts/life-plans"
 PLAN_FIELDS = ("触发", "中书立案", "门下核对", "尚书交办", "回奏", "依据")
 INTRO = (
     "启用小豆皇帝模拟器。用白话称我「皇上」。按我的自然话选下面最贴近的一个计划。",
@@ -18,8 +19,8 @@ INTRO = (
 )
 
 
-def plan_content():
-    chapters = []
+def copy_packs():
+    chapters = {}
     ids = []
     for path in PLAN_FILES:
         source = path.read_text(encoding="utf-8").strip()
@@ -31,7 +32,16 @@ def plan_content():
             if tuple(fields) != PLAN_FIELDS or "https://" not in body:
                 raise ValueError(f"{plan_id}: expected the six plan fields and an external source")
             ids.append(plan_id)
-        chapters.append(source)
+        chapters[path.stem] = source
     if ids != [f"P{number:02}" for number in range(1, 31)]:
         raise ValueError("Expected unique plan IDs in P01–P30 order")
-    return "\n".join(INTRO) + "\n\n" + "\n\n".join(chapters) + "\n"
+    intro = "\n".join(INTRO) + "\n\n"
+    copies = {PLAN_PACK: intro + "\n\n".join(chapters.values()) + "\n"}
+    for category, chapter in chapters.items():
+        copies[PLAN_COPY_DIR / f"{category}.txt"] = (
+            intro
+            + "下面是一套分类计划。目标不在本分类时，先说明需要其他分类，或按常规流程先问关键条件。\n\n"
+            + chapter
+            + "\n\n我的目标：\n"
+        )
+    return copies

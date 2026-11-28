@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
-from build_life_plans import PLAN_FILES, PLAN_INDEX, PLAN_PACK, plan_content
+from build_life_plans import PLAN_FILES, PLAN_INDEX, copy_packs
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skills" / "xiaodou-skill"
@@ -48,7 +48,9 @@ def read_prompt(path):
 
 
 def main(output_folder):
-    PLAN_PACK.write_text(plan_content(), encoding="utf-8", newline="\n")
+    for path, content in copy_packs().items():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content, encoding="utf-8", newline="\n")
     cases = json.loads((ROOT / "data/playbooks.json").read_text(encoding="utf-8"))
     cases.append({"id": "H01", "path": "prompts/41-weight-plan.md",
                   "title": "一个月减肥计划与每周复盘", "category": "健康与习惯"})

@@ -22,7 +22,7 @@
 
 ## 30 个生活计划
 
-想改善睡眠、准备面试、规划存钱，或把拖着没开始的事做起来？在小豆里说你想做什么，就能从相应的计划开始。 [浏览全部 30 个计划](skills/xiaodou-skill/references/life-plans/README.md) · [复制计划整包](prompts/xiaodou-life-plans.txt)
+想改善睡眠、准备面试、规划存钱，或把拖着没开始的事做起来？选一个分类，复制它的开局文本，末尾加上你的目标。 [按分类复制或浏览 30 个计划](skills/xiaodou-skill/references/life-plans/README.md#选一个你想做的计划) · [复制计划整包](prompts/xiaodou-life-plans.txt)
 
 | 你想做什么 | 可以这样开口 |
 | --- | --- |
