@@ -405,6 +405,7 @@ def main():
     parser.add_argument("--model")
     parser.add_argument("--case", action="append", help="Run selected fixture IDs only")
     parser.add_argument("--all-life", action="store_true", help="Run one independent case for each of the 30 plans")
+    parser.add_argument("--life-pack", type=Path, default=LIFE_PACK, help="Use the selected life planning copy text")
     parser.add_argument("--flow", action="append", choices=tuple(flows),
                         help="Replay actual prior outputs for the selected scenario. Repeat for multiple flows.")
     parser.add_argument("--all-flows", action="store_true", help="Replay all sequential scenarios.")
@@ -431,7 +432,7 @@ def main():
             prompts["pilot"] = PILOT.read_text(encoding="utf-8").strip()
             selected_flows = list(flows.items()) if args.all_flows else [(name, flows[name]) for name in dict.fromkeys(args.flow)]
             if any(fixture[1] == "life" for _, turns in selected_flows for fixture in turns):
-                prompts["life"] = LIFE_PACK.read_text(encoding="utf-8").strip()
+                prompts["life"] = args.life_pack.read_text(encoding="utf-8").strip()
             records = list(pool.map(lambda pair: replay_flow(args, *pair, prompts), selected_flows))
         else:
             life_cases = [(case_id, "life", message, required, forbidden)
@@ -444,7 +445,7 @@ def main():
             if not selected or (args.case and {case[0] for case in selected} != set(args.case)):
                 parser.error("unknown fixture ID")
             if any(fixture[1] == "life" for fixture in selected):
-                prompts["life"] = LIFE_PACK.read_text(encoding="utf-8").strip()
+                prompts["life"] = args.life_pack.read_text(encoding="utf-8").strip()
             records = list(pool.map(lambda fixture: replay(args, fixture, prompts), selected))
     evidence = {
         "environment": ("Codex CLI, actual preceding responses reinjected as dialogue history, no platform connectors"
