@@ -2,9 +2,40 @@ import unittest
 
 from pilot_blind import anonymize, restore
 from pilot_measure import summarize, summarize_comparisons, summarize_cumulative
+from render_pilot_report import render
 
 
 class PilotMeasurementTests(unittest.TestCase):
+    def test_public_summary_uses_pairs_and_missing_counts_without_individual_data(self):
+        report = summarize({"as_of": "2026-12-12", "candidate_commit": "a" * 40,
+                            "public_readme_commit": "b" * 40, "cohort": "internal-id",
+                            "trials": [
+                                {"id": "P-0001", "started_on": "2026-12-01", "channel": "private-channel",
+                                 "first_action": True, "finished_on": "2026-12-04"},
+                                {"id": "P-0002", "started_on": "2026-12-01"},
+                                {"id": "P-0003", "started_on": "2026-12-11"},
+                            ],
+                            "comparisons": [
+                                {"id": "P-0001", "order": "regular", "carryover": "none",
+                                 "regular": {"first_action": False}, "emperor": {"first_action": True}},
+                                {"id": "P-0002", "order": "emperor", "regular": {"first_action": True}},
+                            ]})
+        output = render(report)
+        self.assertIn("七天内实际完成第一步（已到期） | 1/2（50%）", output)
+        self.assertIn("还有 1 人未到期。已到期者中，1 人未回报", output)
+        self.assertIn("1 可评分，1 无法配对", output)
+        self.assertIn("皇帝模式 1，普通小豆 0，都通过 0，都未通过 0 | +100 个百分点", output)
+        self.assertIn("先试皇帝模式（1 人）", output)
+        self.assertIn("/tree/" + "a" * 40, output)
+        for private in ("P-0001", "private-channel", "internal-id", "2026-12-04"):
+            self.assertNotIn(private, output)
+
+    def test_public_summary_distinguishes_no_pairs_from_a_failed_trial(self):
+        output = render(summarize({"as_of": "2026-12-12"}))
+        self.assertIn("暂无真实配对结果", output)
+        self.assertIn("暂无可评分样本", output)
+        self.assertNotIn("100%", output)
+
     def test_first_action_latency_uses_only_measured_qualified_replies(self):
         common = {"started_on": "2026-12-01", "starter": "xiaodou-start.txt"}
         report = summarize({"as_of": "2026-12-12", "trials": [

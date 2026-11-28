@@ -7,6 +7,7 @@ from pathlib import Path
 from statistics import median
 
 from build_life_plans import PLAN_FILES, PLAN_PACK, PLAN_STARTER_FILES, SCENE_FILES
+from render_pilot_report import render
 
 READ_ANSWERS = ("identity", "where", "how", "confirmation")
 CHANGE_SCORES = ("preserved", "affected_only", "actionable")
@@ -431,15 +432,21 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("records", type=Path, nargs="+")
     parser.add_argument("--cumulative", action="store_true", help="Count unique people across cohort snapshots")
+    parser.add_argument("--public-markdown", action="store_true", help="Render one cohort as aggregate Markdown")
     args = parser.parse_args()
     if not args.cumulative and len(args.records) != 1:
         parser.error("supply one records file or use --cumulative")
+    if args.cumulative and args.public_markdown:
+        parser.error("--public-markdown requires one cohort, without --cumulative")
     try:
         sources = (json.loads(path.read_text(encoding="utf-8-sig")) for path in args.records)
         report = summarize_cumulative(sources) if args.cumulative else summarize(next(sources))
     except (OSError, ValueError) as exc:
         parser.exit(2, f"Invalid pilot data: {exc}\n")
-    print(json.dumps(report, indent=2))
+    if args.public_markdown:
+        print(render(report), end="")
+    else:
+        print(json.dumps(report, indent=2))
 
 
 if __name__ == "__main__":
