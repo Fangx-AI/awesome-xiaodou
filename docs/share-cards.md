@@ -75,6 +75,8 @@ https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/share-cards.md#%E5%88
 
 已经练过的保留。门下核对时间、器材和场地，尚书只交一份周六能做的安排。
 
+**想知道什么时候该加量？** 可以继续告诉小豆「哪几个动作做了多少、最后几下稳不稳、后来恢复得怎样」。少练的一次按实际记。等动作做得稳、有余力、恢复也好，再按你的目标试一个小调整。
+
 [下载或开通小豆](install.md#下载和开通) · [查看力量与体能计划](../skills/xiaodou-skill/references/life-plans/health.md#p02--新手力量与体能)
 
 <details>
