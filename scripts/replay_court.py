@@ -345,6 +345,24 @@ def flow_fixtures():
         (case, "life", message, required, forbidden)
         for case, _, message, required, forbidden in flows["study-application-portal"]
     )
+    flows["english-transcript-and-retry"] = (
+        ("english-transcript-is-text", "starter",
+         "我只剩五分钟练英语会议开场。刚才按过语音键，但这条只有转写，没有录音：I’m responsible of testing. 能不能评发音和语速？只改一个关键点，再叫我试一遍。",
+         ("发音|语速", "无法|不能|判断不了|没法|评不了|听不到|评不出", r"responsible\s+for", "再.{0,5}(试|说|念|读)|重说|重读"),
+         ("你.{0,5}的?发音.{0,6}(很准|很好|有点问题)|听起来.{0,8}(流利|偏快|偏慢)|你的语速.{0,8}(偏快|偏慢|合适)",)),
+        ("english-text-rewrite-is-not-spoken", "starter",
+         "I’m responsible for testing. 这次只是把句子重写了，我没开口。帮我记下改对的地方，再给一次口头练习。",
+         (r"responsible\s+for", "写|文字", "还没|未|没开口|待练|待做|没读", "读|说|口头"),
+         ("(?:已|刚刚|已经)(?:朗读|口头重试|说了|读了|念了)|口语练习(?:已|已经)完成",)),
+        ("english-self-reported-practice", "starter",
+         "我自己读了一遍，卡在 testing。这次也没有录音。只记这次和下次从哪接。",
+         (r"读.{0,8}[一1]\s*遍|[一1]\s*遍.{0,8}读|朗读.{0,8}[一1]\s*次", "testing", "下次|下一次|下回"),
+         ("你的发音.{0,6}(正确|很好|不准)|你的语速.{0,6}(偏快|偏慢)|已经练完两遍",)),
+    )
+    flows["english-transcript-and-retry-life"] = tuple(
+        (case, "life", message, required, forbidden)
+        for case, _, message, required, forbidden in flows["english-transcript-and-retry"]
+    )
     flows["starter-monthly-intake"] = tuple(
         (case, "starter", message, required, forbidden)
         for case, _, message, required, forbidden in flows["monthly-partial-intake"]
