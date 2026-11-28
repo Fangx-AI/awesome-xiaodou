@@ -61,9 +61,7 @@ def summarize_groups(groups):
     }
 
 
-def summarize_comparisons(records):
-    check_ids(records, "comparisons")
-    arm_counts = dict.fromkeys(COMPARISON_ARMS, 0)
+def score_comparison_pairs(records):
     outcomes = {(True, True): "both", (True, False): "regular_only",
                 (False, True): "emperor_only", (False, False): "neither"}
     scores = {
@@ -73,20 +71,7 @@ def summarize_comparisons(records):
     follow_ups = {"pairs": 0, "regular_total": 0, "emperor_total": 0,
                   "emperor_fewer": 0, "regular_fewer": 0, "equal": 0}
     for item in records:
-        check_keys(item, ("id", "order", *COMPARISON_ARMS), "comparison")
-        if item.get("order") not in COMPARISON_ARMS:
-            raise ValueError("comparison order must name the first arm: regular or emperor")
-        arm_counts[item["order"]] += 1
         arms = [item.get(arm, {}) for arm in COMPARISON_ARMS]
-        for result in arms:
-            check_keys(result, (*COMPARISON_FIELDS, "follow_up_questions"), "comparison arm")
-            check_flags({key: result[key] for key in COMPARISON_FIELDS if key in result},
-                        COMPARISON_FIELDS, "comparison arm")
-            if "follow_up_questions" in result:
-                count = result["follow_up_questions"]
-                if type(count) is not int or count < 0:
-                    raise ValueError("follow_up_questions must be a non-negative integer")
-
         if all("follow_up_questions" in arm and "first_action" in arm for arm in arms):
             regular, emperor = (arm["follow_up_questions"] for arm in arms)
             follow_ups["pairs"] += 1
@@ -117,8 +102,31 @@ def summarize_comparisons(records):
     follow_ups["emperor_minus_regular_mean"] = (
         round((follow_ups["emperor_total"] - follow_ups["regular_total"]) / count, 2) if count else None
     )
-    return {"enrolled": len(records), "order_counts": arm_counts,
-            "outcomes": scores, "follow_up_questions": follow_ups}
+    return {"enrolled": len(records), "outcomes": scores, "follow_up_questions": follow_ups}
+
+
+def summarize_comparisons(records):
+    check_ids(records, "comparisons")
+    by_order = {arm: [] for arm in COMPARISON_ARMS}
+    for item in records:
+        check_keys(item, ("id", "order", *COMPARISON_ARMS), "comparison")
+        if item.get("order") not in COMPARISON_ARMS:
+            raise ValueError("comparison order must name the first arm: regular or emperor")
+        for result in (item.get(arm, {}) for arm in COMPARISON_ARMS):
+            check_keys(result, (*COMPARISON_FIELDS, "follow_up_questions"), "comparison arm")
+            check_flags({key: result[key] for key in COMPARISON_FIELDS if key in result},
+                        COMPARISON_FIELDS, "comparison arm")
+            if "follow_up_questions" in result:
+                count = result["follow_up_questions"]
+                if type(count) is not int or count < 0:
+                    raise ValueError("follow_up_questions must be a non-negative integer")
+        by_order[item["order"]].append(item)
+
+    return {
+        **score_comparison_pairs(records),
+        "order_counts": {arm: len(items) for arm, items in by_order.items()},
+        "by_order": {arm: score_comparison_pairs(items) for arm, items in by_order.items()},
+    }
 
 
 def summarize(data):

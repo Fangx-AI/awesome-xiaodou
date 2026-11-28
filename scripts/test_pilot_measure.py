@@ -227,6 +227,29 @@ class PilotMeasurementTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "one of the five"):
             summarize({"as_of": "2026-12-10", "trials": [{**entries[0], "shared_scene": "health"}]})
 
+    def test_paired_report_exposes_opposing_results_by_first_mode(self):
+        records = [
+            {"id": "P-0001", "order": "regular",
+             "regular": {"first_action": False, "follow_up_questions": 3},
+             "emperor": {"first_action": True, "follow_up_questions": 1}},
+            {"id": "P-0002", "order": "emperor",
+             "regular": {"first_action": True, "follow_up_questions": 1},
+             "emperor": {"first_action": False, "follow_up_questions": 3}},
+            {"id": "P-0003", "order": "regular", "regular": {"first_action": True}},
+        ]
+        report = summarize_comparisons(records)
+        self.assertEqual(report["outcomes"]["first_action"]["emperor_minus_regular_pp"], 0)
+        self.assertEqual(report["follow_up_questions"]["emperor_minus_regular_mean"], 0)
+        regular_first = report["by_order"]["regular"]
+        emperor_first = report["by_order"]["emperor"]
+        self.assertEqual(regular_first["enrolled"], 2)
+        self.assertEqual(regular_first["outcomes"]["first_action"]["unscored_pairs"], 1)
+        self.assertEqual(regular_first["outcomes"]["first_action"]["emperor_minus_regular_pp"], 100)
+        self.assertEqual(regular_first["follow_up_questions"]["emperor_minus_regular_mean"], -2)
+        self.assertEqual(emperor_first["enrolled"], 1)
+        self.assertEqual(emperor_first["outcomes"]["first_action"]["emperor_minus_regular_pp"], -100)
+        self.assertEqual(emperor_first["follow_up_questions"]["emperor_minus_regular_mean"], 2)
+
     def test_zero_questions_and_a_failed_first_action_are_observed(self):
         report = summarize_comparisons([
             {"id": "P-0001", "order": "regular",
