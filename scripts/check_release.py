@@ -7,8 +7,9 @@ from pathlib import Path
 from zipfile import ZipFile
 
 from build_life_plans import (
-    APP_PACK_NAME, CUSTOM_GOAL_HEADING, PLAN_COPY_DIR, PLAN_FILES, PLAN_INDEX, PLAN_PACK_PAGE,
-    SCENE_COPY_PAGE, SCENE_TITLES, app_pack_files, copy_packs,
+    APP_PACK_NAME, APP_SCENE_DIR, CUSTOM_GOAL_HEADING, PLAN_COPY_DIR, PLAN_FILES,
+    PLAN_INDEX, PLAN_PACK_PAGE, SCENE_COPY_PAGE, SCENE_FILES, SCENE_TITLES,
+    app_pack_files, copy_packs,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -71,6 +72,12 @@ def verify(archive):
         assert sorted(app.namelist()) == sorted(expected_app), "App starter ZIP entries do not match the index"
         for name, expected in expected_app.items():
             assert app.read(name).decode("utf-8") == expected, f"App starter ZIP content differs: {name}"
+        offline_guide = app.read("先读这里.txt").decode("utf-8")
+        assert f"「{APP_SCENE_DIR}」" in offline_guide, "Offline guide must surface the starter folder"
+        for scene, title in SCENE_TITLES.items():
+            packaged_scene = app.read(f"{APP_SCENE_DIR}/{title}.txt").decode("utf-8")
+            assert title in offline_guide, f"Offline guide is missing {title}"
+            assert packaged_scene == text(SCENE_FILES[scene]), f"{title} differs from the online starter"
     with ZipFile(archive) as bundle:
         assert bundle.testzip() is None, "damaged ZIP contents"
         for path, expected in copies.items():
