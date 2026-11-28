@@ -12,7 +12,7 @@
 | --- | --- | --- | --- |
 | 01 | [商品降价提醒](../playbooks/01-price-watch.md) | 媒体任务创建记录 | S2, S7 |
 | 02 | [团购券到期提醒](../playbooks/02-coupon-reminder.md) | 发布报道 | S2 |
-| 15 | [按需求选品并生成提单](../playbooks/15-shopping-card.md) | 媒体体验 | S6 |
+| 15 | [按需求选品并生成提单](../playbooks/15-shopping-card.md) | 第三方选品与提单体验；另有商品卡未覆盖其他平台的实例 | S6, S26, S30 |
 | 20 | [从历史订单查券价](../playbooks/20-order-price-check.md) | 媒体体验 | S9 |
 | 28 | [用对话发起话费充值](../playbooks/28-phone-credit.md) | 作者自述，缺交易回执 | S12 |
 
