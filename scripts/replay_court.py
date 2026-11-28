@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 STARTER = ROOT / "prompts" / "xiaodou-start.txt"
 FULL = ROOT / "prompts" / "emperor-simulator.md"
 WEIGHT = ROOT / "prompts" / "41-weight-plan.md"
+LIFE_PACK = ROOT / "prompts" / "xiaodou-life-plans.txt"
 PILOT = ROOT / "prompts" / "xiaodou-pilot-start.txt"
 MATCHED_FLOWS = ("pilot-reschedule", "monthly-partial-intake")
 MONTH_REQUEST = "朕想用一个月养成更好的饮食习惯。中午只能点外卖，晚上想散步，但可能要加班。"
@@ -84,6 +85,21 @@ CASES = (
      ("(?:今天|午[饭餐]).{0,15}(?:就|先|建议).{0,8}(?:点|选|换)|第.?周[：:]|(?:建议|安排|至少)每周.{0,8}走",)),
     ("30-general-weight-plan", "starter", "帮我制定一个减肥计划。",
      (*INTAKE_SIGNALS, "运动|活动|锻炼"), PREMATURE_PLAN),
+    ("31-life-running", "life",
+     "我成年，没有伤痛，能连续轻松走30分钟，从未跑过步。这周仅周一、周四有空，每次20分钟。请排零基础走跑首周。",
+     ("周一", "周四", "步行|走路|快走|走.{0,6}分钟", "短跑|慢跑|小跑|轻松跑|跑.{0,6}分钟"), ("比赛配速|直接跑完.{0,4}公里",)),
+    ("32-life-exam", "life",
+     "还剩四周考证，工作日两个晚上各25分钟，周日一小时。概念题会做，案例题常错，请给首周复习安排和验收。",
+     ("案例", "闭卷|不看.{0,5}答案|主动回忆|自己做|独立做", "复测|重做|重试|隔日|错因"), ("保证通过",)),
+    ("33-life-job-interview", "life",
+     "后天中文面试客户成功，我有一个真实案例：我把回访改成每周一次。请模拟第一题，先让我回答。",
+     ("回访|客户", "请|你来|你先"), ("标准答案[：:]|你可以这样答[：:]",)),
+    ("34-life-cash-flow", "life",
+     "人民币。本月现在只有800元，租金1200元明天到期，后天工资才到账5000元。先核预算，不帮我付款。",
+     ("明天", "后天", r"400\s*元|四百", "缺口|差额|不足"), ("已经.{0,5}(付款|支付)",)),
+    ("35-life-reading-restart", "life",
+     "上周读完两次，昨晚漏了。想养成每天读一页的习惯，今天午饭后有五分钟，手边只有电子书。请帮我接着来。",
+     ("两次|2次", "午饭|午餐", "一页|1页", "电子书"), ("重新从零|清零|必须补读",)),
 )
 
 
@@ -385,6 +401,8 @@ def main():
             selected = [fixture for fixture in CASES if not args.case or fixture[0] in args.case]
             if not selected or (args.case and {case[0] for case in selected} != set(args.case)):
                 parser.error("unknown fixture ID")
+            if any(fixture[1] == "life" for fixture in selected):
+                prompts["life"] = LIFE_PACK.read_text(encoding="utf-8").strip()
             records = list(pool.map(lambda fixture: replay(args, fixture, prompts), selected))
     evidence = {
         "environment": ("Codex CLI, actual preceding responses reinjected as dialogue history, no platform connectors"

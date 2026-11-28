@@ -5,6 +5,8 @@ import sys
 from pathlib import Path
 from zipfile import ZipFile
 
+from build_life_plans import PLAN_FILES, PLAN_INDEX, PLAN_PACK, plan_content
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -51,6 +53,7 @@ def verify(archive):
     roles = json.loads(text(ROOT / "docs/studio/roles.json"))
     with ZipFile(archive) as bundle:
         assert bundle.testzip() is None, "damaged ZIP contents"
+        assert text(PLAN_PACK) == plan_content(), "App copy pack must match the 30 Skill plans"
         tracked_files = [
             "SKILL.md", "references/prompts.md", "references/court.md", "references/planning.md", "references/prompt-sources.md",
             "references/divination.md", "references/guandi-lots.json", "scripts/birth-chart/chart.cjs",
@@ -66,6 +69,7 @@ def verify(archive):
             "tests/test_paipan_verify.py", "tests/test_sihua_lookup.py", "tests/test_ziwei_chart.py",
         ]
         tracked_files.extend((upstream / name).relative_to(skill).as_posix() for name in upstream_files)
+        tracked_files.extend(path.relative_to(skill).as_posix() for path in (PLAN_INDEX, *PLAN_FILES))
         lots = json.loads(text(skill / "references" / "guandi-lots.json"))["lots"]
         assert [lot["number"] for lot in lots] == list(range(1, 101))
         assert all(len(lot["verse"]) == 4 and lot["traditionalCommentary"] for lot in lots)

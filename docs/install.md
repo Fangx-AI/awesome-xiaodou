@@ -16,6 +16,7 @@
 
 - **一条消息开局**：内含三省六部分工、冲突退回和进展续接的基本规则。
 - **[完整版皇帝模式](../prompts/emperor-simulator.md)**：补充五个常见计划的处理方法、外部操作确认和御前问签。
+- **[30 个生活计划](../skills/xiaodou-skill/references/life-plans/README.md)**：在小豆 App 里复制对应分类或计划整包，带上自己的目标发送；支持 Agent Skills 的客户端可按任务读取同一套资料。
 - **整包提示词**：用于一段对话里选择多种场景，按下面的步骤使用。
 
 1. 打开[9 条常用指令](../prompts/xiaodou-quick-pack.txt)或[完整 44 条](../prompts/xiaodou-paste-pack.txt)，点 GitHub 文件工具栏中的复制按钮，或打开 Raw 后全选复制。
@@ -34,7 +35,7 @@
 
 包内含说明、提示词、出处和九张人物图。不同客户端的导入格式和权限以实际界面为准。本版已检查 ZIP 结构，豆包工作及小豆客户端导入尚未实测。
 
-候选工件同时附上两份开局纯文本、`CANDIDATE.txt` 和 `SHA256SUMS`。真机首测从 `CANDIDATE.txt` 打开 `pilot`，首页冷读打开 `public_readme`。在解开的工件目录运行 `sha256sum -c SHA256SUMS`，或用 PowerShell 的 `Get-FileHash -Algorithm SHA256` 核对下载文件。
+候选工件附有两份开局纯文本、生活计划整包、`CANDIDATE.txt` 和 `SHA256SUMS`。真机首测从 `CANDIDATE.txt` 打开 `pilot`，首页冷读打开 `public_readme`。在解开的工件目录运行 `sha256sum -c SHA256SUMS`，或用 PowerShell 的 `Get-FileHash -Algorithm SHA256` 核对下载文件。
 
 [豆包工作官方技能说明](https://www.feishu.cn/content/article/7677519271848610746) · [Agent Skills 规范](https://agentskills.io/specification)
 

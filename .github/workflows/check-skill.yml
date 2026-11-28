@@ -48,9 +48,9 @@ jobs:
           if cmp -s "$RUNNER_TEMP/xiaodou/public-starter.txt" prompts/xiaodou-start.txt; then
             public_starter_matches_candidate=true
           fi
-          cp prompts/xiaodou-start.txt prompts/xiaodou-pilot-start.txt "$RUNNER_TEMP/xiaodou/"
+          cp prompts/xiaodou-start.txt prompts/xiaodou-pilot-start.txt prompts/xiaodou-life-plans.txt "$RUNNER_TEMP/xiaodou/"
           cd "$RUNNER_TEMP/xiaodou"
-          sha256sum xiaodou-skill.zip xiaodou-start.txt xiaodou-pilot-start.txt > SHA256SUMS
+          sha256sum xiaodou-skill.zip xiaodou-start.txt xiaodou-pilot-start.txt xiaodou-life-plans.txt > SHA256SUMS
           {
             printf 'candidate_commit=%s\n' "$GITHUB_SHA"
             printf 'readme=%s/%s/blob/%s/README.md\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_SHA"
@@ -69,6 +69,7 @@ jobs:
             ${{ runner.temp }}/xiaodou/xiaodou-skill.zip
             ${{ runner.temp }}/xiaodou/xiaodou-start.txt
             ${{ runner.temp }}/xiaodou/xiaodou-pilot-start.txt
+            ${{ runner.temp }}/xiaodou/xiaodou-life-plans.txt
             ${{ runner.temp }}/xiaodou/SHA256SUMS
             ${{ runner.temp }}/xiaodou/CANDIDATE.txt
           if-no-files-found: error

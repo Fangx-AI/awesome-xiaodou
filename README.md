@@ -84,6 +84,10 @@
 
 [查看减肥计划指南](docs/weight-first-week.md) · [下载流程示例图](assets/xiaodou-monthly-plan-share.png)
 
+## 30 个生活计划
+
+想改善睡眠、准备面试、规划存钱，或把拖着没开始的事做起来？在小豆里说你想做什么，就能从相应的计划开始。 [浏览全部 30 个计划](skills/xiaodou-skill/references/life-plans/README.md) · [复制计划整包](prompts/xiaodou-life-plans.txt)
+
 ## 还能办什么
 
 - **健身**　先按真实空档排首周。出差没带弹力带，只改这次训练，已完成的照样算。 [看健身怎么改期](skills/xiaodou-skill/references/planning.md#fitness-start)
