@@ -15,6 +15,7 @@ STARTER = ROOT / "prompts" / "xiaodou-start.txt"
 FULL = ROOT / "prompts" / "emperor-simulator.md"
 WEIGHT = ROOT / "prompts" / "41-weight-plan.md"
 CALENDAR = ROOT / "playbooks" / "11-screenshot-calendar.md"
+WEEKLY = ROOT / "playbooks" / "36-weekly-report.md"
 LIFE_PACK = ROOT / "prompts" / "xiaodou-life-plans.txt"
 PILOT = ROOT / "prompts" / "xiaodou-pilot-start.txt"
 MATCHED_FLOWS = ("pilot-reschedule", "monthly-partial-intake")
@@ -399,6 +400,27 @@ def flow_fixtures():
         (case, "calendar", message, required, forbidden)
         for case, _, message, required, forbidden in flows["calendar-confirmation"]
     )
+    flows["weekly-report"] = (
+        ("weekly-draft", "starter",
+         "整理一份不发送的工作周报给直属负责人，范围是 11 月 23 日到 27 日。这里是能看的两份脱敏材料。"
+         "【交付表 A】新版登录页 11 月 25 日已验收。迁移覆盖率 90%，11 月 27 日记录，口径未说明。支付联调卡在测试账号，负责人未写。"
+         "【纪要 B】新版登录页 11 月 25 日已验收。迁移覆盖率 85%，11 月 27 日记录，口径未说明。下周考虑做移动端回归，没定负责人和截止。"
+         "【复盘 C】当前没有读取权限。先用可读材料交草稿，不用等 C。",
+         ("登录页", "验收", "90%", "85%", "交付表", "纪要", "待核|冲突|不一致", "测试账号", "待定|待确认",
+          r"C.{0,28}(?:无权|未读|未纳入|没有读取|权限|无法读取)|(?:未纳入|无权|未读取|无法读取|缺少.{0,6}权限).{0,25}C"),
+         ("已读取.{0,8}复盘|依据复盘.{0,8}C|已发给|已经发送|最终覆盖率.{0,10}(?:90|85)%",)),
+        ("weekly-reconcile", "starter",
+         "补一份【口径确认 D】：11 月 27 日迁移覆盖率的分母是 100 个应迁移对象，85 个已完成，85% 是审定值。"
+         "A 的 90% 仅是旧数。只更新这一条，登录页和支付状态保持。给我可直接替换的一行。",
+         ("迁移", "85%", r"100\s*个|85\s*/\s*100", "口径确认|确认 D|确认D"),
+         ("已发给|已经发送|最新.{0,6}90%|审定值.{0,6}90%",)),
+        ("weekly-approval", "starter", "方案没问题，这版周报可以了。",
+         ("发|草稿|定稿|可用|可以|最新版|这版|周报",), ("已发给|已经发送|发送成功|已发布",)),
+    )
+    flows["weekly-report-playbook"] = tuple(
+        (case, "weekly", message, required, forbidden)
+        for case, _, message, required, forbidden in flows["weekly-report"]
+    )
     return flows
 
 
@@ -529,6 +551,7 @@ def main():
         "full": re.search(r"```text\n(.*?)\n```", FULL.read_text(encoding="utf-8"), re.S)[1],
         "weight": re.search(r"```text\n(.*?)\n```", WEIGHT.read_text(encoding="utf-8"), re.S)[1],
         "calendar": re.search(r"```text\n(.*?)\n```", CALENDAR.read_text(encoding="utf-8"), re.S)[1],
+        "weekly": re.search(r"```text\n(.*?)\n```", WEEKLY.read_text(encoding="utf-8"), re.S)[1],
     }
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
         if args.compare:
