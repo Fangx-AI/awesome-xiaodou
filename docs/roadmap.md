@@ -15,6 +15,8 @@
 
 浏览和独立访客采用 GitHub 的滚动窗口。首步完成人数按经核对的用户实际回报去重统计。 [GitHub 流量口径](https://docs.github.com/en/rest/metrics/traffic) · [试用观察与统计](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/pilot-observer.md)
 
+对照试用可用同一套阅读或读书会任务，核对新条件下是否保留进度、能否继续。真实结果随试用汇总发布。 [配对测试材料](field-tests/replan-comparison.md)
+
 ## 按验证结果推进
 
 | 阶段 | 验收条件 |
