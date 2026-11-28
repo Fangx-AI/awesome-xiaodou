@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 STARTER = ROOT / "prompts" / "xiaodou-start.txt"
 FULL = ROOT / "prompts" / "emperor-simulator.md"
 WEIGHT = ROOT / "prompts" / "41-weight-plan.md"
+PILOT = ROOT / "prompts" / "xiaodou-pilot-start.txt"
 MONTH_REQUEST = "朕想用一个月养成更好的饮食习惯。中午只能点外卖，晚上想散步，但可能要加班。"
 INTAKE_SIGNALS = ("变化|改变|目标|希望|先改|想改", "平时|平常|通常|三餐|常点",
                   "时间|空档|加班", "成年|健康|限制|过敏|伤病")
@@ -71,7 +72,49 @@ CASES = (
 )
 
 
-def replay(args, fixture, prompts):
+def flow_fixtures():
+    cases = {case[0]: case for case in CASES}
+    return {
+        "monthly-plan": (
+            cases["24-month-full"],
+            cases["26-month-with-baseline"],
+            ("monthly-change", "full",
+             "周一午饭已经换成水。周二晚现在也要加班，改到周三午休有空时走一会儿。周六晚还是有15分钟。只改要动的那一项。",
+             ("周一", "换.{0,4}水|喝.{0,4}水", "周三"), ("周一.{0,8}未完成|周六.{0,8}取消",)),
+            ("monthly-export", "full", "朕要换个对话，给朕一段可直接复制的续聊摘要。",
+             ("少喝甜饮|少喝.{0,4}含糖|减少.{0,5}甜饮", "周一", "周三", "周六", "摘要|新对话|复制"), ()),
+        ),
+        "pilot-reschedule": (
+            ("pilot-opening", "pilot", "", ("15|十五", "第一句|第一版|Hi|Lin|自我介绍"), ("已设置提醒|已创建提醒",)),
+            ("pilot-change", "pilot",
+             "朕刚收到加班通知，今晚只剩五分钟。第一句已经写好。只改受影响的部分。直接告诉朕现在该做什么。",
+             (r"5\s*分钟|五分钟", "第一句|Hi|Lin|开头", "读|说|练"),
+             ("今晚练.{0,3}15|重写第一句|重新写第一句",)),
+            ("pilot-review", "pilot",
+             "朕把第一句读了一遍，在 Lin 之后卡住了。今天先到这儿，明天继续。",
+             ("Lin", "第一句|开头|Hi.{0,8}Lin", "明天|下次"), ("已经设置提醒|已创建提醒",)),
+        ),
+        "reminder-confirmation": (
+            ("reminder-preview", "full",
+             "给朕预览明早9点的喝水提醒。北京时间，只提醒朕。写清楚，暂时别设置。",
+             (r"9[:点时\s]|九点", "喝水", "北京", "确认|预览|草案"),
+             ("提醒已创建|已经设置",)),
+            ("reminder-first-consent", "full",
+             "朕确认刚才明早9点那条喝水提醒。当前测试会话没有提醒工具。",
+             (r"9[:点时\s]|九点", "喝水", "无法|不能|没有|手动"), ("提醒已创建|已经设置|创建成功",)),
+            ("reminder-change", "full",
+             "改成明天上午11点，其他内容照旧。先给朕看，暂时别设置。",
+             (r"11[:点时\s]|十一点", "喝水", "待.{0,3}确认|重新确认|再次确认|您确认"),
+             ("提醒已创建|提醒已设置|已经设置",)),
+            ("reminder-unavailable", "full",
+             "朕现在确认设置刚才上午11点那条喝水提醒。这个测试会话没有可用的提醒工具。",
+             (r"11[:点时\s]|十一点", "喝水", "手动|自己|无法|没有|不能"),
+             ("提醒已创建|提醒已设置|已经设置|创建成功",)),
+        ),
+    }
+
+
+def replay(args, fixture, prompts, history=()):
     case, mode, message, required, forbidden = fixture
     instructions = prompts[mode]
     request = (
@@ -80,8 +123,10 @@ def replay(args, fixture, prompts):
         "下面是用户在当前对话发来的启用消息及其当前输入。按消息规则作答。\n\n"
         f"{instructions}\n\n"
     )
-    if message:
-        request += message
+    if history:
+        request += "以下 JSON 是此前发生的同一段对话，assistant 是你已发出的实际回复：\n"
+        request += json.dumps(history, ensure_ascii=False) + "\n\n用户接着说：\n"
+    request += message
     command = [
         args.codex, "exec", "--skip-git-repo-check", "--ephemeral", "--ignore-user-config",
         "--json", "-s", "read-only", "-c", 'web_search="disabled"', "-",
@@ -126,6 +171,7 @@ def replay(args, fixture, prompts):
     return {
         "case": case, "mode": mode, "input": message, "output": output,
         "passed": exit_code == 0 and completed and bool(output) and not (missing or present or tool_uses or runner_errors),
+        "turn_completed": completed and exit_code == 0 and not runner_errors,
         "missing_patterns": missing, "forbidden_patterns_present": present, "tool_uses": tool_uses,
         "exit_code": exit_code,
         "runner_errors": runner_errors,
@@ -134,14 +180,34 @@ def replay(args, fixture, prompts):
     }
 
 
+def replay_flow(args, name, fixtures, prompts):
+    history, records = [], []
+    for fixture in fixtures:
+        record = replay(args, fixture, prompts, history=history)
+        records.append(record)
+        if not record["turn_completed"] or not record["output"]:
+            break
+        if record["input"]:
+            history.append({"role": "user", "content": record["input"]})
+        history.append({"role": "assistant", "content": record["output"]})
+    return {
+        "flow": name, "records": records, "expected_turns": len(fixtures),
+        "passed": len(records) == len(fixtures) and all(turn["passed"] for turn in records),
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("output", type=Path)
     parser.add_argument("--model")
     parser.add_argument("--case", action="append", help="Run selected fixture IDs only")
+    parser.add_argument("--flow", action="append", choices=tuple(flow_fixtures()),
+                        help="Replay actual prior outputs for the selected scenario. Repeat for multiple flows.")
     parser.add_argument("--workers", type=int, default=3)
     parser.add_argument("--codex", default=shutil.which("codex") or "codex")
     args = parser.parse_args()
+    if args.case and args.flow:
+        parser.error("--case and --flow are separate runs")
     args.output = args.output.resolve()
     args.output.parent.mkdir(parents=True, exist_ok=True)
     prompts = {
@@ -149,20 +215,27 @@ def main():
         "full": re.search(r"```text\n(.*?)\n```", FULL.read_text(encoding="utf-8"), re.S)[1],
         "weight": re.search(r"```text\n(.*?)\n```", WEIGHT.read_text(encoding="utf-8"), re.S)[1],
     }
-    selected = [fixture for fixture in CASES if not args.case or fixture[0] in args.case]
-    if not selected or (args.case and {case[0] for case in selected} != set(args.case)):
-        parser.error("unknown fixture ID")
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
-        records = list(pool.map(lambda fixture: replay(args, fixture, prompts), selected))
+        if args.flow:
+            prompts["pilot"] = PILOT.read_text(encoding="utf-8").strip()
+            flows = flow_fixtures()
+            selected_flows = [(name, flows[name]) for name in dict.fromkeys(args.flow)]
+            records = list(pool.map(lambda pair: replay_flow(args, *pair, prompts), selected_flows))
+        else:
+            selected = [fixture for fixture in CASES if not args.case or fixture[0] in args.case]
+            if not selected or (args.case and {case[0] for case in selected} != set(args.case)):
+                parser.error("unknown fixture ID")
+            records = list(pool.map(lambda fixture: replay(args, fixture, prompts), selected))
     evidence = {
-        "environment": "Codex CLI, one independent session per synthetic fixture, connector tools unavailable",
+        "environment": ("Codex CLI, actual preceding responses reinjected as dialogue history, no platform connectors"
+                        if args.flow else "Codex CLI, independent sessions with synthetic fixture inputs, no platform connectors"),
         "model": args.model or "Codex CLI default",
         "instruction_sha256": {key: hashlib.sha256(value.encode()).hexdigest() for key, value in prompts.items()},
         "records": records,
     }
     args.output.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     for record in records:
-        print(f"{record['case']} {'PASS' if record['passed'] else 'REVIEW'}", flush=True)
+        print(f"{record.get('flow', record.get('case'))} {'PASS' if record['passed'] else 'REVIEW'}", flush=True)
     return 0 if all(record["passed"] for record in records) else 1
 
 

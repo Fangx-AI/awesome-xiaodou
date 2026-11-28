@@ -17,6 +17,8 @@
 
 2026 年 11 月 28 日，在 [S0 候选提交](https://github.com/Fangx-AI/awesome-xiaodou/tree/adc3190dbebcbbf251244a6d8930ce9064b9e6ca) 上用 Codex CLI 执行完整回归，26 个用例通过自动检查。覆盖一餐与月计划分流、已完成事项保留、续聊、外部动作确认和结果未知等。CLI 超时或输出中断时，保留已收到的回复并标为待复核。
 
+连续对话可用 `python scripts/replay_court.py <输出 JSON> --flow monthly-plan --flow pilot-reschedule --flow reminder-confirmation`。每一轮把前面实际生成的回复连同用户原话作为对话历史交给下一轮。用来观察计划能否从立案走到交付、改期和续聊，以及改提醒时会不会沿用旧的确认。记录会写明各轮输入、回复和通过条件；某轮中断时保留此前结果。这个回放使用 Codex CLI 与虚构输入，小豆 App 的记忆、工具授权和提醒回执仍由真机另测。
+
 | 场景 | 测试输入 | 怎么看成了 |
 | --- | --- | --- |
 | [皇帝模拟器](../prompts/emperor-simulator.md) | 「我想月底前剪出第一条视频，今晚只有 15 分钟。」接着说「选了题，只找到两段素材」和「我想换个对话」。 | 首轮只给一个能在 15 分钟内开始的动作，后续按已有进展给下一步，换对话时给可复制摘要。 |
