@@ -8,6 +8,7 @@ import shutil
 import subprocess
 from pathlib import Path
 
+from build_life_plans import SCENE_FILES
 from life_plan_cases import LIFE_CASES
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -26,7 +27,7 @@ LIFE_PACK = ROOT / "prompts" / "xiaodou-life-plans.txt"
 PILOT = ROOT / "prompts" / "xiaodou-pilot-start.txt"
 MATCHED_FLOWS = ("pilot-reschedule", "monthly-partial-intake")
 MONTH_REQUEST = "朕想用一个月养成更好的饮食习惯。中午只能点外卖，晚上想散步，但可能要加班。"
-INTAKE_SIGNALS = ("变化|改变|目标|希望|先改|想改|养成.{0,8}哪|哪.{0,8}饮食习惯|有进步", "平时|平常|通常|三餐|常点",
+INTAKE_SIGNALS = ("变化|改变|目标|希望|先改|想改|改善(?:什么|哪)|养成.{0,8}哪|哪.{0,8}饮食习惯|有进步", "平时|平常|通常|三餐|常点",
                   "时间|空档|有空|多久|腾出|几分钟", "成年|健康|限制|过敏|伤病")
 PREMATURE_PLAN = ("鸡肉饭|点一份|第.?周[：:]|(?:建议|安排|至少)每周.{0,8}走|今天午[饭餐].{0,12}(先|就).{0,10}(点|选)",)
 
@@ -776,6 +777,45 @@ def flow_fixtures():
          ("手动|需要时|想看时|按需", "不建|未建|没有创建|未创建|不创建|不支持|无需设置|只在主动查询"),
          ("已(?:设置|创建)|已经(?:设置|创建)|已经关闭",)),
     )
+    flows["scene-weight"] = (
+        ("weight-scene-start", "scene-weight", "", INTAKE_SIGNALS, PREMATURE_PLAN),
+        ("weight-scene-first-week", "scene-weight",
+         "我成年，一个月想少喝甜饮。午饭外卖经常配奶茶，晚饭在家，平时偶尔走路，没有健康限制。周二和周六有十五分钟。不想提供身高体重，只想做习惯计划。请排首周。",
+         ("首周|第一周|第1周", "甜饮|奶茶", "周二", "周六"), (r"请.{0,10}身高|请.{0,10}体重|[0-9]+\s*(?:大卡|千卡|kcal)",)),
+        ("weight-scene-replan", "scene-weight",
+         "周二已经散步十五分钟，周六安排取消，周日只有十分钟。已经换过一次无糖饮料，饮料计划照旧。只改散步。",
+         ("周二", "周日", r"十分钟|10\s*分钟", "饮料|饮食"), ("周六.{0,8}照常|重新开始减肥",)),
+    )
+    flows["scene-fitness"] = (
+        ("fitness-scene-start", "scene-fitness", "",
+         ("皇上", "分钟|多久|时长", "器材|场地|健身房|在家", "伤|健康|疼痛|限制"), ("已设置提醒",)),
+        ("fitness-scene-replan", "scene-fitness",
+         "成年，刚开始，没有伤病。周二已在家练过。周六临时没有弹力带，只有八分钟，有安全空地。只安排周六的徒手训练。",
+         ("周二", "周六", r"八分钟|8\s*分钟", "徒手|无器材|不用弹力带"), ("周六.{0,8}使用弹力带|周二.{0,8}重练",)),
+    )
+    flows["scene-reading"] = (
+        ("reading-scene-start", "scene-reading", "",
+         ("皇上", "读", "之后|后|时机|做完|触发"), ("补打卡|每天必须",)),
+        ("reading-scene-replan", "scene-reading",
+         "这周已经读了两次，昨晚漏了。出差后晚上没空，只有午饭后五分钟，手机有同一本电子书。朕今天怎么接着读？",
+         (r"两次|2\s*次", "午饭|午餐", "电子书|手机", "读"), ("必须补读|从第一页重新开始",)),
+    )
+    flows["scene-english"] = (
+        ("english-scene-start", "scene-english", "",
+         ("皇上", "会议|参会|同事", "英文|英语|开场|分钟"), ("[ABC][12]水平|保证流利",)),
+        ("english-scene-resume", "scene-english",
+         "朕已经写好第一句 We need to discuss the launch date. 今晚只剩五分钟。请扮同事和朕练，不要说完朕的回答。只有文字，没发录音。",
+         ("launch date", r"五分钟|5\s*分钟", "你来|你先|请你|试着|你答|等你|皇上来|轮到您|请您"),
+         ("你的发音.{0,6}很好|听起来.{0,8}流利|你的语速.{0,6}偏快",)),
+    )
+    flows["scene-study-abroad"] = (
+        ("study-scene-start", "scene-study-abroad", "",
+         ("皇上", "官网|官方", "入学|学期|学年|年份|哪一届", "项目|专业"), ("已提交|保证录取",)),
+        ("study-scene-replan", "scene-study-abroad",
+         "申请 2027 秋硕士，个人陈述初稿已写完。预算从 30 万降到 22 万。A 校我在官网核对的总费用是 25 万，B 校只查到了学费。手边没有更多资料，帮我改清单。",
+         ("个人陈述", r"22\s*万|二十二万", r"A\s*校", r"B\s*校", "待核|未查|没查|待确认|待补|不能判断"),
+         ("已提交|保证录取|B校符合预算",)),
+    )
     return flows
 
 
@@ -922,8 +962,12 @@ def main():
         elif args.flow or args.all_flows:
             prompts["pilot"] = PILOT.read_text(encoding="utf-8").strip()
             selected_flows = list(flows.items()) if args.all_flows else [(name, flows[name]) for name in dict.fromkeys(args.flow)]
-            if any(fixture[1] == "life" for _, turns in selected_flows for fixture in turns):
+            modes = {fixture[1] for _, turns in selected_flows for fixture in turns}
+            if "life" in modes:
                 prompts["life"] = args.life_pack.read_text(encoding="utf-8").strip()
+            for scene, path in SCENE_FILES.items():
+                if (mode := f"scene-{scene}") in modes:
+                    prompts[mode] = path.read_text(encoding="utf-8").strip()
             records = list(pool.map(lambda pair: replay_flow(args, *pair, prompts), selected_flows))
         else:
             life_cases = [(case_id, "life", message, required, forbidden)
