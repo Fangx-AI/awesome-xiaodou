@@ -6,7 +6,7 @@
 
 **中书省拟方案，门下省查可行性，尚书省交安排，六部按需跟进。**
 
-[在小豆里开始](#一句话在小豆里开始) · [看减肥计划怎么制定](#朕要减肥) · [看三省六部怎么帮忙](#三省六部怎么帮忙)
+[下载或开通小豆 App](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/install.md#下载和开通) · [已开通？复制开局](#一句话在小豆里开始) · [看减肥计划怎么制定](#朕要减肥)
 
 ![明代朝堂风格插画，殿前案上陈放奏折、卷轴和朱印](assets/xiaodou-imperial-court.jpg)
 
@@ -33,7 +33,7 @@
 
 ## 一句话在小豆里开始
 
-复制整段，在末尾加一句你的目标，一起发到小豆独立 App 的新对话。也可以从[减肥计划示例](#朕要减肥)开口。
+先打开小豆独立 App，确认已经开通并能发消息。复制整段，在末尾加一句你的目标，一起发到新对话。也可以从[减肥计划示例](#朕要减肥)开口。
 
 ```text
 启用小豆皇帝模拟器。
@@ -87,9 +87,7 @@
 
 [开局纯文本](prompts/xiaodou-start.txt) · [下载和开通小豆](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/install.md#下载和开通) · [使用方法](docs/install.md)
 
-**想试一件自己的事？** 选一个你本来就想做的目标，用七天看看能不能完成第一步。暂时进不了小豆 App，也可以帮忙看看首页好不好懂。
-
-[带自己的目标试七天](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/seven-day.md) · [参加首页冷读](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/cold-read.md)
+开局消息发出后，可以[带自己的目标试七天](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/seven-day.md)，回报第一步做得怎么样。
 
 ## 三省六部怎么帮忙
 
@@ -124,7 +122,7 @@
 <summary>下载、试用记录与建设计划</summary>
 
 - [含 30 个生活计划的候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot) · [历史版本](https://github.com/Fangx-AI/awesome-xiaodou/releases)
-- [试用案例](docs/prompt-quality.md) · [提示词出处](skills/xiaodou-skill/references/prompt-sources.md) · [建设计划](docs/roadmap.md)
+- [试用案例](docs/prompt-quality.md) · [提示词出处](skills/xiaodou-skill/references/prompt-sources.md) · [建设计划](docs/roadmap.md) · [首页可读性反馈](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/cold-read.md)
 - [玩法雷达](docs/radar.md) · [作者分享](docs/community.md) · [失败记录](docs/failures.md) · [来源登记](docs/source-ledger.md)
 
 </details>
