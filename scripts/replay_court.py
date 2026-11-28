@@ -363,6 +363,24 @@ def flow_fixtures():
         (case, "life", message, required, forbidden)
         for case, _, message, required, forbidden in flows["english-transcript-and-retry"]
     )
+    flows["habit-restart-with-a-new-minimum"] = (
+        ("habit-prepare-without-reading", "starter",
+         "这周已经有两次各读满一页。昨晚倒是把书翻到上次那页，但没有读。原来约定读一页才算完成。朕怎么记昨晚？",
+         (r"两\s*次|2\s*次", "翻开|翻到|打开", "没读|未读|未完成|没完成|未达到"),
+         ("已经完成三次|累计三次|昨晚也算完成|从零开始|重新打卡",)),
+        ("habit-new-criterion-from-next-opportunity", "starter",
+         "从今天开始改成午饭收拾好桌子后读一段就算完成。手机里有电子书。只给我今天的一步，昨晚按原记录。",
+         ("午饭|午餐", "收拾|收好|擦好", "电子书|手机", r"读.{0,6}(?:一|1)\s*段"),
+         ("补读|补打卡|加倍|昨晚.{0,6}改成完成|已经设置提醒",)),
+        ("habit-actual-completion-under-new-criterion", "starter",
+         "今天午饭后读完一段了。请告诉我总共完成几次，以及昨晚记什么。按每次的约定算。",
+         (r"三\s*次|3\s*次", "昨晚", "翻开|翻到|准备", "没有读|没读|未读|未完成|没完成"),
+         ("三次.{0,7}读满一页|昨晚.{0,6}完成一页|昨晚也算完成",)),
+    )
+    flows["habit-restart-with-a-new-minimum-life"] = tuple(
+        (case, "life", message, required, forbidden)
+        for case, _, message, required, forbidden in flows["habit-restart-with-a-new-minimum"]
+    )
     flows["starter-monthly-intake"] = tuple(
         (case, "starter", message, required, forbidden)
         for case, _, message, required, forbidden in flows["monthly-partial-intake"]
