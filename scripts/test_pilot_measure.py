@@ -22,8 +22,9 @@ class PilotMeasurementTests(unittest.TestCase):
         self.assertNotIn("emperor", rows[1])
 
     def test_blind_review_rejects_role_labels_and_unmatched_codes(self):
-        with self.assertRaisesRegex(ValueError, "role or group"):
-            anonymize([{"id": "P-0001", "order": "regular", "task": "练英语", "emperor": "皇上，请先读一句。"}])
+        for excerpt in ("皇上，请先读一句。", "礼部建议先读一句。", "顾砚安排先读一句。", "回奏：已读一句。"):
+            with self.subTest(excerpt=excerpt), self.assertRaisesRegex(ValueError, "role or group"):
+                anonymize([{"id": "P-0001", "order": "regular", "task": "练英语", "emperor": excerpt}])
         reviewer, key = anonymize([{"id": "P-0001", "order": "regular", "task": "练英语", "regular": "请先读一句。"}])
         for invalid in (reviewer * 2, [{"code": "unmatched"}]):
             with self.subTest(invalid=invalid), self.assertRaisesRegex(ValueError, "unknown or duplicate"):
@@ -31,6 +32,24 @@ class PilotMeasurementTests(unittest.TestCase):
         reviewer[0]["scores"] = {"first_action": "yes"}
         with self.assertRaisesRegex(ValueError, "scores must be true or false"):
             restore(key, reviewer)
+
+    def test_blind_restore_checks_material_without_requiring_every_score(self):
+        review, key = anonymize([{"id": "P-0001", "order": "regular", "task": "练英语",
+                                  "regular": "写一句。", "emperor": "读第一句。"}])
+        first, second = review
+        for row in ({**first, "task": "读纸书"}, {**first, "excerpt": second["excerpt"]},
+                    {**first, "code": second["code"]}):
+            with self.subTest(row=row), self.assertRaisesRegex(ValueError, "does not match"):
+                restore(key, [row])
+        with self.assertRaisesRegex(ValueError, "original task and excerpt"):
+            restore(key, [{"code": first["code"], "scores": {}}])
+        self.assertEqual(restore(key, []), [{"id": "P-0001", "order": "regular"}])
+
+    def test_legacy_blind_key_can_still_restore_scores(self):
+        key = [{"id": "P-0001", "order": "regular", "regular": "legacy"}]
+        review = [{"code": "legacy", "scores": {"first_action": False}}]
+        restored = restore(key, review)
+        self.assertEqual(restored[0]["regular"], {"first_action": False})
 
     def test_candidate_is_retained_and_must_identify_an_immutable_commit(self):
         commit = "91a7020c67480107c7e7f499d5993abb3cc92f11"
