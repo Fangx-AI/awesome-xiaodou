@@ -59,14 +59,19 @@ def normalize_title(title):
     return re.sub(r"[^\w]+", "", unicodedata.normalize("NFKC", title).casefold())
 
 
-def classify_headline(title):
+def classify_headline(title, publisher=""):
     if re.search(
         r"抓码站|买码|卖码|邀请码(出售|交易|接力|互助|主要靠)|求.{0,8}邀请码|"
-        r"邀请码.{0,12}(元|套利|炒)|邀请码\s*[:：]\s*[A-Z0-9]{5,12}\b",
+        r"邀请码.{0,12}(元|块|套利|炒|卖到)|邀请码\s*[:：]\s*[A-Z0-9]{5,12}\b",
         title,
     ):
         return None
-    if re.search(r"内测名额.{0,15}(手慢无|申请|招募)", title):
+    if re.search(r"内测招募|内测名额.{0,15}(手慢无|申请|招募)", title):
+        return None
+    if publisher.casefold() == "x" and not re.search(
+        r"^实测|试用[了过]|试完|我.{0,12}(用小豆|让小豆|实测|刚用|刚试|测了)",
+        title,
+    ):
         return None
     if re.search(r"实测|上手|测评|玩法|复盘|搭建|整理|试用|体验(?:小豆|[:：])|怎么用|教程", title):
         return "体验与玩法"
@@ -96,7 +101,7 @@ def collect(label, url, now):
         text = headline + " " + description
         if "小豆" not in headline or not any(term in text for term in ("豆包", "字节", "个人助理", "Personal Agent")):
             continue
-        if classify_headline(headline) is None:
+        if classify_headline(headline, publisher) is None:
             continue
         try:
             link = canonical_url(item.findtext("link", ""))
@@ -133,7 +138,7 @@ def output_page(rows, now, failures):
         lines.extend(["所有来源均未读到，以下保留上一次线索。", ""])
     groups = {"体验与玩法": [], "其他公开线索": []}
     for row in rows:
-        category = classify_headline(row["title"])
+        category = classify_headline(row["title"], row["publisher"])
         if category:
             groups[category].append(row)
     latest = max((row["first_seen"] for leads in groups.values() for row in leads), default=None)
@@ -189,7 +194,7 @@ def main():
     for row in previous + scanned:
         if datetime.fromisoformat(row["published"]) < now - timedelta(days=7):
             continue
-        if classify_headline(row["title"]) is None:
+        if classify_headline(row["title"], row["publisher"]) is None:
             continue
         title = normalize_title(row["title"])
         if title in titles or row["url"] in urls:

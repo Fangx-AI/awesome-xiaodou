@@ -22,6 +22,12 @@ class RadarTests(unittest.TestCase):
         self.assertEqual(radar.classify_headline("体验小豆App：支持主动AI"), "体验与玩法")
         self.assertEqual(radar.classify_headline("小豆 · 官方邀请开通说明"), "其他公开线索")
 
+    def test_x_retains_hands_on_reports_over_reactions(self):
+        self.assertIsNone(radar.classify_headline("豆包小豆来了，试用名额很多", "X"))
+        self.assertIsNone(radar.classify_headline("小豆邀请码都卖到了80块，附深度测评", "X"))
+        self.assertEqual(radar.classify_headline("试用了小豆，总结抖音私信还不行", "X"), "体验与玩法")
+        self.assertEqual(radar.classify_headline("实测小豆：替我打电话", "X"), "体验与玩法")
+
     def test_empty_results_distinguish_failed_sources(self):
         now = datetime.now(radar.CHINA)
         clean = radar.output_page([], now, [])
