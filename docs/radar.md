@@ -1,14 +1,30 @@
 # 小豆玩法雷达
 
-这里收集近 7 天的公开新闻和社区线索。按 15 分钟排程，首页、玩法或来源更新时也会扫描。GitHub 定时运行可能延迟。线索来自公开检索；下方时间为来源发布时间（北京时间）。
+这里收集近 7 天的公开新闻和社区线索。按 15 分钟排程，首页、玩法或来源更新时也会扫描。GitHub 定时运行可能延迟。只展示检索入口公开索引到的线索。下方时间为来源发布时间（北京时间）。
 
 [回到玩法库](../README.md) · [查看最近一次扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml) · [提交新玩法](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose)
 
 社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou) · [已经整理成指令的更新](updates.md)
 
-本次读到 7/7 个检索入口。
+本次读到 8/8 个检索入口。
 
-快照扫描时间：2026-11-28 16:08（北京时间） · [生成此快照的扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/runs/46124436229)
+快照扫描时间：2026-11-28 16:17（北京时间） · [生成此快照的扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/runs/46125143014)
+
+<details>
+<summary>查看各入口本轮命中的候选数</summary>
+
+候选数为去重前的数量。读到 0 条表示本轮没有匹配，不代表平台上没有内容。
+
+- Google 新闻 · 实测　8 条
+- Google 新闻 · 工作流　2 条
+- Google 新闻 · 社区　4 条
+- Google 新闻 · 知乎与视频社区　11 条
+- Google 新闻 · 抖音与公众号　0 条
+- Bing 新闻　2 条
+- 华尔街见闻　0 条
+- IT之家　0 条
+
+</details>
 
 最新入列：2026-11-28 16:02（北京时间）
 
