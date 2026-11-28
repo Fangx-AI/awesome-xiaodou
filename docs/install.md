@@ -17,6 +17,8 @@
 
 小豆在 11 月 24 日启动邀请制公测。收到朋友分享的邀请码后，回小豆独立 App 按页面提示开通。App 提供等候登记时，可以先登记。 [豆包官方公测公告](https://sina.cn/news/detail/5368723595591761.html) · [小豆产品介绍](https://www.doubao.com/xiaodou/)
 
+豆包在公测公告中说明，受邀用户可获得一定免费额度。开通后可以先用对话制定计划；如果 App 提示某个任务会扣额度或需要购买，按当时显示的额度和确认页判断。 [豆包公测公告](https://sina.cn/news/detail/5368723595591761.html) · [App Store 套餐与购买项](https://apps.apple.com/cn/app/id6815582077)
+
 等候期间可以先[选一份场景开局](share-cards.md)、看[减肥计划示例](weight-first-week.md)，或[反馈首页是否好懂](field-tests/cold-read.md)。
 
 如果搜不到、装不上、登录失败、开通遇阻或消息发不出去，可以[回报卡住的步骤][access-feedback]。填设备、系统、应用商店和日期即可。表单需要 GitHub 账号，留言会公开，避免填写邀请码或手机号。

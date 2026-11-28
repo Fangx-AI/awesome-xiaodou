@@ -10,6 +10,7 @@
 | 登录和开通 | 豆包官方宣布 11 月 24 日启动邀请制公测。账号进度以 App 显示为准 | [豆包官方公告](https://sina.cn/news/detail/5368723595591761.html) · [等候与开通](install.md#没有邀请码怎么办) |
 | 一条消息开局、报进度、门下改案 | 已有本地对话回放，小豆独立 App 仍待实测 | [本地回放](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/prompt-quality.md#本地候选回放) |
 | 原生提醒 | 创建、读取回执、实际触发与撤销仍待实测 | [真机结果](field-tests/README.md) |
+| 猫粮补货 | 官方演示包含估算余量、确认后补货。玩法给出用量变化后的重算和旧提醒核对步骤。原生改提醒、实际送达和下单仍待实测 | [猫粮补货玩法](../playbooks/05-restock.md) |
 | 截图记日历、飞书周报 | 文字回放覆盖日程预览和周报草稿。图片识别、日历写入和飞书连接器仍待实测 | [截图日历](../playbooks/11-screenshot-calendar.md) · [飞书周报](../playbooks/36-weekly-report.md) |
 | App 内原生技能导入 | 待确认导入入口。当前公开用法是复制开局到新对话 | [复制开局](../README.md#一句话在小豆里开始) |
 

@@ -20,6 +20,7 @@ BRIEF = ROOT / "playbooks" / "07-daily-brief.md"
 WEEKLY = ROOT / "playbooks" / "36-weekly-report.md"
 MAIL = ROOT / "playbooks" / "41-mail-confirm-send.md"
 SHOPPING = ROOT / "playbooks" / "15-shopping-card.md"
+RESTOCK = ROOT / "playbooks" / "05-restock.md"
 STALE = ROOT / "playbooks" / "46-stale-project-reminder.md"
 HEALTH_SUMMARY = ROOT / "playbooks" / "06-health-summary.md"
 TRIAGE = ROOT / "playbooks" / "45-feishu-reply-triage.md"
@@ -129,6 +130,20 @@ def flow_fixtures():
     pilot_guide = (ROOT / "docs/field-tests/pilot-s0.md").read_text(encoding="utf-8")
     _, pilot_change, pilot_review = re.findall(r"^```text\n(.*?)\n```$", pilot_guide, re.M | re.S)
     flows = {
+        "restock-existing-reminder": (
+            ("restock-estimate", "restock",
+             "2026 年 11 月 28 日上午 9 点，北京时间实测还有 1200 克猫粮。每天用 100 克，提前两天提醒。先给我预览。",
+             (r"12\s*[月/-]\s*10", r"12\s*[月/-]\s*0?8", r"北京时间|UTC\+0?8", "预览|确认"),
+             ("已创建|已设置|已下单",)),
+            ("restock-change-only-existing", "restock",
+             "实际 11 月 29 日上午 9 点量到只剩 990 克，此后每天 110 克。任务列表里已有一条 12 月 8 日上午 9 点的猫粮提醒，是我手动加的。先预览改案。",
+             (r"12\s*[月/-]\s*0?8", r"12\s*[月/-]\s*0?6", "原|旧|已存在|已有", "确认|预览"),
+             ("已改成|已修改|已调整|已创建|已下单",)),
+            ("restock-state-unknown", "restock",
+             "我换手机了，暂时看不到任务列表，不确定原提醒还在不在。先直接另建一条吧。",
+             ("旧|原", "核对|核实|确认|检查", "重复|另建"),
+             ("已改成|已修改|已创建|已新建|已设置|已下单",)),
+        ),
         "fortune-chat-and-return": (
             ("fortune-no-tool-no-text", "starter", "朕想看看最近的运势。这个对话没有抽签工具，我也还没有签文。",
              ("第二签|第二籤", "固定示例|作示例|用作示例|示例签|固定节选", "方寸好修為|方寸好修为", "维基文库|wikisource"),
@@ -965,6 +980,7 @@ def main():
         "weekly": re.search(r"```text\n(.*?)\n```", WEEKLY.read_text(encoding="utf-8"), re.S)[1],
         "mail": re.search(r"```text\n(.*?)\n```", MAIL.read_text(encoding="utf-8"), re.S)[1],
         "shopping": re.search(r"```text\n(.*?)\n```", SHOPPING.read_text(encoding="utf-8"), re.S)[1],
+        "restock": re.search(r"```text\n(.*?)\n```", RESTOCK.read_text(encoding="utf-8"), re.S)[1],
         "stale": re.search(r"```text\n(.*?)\n```", STALE.read_text(encoding="utf-8"), re.S)[1],
         "health-summary": re.search(r"```text\n(.*?)\n```", HEALTH_SUMMARY.read_text(encoding="utf-8"), re.S)[1],
         "triage": re.search(r"```text\n(.*?)\n```", TRIAGE.read_text(encoding="utf-8"), re.S)[1],

@@ -79,6 +79,8 @@
 
 用 `--flow expired-reminder-preview --flow expired-reminder-life` 检查预览过期后才确认。用虚构时钟预览 10:02，10:04 才确认时要求重选，10:08 的新时刻先预览，收到新确认且没有任务工具时交手填行。两个入口各四轮本地回放通过。 [真机核对步骤](field-tests/pilot-s0.md#另测提醒是否实际触发)
 
+用 `--flow restock-existing-reminder` 回放猫粮补货。按虚构数据先算出 12 月 8 日的提醒；收到新实测余量后改为 12 月 6 日，列出旧提醒和新时间；用户换手机查不到任务列表时，先核对旧任务再决定修改或新建。三轮本地回放通过。原生改提醒、实际送达和购买待实测。 [补货玩法](../playbooks/05-restock.md)
+
 用 `--flow reminder-timezone-change --flow reminder-timezone-life` 回放提醒换时区。用户先确认 12 月 9 日北京时间 09:00，随后改为当天固定 UTC−05:00 的 09:00。新时刻是北京时间 22:00，需要重新预览和确认。没有提醒工具时交一行北京时间的手填内容。这轮使用固定时差，未测原生提醒触发或跨夏令时行为。
 
 连续对话可用 `python scripts/replay_court.py <输出 JSON> --flow monthly-plan --flow pilot-reschedule --flow reminder-confirmation`。每一轮把前面实际生成的回复连同用户原话作为对话历史交给下一轮。用来观察计划能否从立案走到交付、改期和续聊，以及改提醒时会不会沿用旧的确认。记录会写明各轮输入、回复和通过条件；某轮中断时保留此前结果。这个回放使用 Codex CLI 与虚构输入，小豆 App 的记忆、工具授权和提醒回执仍由真机另测。
