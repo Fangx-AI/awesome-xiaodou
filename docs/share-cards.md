@@ -108,6 +108,8 @@ https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/share-cards.md#%E5%81
 
 保留已经完成的两次。从下一个真实空档接着读，首步可以是午饭后读五分钟。
 
+**饭点不固定也可以。** 可以接着说「每天吃饭的时间不一样，午饭后有空就读一段，午饭没空才用晚饭后，一天只算一次。先试一周。」周末告诉小豆哪天读了、哪天根本没空，它可以帮你决定是换时机，还是把动作做小一点。
+
 [下载或开通小豆](install.md#下载和开通) · [查看习惯养成计划](../skills/xiaodou-skill/references/life-plans/habits.md#p25--建立一个可持续的习惯)
 
 <details>
