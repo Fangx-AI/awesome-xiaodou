@@ -18,6 +18,7 @@ CALENDAR = ROOT / "playbooks" / "11-screenshot-calendar.md"
 BRIEF = ROOT / "playbooks" / "07-daily-brief.md"
 WEEKLY = ROOT / "playbooks" / "36-weekly-report.md"
 MAIL = ROOT / "playbooks" / "41-mail-confirm-send.md"
+SHOPPING = ROOT / "playbooks" / "15-shopping-card.md"
 STALE = ROOT / "playbooks" / "46-stale-project-reminder.md"
 TRIAGE = ROOT / "playbooks" / "45-feishu-reply-triage.md"
 INTEREST = ROOT / "playbooks" / "13-interest-updates.md"
@@ -403,6 +404,20 @@ def flow_fixtures():
     flows["stale-project-reminder-playbook"] = tuple(
         (case, "stale", message, required, forbidden)
         for case, _, message, required, forbidden in flows["stale-project-reminder"]
+    )
+    flows["shopping-checkout-comparison"] = (
+        ("shopping-rank-same-variant", "shopping",
+         "虚构数据，不联网。我要一只黑色全新500毫升保温杯。A 同规格，标价109元包邮，89元只对新用户，我不符合。B 同规格，标价97元，结算运费9元。C 是350毫升89元包邮。只比较，别下单。",
+         ("A", "109", "B", "106", "C", "350", "B.{0,14}(更便宜|最低|更划算)|106.{0,6}(最低|最便宜)"),
+         ("A.{0,8}到手89|C.{0,10}最便宜|已下单|已付款",)),
+        ("shopping-recalculate-one-change", "shopping",
+         "现在 B 的最终运费涨到14元。A 和 C 的条件都没变。只更新排序与金额，别建订单。",
+         ("B", "111", "A", "109", "A.{0,16}(更便宜|最低|更划算)|109.{0,6}(最低|最便宜)"),
+         ("B.{0,7}(仍是|还是).{0,5}(最便宜|最低)|已下单|已付款|已建单",)),
+        ("shopping-unknown-price-does-not-win", "shopping",
+         "又看到 D，同规格，商品卡写88元起。运费、我的券资格和结算页都看不到。它现在更便宜吗？只说我下一步核什么。",
+         ("D", "待核|不能|无法|未核|不确定", "运费", "券|优惠", "结算"),
+         ("D.{0,12}(最便宜|最低|更划算)|D.{0,12}比A便宜|已下单|已付款",)),
     )
     flows["starter-monthly-intake"] = tuple(
         (case, "starter", message, required, forbidden)
@@ -894,6 +909,7 @@ def main():
         "brief": re.search(r"```text\n(.*?)\n```", BRIEF.read_text(encoding="utf-8"), re.S)[1],
         "weekly": re.search(r"```text\n(.*?)\n```", WEEKLY.read_text(encoding="utf-8"), re.S)[1],
         "mail": re.search(r"```text\n(.*?)\n```", MAIL.read_text(encoding="utf-8"), re.S)[1],
+        "shopping": re.search(r"```text\n(.*?)\n```", SHOPPING.read_text(encoding="utf-8"), re.S)[1],
         "stale": re.search(r"```text\n(.*?)\n```", STALE.read_text(encoding="utf-8"), re.S)[1],
         "triage": re.search(r"```text\n(.*?)\n```", TRIAGE.read_text(encoding="utf-8"), re.S)[1],
         "interest": re.search(r"```text\n(.*?)\n```", INTEREST.read_text(encoding="utf-8"), re.S)[1],

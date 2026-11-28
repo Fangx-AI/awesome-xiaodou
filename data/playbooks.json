@@ -166,9 +166,11 @@
     "title": "按需求选品并生成提单",
     "path": "playbooks/15-shopping-card.md",
     "category": "购物与消费",
-    "evidence": "媒体体验",
+    "evidence": "第三方选品与提单体验；另有商品卡未覆盖其他平台的实例",
     "sources": [
-      "S6"
+      "S6",
+      "S26",
+      "S30"
     ],
     "self_tested": false
   },
