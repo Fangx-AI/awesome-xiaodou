@@ -6,11 +6,9 @@
 
 社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou) · [已经整理成指令的更新](updates.md)
 
-本次读到 6/7 个检索入口。
+本次读到 7/7 个检索入口。
 
-快照扫描时间：2026-11-28 16:03（北京时间） · [生成此快照的扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/runs/46124009630)
-
-本次未读到：Bing 新闻。
+快照扫描时间：2026-11-28 16:08（北京时间） · [生成此快照的扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/runs/46124436229)
 
 最新入列：2026-11-28 16:02（北京时间）
 
