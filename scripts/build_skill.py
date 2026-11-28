@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
-from build_life_plans import PLAN_FILES, PLAN_INDEX, copy_packs
+from build_life_plans import APP_PACK_NAME, PLAN_FILES, PLAN_INDEX, app_pack_files, copy_packs
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skills" / "xiaodou-skill"
@@ -59,7 +59,8 @@ def read_prompt(path):
 
 
 def main(output_folder):
-    for path, content in copy_packs().items():
+    copies = copy_packs()
+    for path, content in copies.items():
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(content, encoding="utf-8", newline="\n")
     cases = json.loads((ROOT / "data/playbooks.json").read_text(encoding="utf-8"))
@@ -125,7 +126,11 @@ def main(output_folder):
         for portrait in portraits:
             bundle.write(portrait, f"xiaodou-skill/assets/roles/{portrait.name}")
         bundle.write(ROOT / "LICENSE", "xiaodou-skill/LICENSE")
-    print(f"{len(cases)} prompts; archive: {archive}")
+    app_archive = output_folder / APP_PACK_NAME
+    with ZipFile(app_archive, "w", compression=ZIP_DEFLATED) as bundle:
+        for name, content in app_pack_files(copies).items():
+            bundle.writestr(name, content)
+    print(f"{len(cases)} prompts; archives: {archive}, {app_archive}")
 
 
 if __name__ == "__main__":

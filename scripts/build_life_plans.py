@@ -9,6 +9,7 @@ PLAN_INDEX = PLAN_DIR / "README.md"
 PLAN_PACK = ROOT / "prompts/xiaodou-life-plans.txt"
 PLAN_COPY_DIR = ROOT / "prompts/life-plans"
 PUBLIC_PLAN_URL = "https://github.com/Fangx-AI/awesome-xiaodou/blob/main/prompts/life-plans"
+APP_PACK_NAME = "xiaodou-app-starters.zip"
 PLAN_FIELDS = ("触发", "中书立案", "门下核对", "尚书交办", "回奏", "依据")
 SCENES = {
     "weight": ("P01", "帮我制定一个减肥计划。"),
@@ -138,3 +139,29 @@ def plan_starter(intro, plan, goal):
         f"{intro}下面是本次目标对应的计划。缺关键资料时，直接列出要我回答的具体问题，等我回答后再排计划。\n\n"
         f"{plan}\n\n我的目标：{goal}\n"
     )
+
+
+def app_pack_files(copies):
+    """Return the indexed offline files people can paste into the standalone App."""
+    readme = [
+        "把日常交给小豆", "",
+        "1. 挑一个生活计划，打开与它同名的文本文件，复制全文。",
+        "2. 打开小豆独立 App，开始一条新对话，粘贴并发送。",
+        "3. 回答小豆的提问。做完一步或条件有变化时，回到同一条对话告诉它。", "",
+        "有自己的目标？打开「通用开局.txt」，在末尾写上你的事一起发送。",
+        "下载与开通小豆 https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/install.md", "",
+    ]
+    files = {"通用开局.txt": (ROOT / "prompts/xiaodou-start.txt").read_text(encoding="utf-8")}
+    for chapter in PLAN_FILES:
+        source = chapter.read_text(encoding="utf-8")
+        category = source.splitlines()[0].removeprefix("# ")
+        readme.append(category)
+        for plan_id, title in re.findall(r"^## (P\d{2}) · ([^\n]+)$", source, re.MULTILINE):
+            if re.search(r'[<>:"/\\|?*]', category + title):
+                raise ValueError(f"{plan_id}: name contains a character unsupported in ZIP extraction on Windows")
+            filename = f"{plan_id} {title}.txt"
+            files[f"{category}/{filename}"] = copies[PLAN_STARTER_FILES[plan_id]]
+            readme.append(f"  {filename}")
+        readme.append("")
+    return {"先读这里.txt": "\n".join(readme), **files,
+            "LICENSE": (ROOT / "LICENSE").read_text(encoding="utf-8")}
