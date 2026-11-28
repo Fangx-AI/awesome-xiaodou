@@ -27,7 +27,7 @@ TRIAGE = ROOT / "playbooks" / "45-feishu-reply-triage.md"
 INTEREST = ROOT / "playbooks" / "13-interest-updates.md"
 LIFE_PACK = ROOT / "prompts" / "xiaodou-life-plans.txt"
 PILOT = ROOT / "prompts" / "xiaodou-pilot-start.txt"
-MATCHED_FLOWS = ("pilot-reschedule", "monthly-partial-intake")
+MATCHED_FLOWS = ("pilot-reschedule", "monthly-partial-intake", "comparison-reading-threshold", "comparison-event-budget")
 MONTH_REQUEST = "朕想用一个月养成更好的饮食习惯。中午只能点外卖，晚上想散步，但可能要加班。"
 INTAKE_SIGNALS = ("变化|改变|目标|希望|先改|想改|改善(?:什么|哪)|养成.{0,8}哪|哪.{0,8}饮食习惯|有进步", "平时|平常|通常|三餐|常点",
                   "时间|空档|有空|多久|腾出|几分钟", "成年|健康|限制|过敏|伤病")
@@ -129,7 +129,32 @@ def flow_fixtures():
     cases = {case[0]: case for case in CASES}
     pilot_guide = (ROOT / "docs/field-tests/pilot-s0.md").read_text(encoding="utf-8")
     _, pilot_change, pilot_review = re.findall(r"^```text\n(.*?)\n```$", pilot_guide, re.M | re.S)
+    comparison_guide = (ROOT / "docs/field-tests/replan-comparison.md").read_text(encoding="utf-8")
+    (reading_start, reading_report, reading_change, event_start, event_report,
+     event_change, event_resume) = re.findall(r"^```text\n(.*?)\n```$", comparison_guide, re.M | re.S)
     flows = {
+        "comparison-reading-threshold": (
+            ("comparison-reading-start", "starter", reading_start,
+             ("饭后|吃完饭", r"五分钟|5\s*分钟", "电子书", r"一页|1\s*页"), ()),
+            ("comparison-reading-report", "starter", reading_report,
+             ("周二", "周四", r"两次|2\s*次", "没读完|未读完|准备|未完成"), ()),
+            ("comparison-reading-change", "starter", reading_change,
+             ("午饭后|午餐后", r"三分钟|3\s*分钟", r"一段|1\s*段", "从今天|今天起|从这次",
+              r"两次|2\s*次", "昨晚", "没读完|未读完|准备|未完成"), ()),
+        ),
+        "comparison-event-budget": (
+            ("comparison-event-start", "starter", event_start,
+             ("签到", r"十分钟|10\s*分钟", r"先|第一步|列.{0,8}清单|前\s*\d\s*分钟",
+              "完成|就算|就可以"), ("已采购|已发送公告|已发布公告",)),
+            ("comparison-event-report", "starter", event_report,
+             ("签到表", "场地", "草稿", "还没买|未采购|未购买|未买|没有采购"), ("已采购|公告已发|已发布公告",)),
+            ("comparison-event-change", "starter", event_change,
+             ("签到表", "场地", "草稿", r"60\s*元|六十元", "纸", "笔", "先|下一步"),
+             ("已下单|已采购|已发送公告|已发布公告",)),
+            ("comparison-event-resume", "starter", event_resume,
+             ("签到表", "场地", "草稿", r"60\s*元|六十元", "先|下一步|现在|核对"),
+             ("已下单|已采购|已发送公告|已发布公告",)),
+        ),
         "individual-plan-switch": (
             ("individual-plan-first", "plan-p23",
              "我要安排同城搬家，周六搬出，周日取新房钥匙，物品已整理成清单，一家公司给过报价。请先核对哪件事。",
@@ -995,12 +1020,14 @@ def main():
                         help="Replay actual prior outputs for the selected scenario. Repeat for multiple flows.")
     parser.add_argument("--all-flows", action="store_true", help="Replay all sequential scenarios.")
     parser.add_argument("--compare", action="store_true",
-                        help="Replay monthly intake and pilot rescheduling with and without Skill instructions.")
+                        help="Replay matched task flows with and without Skill instructions.")
     parser.add_argument("--workers", type=int, default=3)
     parser.add_argument("--codex", default=shutil.which("codex") or "codex")
     args = parser.parse_args()
-    if sum(bool(option) for option in (args.case or args.individual_life, args.all_life, args.flow, args.all_flows, args.compare)) > 1:
-        parser.error("use one replay mode; --individual-life can also take --case")
+    if sum(bool(option) for option in (args.case or args.individual_life, args.all_life, args.flow or args.compare, args.all_flows)) > 1:
+        parser.error("use one replay mode; --individual-life can take --case, and --compare can take --flow")
+    if args.compare and args.flow and set(args.flow) - set(MATCHED_FLOWS):
+        parser.error("--compare requires a matched task flow")
     args.output = args.output.resolve()
     args.output.parent.mkdir(parents=True, exist_ok=True)
     prompts = {
@@ -1021,7 +1048,8 @@ def main():
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
         if args.compare:
             prompts.update(plain="", pilot=PILOT.read_text(encoding="utf-8").strip())
-            matches = [(name, arm, flows[name]) for name in MATCHED_FLOWS for arm in ("plain", "emperor")]
+            names = dict.fromkeys(args.flow) if args.flow else MATCHED_FLOWS
+            matches = [(name, arm, flows[name]) for name in names for arm in ("plain", "emperor")]
             records = list(pool.map(lambda match: replay_match(args, *match, prompts), matches))
         elif args.flow or args.all_flows:
             prompts["pilot"] = PILOT.read_text(encoding="utf-8").strip()

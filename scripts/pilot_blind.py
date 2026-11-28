@@ -6,7 +6,9 @@ import re
 import secrets
 from pathlib import Path
 
-from pilot_measure import COMPARISON_ARMS, check_carryover, check_ids, check_keys, summarize_comparisons
+from pilot_measure import (
+    COMPARISON_ARMS, check_carryover, check_comparison_scenario, check_ids, check_keys, summarize_comparisons,
+)
 
 ROLE_FILE = Path(__file__).resolve().parents[1] / "docs/studio/roles.json"
 
@@ -38,15 +40,15 @@ def anonymize(records):
     labels = group_labels()
     reviewer, key = [], []
     for record in records:
-        check_keys(record, ("id", "order", "task", "carryover", *COMPARISON_ARMS), "source comparison")
+        check_keys(record, ("id", "order", "task", "carryover", "scenario", *COMPARISON_ARMS), "source comparison")
         if record.get("order") not in COMPARISON_ARMS:
             raise ValueError("order must name the first arm")
         check_carryover(record)
+        check_comparison_scenario(record)
         task = record.get("task")
         redacted(task, "common task", labels)
         links = {"id": record["id"], "order": record["order"], "digests": {}}
-        if "carryover" in record:
-            links["carryover"] = record["carryover"]
+        links.update({field: record[field] for field in ("carryover", "scenario") if field in record})
         for arm in COMPARISON_ARMS:
             excerpt = record.get(arm)
             if excerpt is None:
@@ -65,7 +67,7 @@ def restore(key, reviewer):
     check_ids(key, "private key")
     digests = {}
     for item in key:
-        check_keys(item, ("id", "order", "digests", "carryover", *COMPARISON_ARMS), "private key row")
+        check_keys(item, ("id", "order", "digests", "carryover", "scenario", *COMPARISON_ARMS), "private key row")
     codes = [item[arm] for item in key for arm in COMPARISON_ARMS if arm in item]
     if any(not isinstance(code, str) for code in codes) or len(set(codes)) != len(codes):
         raise ValueError("invalid or duplicate review codes in the private key")
@@ -97,8 +99,7 @@ def restore(key, reviewer):
     rows = []
     for item in key:
         result = {"id": item["id"], "order": item["order"]}
-        if "carryover" in item:
-            result["carryover"] = item["carryover"]
+        result.update({field: item[field] for field in ("carryover", "scenario") if field in item})
         for arm in COMPARISON_ARMS:
             if item.get(arm) in scores:
                 result[arm] = scores[item[arm]]

@@ -75,11 +75,21 @@ class PilotMeasurementTests(unittest.TestCase):
 
     def test_carryover_is_private_until_scores_are_restored(self):
         record = {"id": "P-0001", "order": "regular", "task": "练会议开场",
-                  "regular": "写第一句。", "emperor": "先读第一句。", "carryover": "replan"}
+                  "regular": "写第一句。", "emperor": "先读第一句。", "carryover": "replan",
+                  "scenario": "pilot-reschedule"}
         reviewer, key = anonymize([record])
         self.assertTrue(all("carryover" not in row for row in reviewer))
+        self.assertTrue(all("scenario" not in row for row in reviewer))
         self.assertEqual(key[0]["carryover"], "replan")
-        self.assertEqual(restore(key, reviewer)[0]["carryover"], "replan")
+        rows = restore(key, reviewer)
+        self.assertEqual(rows[0]["carryover"], "replan")
+        self.assertEqual(rows[0]["scenario"], "pilot-reschedule")
+        self.assertEqual(summarize_comparisons(rows)["scenario_counts"], {"英语练习改期": 1})
+        output = render(summarize({"as_of": "2026-12-12", "comparisons": rows}))
+        self.assertIn("英语练习改期 1 人", output)
+        self.assertNotIn("写第一句", output)
+        with self.assertRaisesRegex(ValueError, "supported comparison task"):
+            restore([{**key[0], "scenario": "private details"}], reviewer)
         with self.assertRaisesRegex(ValueError, "carryover must be"):
             anonymize([{**record, "carryover": "unknown"}])
         with self.assertRaisesRegex(ValueError, "carryover must be"):

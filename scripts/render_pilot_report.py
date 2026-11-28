@@ -70,8 +70,9 @@ def render(report):
     if not compared["enrolled"]:
         return "\n".join([*lines, "暂无真实配对结果。", ""])
     counts = compared["carryover_counts"]
+    scenarios = "、".join(f"{label} {count} 人" for label, count in compared["scenario_counts"].items())
     lines.extend([
-        f"共登记 {compared['enrolled']} 人参加配对。"
+        f"共登记 {compared['enrolled']} 人参加配对。场景分布为 {scenarios}。"
         f"两段对话核对后，{counts['none']} 人未发现具体内容沿用，"
         f"{counts['first_action']} 人在首步前发现沿用，{counts['replan']} 人在改案时发现沿用，"
         f"{counts['unknown']} 人尚未核对。样本数小或顺序结果不一致时，暂不判断哪个模式更好。", "",

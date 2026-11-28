@@ -15,6 +15,12 @@ COMPARISON_ARMS = ("regular", "emperor")
 COMPARISON_REPLAN_FIELDS = ("preserved", "affected_only", "replan_actionable")
 COMPARISON_FIELDS = ("first_action", *COMPARISON_REPLAN_FIELDS)
 CARRYOVER_STAGES = ("none", "first_action", "replan")
+COMPARISON_SCENARIOS = {
+    "pilot-reschedule": "英语练习改期",
+    "monthly-partial-intake": "减肥计划补问",
+    "comparison-reading-threshold": "阅读改完成标准",
+    "comparison-event-budget": "读书会改物料预算",
+}
 TRIAL_STARTERS = ("xiaodou-start.txt", PLAN_PACK.name,
                   *(f"life-plans/{path.stem}.txt" for path in PLAN_FILES),
                   *(f"life-plans/{path.name}" for path in SCENE_FILES.values()),
@@ -145,6 +151,13 @@ def check_carryover(item):
         raise ValueError("carryover must be none, first_action or replan")
 
 
+def check_comparison_scenario(item):
+    if "scenario" in item:
+        value = item["scenario"]
+        if not isinstance(value, str) or value not in COMPARISON_SCENARIOS:
+            raise ValueError("scenario must name a supported comparison task")
+
+
 def comparison_report(records):
     counts = dict.fromkeys((*CARRYOVER_STAGES, "unknown"), 0)
     screened = []
@@ -169,11 +182,14 @@ def comparison_report(records):
 def summarize_comparisons(records):
     check_ids(records, "comparisons")
     by_order = {arm: [] for arm in COMPARISON_ARMS}
+    scenario_counts = dict.fromkeys((*COMPARISON_SCENARIOS, "unspecified"), 0)
     for item in records:
-        check_keys(item, ("id", "order", "carryover", *COMPARISON_ARMS), "comparison")
+        check_keys(item, ("id", "order", "carryover", "scenario", *COMPARISON_ARMS), "comparison")
         if item.get("order") not in COMPARISON_ARMS:
             raise ValueError("comparison order must name the first arm: regular or emperor")
         check_carryover(item)
+        check_comparison_scenario(item)
+        scenario_counts[item.get("scenario", "unspecified")] += 1
         for result in (item.get(arm, {}) for arm in COMPARISON_ARMS):
             check_keys(result, (*COMPARISON_FIELDS, "follow_up_questions"), "comparison arm")
             check_flags({key: result[key] for key in COMPARISON_FIELDS if key in result},
@@ -187,6 +203,8 @@ def summarize_comparisons(records):
     return {
         **comparison_report(records),
         "order_counts": {arm: len(items) for arm, items in by_order.items()},
+        "scenario_counts": {COMPARISON_SCENARIOS.get(key, "场景未登记"): count
+                            for key, count in scenario_counts.items() if count},
         "by_order": {arm: comparison_report(items) for arm, items in by_order.items()},
     }
 
