@@ -82,6 +82,7 @@ jobs:
           sha256sum xiaodou-skill.zip xiaodou-start.txt xiaodou-pilot-start.txt xiaodou-life-plans.txt life-plans/*.txt STARTERS.tsv CANDIDATE.txt > SHA256SUMS
           python -B "$GITHUB_WORKSPACE/scripts/verify_candidate.py" . --commit "$GITHUB_SHA" --repository "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
       - name: Upload checked S0 candidate
+        id: candidate_artifact
         if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/codex/s0-pilot'
         uses: actions/upload-artifact@v7
         with:
@@ -96,3 +97,31 @@ jobs:
             ${{ runner.temp }}/xiaodou/CANDIDATE.txt
             ${{ runner.temp }}/xiaodou/STARTERS.tsv
           if-no-files-found: error
+      - name: Show candidate download and trial links
+        if: steps.candidate_artifact.outputs.artifact-id != ''
+        env:
+          ARTIFACT_URL: ${{ steps.candidate_artifact.outputs.artifact-url }}
+          ARTIFACT_DIGEST: ${{ steps.candidate_artifact.outputs.artifact-digest }}
+        run: |
+          cd "$RUNNER_TEMP/xiaodou"
+          public_readme=$(sed -n 's/^public_readme=//p' CANDIDATE.txt)
+          pilot=$(sed -n 's/^pilot=//p' CANDIDATE.txt)
+          seven_day=$(sed -n 's/^seven_day=//p' CANDIDATE.txt)
+          matching=$(awk -F '\t' '$4 == "identical" { total++ } END { print total + 0 }' STARTERS.tsv)
+          total=$(awk 'END { print NR - 1 }' STARTERS.tsv)
+          {
+            printf '## 小豆候选包\n\n'
+            printf '[登录 GitHub 后下载本次候选包](%s)\n\n' "$ARTIFACT_URL"
+            printf '候选提交 `%s`\n\n' "$GITHUB_SHA"
+            printf '[首页冷读固定页](%s) · [七天自选任务](%s) · [真机演练](%s)\n\n' \
+              "$public_readme" "$seven_day" "$pilot"
+            printf '与公开首页固定版本一致的开局文件为 %s/%s 份。各文件请看包内 `STARTERS.tsv`。\n\n' \
+              "$matching" "$total"
+            printf 'GitHub 工件 SHA-256 `%s`\n\n' "$ARTIFACT_DIGEST"
+            printf '在仓库根目录下载并核对文件。\n\n'
+            printf '```bash\n'
+            printf 'gh run download %s --repo %s --name xiaodou-s0-%s --dir xiaodou-s0-%s\n' \
+              "$GITHUB_RUN_ID" "$GITHUB_REPOSITORY" "$GITHUB_SHA" "$GITHUB_RUN_ID"
+            printf 'python scripts/verify_candidate.py xiaodou-s0-%s --commit %s\n' "$GITHUB_RUN_ID" "$GITHUB_SHA"
+            printf '```\n'
+          } >> "$GITHUB_STEP_SUMMARY"
