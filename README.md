@@ -133,6 +133,8 @@
 
 **有一句话帮你把计划救回来？** 可以只分享「原打算做什么 → 发生了什么 → 最后做成哪一步」。发之前去掉个人资料。也可以点个 Star，把这个入口存下来。
 
+想找朋友一起试，可以[转发试用邀请](docs/experience-and-sharing.md#可转发的试用邀请)。
+
 [分享实际结果](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=prompt-feedback.yml) · [贡献玩法](CONTRIBUTING.md) · [保存分享图](assets/xiaodou-five-minutes-share.png) · [分享到 X](https://twitter.com/intent/tweet?text=%E7%9A%87%E4%B8%8A%EF%BC%8C%E4%BB%8A%E6%99%9A%E5%8F%AA%E5%89%A9%E4%BA%94%E5%88%86%E9%92%9F%E3%80%82%E5%8E%9F%E5%AE%9A%E7%BB%83%E8%8B%B1%E8%AF%AD%E5%BC%80%E5%9C%BA%EF%BC%8C%E4%B8%B4%E6%97%B6%E5%8A%A0%E7%8F%AD%EF%BC%8C%E5%86%99%E5%A5%BD%E7%9A%84%E7%AC%AC%E4%B8%80%E5%8F%A5%E7%85%A7%E6%A0%B7%E7%AE%97%E3%80%82%E5%8F%91%E4%B8%80%E5%8F%A5%E8%AF%9D%EF%BC%8C%E8%AE%A9%E5%B0%8F%E8%B1%86%E6%8A%8A%E8%A2%AB%E6%89%93%E6%96%AD%E7%9A%84%E8%AE%A1%E5%88%92%E6%8E%A5%E7%9D%80%E5%8A%9E%E3%80%82&url=https%3A%2F%2Fgithub.com%2FFangx-AI%2Fawesome-xiaodou%2Fblob%2Fcodex%2Fs0-pilot%2FREADME.md)
 
 社区项目 · [原创内容 CC BY 4.0](LICENSE)

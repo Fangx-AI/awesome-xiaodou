@@ -20,6 +20,20 @@
 
 [下载「今晚只剩五分钟」分享图](../assets/xiaodou-five-minutes-share.png)
 
+### 可转发的试用邀请
+
+**给已经能进入小豆 App 的人**
+
+> 原本想练 15 分钟英语，临时加班只剩 5 分钟。我们做了个「小豆皇帝模拟器」，这时会保留写好的第一句，只改今晚剩下的安排。你可以带一件自己原本就想做的事试试，比如开始阅读、练英语，或把一个月的饮食计划排顺。做到第一步、改了计划、卡住了，都欢迎回来报个结果。
+
+[带真实目标试七天](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/seven-day.md)
+
+**给第一次看到项目、还没开通小豆的人**
+
+> 想请你帮我看三分钟 GitHub 首页。按你平时的方式读，告诉我它是做什么的、你第一下会点哪里。哪句看不明白也请直接说。
+
+[参加首页冷读](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/cold-read.md)
+
 **两种开头试同一个入口。**
 
 - 场景版「皇上，今天只剩五分钟？照样能把事情往前办一步。」
