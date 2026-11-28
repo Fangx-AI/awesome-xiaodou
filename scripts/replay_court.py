@@ -17,6 +17,7 @@ WEIGHT = ROOT / "prompts" / "41-weight-plan.md"
 CALENDAR = ROOT / "playbooks" / "11-screenshot-calendar.md"
 WEEKLY = ROOT / "playbooks" / "36-weekly-report.md"
 MAIL = ROOT / "playbooks" / "41-mail-confirm-send.md"
+INTEREST = ROOT / "playbooks" / "13-interest-updates.md"
 LIFE_PACK = ROOT / "prompts" / "xiaodou-life-plans.txt"
 PILOT = ROOT / "prompts" / "xiaodou-pilot-start.txt"
 MATCHED_FLOWS = ("pilot-reschedule", "monthly-partial-intake")
@@ -31,6 +32,12 @@ CASES = (
     ("evening-no-report", "starter", "晚朝。昨天朕读了两页，今天到现在还没告诉你做了什么。",
      ("皇上", "今天", "还没|没有|未|未知", "做|进展|完成"),
      ("今天.{0,9}已读两页|今天.{0,9}完成两页|先.{0,8}补读|已设置提醒",)),
+    ("interest-verified-update", "interest",
+     "跟进虚构游戏《星灯计划》，只关心正式版本更新或延期。旧消息里，只知道还在测试。"
+     "11 月 27 日官方公告说版本更新延至 12 月 3 日，媒体同日转述这条；论坛另传会延到明年，官方没证实。"
+     "当前没有后台任务工具，用我提供的文字交一份最新变化和手动复查办法。",
+     ("官方", r"12\s*月\s*3\s*日", "传闻|未证实|未确认|待证实|未纳入", "手动|复查|回来|下次核对"),
+     ("已创建.{0,4}任务|已订阅|已设置.{0,4}提醒|延期至明年已确认",)),
     ("02-weight", "starter", "朕成年，午饭外卖只买得到鸡肉饭、青菜和炸鸡。想改善习惯，从今天午饭开始，这顿怎么选？",
      ("鸡肉饭", "青菜"), ("已下单|已购买",)),
     ("03-fitness", "full", "朕刚开始健身，目标是能坚持。周二与周六各有20分钟，只有一条弹力带。给我首周表，不帮我设提醒。",
@@ -615,6 +622,7 @@ def main():
         "calendar": re.search(r"```text\n(.*?)\n```", CALENDAR.read_text(encoding="utf-8"), re.S)[1],
         "weekly": re.search(r"```text\n(.*?)\n```", WEEKLY.read_text(encoding="utf-8"), re.S)[1],
         "mail": re.search(r"```text\n(.*?)\n```", MAIL.read_text(encoding="utf-8"), re.S)[1],
+        "interest": re.search(r"```text\n(.*?)\n```", INTEREST.read_text(encoding="utf-8"), re.S)[1],
     }
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
         if args.compare:

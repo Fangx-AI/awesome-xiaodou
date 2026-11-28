@@ -53,6 +53,8 @@
 
 用 `--flow evening-review --flow evening-review-life` 回放「晚朝」。收尾时区分今天已发的进度消息、报告写完的第一段、待资料的第二段，以及没有回报的读书。用户说今晚到这里，便结束当天安排。第二天资料到了，从第二段接着做。用 `--case evening-no-report` 另测只有昨日阅读记录时，小豆会说明今天暂无回报。
 
+用 `--case interest-verified-update` 检查兴趣跟进。虚构游戏的官方延期公告与媒体转述合为一条，论坛传闻单列。没有后台工具时给出手动复查的日期和来源，任务状态保持未创建。
+
 连续对话可用 `python scripts/replay_court.py <输出 JSON> --flow monthly-plan --flow pilot-reschedule --flow reminder-confirmation`。每一轮把前面实际生成的回复连同用户原话作为对话历史交给下一轮。用来观察计划能否从立案走到交付、改期和续聊，以及改提醒时会不会沿用旧的确认。记录会写明各轮输入、回复和通过条件；某轮中断时保留此前结果。这个回放使用 Codex CLI 与虚构输入，小豆 App 的记忆、工具授权和提醒回执仍由真机另测。
 
 用 `--flow monthly-partial-intake` 核对分次补答与首周复盘。先只给出饮食目标和限制，再补三餐及空档。检查回复是否沿用已答内容、给出具体的首周和有条件的四周路线。最后回报只做成一次、下周仍加班，核对小豆是否按这次结果安排下一周。
