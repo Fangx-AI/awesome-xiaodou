@@ -8,7 +8,7 @@
 
 **在小豆里试用**　[跟着「今晚只剩五分钟」试一次](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/pilot-s0.md) · [带自己的目标试七天](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/seven-day.md)
 
-[复制一句话开局](#一句话在小豆里开始) · [看朕怎么减肥](#朕要减肥) · [看三省六部怎么帮忙](#三省六部怎么帮忙)
+[用三省六部开局](#一句话在小豆里开始) · [看朕怎么减肥](#朕要减肥) · [看三省六部怎么帮忙](#三省六部怎么帮忙)
 
 [S0 试用版说明](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/README.md) · [没有小豆 App？参加页面冷读](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/cold-read.md)
 
@@ -16,7 +16,14 @@
 
 ## 一句话在小豆里开始
 
-把下面这段作为**一条消息**发到小豆 App 的新对话。示例只解决今天这一餐。要做自己的事，换掉最后两行；要排一个月，可以按[下面的月计划例子](#朕要减肥)开口。
+[打开 S0 试用版的开局消息](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/README.md#一句话在小豆里开始)，复制整段，在末尾加一句你的目标，一起发到小豆独立 App 的新对话。想排一个月，可以像[下面的月计划例子](#朕要减肥)那样开口。
+
+[下载和开通小豆](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/install.md#下载和开通) · [使用方法](docs/install.md)
+
+<details>
+<summary>只想问这一餐？打开单餐示例</summary>
+
+复制整段作为一条消息发送。要按实际菜单选菜，可在末尾补上你能点到的选项。
 
 ```text
 开启皇帝模式，称我皇上。
@@ -27,9 +34,9 @@
 午饭只能外卖，帮我选菜。
 ```
 
-[复制纯文本](prompts/xiaodou-start.txt) · [完整版皇帝模式](prompts/emperor-simulator.md) · [使用方法](docs/install.md)
+[单餐示例纯文本](prompts/xiaodou-start.txt)
 
-这条消息用于当前对话。要按三省六部走一轮完整朝议，用上面的完整版。
+</details>
 
 ## 朕要减肥
 

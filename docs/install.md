@@ -2,10 +2,11 @@
 
 ## 小豆独立 App
 
-打开小豆新对话，把[首页的开局示例](../README.md#一句话在小豆里开始)原样发送即可开始。要办自己的事，只换最后两行。
+打开小豆新对话，从[首页的开局入口](../README.md#一句话在小豆里开始)找到 S0 试用版。复制开局消息，末尾加上自己的目标，一起发送。
 
-- **一句话开局**：当场做一件事，适合第一次试用。
-- **[完整版皇帝模式](../prompts/emperor-simulator.md)**：包含三省六部分工、进展更新和跨对话续聊摘要。
+- **[试用版开局](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/README.md#一句话在小豆里开始)**：适合办自己的事、做多周计划、报进度和改期。
+- **[单餐示例](../prompts/xiaodou-start.txt)**：用来问今天这一餐，直接粘贴即可。
+- **[正式版完整指令](../prompts/emperor-simulator.md)**：包含三省六部分工、进展更新和跨对话续聊摘要。
 - **整包提示词**：用于一段对话里选择多种场景，按下面的步骤使用。
 
 1. 打开[9 条常用指令](../prompts/xiaodou-quick-pack.txt)或[完整 44 条](../prompts/xiaodou-paste-pack.txt)，点 GitHub 文件工具栏中的复制按钮，或打开 Raw 后全选复制。
