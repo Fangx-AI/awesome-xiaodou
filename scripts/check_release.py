@@ -1,5 +1,6 @@
 """Check the staged Skill ZIP, clipboard entry, and README links."""
 import json
+import posixpath
 import re
 import sys
 from pathlib import Path
@@ -91,6 +92,14 @@ def verify(archive):
         assert all(len(lot["verse"]) == 4 and lot["traditionalCommentary"] for lot in lots)
         for path in tracked_files:
             assert bundle.read("xiaodou-skill/" + path).decode().replace("\r\n", "\n") == text(skill / path), path
+        archive_paths = set(bundle.namelist())
+        for path in ("SKILL.md", "references/planning.md", "references/divination.md"):
+            content = text(skill / path)
+            directory = posixpath.dirname(f"xiaodou-skill/{path}")
+            for target in re.findall(r"\]\(([^)]+)\)", content):
+                if "://" not in target and not target.startswith("#"):
+                    linked_path = posixpath.normpath(posixpath.join(directory, target.split("#")[0]))
+                    assert linked_path in archive_paths, f"{path} refers to missing file: {target}"
         assert bundle.read("xiaodou-skill/LICENSE") == (ROOT / "LICENSE").read_bytes()
         library = bundle.read("xiaodou-skill/references/prompts.md").decode()
         zip_ids = re.findall(r"^### ([A-Z]?\d{2}) · ", library, re.MULTILINE)
