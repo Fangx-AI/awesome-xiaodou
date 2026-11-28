@@ -6,13 +6,15 @@
 
 **中书省先问再拟案 → 门下省查条件、退回重排 → 尚书省派六部、交付计划。** 设提醒、发消息等操作，等你确认后再办。
 
-[已开通？复制开局](#一句话在小豆里开始) · [下载小豆 App](docs/install.md#下载和开通) · [缺邀请码](docs/install.md#没有邀请码怎么办)
+[已开通？复制开局](#一句话在小豆里开始) · [下载小豆 App](docs/install.md#下载和开通) · [开通或发送卡住了](docs/install.md#开通或发送卡住了)
 
 ## 一句话在小豆里开始
 
 选一个目标，点代码块右上角复制全文。到**小豆独立 App** 新建对话，一次发出。
 
 **复制场景开局**　[减肥](prompts/life-plans/scenes.md#减肥) · [健身](prompts/life-plans/scenes.md#健身) · [自律阅读](prompts/life-plans/scenes.md#自律阅读) · [学英语](prompts/life-plans/scenes.md#学英语) · [留学](prompts/life-plans/scenes.md#留学)
+
+[没找到怎么开始？告诉我们你卡在哪](docs/field-tests/cold-read.md)，没有小豆 App 也可以。
 
 <details>
 <summary><strong>自填目标 · 展开并复制开局</strong></summary>
