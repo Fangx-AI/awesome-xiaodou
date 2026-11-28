@@ -7,19 +7,23 @@
 ### 下载和开通
 
 1. **下载小豆独立 App。** 搜「小豆 - 豆包旗下 AI 个人助理」，认准开发者**北京春田知韵科技有限公司**。
-   - **iPhone / iPad**　打开中国区 App Store 条目查看系统要求和年龄分级。 [App Store 中国区](https://apps.apple.com/cn/app/id6815582077)
-   - **Android**　在手机自带的应用商店搜索「小豆」。 [小米应用商店](https://app.mi.com/details?id=com.larus.doubaom)
-2. **打开小豆，按 App 提示登录。** 能进入新对话并发出消息，就可以[发一条消息开局](#发一条消息开局)。打开 App 后仍在等待或看到邀请码页面，按下面的方法处理。
+   - **iPhone / iPad**　先打开中国区 App Store 的小豆条目。页面提示当前地区不可用时，在你正在使用的商店里搜完整应用名。 [App Store 中国区](https://apps.apple.com/cn/app/id6815582077)
+   - **Android**　打开手机自带的应用商店搜「小豆」。小米网页显示维护时，也可以在手机里的小米应用商店搜索。 [小米应用商店](https://app.mi.com/details?id=com.larus.doubaom)
+2. **打开小豆，按 App 提示登录。** 正在等候或需要输入邀请码时，见下一节。已经能在新对话发消息时，直接[发一条消息开局](#发一条消息开局)。
 
 查看两家商店的[版本和网页下载状态](app-stores.md)。
 
 ### 没有邀请码怎么办
 
-小豆在 11 月 24 日启动邀请制公测。App 要求邀请码时，按当前页面提示开通。暂时进不去，也可以先看[减肥计划示例](weight-first-week.md)，或[用浏览器反馈首页是否好懂](field-tests/cold-read.md)。 [小豆产品页](https://www.doubao.com/xiaodou/) · [首都之窗公测报道](https://www.beijing.gov.cn/fuwu/lqfw/gggs/202611/t20261124_4957049.html)
+小豆在 11 月 24 日启动邀请制公测。收到朋友分享的邀请码后，回小豆独立 App 按页面提示开通。App 提供等候登记时，可以先登记。 [豆包官方公测公告](https://sina.cn/news/detail/5368723595591761.html) · [小豆产品介绍](https://www.doubao.com/xiaodou/)
+
+等候期间可以先[选一份场景开局](share-cards.md)、看[减肥计划示例](weight-first-week.md)，或[反馈首页是否好懂](field-tests/cold-read.md)。
 
 如果搜不到、装不上、登录失败、开通遇阻或消息发不出去，可以[回报卡住的步骤][access-feedback]。填设备、系统、应用商店和日期即可。表单需要 GitHub 账号，留言会公开，避免填写邀请码或手机号。
 
 ### 发一条消息开局
+
+想直接试减肥、健身、自律阅读、英语或留学，可以[选一份带目标的开局](share-cards.md)。
 
 打开小豆独立 App 的新对话，发送[首页的开局消息](../README.md#一句话在小豆里开始)。有目标可以一起写在消息末尾。之后在同一对话报进度或说出新的约束。
 

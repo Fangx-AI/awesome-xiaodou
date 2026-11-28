@@ -7,7 +7,7 @@
 | 环节 | 验证状态 | 对应证据 |
 | --- | --- | --- |
 | 下载入口 | 已核对中国区 App Store 和小米应用商店的公开条目，手机下载安装待实测 | [商店版本和网页状态](app-stores.md) · [下载步骤](install.md#下载和开通) |
-| 登录和开通 | 11 月 24 日公测以邀请制启动。账号能否开通以 App 所示为准 | [首都之窗公测报道](https://www.beijing.gov.cn/fuwu/lqfw/gggs/202611/t20261124_4957049.html) |
+| 登录和开通 | 豆包官方宣布 11 月 24 日启动邀请制公测。账号进度以 App 显示为准 | [豆包官方公告](https://sina.cn/news/detail/5368723595591761.html) · [等候与开通](install.md#没有邀请码怎么办) |
 | 一条消息开局、报进度、门下改案 | 已有本地对话回放，小豆独立 App 仍待实测 | [本地回放](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/prompt-quality.md#本地候选回放) |
 | 原生提醒 | 创建、读取回执、实际触发与撤销仍待实测 | [真机结果](field-tests/README.md) |
 | 截图记日历、飞书周报 | 文字回放覆盖日程预览和周报草稿。图片识别、日历写入和飞书连接器仍待实测 | [截图日历](../playbooks/11-screenshot-calendar.md) · [飞书周报](../playbooks/36-weekly-report.md) |
