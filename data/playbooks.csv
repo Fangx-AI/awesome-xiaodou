@@ -4,7 +4,7 @@
 03,日程冲突检查,办公与个人管理,发布报道,S2,False,playbooks/03-calendar-check.md
 04,请小豆打电话问餐厅,生活与出行,第三方实测报道,S3;S6;S7;S8,False,playbooks/04-restaurant-call.md
 05,猫粮补货提醒,生活与出行,演示转述,S3,False,playbooks/05-restock.md
-06,日常健康信息汇总,长期跟进与兴趣,作者体验分享,S2;S5;S24,False,playbooks/06-health-summary.md
+06,日常健康信息汇总,长期跟进与兴趣,记者实测获授权后读取睡眠记录，Apple 说明健康数据源优先顺序,S2;S5;S24;S31,False,playbooks/06-health-summary.md
 07,行业动态早报,长期跟进与兴趣,社区文章,S4,False,playbooks/07-daily-brief.md
 08,短视频作品复盘,创作与内容整理,作者体验与描述,S4;S5,False,playbooks/08-video-review.md
 09,从抖音收藏找附近餐厅,生活与出行,作者体验分享,S5,False,playbooks/09-saved-restaurants.md

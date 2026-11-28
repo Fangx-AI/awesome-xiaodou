@@ -55,7 +55,7 @@
 
 | 编号 | 玩法 | 证据状态 | 来源 |
 | --- | --- | --- | --- |
-| 06 | [日常健康信息汇总](../playbooks/06-health-summary.md) | 作者体验分享 | S2, S5, S24 |
+| 06 | [日常健康信息汇总](../playbooks/06-health-summary.md) | 记者实测获授权后读取睡眠记录，Apple 说明健康数据源优先顺序 | S2, S5, S24, S31 |
 | 07 | [行业动态早报](../playbooks/07-daily-brief.md) | 社区文章 | S4 |
 | 13 | [追踪游戏和赛事动态](../playbooks/13-interest-updates.md) | 作者体验分享 | S5, S26 |
 | 16 | [跟进演出开票](../playbooks/16-ticket-alert.md) | 媒体任务创建记录 | S6 |

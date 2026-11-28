@@ -14,6 +14,8 @@
 
 [复制小豆开局](../README.md#一句话在小豆里开始) · [查看可选的专业细则](../prompts/41-weight-plan.md)
 
+已经在用手机或手表记步？先核对记录来源与日期，再用实际步数回顾这一周。 [查看健康数据怎么核对](../playbooks/06-health-summary.md)
+
 <img src="../assets/xiaodou-monthly-plan-share.png" width="480" alt="减肥计划五步流程。了解情况，评估起点，核对方案，排出首周，按进展调整。">
 
 [CDC 体重管理指南](https://www.cdc.gov/healthy-weight-growth/losing-weight/index.html)
