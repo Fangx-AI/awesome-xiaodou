@@ -30,7 +30,7 @@
 
 ## 豆包工作 / 支持 Agent Skills 的客户端
 
-1. 从[候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot)下载通过校验的工件，解出含 30 个生活计划的 `xiaodou-skill.zip`。旧版在 [Releases](https://github.com/Fangx-AI/awesome-xiaodou/releases)。
+1. 登录 GitHub，打开最近一次通过的[候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot)。在运行摘要的「小豆候选包」下点下载，打开压缩包里的 `xiaodou-skill.zip`。早期构建可在 Artifacts 区下载，过期后可选更新的构建。旧版可在 [Releases](https://github.com/Fangx-AI/awesome-xiaodou/releases) 取得。
 2. 解压，保留 `xiaodou-skill` 文件夹及其 `references`。在支持技能导入的客户端选择该技能文件夹，或按客户端要求上传技能。豆包工作的入口在「技能」中的本地导入。
 3. 在已启用技能的对话中说「用小豆 Skill 帮我做个减肥计划」，或在技能选择器中选择它。
 
