@@ -1,14 +1,14 @@
 # 小豆玩法雷达
 
-这里收集近 7 天的公开新闻和社区线索。按 15 分钟排程，首页、玩法或来源更新时也会扫描。GitHub 定时运行可能延迟。下方是检索入口索引的标题和发布时间（北京时间）。已读原文并纳入玩法的报道可在来源登记里查到。
+这里收集近 7 天的公开新闻和社区线索。按 15 分钟排程，首页、玩法或来源更新时也会扫描。GitHub 定时运行可能延迟。线索未变时，页面保留最近的内容快照。每次扫描的实际时间和读取结果见运行摘要。下方是检索入口索引的标题和发布时间（北京时间）。已读原文并纳入玩法的报道可在来源登记里查到。
 
-[回到玩法库](../README.md) · [查看最近一次扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml) · [提交新玩法](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose)
+[回到玩法库](../README.md) · [查看最近一次扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml) · [仅看自动定时扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/radar.yml?query=event%3Aschedule) · [提交新玩法](https://github.com/Fangx-AI/awesome-xiaodou/issues/new/choose)
 
 社区讨论：[观猹 · 小豆产品页](https://watcha.cn/products/xiao-dou) · [已整理的玩法更新](updates.md) · [来源登记](source-ledger.md)
 
 本次读到 8/8 个检索入口。
 
-快照扫描时间：2026-11-28 19:00（北京时间） · [生成此快照的扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/runs/46137781211)
+快照扫描时间：2026-11-28 19:04（北京时间） · [生成此快照的扫描](https://github.com/Fangx-AI/awesome-xiaodou/actions/runs/46138115941)
 
 <details>
 <summary>查看各入口本轮命中的候选数</summary>
