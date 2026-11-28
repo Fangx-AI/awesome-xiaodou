@@ -71,5 +71,8 @@ def copy_packs():
             + "\n\n我的目标：\n"
         )
     for scene, (plan_id, goal) in SCENES.items():
-        copies[SCENE_FILES[scene]] = f"{intro}{plans[plan_id]}\n\n我的目标：{goal}\n"
+        copies[SCENE_FILES[scene]] = (
+            f"{intro}下面是本次目标对应的计划。缺关键资料时，直接列出要我回答的具体问题，等我回答后再排计划。\n\n"
+            f"{plans[plan_id]}\n\n我的目标：{goal}\n"
+        )
     return copies
