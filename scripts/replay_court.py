@@ -13,6 +13,7 @@ STARTER = ROOT / "prompts" / "xiaodou-start.txt"
 FULL = ROOT / "prompts" / "emperor-simulator.md"
 WEIGHT = ROOT / "prompts" / "41-weight-plan.md"
 PILOT = ROOT / "prompts" / "xiaodou-pilot-start.txt"
+MATCHED_FLOWS = ("pilot-reschedule", "monthly-partial-intake")
 MONTH_REQUEST = "朕想用一个月养成更好的饮食习惯。中午只能点外卖，晚上想散步，但可能要加班。"
 INTAKE_SIGNALS = ("变化|改变|目标|希望|先改|想改", "平时|平常|通常|三餐|常点",
                   "时间|空档|加班", "成年|健康|限制|过敏|伤病")
@@ -86,7 +87,8 @@ def flow_fixtures():
             ("monthly-remaining-baseline", "full",
              "补上：早饭在家，午饭常点盖饭配奶茶，晚饭在家。饭后偶尔走，周二和周六晚各有15分钟，周四常加班。现在请排四周和首周安排。",
              (r"第\s*[1一]\s*周|首周", "周二", "周六", "周四|加班", "甜饮|奶茶",
-              "保持|维持|照旧|沿用", "缩小|降低|减量|减到|降回|减少|只选|只保留|先保留|先保住|先守住"),
+              "保持|维持|照旧|沿用",
+              "缩小|降低|减量|减到|降回|减少|只选|只保留|先保留|先保住|先守住|先固定.{0,12}一天"),
              ("是否成年|你成年了吗|请提供体重",)),
             ("monthly-first-week-report", "full",
              "第一周结束。工作日午饭只做到一次换成水，周四加班又点了奶茶。下周周四仍加班，先别加量。",
@@ -110,7 +112,8 @@ def flow_fixtures():
              ("今晚练.{0,3}15|重写第一句|重新写第一句",)),
             ("pilot-review", "pilot",
              pilot_review,
-             ("Lin", "第一句|开头|Hi.{0,8}Lin", "明天|下次"), ("已经设置提醒|已创建提醒",)),
+             ("Lin", "第一句|开头|Hi.{0,8}Lin", "读过|读了|念了|已经读", "卡在|卡住|没接上|接不下去", "明天|下次"),
+             ("已经设置提醒|已创建提醒",)),
         ),
         "reminder-confirmation": (
             ("reminder-preview", "full",
@@ -141,6 +144,13 @@ def replay(args, fixture, prompts, history=()):
         "下面是用户在当前对话发来的启用消息及其当前输入。按消息规则作答。\n\n"
         f"{instructions}\n\n"
     )
+    if args.compare:
+        request = (
+            "这是个人助理对话回放。只输出助理直接给用户的回复。"
+            "本对话没有真实连接器，不调用工具，不访问网络。\n\n"
+        )
+        if instructions:
+            request += f"用户已给出本会话说明：\n{instructions}\n\n"
     if history:
         request += "以下 JSON 是此前发生的同一段对话，assistant 是你已发出的实际回复：\n"
         request += json.dumps(history, ensure_ascii=False) + "\n\n用户接着说：\n"
@@ -214,6 +224,19 @@ def replay_flow(args, name, fixtures, prompts):
     }
 
 
+def replay_match(args, name, arm, fixtures, prompts):
+    _, _, pilot_goal = prompts["pilot"].partition("\n\n")
+    if not pilot_goal:
+        raise ValueError("The pilot opening must separate instructions and the sample goal")
+    turns = []
+    for case, mode, message, required, forbidden in fixtures:
+        if mode == "pilot":
+            mode = "starter"
+            message = message or pilot_goal
+        turns.append((case, mode if arm == "emperor" else "plain", message.replace("朕", "我"), required, forbidden))
+    return {"arm": arm, **replay_flow(args, name, turns, prompts)}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("output", type=Path)
@@ -221,11 +244,13 @@ def main():
     parser.add_argument("--case", action="append", help="Run selected fixture IDs only")
     parser.add_argument("--flow", action="append", choices=tuple(flow_fixtures()),
                         help="Replay actual prior outputs for the selected scenario. Repeat for multiple flows.")
+    parser.add_argument("--compare", action="store_true",
+                        help="Replay monthly intake and pilot rescheduling with and without Skill instructions.")
     parser.add_argument("--workers", type=int, default=3)
     parser.add_argument("--codex", default=shutil.which("codex") or "codex")
     args = parser.parse_args()
-    if args.case and args.flow:
-        parser.error("--case and --flow are separate runs")
+    if sum(bool(option) for option in (args.case, args.flow, args.compare)) > 1:
+        parser.error("--case, --flow, and --compare are separate runs")
     args.output = args.output.resolve()
     args.output.parent.mkdir(parents=True, exist_ok=True)
     prompts = {
@@ -234,7 +259,12 @@ def main():
         "weight": re.search(r"```text\n(.*?)\n```", WEIGHT.read_text(encoding="utf-8"), re.S)[1],
     }
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
-        if args.flow:
+        if args.compare:
+            prompts.update(plain="", pilot=PILOT.read_text(encoding="utf-8").strip())
+            flows = flow_fixtures()
+            matches = [(name, arm, flows[name]) for name in MATCHED_FLOWS for arm in ("plain", "emperor")]
+            records = list(pool.map(lambda match: replay_match(args, *match, prompts), matches))
+        elif args.flow:
             prompts["pilot"] = PILOT.read_text(encoding="utf-8").strip()
             flows = flow_fixtures()
             selected_flows = [(name, flows[name]) for name in dict.fromkeys(args.flow)]
@@ -246,15 +276,23 @@ def main():
             records = list(pool.map(lambda fixture: replay(args, fixture, prompts), selected))
     evidence = {
         "environment": ("Codex CLI, actual preceding responses reinjected as dialogue history, no platform connectors"
-                        if args.flow else "Codex CLI, independent sessions with synthetic fixture inputs, no platform connectors"),
+                        if args.flow or args.compare else "Codex CLI, independent sessions with synthetic fixture inputs, no platform connectors"),
         "model": args.model or "Codex CLI default",
         "instruction_sha256": {key: hashlib.sha256(value.encode()).hexdigest() for key, value in prompts.items()},
         "records": records,
     }
     args.output.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     for record in records:
-        print(f"{record.get('flow', record.get('case'))} {'PASS' if record['passed'] else 'REVIEW'}", flush=True)
-    return 0 if all(record["passed"] for record in records) else 1
+        arm = f" ({record['arm']})" if "arm" in record else ""
+        print(f"{record.get('flow', record.get('case'))}{arm} {'PASS' if record['passed'] else 'REVIEW'}", flush=True)
+    if args.compare and any(
+        len(record["records"]) != record["expected_turns"]
+        or any(not turn["turn_completed"] or not turn["output"] or turn["tool_uses"] for turn in record["records"])
+        for record in records
+    ):
+        return 1
+    checked = [record for record in records if record.get("arm") != "plain"]
+    return 0 if all(record["passed"] for record in checked) else 1
 
 
 if __name__ == "__main__":
