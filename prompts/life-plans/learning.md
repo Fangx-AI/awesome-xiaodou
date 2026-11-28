@@ -198,11 +198,11 @@
 ## P11 · 留学申请与选校
 
 - **触发**　「帮我做留学申请计划」「预算变了，学校怎么重选」。
-- **中书立案**　确认国家、入学季、学位、专业、预算币种及覆盖期、已有材料和当前空档。范围太大时先核一个项目。 用户不方便透露预算金额时，照常整理学校成本，用「在我上限内／超过／待核」让用户在自己的表里比较。
-- **门下核对**　用申请当届和对应校区的学校页面区分申请、奖助、推荐信和补件截止。分别记录文件上传、主申请递交及学校是否确认材料齐全，并保留对应回执或页面状态。费用统一币种、覆盖期与包含项目；缺生活费或杂费就保留待核，奖助未落实单列。
-- **尚书交办**　户部列费用，工部交项目、出处、日期、材料状态、下一步。礼部可起核实邮件草稿。已写材料记为可复用。 用用户自行核对的预算结果更新筛选，缺项的学校继续核成本。若只能先核一项，指出官网位置和要找的具体费用。
+- **中书立案**　确认目的地、入学季、学位、专业、预算币种及覆盖期、已有材料和当前空档。还没选目的地时，先按专业和预算比较一两个地区；已有目标时先核一个具体项目。用户不方便透露预算金额时，照常整理费用，让用户在自己的表里标「在我上限内／超过／待核」。
+- **门下核对**　用对应入学季、项目、校区和申请人类别的学校页面，分别核实申请、奖助、推荐信和补件截止。费用统一币种、覆盖期与包含项目；学费页面未注明适用入学季、只找到往届数据、官网打不开或缺生活费和杂费时，标明哪项待核，暂缓给总价、预算判断或正式倒排。已落实和待申请的奖助分开记。分别记录文件上传、主申请递交及学校是否确认材料齐全，并保留对应回执或页面状态。
+- **尚书交办**　户部列费用，工部交项目、出处、适用入学季、材料状态和下一步；已有材料标可复用。下方各地指引用来找项目、费用项目和申请入口，最终用学校当届信息。页面打不开时，给一条可执行的核实动作，例如到院系招生页找当届国际生费用，或由礼部起草一句问招生办的话。
 - **回奏**　变动时只重筛受影响项目，保留完成材料。推荐人说已送出而门户仍待收时，两条并记，按项目的入账和截止指引核对，暂不重复提交、付款或催信。门户确认收齐后，更新该项目的材料状态。例：预算改为 22 万，已核总费用 25 万的先移开，只有学费的继续查。
-- **依据**　[EducationUSA 研究生选校](https://educationusa.state.gov/your-5-steps-us-study/research-your-options/graduate/research-and-narrow-your-options-graduate) · [研究生费用](https://educationusa.state.gov/your-5-steps-us-study/finance-your-studies/graduate) · [MIT 推荐信递交说明](https://oge.mit.edu/graduate-admissions/applications/letters-of-recommendation/) · [Harvard Griffin GSAS 递交后状态](https://gsas.harvard.edu/apply/applying-degree-programs/after-application-submission)
+- **依据**　[美国 MIT 学费与生活费示例](https://sfs.mit.edu/graduate-students/cost-of-attendance/grad-cost-of-attendance/) · [英国 UCAS 研究生申请时间](https://www.ucas.com/faqs/when-should-i-apply) · [加拿大 EduCanada 费用与预算](https://www.educanada.ca/start-commencez/step-2-etape.aspx?lang=eng) · [澳大利亚 Study Australia 课程申请](https://www.studyaustralia.gov.au/en/plan-your-studies/how-to-apply-to-study) · [MIT 推荐信递交说明](https://oge.mit.edu/graduate-admissions/applications/letters-of-recommendation/) · [Harvard Griffin GSAS 递交后状态](https://gsas.harvard.edu/apply/applying-degree-programs/after-application-submission)
 
 我的目标：帮我排留学申请，先确认当届学校要求和申请时间。
 ```
@@ -320,11 +320,11 @@
 ## P11 · 留学申请与选校
 
 - **触发**　「帮我做留学申请计划」「预算变了，学校怎么重选」。
-- **中书立案**　确认国家、入学季、学位、专业、预算币种及覆盖期、已有材料和当前空档。范围太大时先核一个项目。 用户不方便透露预算金额时，照常整理学校成本，用「在我上限内／超过／待核」让用户在自己的表里比较。
-- **门下核对**　用申请当届和对应校区的学校页面区分申请、奖助、推荐信和补件截止。分别记录文件上传、主申请递交及学校是否确认材料齐全，并保留对应回执或页面状态。费用统一币种、覆盖期与包含项目；缺生活费或杂费就保留待核，奖助未落实单列。
-- **尚书交办**　户部列费用，工部交项目、出处、日期、材料状态、下一步。礼部可起核实邮件草稿。已写材料记为可复用。 用用户自行核对的预算结果更新筛选，缺项的学校继续核成本。若只能先核一项，指出官网位置和要找的具体费用。
+- **中书立案**　确认目的地、入学季、学位、专业、预算币种及覆盖期、已有材料和当前空档。还没选目的地时，先按专业和预算比较一两个地区；已有目标时先核一个具体项目。用户不方便透露预算金额时，照常整理费用，让用户在自己的表里标「在我上限内／超过／待核」。
+- **门下核对**　用对应入学季、项目、校区和申请人类别的学校页面，分别核实申请、奖助、推荐信和补件截止。费用统一币种、覆盖期与包含项目；学费页面未注明适用入学季、只找到往届数据、官网打不开或缺生活费和杂费时，标明哪项待核，暂缓给总价、预算判断或正式倒排。已落实和待申请的奖助分开记。分别记录文件上传、主申请递交及学校是否确认材料齐全，并保留对应回执或页面状态。
+- **尚书交办**　户部列费用，工部交项目、出处、适用入学季、材料状态和下一步；已有材料标可复用。下方各地指引用来找项目、费用项目和申请入口，最终用学校当届信息。页面打不开时，给一条可执行的核实动作，例如到院系招生页找当届国际生费用，或由礼部起草一句问招生办的话。
 - **回奏**　变动时只重筛受影响项目，保留完成材料。推荐人说已送出而门户仍待收时，两条并记，按项目的入账和截止指引核对，暂不重复提交、付款或催信。门户确认收齐后，更新该项目的材料状态。例：预算改为 22 万，已核总费用 25 万的先移开，只有学费的继续查。
-- **依据**　[EducationUSA 研究生选校](https://educationusa.state.gov/your-5-steps-us-study/research-your-options/graduate/research-and-narrow-your-options-graduate) · [研究生费用](https://educationusa.state.gov/your-5-steps-us-study/finance-your-studies/graduate) · [MIT 推荐信递交说明](https://oge.mit.edu/graduate-admissions/applications/letters-of-recommendation/) · [Harvard Griffin GSAS 递交后状态](https://gsas.harvard.edu/apply/applying-degree-programs/after-application-submission)
+- **依据**　[美国 MIT 学费与生活费示例](https://sfs.mit.edu/graduate-students/cost-of-attendance/grad-cost-of-attendance/) · [英国 UCAS 研究生申请时间](https://www.ucas.com/faqs/when-should-i-apply) · [加拿大 EduCanada 费用与预算](https://www.educanada.ca/start-commencez/step-2-etape.aspx?lang=eng) · [澳大利亚 Study Australia 课程申请](https://www.studyaustralia.gov.au/en/plan-your-studies/how-to-apply-to-study) · [MIT 推荐信递交说明](https://oge.mit.edu/graduate-admissions/applications/letters-of-recommendation/) · [Harvard Griffin GSAS 递交后状态](https://gsas.harvard.edu/apply/applying-degree-programs/after-application-submission)
 
 ## P12 · 从选题到交稿
 
