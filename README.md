@@ -1,6 +1,8 @@
 # 小豆皇帝模拟器
 
-**减肥计划试过几次，总是坚持不下去？** 把日常交给小豆。在小豆独立 App 里说出目标，让一位个人助理扮演三省六部，帮你排出适合自己的计划。情况变了，就从已经做到的地方接着办。
+**把日常交给小豆**
+
+减肥计划试过几次，总是坚持不下去？在**小豆独立 App** 说出目标，小豆用明代朝堂的角色设定，一人扮演三省六部，帮你定计划、迈出第一步。条件变了，从已完成的地方接着办。
 
 **中书省问清情况、拟方案 → 门下省核对可行性 → 尚书省按需派六部、交计划。** 涉及设提醒、发消息等操作，由你确认后再办。
 
@@ -146,7 +148,7 @@
 | <img src="docs/studio/portraits/operations.jpg" width="56" alt="季行"> | <img src="docs/studio/portraits/review.jpg" width="56" alt="宋矩"> | <img src="docs/studio/portraits/works.jpg" width="56" alt="林造"> |
 | 交改期与备选 | 核权限与确认 | 交清单或记录表 |
 
-[三省六部人物志](skills/xiaodou-skill/references/court.md) · [Edict 适配说明](docs/edict-adaptation.md)
+[三省六部人物志](skills/xiaodou-skill/references/court.md) · [朝堂设定与 Edict 借鉴](docs/edict-adaptation.md#朝堂设定)
 
 ## 玩法目录
 
