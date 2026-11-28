@@ -28,6 +28,9 @@ PREMATURE_PLAN = ("鸡肉饭|点一份|第.?周[：:]|(?:建议|安排|至少)�
 # Earlier replies described in an input are test fixtures, not recorded App replies.
 CASES = (
     ("01-start", "starter", "", ("皇上", "想|要|办"), ()),
+    ("evening-no-report", "starter", "晚朝。昨天朕读了两页，今天到现在还没告诉你做了什么。",
+     ("皇上", "今天", "还没|没有|未|未知", "做|进展|完成"),
+     ("今天.{0,9}已读两页|今天.{0,9}完成两页|先.{0,8}补读|已设置提醒",)),
     ("02-weight", "starter", "朕成年，午饭外卖只买得到鸡肉饭、青菜和炸鸡。想改善习惯，从今天午饭开始，这顿怎么选？",
      ("鸡肉饭", "青菜"), ("已下单|已购买",)),
     ("03-fitness", "full", "朕刚开始健身，目标是能坚持。周二与周六各有20分钟，只有一条弹力带。给我首周表，不帮我设提醒。",
@@ -461,6 +464,24 @@ def flow_fixtures():
     flows["daily-priority-life"] = tuple(
         (case, "life", message, required, forbidden)
         for case, _, message, required, forbidden in flows["daily-priority"]
+    )
+    flows["evening-review"] = (
+        ("evening-record", "starter",
+         "朕留个记录。昨天写了报告标题。今天给同事发了项目进度，报告第一段写完了，第二段仍等资料。今天读书没有回报。先记下来。",
+         ("昨天", "进度", "第一段", "第二段", "读书|阅读"),
+         ("报告已完成|第二段已完成|读书已完成",)),
+        ("evening-review-only", "starter",
+         "晚朝。今天就到这里，说说实际做了什么。今晚别再安排新任务。",
+         ("进度", "第一段", "第二段", "待|等|没|未", "读书|阅读", "未回报|没回报|没有回报|未知|未记录"),
+         ("今天写了.{0,5}标题|标题.{0,6}今天完成|报告全部完成|读书已完成|今晚先做|今晚补|今晚再练",)),
+        ("evening-next-available", "starter",
+         "明早只有五分钟。报告第二段的资料送到了。请从原进度接着办，先给我一个能做的动作。",
+         ("第一段|已有内容|已经写好", "第二段", r"五分钟|5\s*分钟", "写|补|挑|列"),
+         ("重写|从头写|今晚先做|重新发送",)),
+    )
+    flows["evening-review-life"] = tuple(
+        (case, "life", message, required, forbidden)
+        for case, _, message, required, forbidden in flows["evening-review"]
     )
     return flows
 
