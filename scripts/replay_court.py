@@ -293,6 +293,29 @@ def flow_fixtures():
         (case, "starter", message, required, forbidden)
         for case, _, message, required, forbidden in flows["monthly-partial-intake"]
     )
+    flows["parallel-plans"] = (
+        ("parallel-overview", "starter",
+         "朕有两件在办。英语会议自我介绍的第一句之前已读一遍，第二句还没练，明晚还留五分钟练英语。纸书已读到第十页，明晚另有五分钟读书。先列两件事的进度和下一步。",
+         ("英语", "第二句", "纸书|读书|阅读", r"第\s*10\s*页|第十页"), ()),
+        ("parallel-ambiguous", "starter", "刚才又读了一遍，帮朕记一下。",
+         ("英语|开场", "纸书|读书|阅读", "哪|还是|指的是|具体是|确认"),
+         ("(?:已记|已更新|记下了|记好了).{0,16}(?:英语|读书|纸书)",)),
+        ("parallel-report", "starter", "是英语会议开头，第一句又朗读一次。第二句留到明晚。给朕一份简短回奏。",
+         ("英语", "第一句", r"两遍|2\s*遍|两次|2\s*次|一遍.{0,12}一遍", "第二句", "明晚"),
+         ("第十一页|第11页|第二句已练",)),
+        ("parallel-reschedule", "starter", "只把纸书阅读挪到明天午休，给朕看两件事各自的最新进度和下一步。",
+         ("英语", "第二句", "明晚", "纸书|读书|阅读", r"第\s*10\s*页|第十页", "午休|中午",
+          r"两遍|2\s*遍|两次|2\s*次|一遍.{0,12}一遍"),
+         ("英语.{0,12}改到午休|第十一页已读|第11页已读|已创建提醒",)),
+        ("parallel-conflict", "starter",
+         "明晚的空档也没了。明天两件事都只能用午休同一段五分钟，每件都需要五分钟，我只做一件。先别替朕决定。",
+         ("英语", "纸书|读书|阅读", "优先|先做哪|留给哪|选哪|做哪一件"),
+         ("午休.{0,10}先练英语再读|各.{0,5}两分半",)),
+    )
+    flows["parallel-plans-life"] = tuple(
+        (case, "life", message, required, forbidden)
+        for case, _, message, required, forbidden in flows["parallel-plans"]
+    )
     return flows
 
 
