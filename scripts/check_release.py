@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 from zipfile import ZipFile
 
-from build_life_plans import PLAN_FILES, PLAN_INDEX, copy_packs
+from build_life_plans import APP_PACK_NAME, PLAN_FILES, PLAN_INDEX, app_pack_files, copy_packs
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -46,9 +46,16 @@ def verify(archive):
 
     skill = ROOT / "skills/xiaodou-skill"
     roles = json.loads(text(ROOT / "docs/studio/roles.json"))
+    copies = copy_packs()
+    expected_app = app_pack_files(copies)
+    with ZipFile(archive.with_name(APP_PACK_NAME)) as app:
+        assert app.testzip() is None, "damaged App starter ZIP"
+        assert sorted(app.namelist()) == sorted(expected_app), "App starter ZIP entries do not match the index"
+        for name, expected in expected_app.items():
+            assert app.read(name).decode("utf-8") == expected, f"App starter ZIP content differs: {name}"
     with ZipFile(archive) as bundle:
         assert bundle.testzip() is None, "damaged ZIP contents"
-        for path, expected in copy_packs().items():
+        for path, expected in copies.items():
             assert text(path) == expected, f"{path.name}: App copy text must match the Skill reference"
         tracked_files = ["SKILL.md", "references/prompts.md", "references/court.md", "references/prompt-sources.md"]
         tracked_files.extend(path.relative_to(skill).as_posix() for path in (PLAN_INDEX, *PLAN_FILES))

@@ -9,7 +9,7 @@
 | 观测项 | 已有结果 |
 | --- | --- |
 | GitHub | 2 Star、0 Fork。GitHub 最近 14 天统计为 68 次浏览、31 个独立访客。 [仓库与实时 Star](https://github.com/Fangx-AI/awesome-xiaodou/stargazers) |
-| 公开发布 | v2.3.0 包含 30 个生活计划、48 条提示词和五份场景开局。该版 ZIP 累计 2 次下载，包含维护校验下载。 [发布包与校验值](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.3.0) |
+| 公开发布 | v2.4.0 提供 30 份可单独发送的 App 开局和一份独立技能 ZIP。v2.3.0 技能 ZIP 截至上次统计累计 2 次下载，包含维护校验下载。 [发布包与校验值](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.4.0) |
 | 已校验的入口 | GitHub 页面已检查 320px、390px 和桌面宽度的复制路径。五份场景开局可直接从示例进入。 [使用状态](compatibility.md) · [场景入口](share-cards.md) |
 | 用户证据 | 已登记的独立 App 真机测试为 0。首页冷读暂无公开回报，外部 7 天试用和两种模式的真实对照均待收集。 [真机登记](field-tests/README.md) · [公开冷读回报](https://github.com/Fangx-AI/awesome-xiaodou/issues?q=is%3Aissue+label%3Acold-read) |
 

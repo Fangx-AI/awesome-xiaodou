@@ -1,5 +1,10 @@
 # 小豆 Skill 更新记录
 
+## v2.4.0 · 30 个计划，各有一句开局
+
+- 跑步、备餐、考试复习、求职、搬家等 30 个计划都可以单独复制到小豆。 [在线选计划](../skills/xiaodou-skill/references/life-plans/README.md#选一个你想做的计划)
+- 离线包按五类整理，每份文件直接标明要做的事。解压后打开「先读这里.txt」。 [下载小豆 App 开局包](https://github.com/Fangx-AI/awesome-xiaodou/releases/download/skill-v2.4.0/xiaodou-app-starters.zip) · [查看发布页](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.4.0)
+
 ## 2026-11-28 · 手机和手表的步数先对齐
 
 - 用同一日期和来源回顾活动，分清缺记录、来源待核和实际零步。连接不到健康 App 时，可手填每日汇总。 [健康记录汇总](../playbooks/06-health-summary.md)
