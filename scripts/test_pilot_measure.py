@@ -4,6 +4,27 @@ from pilot_measure import summarize, summarize_comparisons
 
 
 class PilotMeasurementTests(unittest.TestCase):
+    def test_explicit_incompletion_and_missing_reports_keep_the_same_denominator(self):
+        report = summarize({"as_of": "2026-12-10", "trials": [
+            {"id": "P-0001", "started_on": "2026-12-01", "finished_on": "2026-12-08"},
+            {"id": "P-0002", "started_on": "2026-12-01", "no_completion_reported_on": "2026-12-08"},
+            {"id": "P-0003", "started_on": "2026-12-01", "finished_on": "2026-12-09"},
+            {"id": "P-0004", "started_on": "2026-12-01"},
+            {"id": "P-0005", "started_on": "2026-12-05"},
+        ]})
+        self.assertEqual(report["seven_day_completion"], {"numerator": 1, "denominator": 4, "percent": 25.0})
+        self.assertEqual(report["seven_day_reported_incomplete"], 2)
+        self.assertEqual(report["seven_day_unreported"], 1)
+        self.assertEqual(report["pending_seven_day_window"], 1)
+
+    def test_explicit_incompletion_requires_the_completed_window_and_consistent_result(self):
+        for evidence in ({"no_completion_reported_on": "2026-12-07"},
+                         {"no_completion_reported_on": "2026-12-08", "finished_on": "2026-12-08"}):
+            with self.subTest(evidence=evidence), self.assertRaises(ValueError):
+                summarize({"as_of": "2026-12-10", "trials": [
+                    {"id": "P-0001", "started_on": "2026-12-01", **evidence},
+                ]})
+
     def test_zero_questions_and_a_failed_first_action_are_observed(self):
         report = summarize_comparisons([
             {"id": "P-0001", "order": "regular",

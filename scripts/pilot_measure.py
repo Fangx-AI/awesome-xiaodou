@@ -123,10 +123,11 @@ def summarize(data):
         check_flags({key: item[key] for key in ("found_start",) if key in item}, ("found_start",), "cold read")
         understood += bool(item.get("found_start") and all(answers.get(key) for key in READ_ANSWERS))
 
-    ready = seven_day_eligible = finished = changes = good_changes = 0
+    ready = seven_day_eligible = finished = reported_incomplete = changes = good_changes = 0
     returned = prompted_returns = return_eligible = 0
     for item in trials:
-        check_keys(item, ("id", "channel", "started_on", "first_action", "finished_on", "change", "return"), "trial")
+        check_keys(item, ("id", "channel", "started_on", "first_action", "finished_on",
+                          "no_completion_reported_on", "change", "return"), "trial")
         channel = item.get("channel", "")
         if "channel" in item and (not isinstance(channel, str) or not re.fullmatch(r"[a-z0-9-]{1,32}", channel)):
             raise ValueError("trial channel must be an anonymous label")
@@ -138,11 +139,23 @@ def summarize(data):
         due = start + timedelta(days=7)
         matured = due <= as_of
         seven_day_eligible += matured
+        end = None
         if "finished_on" in item:
             end = read_day(item["finished_on"], "finished_on")
             if not start <= end <= as_of:
                 raise ValueError("finished_on is outside the observed interval")
-            finished += matured and end <= due
+
+        reported_no_completion = "no_completion_reported_on" in item
+        if reported_no_completion:
+            report_day = read_day(item["no_completion_reported_on"], "no_completion_reported_on")
+            if not due <= report_day <= as_of:
+                raise ValueError("no_completion_reported_on must fall between the seven-day cutoff and as_of")
+            if end is not None and end <= due:
+                raise ValueError("no_completion_reported_on conflicts with on-time completion")
+
+        if matured:
+            finished += end is not None and end <= due
+            reported_incomplete += reported_no_completion or (end is not None and end > due)
 
         change = item.get("change", {})
         check_flags(change, CHANGE_SCORES, "change")
@@ -170,6 +183,8 @@ def summarize(data):
         "cold_read": ratio(understood, len(reads)),
         "first_action": ratio(ready, len(trials)),
         "seven_day_completion": ratio(finished, seven_day_eligible),
+        "seven_day_reported_incomplete": reported_incomplete,
+        "seven_day_unreported": seven_day_eligible - finished - reported_incomplete,
         "pending_seven_day_window": len(trials) - seven_day_eligible,
         "replanning": ratio(good_changes, changes),
         "unprompted_return": ratio(returned, return_eligible),
