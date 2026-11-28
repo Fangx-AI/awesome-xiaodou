@@ -98,7 +98,7 @@
 
 </details>
 
-[没找到怎么开始？告诉我们你卡在哪](docs/field-tests/cold-read.md)，没有小豆 App 也可以。
+[第一次看这页？告诉我们你点了哪里](docs/field-tests/cold-read.md)，用浏览器就能参加。
 
 ## 朕要减肥
 
