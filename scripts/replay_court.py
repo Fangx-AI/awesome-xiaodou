@@ -316,6 +316,27 @@ def flow_fixtures():
         (case, "life", message, required, forbidden)
         for case, _, message, required, forbidden in flows["parallel-plans"]
     )
+    flows["pause-and-close-plan"] = (
+        ("pause-reading", "starter",
+         "朕的纸书读到第十页，这周已读两次。之前 App 有回执，已设置周五读书提醒。阅读计划今天开始先暂停，没定哪天回来。这次只暂停计划。",
+         ("暂停|先停", r"第\s*10\s*页|第十页", r"两次|2\s*次", "已设|已建|已有设置回执|提醒仍|提醒还|提醒照旧"),
+         ("补读|补打卡|已撤销提醒|已取消提醒|已删除提醒|您想哪天恢复|何时重启",)),
+        ("pause-unrelated-request", "starter",
+         "给朕一句能直接说给同事听的英文会议开场，只要一句。",
+         ("Good|Hello|Hi|Thanks|Thank you",), ("纸书|第十页|读书提醒|重启.{0,6}计划",)),
+        ("close-reading", "starter",
+         "纸书阅读计划到这里结束，我不想再安排任何阅读。先只把这件事结案。",
+         ("结案|已结束|已停办", r"第\s*10\s*页|第十页", r"两次|2\s*次", "提醒"),
+         ("已撤销提醒|已取消提醒|已删除提醒|下一步.{0,6}继续读|明天.{0,8}读一页|帮您重排",)),
+        ("reopen-reading", "starter",
+         "朕想重新捡起同一本书，今天午饭后只有五分钟，从上次停的地方读，不用设提醒。",
+         (r"第\s*11\s*页|第十一页|第\s*10\s*页|第十页", "接着读|继续读|翻到", "午饭|午餐", r"五分钟|5\s*分钟"),
+         ("从头读|第一页重新|补打卡|提醒已创建|已经设置提醒",)),
+    )
+    flows["pause-and-close-life"] = tuple(
+        (case, "life", message, required, forbidden)
+        for case, _, message, required, forbidden in flows["pause-and-close-plan"]
+    )
     return flows
 
 
