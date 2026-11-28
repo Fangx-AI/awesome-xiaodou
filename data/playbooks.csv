@@ -21,7 +21,7 @@
 20,从历史订单查券价,购物与消费,媒体体验,S9,False,playbooks/20-order-price-check.md
 21,口述作息并建立回顾任务,长期跟进与兴趣,媒体任务创建记录,S7,False,playbooks/21-habit-log.md
 22,跟进指定政策公告,长期跟进与兴趣,模板观察,S7,False,playbooks/22-policy-monitor.md
-23,纠正个人记忆与偏好,办公与个人管理,媒体功能描述,S7;S15,False,playbooks/23-memory-correction.md
+23,纠正个人记忆与偏好,办公与个人管理,媒体记录了纠正宠物名字及记忆摘要入口，跨对话结果待核,S7;S15;S28,False,playbooks/23-memory-correction.md
 24,从评论反馈找选题,创作与内容整理,媒体功能描述,S7,False,playbooks/24-comment-insights.md
 25,搜索并播放音乐,生活与出行,作者体验（聚合页）,S10,False,playbooks/25-music.md
 26,查车次并发现目的地活动,生活与出行,作者体验（聚合页）,S10,False,playbooks/26-train-events.md

@@ -25,6 +25,7 @@ STALE = ROOT / "playbooks" / "46-stale-project-reminder.md"
 HEALTH_SUMMARY = ROOT / "playbooks" / "06-health-summary.md"
 TRIAGE = ROOT / "playbooks" / "45-feishu-reply-triage.md"
 INTEREST = ROOT / "playbooks" / "13-interest-updates.md"
+MEMORY = ROOT / "playbooks" / "23-memory-correction.md"
 LIFE_PACK = ROOT / "prompts" / "xiaodou-life-plans.txt"
 PILOT = ROOT / "prompts" / "xiaodou-pilot-start.txt"
 MATCHED_FLOWS = ("pilot-reschedule", "monthly-partial-intake", "comparison-reading-threshold", "comparison-event-budget")
@@ -505,6 +506,19 @@ def flow_fixtures():
          "验收人现在明确同意分两次：周五12:00交框架和当前状态，周五16:00交经检查的完整版。我还没发任何东西。按新承诺更新，只给我第一步。",
          ("框架", "状态", "完整版|完整报告|定稿", r"16\s*[:：]\s*00|16点|下午四点", r"12\s*[:：]\s*00|中午|12点", "已完成|已写|已有|保留"),
          ("已发送|已经发出|周五12:00交完整版|重新写框架",)),
+    )
+    flows["memory-correction-confirm-one-entry"] = (
+        ("memory-session-only-name", "memory",
+         "这次对话叫我小林，平时还叫皇上。只对这次生效，不要变更我的长期偏好。",
+         ("小林", "这次|本次|当前|这段"), ("保存成功|已更新长期|以后都叫小林|已删除|占位符",)),
+        ("memory-preview-one-change", "memory",
+         "按照玩法预览长期记忆改动。我的猫实际叫米粒，摘要里写小麦。只改这一条，读书提醒保持原样。我现在只要看预览。",
+         ("米粒", "小麦", "预览|拟改|准备改", "确认", "读书提醒"),
+         ("保存成功|长期记忆.{0,5}已改为|已更新长期|已删除|已刷新整个|已修改读书提醒",)),
+        ("memory-no-receipt", "memory",
+         "我确认只改猫的名字。当前对话拿不到记忆写入工具，也没有保存回执。请先按正确的叫法回答，并告诉我到哪一页能核对。",
+         ("米粒", "关于你|记忆摘要", "无法|不能|没有|待核|未能|未执行|没法"),
+         ("保存成功|已经完成保存|已更新长期记忆|已刷新|已删除",)),
     )
     flows["job-tracking-separates-posting-and-application"] = (
         ("job-dedupe-and-verify-ambiguous-submission", "plan-p15",
@@ -1120,6 +1134,7 @@ def main():
         "shopping": re.search(r"```text\n(.*?)\n```", SHOPPING.read_text(encoding="utf-8"), re.S)[1],
         "restock": re.search(r"```text\n(.*?)\n```", RESTOCK.read_text(encoding="utf-8"), re.S)[1],
         "stale": re.search(r"```text\n(.*?)\n```", STALE.read_text(encoding="utf-8"), re.S)[1],
+        "memory": re.search(r"```text\n(.*?)\n```", MEMORY.read_text(encoding="utf-8"), re.S)[1],
         "health-summary": re.search(r"```text\n(.*?)\n```", HEALTH_SUMMARY.read_text(encoding="utf-8"), re.S)[1],
         "triage": re.search(r"```text\n(.*?)\n```", TRIAGE.read_text(encoding="utf-8"), re.S)[1],
         "interest": re.search(r"```text\n(.*?)\n```", INTEREST.read_text(encoding="utf-8"), re.S)[1],
