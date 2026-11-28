@@ -13,6 +13,8 @@ on:
       - .github/workflows/radar.yml
       - scripts/collect_radar.py
       - scripts/test_radar.py
+      - scripts/collect_store_status.py
+      - scripts/test_store_status.py
 permissions:
   contents: write
 concurrency:
@@ -27,20 +29,25 @@ jobs:
       - uses: actions/checkout@v6
         with:
           ref: refs/heads/main
-      - name: Test scan status and queue preservation
-        run: python3 -B scripts/test_radar.py
+      - name: Test scan status and preservation of previous results
+        run: |
+          python3 -B scripts/test_radar.py
+          python3 -B scripts/test_store_status.py
       - name: Collect public feed leads
         id: scan
         run: python3 scripts/collect_radar.py
+      - name: Check public storefronts
+        if: ${{ !cancelled() && (steps.scan.outcome == 'success' || steps.scan.outcome == 'failure') }}
+        run: python3 -B scripts/collect_store_status.py
       - name: Publish updated radar
         if: ${{ !cancelled() && (steps.scan.outcome == 'success' || steps.scan.outcome == 'failure') }}
         run: |
-          git add data/radar.json docs/radar.md
+          git add data/radar.json docs/radar.md data/app-stores.json docs/app-stores.md
           if git diff --cached --quiet; then
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m '更新小豆玩法雷达'
+          git commit -m '更新小豆玩法雷达与商店状态'
           git pull --rebase origin main
           git push origin HEAD:main
