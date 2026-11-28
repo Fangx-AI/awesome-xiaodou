@@ -140,6 +140,6 @@
 
 **哪件事被小豆帮你办成了？** 欢迎分享你说的那句话和实际结果。觉得有用，点个 Star，下次需要时回来找。
 
-[分享实际结果](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=prompt-feedback.yml) · [贡献玩法](CONTRIBUTING.md) · [分享月计划演示到 X](https://twitter.com/intent/tweet?text=%E5%87%8F%E8%82%A5%E8%AE%A1%E5%88%92%E8%AF%95%E8%BF%87%E5%A5%BD%E5%87%A0%E6%AC%A1%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E6%80%BB%E5%9D%9A%E6%8C%81%E4%B8%8D%E4%B8%8B%E5%8E%BB%EF%BC%9F%E5%9C%A8%E5%B0%8F%E8%B1%86%E9%87%8C%E8%AF%B4%E3%80%8C%E5%B8%AE%E6%88%91%E5%88%B6%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%87%8F%E8%82%A5%E8%AE%A1%E5%88%92%E3%80%8D%E3%80%82%E4%B8%89%E7%9C%81%E5%85%AD%E9%83%A8%E5%85%88%E4%BA%86%E8%A7%A3%E4%BD%A0%E7%9A%84%E6%83%85%E5%86%B5%EF%BC%8C%E5%86%8D%E7%BB%99%E9%A6%96%E5%91%A8%E8%AE%A1%E5%88%92%EF%BC%8C%E4%B8%80%E5%91%A8%E5%90%8E%E6%8C%89%E5%AE%9E%E9%99%85%E8%BF%9B%E5%B1%95%E8%B0%83%E6%95%B4%E3%80%82&url=https%3A%2F%2Fgithub.com%2FFangx-AI%2Fawesome-xiaodou%2Fblob%2Fmain%2FREADME.md%23%E6%9C%95%E8%A6%81%E5%87%8F%E8%82%A5)
+[分享实际结果](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=prompt-feedback.yml) · [贡献玩法](CONTRIBUTING.md) · [保存示例图或复制转发文案](docs/share-cards.md)
 
 社区项目 · [原创内容 CC BY 4.0](LICENSE)
