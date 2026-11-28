@@ -26,3 +26,17 @@
 ## 登记小豆 App 真机结果
 
 在 `docs/field-tests/` 中添加脱敏 Markdown，写下实际输入、输出、回执或观察结果。然后在 `data/self-tests.json` 添加 `case_id`、`date`（YYYY-MM-DD）、`client`（小豆 App）、`version`、`outcome`（通过、部分通过、未通过、权限受限之一）和 `evidence_path`（相对仓库路径）。目录内的玩法同步将 `self_tested` 设为 true，再运行目录生成器。G01 和 H01 直接登记，不用改目录数据。
+
+跑完「今晚只剩五分钟」后，用 `case_id: S0` 登记，沿用日期、客户端、App 版本和脱敏证据路径。再填写 `platform`、`os_version`、候选工件的完整 `candidate_commit` 和下面七项 `checks`，逐项填「通过」「未通过」「权限受限」或「未测」。S0 以逐项结果展示，省略汇总 `outcome`。每次演练单独留一份证据，实际触发需与已确认创建的同一条提醒对应。
+
+| 字段 | 核对的结果 |
+| --- | --- |
+| `opening` | 一条开局消息收到可做的首步 |
+| `replan` | 说明原计划为何退回，保留第一句并按五分钟重排 |
+| `progress` | 保留已完成和卡点，给出下次从哪里继续 |
+| `withdrawal` | 预览后撤回，任务列表没有新建该条提醒 |
+| `reminder_preview` | 先预览内容和时间，再等用户确认 |
+| `reminder_created` | 确认后可在任务列表核对创建结果 |
+| `reminder_triggered` | 到点实际收到该条提醒 |
+
+[真机演练与脱敏回报](docs/field-tests/pilot-s0.md#把下面这几项回给观察者)
