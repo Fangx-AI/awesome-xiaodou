@@ -138,6 +138,34 @@ class PilotMeasurementTests(unittest.TestCase):
         self.assertEqual(report["cold_read_checks"]["found_start"]["numerator"], 11)
         self.assertTrue(report["thresholds"]["cold_read"])
 
+    def test_trial_gates_require_a_candidate_version_and_keep_unobserved_users(self):
+        trials = [
+            {"id": f"P-{i:04}", "started_on": "2026-12-01"}
+            for i in range(100)
+        ]
+        for i, trial in enumerate(trials):
+            if i < 80:
+                trial["first_action"] = True
+            elif i < 85:
+                trial["first_action"] = False
+            if i < 60:
+                trial["finished_on"] = "2026-12-08"
+            if i < 30:
+                trial["change"] = {"preserved": True, "affected_only": True, "actionable": i < 26}
+        data = {"as_of": "2026-12-08", "trials": trials}
+        gates = ("first_action", "seven_day_completion", "replanning")
+
+        unversioned = summarize(data)
+        self.assertEqual(unversioned["first_action"], {"numerator": 80, "denominator": 100, "percent": 80.0})
+        self.assertEqual(unversioned["first_action_observed_not_ready"], 5)
+        self.assertEqual(unversioned["first_action_unobserved"], 15)
+        self.assertEqual(unversioned["seven_day_completion"]["numerator"], 60)
+        self.assertEqual(unversioned["replanning"]["numerator"], 26)
+        self.assertTrue(all(not unversioned["thresholds"][gate] for gate in gates))
+
+        versioned = summarize({**data, "candidate_commit": "c" * 40})
+        self.assertTrue(all(versioned["thresholds"][gate] for gate in gates))
+
     def test_explicit_incompletion_and_missing_reports_keep_the_same_denominator(self):
         report = summarize({"as_of": "2026-12-10", "trials": [
             {"id": "P-0001", "channel": "github", "started_on": "2026-12-01", "finished_on": "2026-12-08"},
@@ -227,14 +255,14 @@ class PilotMeasurementTests(unittest.TestCase):
         trials = [{"id": f"P-{index:04}", "started_on": "2026-12-01", "change": change}
                   for index, change in enumerate(scores)]
         trials.append({"id": "P-0100", "started_on": "2026-12-01"})
-        report = summarize({"as_of": "2026-12-10", "trials": trials})
+        report = summarize({"as_of": "2026-12-10", "candidate_commit": "c" * 40, "trials": trials})
         self.assertEqual(report["replanning"], {"numerator": 27, "denominator": 30, "percent": 90.0})
         self.assertEqual(report["replanning_unscored"], 2)
         self.assertTrue(report["thresholds"]["replanning"])
 
         trials.extend({"id": f"P-{index:04}", "started_on": "2026-12-01", "change": {}}
                       for index in (101, 102))
-        report = summarize({"as_of": "2026-12-10", "trials": trials})
+        report = summarize({"as_of": "2026-12-10", "candidate_commit": "c" * 40, "trials": trials})
         self.assertEqual(report["replanning"], {"numerator": 27, "denominator": 32, "percent": 84.4})
         self.assertFalse(report["thresholds"]["replanning"])
 
