@@ -5,10 +5,14 @@ import re
 from datetime import date, timedelta
 from pathlib import Path
 
+from build_life_plans import PLAN_FILES, PLAN_PACK
+
 READ_ANSWERS = ("identity", "where", "how", "confirmation")
 CHANGE_SCORES = ("preserved", "affected_only", "actionable")
 COMPARISON_ARMS = ("regular", "emperor")
 COMPARISON_FIELDS = ("first_action", "preserved", "affected_only", "replan_actionable")
+TRIAL_STARTERS = ("xiaodou-start.txt", PLAN_PACK.name,
+                  *(f"life-plans/{path.stem}.txt" for path in PLAN_FILES))
 
 
 def check_keys(value, allowed, label):
@@ -45,6 +49,14 @@ def ratio(numerator, denominator):
     return {
         "numerator": numerator, "denominator": denominator,
         "percent": round(100 * numerator / denominator, 1) if denominator else None,
+    }
+
+
+def summarize_groups(groups):
+    return {
+        label: {"started": counts["started"],
+                "completion": ratio(counts["finished"], counts["eligible"])}
+        for label, counts in sorted(groups.items())
     }
 
 
@@ -130,15 +142,16 @@ def summarize(data):
     ready = seven_day_eligible = finished = reported_incomplete = changes = good_changes = 0
     unscored_changes = 0
     returned = prompted_returns = return_eligible = 0
-    channels = {}
+    channels, starters = {}, {}
     for item in trials:
-        check_keys(item, ("id", "channel", "started_on", "first_action", "finished_on",
+        check_keys(item, ("id", "channel", "starter", "started_on", "first_action", "finished_on",
                           "no_completion_reported_on", "change", "return"), "trial")
         channel = item.get("channel", "unspecified")
         if not isinstance(channel, str) or not re.fullmatch(r"[a-z0-9-]{1,32}", channel):
             raise ValueError("trial channel must be an anonymous label")
-        counts = channels.setdefault(channel, {"started": 0, "eligible": 0, "finished": 0})
-        counts["started"] += 1
+        starter = item.get("starter", "unspecified")
+        if "starter" in item and starter not in TRIAL_STARTERS:
+            raise ValueError("trial starter must name a supported file from STARTERS.tsv")
         check_flags({key: item[key] for key in ("first_action",) if key in item}, ("first_action",), "trial")
         start = read_day(item.get("started_on"), "started_on")
         if start > as_of:
@@ -161,11 +174,14 @@ def summarize(data):
             if end is not None and end <= due:
                 raise ValueError("no_completion_reported_on conflicts with on-time completion")
 
+        on_time = end is not None and end <= due
+        for groups, label in ((channels, channel), (starters, starter)):
+            counts = groups.setdefault(label, {"started": 0, "eligible": 0, "finished": 0})
+            counts["started"] += 1
+            counts["eligible"] += matured
+            counts["finished"] += matured and on_time
         if matured:
-            on_time = end is not None and end <= due
             finished += on_time
-            counts["eligible"] += 1
-            counts["finished"] += on_time
             reported_incomplete += reported_no_completion or (end is not None and end > due)
 
         if "change" in item:
@@ -202,11 +218,8 @@ def summarize(data):
         "seven_day_reported_incomplete": reported_incomplete,
         "seven_day_unreported": seven_day_eligible - finished - reported_incomplete,
         "pending_seven_day_window": len(trials) - seven_day_eligible,
-        "seven_day_by_channel": {
-            channel: {"started": counts["started"],
-                      "completion": ratio(counts["finished"], counts["eligible"])}
-            for channel, counts in sorted(channels.items())
-        },
+        "seven_day_by_channel": summarize_groups(channels),
+        "seven_day_by_starter": summarize_groups(starters),
         "replanning": ratio(good_changes, changes),
         "replanning_unscored": unscored_changes,
         "unprompted_return": ratio(returned, return_eligible),

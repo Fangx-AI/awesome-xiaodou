@@ -43,21 +43,39 @@ jobs:
         run: |
           git fetch --no-tags --depth=1 origin "refs/heads/$DEFAULT_BRANCH"
           public_readme_commit=$(git rev-parse FETCH_HEAD)
-          git show "$public_readme_commit:prompts/xiaodou-start.txt" > "$RUNNER_TEMP/xiaodou/public-starter.txt"
-          public_starter_matches_candidate=false
-          if cmp -s "$RUNNER_TEMP/xiaodou/public-starter.txt" prompts/xiaodou-start.txt; then
-            public_starter_matches_candidate=true
-          fi
+          base_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/blob"
+          starter_versions="$RUNNER_TEMP/xiaodou/STARTERS.tsv"
+          printf 'file\tcandidate_url\tpublic_url\tpublic_status\n' > "$starter_versions"
+          for source in prompts/xiaodou-start.txt prompts/xiaodou-life-plans.txt prompts/life-plans/*.txt; do
+            public_url=''
+            public_status=missing
+            if git cat-file -e "$public_readme_commit:$source"; then
+              public_url="$base_url/$public_readme_commit/$source"
+              git show "$public_readme_commit:$source" > "$RUNNER_TEMP/xiaodou-public-starter.txt"
+              public_status=different
+              if cmp -s "$RUNNER_TEMP/xiaodou-public-starter.txt" "$source"; then
+                public_status=identical
+              fi
+            fi
+            printf '%s\t%s\t%s\t%s\n' "${source#prompts/}" "$base_url/$GITHUB_SHA/$source" "$public_url" "$public_status" >> "$starter_versions"
+            if [ "$source" = prompts/xiaodou-start.txt ]; then
+              public_starter_matches_candidate=false
+              if [ "$public_status" = identical ]; then
+                public_starter_matches_candidate=true
+              fi
+            fi
+          done
           cp prompts/xiaodou-start.txt prompts/xiaodou-pilot-start.txt prompts/xiaodou-life-plans.txt "$RUNNER_TEMP/xiaodou/"
           cp -r prompts/life-plans "$RUNNER_TEMP/xiaodou/"
           cd "$RUNNER_TEMP/xiaodou"
-          sha256sum xiaodou-skill.zip xiaodou-start.txt xiaodou-pilot-start.txt xiaodou-life-plans.txt life-plans/*.txt > SHA256SUMS
+          sha256sum xiaodou-skill.zip xiaodou-start.txt xiaodou-pilot-start.txt xiaodou-life-plans.txt life-plans/*.txt STARTERS.tsv > SHA256SUMS
           {
             printf 'candidate_commit=%s\n' "$GITHUB_SHA"
             printf 'readme=%s/%s/blob/%s/README.md\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_SHA"
             printf 'public_readme_commit=%s\n' "$public_readme_commit"
             printf 'public_readme=%s/%s/blob/%s/README.md\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$public_readme_commit"
             printf 'public_starter_matches_candidate=%s\n' "$public_starter_matches_candidate"
+            printf 'starter_versions=STARTERS.tsv\n'
             printf 'pilot=%s/%s/blob/%s/docs/field-tests/pilot-s0.md\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_SHA"
             printf 'seven_day=%s/%s/blob/%s/docs/field-tests/seven-day.md\n' "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_SHA"
           } > CANDIDATE.txt
@@ -74,4 +92,5 @@ jobs:
             ${{ runner.temp }}/xiaodou/life-plans/*.txt
             ${{ runner.temp }}/xiaodou/SHA256SUMS
             ${{ runner.temp }}/xiaodou/CANDIDATE.txt
+            ${{ runner.temp }}/xiaodou/STARTERS.tsv
           if-no-files-found: error

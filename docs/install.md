@@ -35,7 +35,7 @@
 
 包内含说明、提示词、出处和九张人物图。不同客户端的导入格式和权限以实际界面为准。本版已检查 ZIP 结构，豆包工作及小豆客户端导入尚未实测。
 
-候选工件附有两份开局纯文本、生活计划整包、`life-plans/` 下的五个分类复制版、`CANDIDATE.txt` 和 `SHA256SUMS`。真机首测从 `CANDIDATE.txt` 打开 `pilot`，首页冷读打开 `public_readme`。在解开的工件目录运行 `sha256sum -c SHA256SUMS`，或用 PowerShell 的 `Get-FileHash -Algorithm SHA256` 核对下载文件。
+候选工件附有两份开局纯文本、生活计划整包和 `life-plans/` 下的五个分类复制版。真机演练从 `CANDIDATE.txt` 打开 `pilot`，首页冷读打开 `public_readme`。七天试用可从 `STARTERS.tsv` 选通用开局、计划整包或一个分类的固定版本。在解开的工件目录运行 `sha256sum -c SHA256SUMS`，或用 PowerShell 的 `Get-FileHash -Algorithm SHA256` 核对下载文件。
 
 [豆包工作官方技能说明](https://www.feishu.cn/content/article/7677519271848610746) · [Agent Skills 规范](https://agentskills.io/specification)
 

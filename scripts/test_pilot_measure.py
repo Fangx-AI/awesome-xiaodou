@@ -80,6 +80,24 @@ class PilotMeasurementTests(unittest.TestCase):
                     {"id": "P-0001", "started_on": "2026-12-01", **evidence},
                 ]})
 
+    def test_starter_groups_keep_pending_windows_and_unknown_files_distinct(self):
+        entries = [
+            {"id": "P-0001", "started_on": "2026-12-01", "finished_on": "2026-12-03",
+             "starter": "life-plans/health.txt"},
+            {"id": "P-0002", "started_on": "2026-12-06", "starter": "life-plans/health.txt"},
+            {"id": "P-0003", "started_on": "2026-12-01", "starter": "xiaodou-start.txt"},
+            {"id": "P-0004", "started_on": "2026-12-01"},
+        ]
+        report = summarize({"as_of": "2026-12-10", "trials": entries})
+        self.assertEqual(report["seven_day_by_starter"], {
+            "life-plans/health.txt": {"started": 2, "completion": {"numerator": 1, "denominator": 1, "percent": 100.0}},
+            "unspecified": {"started": 1, "completion": {"numerator": 0, "denominator": 1, "percent": 0.0}},
+            "xiaodou-start.txt": {"started": 1, "completion": {"numerator": 0, "denominator": 1, "percent": 0.0}},
+        })
+        for invalid in (None, "xiaodou-pilot-start.txt", "life-plans/typo.txt"):
+            with self.subTest(invalid=invalid), self.assertRaisesRegex(ValueError, "supported file"):
+                summarize({"as_of": "2026-12-10", "trials": [{**entries[0], "starter": invalid}]})
+
     def test_zero_questions_and_a_failed_first_action_are_observed(self):
         report = summarize_comparisons([
             {"id": "P-0001", "order": "regular",

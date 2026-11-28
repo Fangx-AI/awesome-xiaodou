@@ -16,7 +16,7 @@
 
 使用[七天试用页](seven-day.md)收集自愿登记，也可由观察者直接记录。核对开始日期与试用版本，同一人多次登记合为一个试用编号。公开自报和有观察者核对的记录分别保留来源；公开贴先用于发现问题，进入队列前需按同一口径核对。登记后没反馈的真实启动者仍在分母里。
 
-App 试用从工件里的 `readme`、`pilot` 或 `seven_day` 开始，记录 `candidate_commit`。若从公开首页复制，先核对所用开局文本与候选相同。`public_starter_matches_candidate` 只表示工件生成时的两个版本是否一致。
+App 试用从工件里的 `seven_day` 开始，记录 `candidate_commit`。`STARTERS.tsv` 为通用开局、生活计划整包和五份分类开局各列一个候选永久链接。把实际复制的文件名记在 `starter`，例如 `life-plans/health.txt`。使用公开首页时，核对复制的文件与 `public_url` 属于同一个提交，且该行标为 `identical`，再并入对应候选批次。标为 `different` 或 `missing` 时，分别核对和记录版本。`pilot` 链接用于固定功能演练。
 
 [下载和开通](../install.md#下载和开通)收集 App 准入问题。记录系统、商店和实际到达的步骤，区分查找、安装、登录、开通和发送。商店网页状态也单独记录。正式发出开局消息前归入准入记录。若后来开始试用，从实际开局日期起算七天。
 
@@ -48,6 +48,7 @@ App 试用从工件里的 `readme`、`pilot` 或 `seven_day` 开始，记录 `ca
     {
       "id": "P-0001",
       "channel": "community",
+      "starter": "life-plans/learning.txt",
       "started_on": "2026-12-01",
       "first_action": true,
       "finished_on": "2026-12-02",
@@ -61,6 +62,8 @@ App 试用从工件里的 `readme`、`pilot` 或 `seven_day` 开始，记录 `ca
 从项目根目录运行 `python scripts/pilot_measure.py <结构化匿名文件路径>`。报告分冷读、首步、已到期七天队列、改案和回访。已到期者明确回报七天内没完成时，在 `no_completion_reported_on` 填回报日期；收到第七天以后才完成的日期，仍填 `finished_on`。到期没收到任何结果时两个字段均留空。不同批次使用各自的版本记录；每次报数附日期、样本数和未反馈数。达标数值只能作为推进依据之一，还需核验真机原生动作的回执和触发，并检查对照试用中实际观察到的问题。 [阶段目标](../Outcome-Roadmap-2026.md)
 
 确认发生真实计划变动时写入 `change`，暂时拿不到任何评分证据时写 `"change": {}`。某一项明确失败就填 `false`，无法判断的项留空。`replanning` 的分母包括全部已确认的变化，只有三项都通过才进分子。`replanning_unscored` 单列证据不足、尚无法确定成败的变化。
+
+`seven_day_by_starter` 分别显示各版本开局的启动人数和到期完成情况。文件无法确定时，省略 `starter`，报告在 `unspecified` 保留该试用。分组描述样本表现，用户自选的开局类型和任务难度都可能不同。
 
 ## 普通小豆和皇帝模式配对评分
 
