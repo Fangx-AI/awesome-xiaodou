@@ -169,7 +169,7 @@
 
 小豆还用着旧称呼或旧偏好？可以[只纠正那一条记忆](playbooks/23-memory-correction.md)，并核对是否真的保存。
 
-[带自己的目标试七天](docs/field-tests/seven-day.md)，做完第一步或卡住了，都可以回报。
+已在小豆发出开局？可以[回报第一步做到哪了](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=seven-day-trial.yml)。做完当天就能回报，做到一半或遇到卡点也可以。 [七天试用方法](docs/field-tests/seven-day.md)
 
 [用同一件事对比普通小豆和皇帝模式](docs/field-tests/replan-comparison.md)，看看改计划时各自保留了哪些进度。
 

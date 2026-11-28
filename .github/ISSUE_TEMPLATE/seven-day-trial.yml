@@ -1,6 +1,6 @@
-name: 七天试用登记
-description: 已在小豆开局后自愿登记，可以同时回报第一步或遇到的阻碍
-title: "[七天试用] "
+name: 回报在小豆做的第一步
+description: 发过开局就能登记，做完、做到一半或遇到卡点都可以写
+title: "我在小豆试办了一件事"
 labels: [seven-day-trial]
 body:
   - type: markdown
@@ -22,6 +22,18 @@ body:
       placeholder: YYYY-MM-DD
     validations:
       required: true
+  - type: textarea
+    id: first-update
+    attributes:
+      label: 第一步做到哪了
+      description: 已有进展可以直接写第一步、实际完成日期或卡点。改过计划也可以写什么变了、保留了什么。
+      placeholder: |
+        第一步是练一遍开场。我在 2026-11-24 练完了。
+        周四没空，小豆保留了这一遍，把下次练习挪到周六。
+  - type: markdown
+    attributes:
+      value: |
+        下面都可选。发帖后可以收藏链接，做好第一步或想补充时回同一帖。第七天还没做完，也可以说说卡在哪里。
   - type: input
     id: environment
     attributes:
@@ -59,15 +71,3 @@ body:
         - 自律阅读
         - 学英语
         - 留学
-  - type: textarea
-    id: first-update
-    attributes:
-      label: 第一步做到哪了
-      description: 已有进展就现在填。写明第一步、实际完成日期或卡点。改过计划时也可以说什么变了、保留什么、下一步是什么。
-      placeholder: |
-        第一步是练一遍开场。我在 2026-11-24 练完了。
-        周四没空，小豆保留了这一遍，把下次练习挪到周六。
-  - type: markdown
-    attributes:
-      value: |
-        发帖后可以收藏链接。做完或想补充时直接回原帖，到第七天仍未完成也欢迎说说卡在哪里。
