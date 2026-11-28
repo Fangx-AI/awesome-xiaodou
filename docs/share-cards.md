@@ -6,6 +6,8 @@
 
 页面中的图片用虚构场景演示。 [查看小豆真机记录](field-tests/README.md)
 
+已在小豆发出开局消息？可以[登记七天试用](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=seven-day-trial.yml)，选填最初看到的分享卡。
+
 ## 制定减肥计划
 
 在小豆里可以说「帮我制定一个减肥计划。」

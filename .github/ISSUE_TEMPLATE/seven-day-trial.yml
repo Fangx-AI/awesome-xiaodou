@@ -50,6 +50,17 @@ body:
     attributes:
       label: 最早在哪里看到试用
       placeholder: 例如 GitHub 首页、朋友、社区，或留空
+  - type: dropdown
+    id: shared-scene
+    attributes:
+      label: 是哪张分享卡让你想试
+      description: 如果从分享卡了解到这个项目，可以选一张。其他情况留空。
+      options:
+        - 制定减肥计划
+        - 健身
+        - 自律阅读
+        - 学英语
+        - 留学
   - type: markdown
     attributes:
       value: |
