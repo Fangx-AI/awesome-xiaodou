@@ -398,6 +398,16 @@ def flow_fixtures():
         (case, "life", message, required, forbidden)
         for case, _, message, required, forbidden in flows["study-application-portal"]
     )
+    flows["study-official-pages-unavailable"] = (
+        ("study-unreachable-current-intake", "plan-p11",
+         "虚构演练：朕想申请英国2027年秋的数据科学硕士，预算全程2万英镑。A校项目官网打不开，成绩单已经整理好了，今天还有20分钟。给我一个能做的核实动作。",
+         ("官网|官方|招生", "待核|未核|没核实|未确认|待确认|尚未核实", "成绩单"),
+         ("已查到学费|已经发邮件|需要重新整理成绩单",)),
+        ("study-unlabelled-tuition", "plan-p11",
+         "我找到A校官方项目介绍，写学费 £16,000，没标适用入学季，生活费、杂费和截止日期也没找到。能说已经在2万英镑预算内吗？帮我更新并告诉我先核哪一项。",
+         (r"16[,]?000|1\.6\s*万", "生活费|杂费", "入学季|年份|学年|当届", "待核|待确认|未确认|不能判断|无法判断|不能说", "成绩单"),
+         ("已经在预算内|确认在预算内|确定在预算内|总费用.{0,6}16,?000|已经递交",)),
+    )
     flows["english-transcript-and-retry"] = (
         ("english-transcript-is-text", "starter",
          "我只剩五分钟练英语会议开场。刚才按过语音键，但这条只有转写，没有录音：I’m responsible of testing. 能不能评发音和语速？只改一个关键点，再叫我试一遍。",
