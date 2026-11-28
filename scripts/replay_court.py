@@ -490,6 +490,28 @@ def flow_fixtures():
         (case, "life", message, required, forbidden)
         for case, _, message, required, forbidden in flows["evening-review"]
     )
+    flows["reminder-timezone-change"] = (
+        ("timezone-preview", "starter",
+         "给朕预览 2026 年 12 月 9 日上午 9 点的喝水提醒，按北京时间 UTC+08:00，只提醒朕，先别创建。",
+         ("喝水", r"12\s*月\s*9\s*日|2026-12-09", r"09[:：]00|上午\s*9(?:\s*点|[:：]00)|上午九点", r"北京时间|UTC\+0?8", "确认|预览"),
+         ("已创建|已设置|创建成功",)),
+        ("timezone-old-consent", "starter",
+         "朕明确确认刚才那条北京时间 9 点的喝水提醒。这个测试对话没有提醒工具。",
+         ("喝水", r"北京时间|UTC\+0?8", "无法|不能|没有|手动|自行"), ("已创建|已设置|创建成功",)),
+        ("timezone-changed-preview", "starter",
+         "改成 12 月 9 日上午 9 点，但按 UTC-05:00 的当地时间。正文还是喝水。请显示它对应的北京时间，先给预览。",
+         (r"UTC\s*[-−]\s*0?5", r"09[:：]00|上午\s*9(?:\s*点|[:：]00)|上午九点", "北京时间",
+          r"22[:：]00|晚[上间]?\s*10(?:\s*点|[:：]00)|晚上十点", "重新确认|原.{0,6}确认.{0,8}失效|确认.{0,6}此次"),
+         ("已创建|已设置|创建成功|沿用.{0,6}确认",)),
+        ("timezone-new-consent", "starter",
+         "朕确认按刚才 UTC-05:00 的 12 月 9 日 09:00 设置喝水提醒。仍没有提醒工具。朕的手机在北京时间，给一行手填内容。",
+         (r"12\s*月\s*9\s*日|2026-12-09", r"22[:：]00|晚[上间]?\s*10\s*点|晚上十点", "喝水", r"北京时间|UTC\+0?8"),
+         ("已创建|已设置|创建成功",)),
+    )
+    flows["reminder-timezone-life"] = tuple(
+        (case, "life", message, required, forbidden)
+        for case, _, message, required, forbidden in flows["reminder-timezone-change"]
+    )
     return flows
 
 
