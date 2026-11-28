@@ -10,6 +10,6 @@
 
 [复制小豆开局](../README.md#一句话在小豆里开始) · [查看可选的专业细则](../prompts/41-weight-plan.md)
 
-<img src="../assets/xiaodou-monthly-plan-share.png" width="480" alt="减肥计划流程示例。中书问目标、饮食和运动基础，门下核对时间和强度，尚书交首周计划并按进展调整。">
+<img src="../assets/xiaodou-monthly-plan-share.png" width="480" alt="减肥计划五步流程。了解情况，评估起点，核对方案，排出首周，按进展调整。">
 
 [CDC 体重管理指南](https://www.cdc.gov/healthy-weight-growth/losing-weight/index.html)
