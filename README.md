@@ -166,6 +166,8 @@
 
 [用自己的目标试七天](docs/field-tests/seven-day.md)，做完第一步或卡住了，都可以回报。
 
+[用同一件事对比普通小豆和皇帝模式](docs/field-tests/replan-comparison.md)，看看改计划时各自保留了哪些进度。
+
 ## 御前问签
 
 「朕想看看最近的运势。」礼部按你关心的事，从**关帝百签**呈原文、签题和白话解签。比如第二签写「若問前程歸縮地，更須方寸好修為」，可以聊它怎样看待等待时机、先做好眼前的事。追问工作或学业时，接着解同一支签。 [第二签原文](https://zh.wikisource.org/zh-hant/關聖帝君靈籤/2)
@@ -214,8 +216,6 @@
 
 **有一句话帮你把计划救回来？** 可以只分享「原打算做什么 → 发生了什么 → 最后做成哪一步」。发之前去掉个人资料。也可以点个 Star，把这个入口存下来。
 
-想找朋友一起试，可以[转发试用邀请](docs/experience-and-sharing.md#可转发的试用邀请)。
-
-[分享实际结果](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=prompt-feedback.yml) · [贡献玩法](CONTRIBUTING.md) · [保存示例图或复制转发文案](docs/share-cards.md)
+[分享实际结果](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=prompt-feedback.yml) · [邀请朋友一起试](docs/share-cards.md#转发试用邀请) · [保存场景示例图](docs/share-cards.md) · [贡献玩法](CONTRIBUTING.md)
 
 社区项目 · [原创内容 CC BY 4.0](LICENSE)

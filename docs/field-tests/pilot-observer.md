@@ -21,6 +21,7 @@
 - [首页冷读](https://github.com/Fangx-AI/awesome-xiaodou/issues?q=is%3Aissue+label%3Acold-read)用来找标题、按钮和使用说明中引起误解的地方。需要并入 12 人验收时，按上面的观察规则核对。
 - [下载与开通](https://github.com/Fangx-AI/awesome-xiaodou/issues?q=is%3Aissue+label%3Aapp-access)用来找发出第一条消息前的卡点，恢复后沿用原记录。
 - [七天试用](https://github.com/Fangx-AI/awesome-xiaodou/issues?q=is%3Aissue+label%3Aseven-day-trial)的进展沿原帖追踪。核对实际开局、版本和日期后，按试用编号更新私有记录。一次发帖或一次留言本身没有验收分数。
+- [两种模式对照](https://github.com/Fangx-AI/awesome-xiaodou/issues?q=is%3Aissue+label%3Amode-comparison)用来排查哪种模式在哪一步丢进度或无法继续。要进入正式汇总，先核对是否同一任务、同一 App 版本和两个新对话，确认先后顺序，并取得双方回复的脱敏材料以供盲评。任何缺项先保留待核。
 
 先看原帖和更新，避免把同一个人的追记算成新参与者。统计文件放在仓库外，只用匿名编号和必要字段。公开报告使用汇总以及获准引用的脱敏案例。
 
