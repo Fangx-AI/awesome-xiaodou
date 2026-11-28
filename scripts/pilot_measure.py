@@ -15,6 +15,7 @@ COMPARISON_FIELDS = ("first_action", *COMPARISON_REPLAN_FIELDS)
 TRIAL_STARTERS = ("xiaodou-start.txt", PLAN_PACK.name,
                   *(f"life-plans/{path.stem}.txt" for path in PLAN_FILES))
 SHARED_SCENES = ("weight", "fitness", "reading", "english", "study-abroad")
+ACCESS_STAGES = ("find", "install", "login", "activate", "send", "other")
 
 
 def check_keys(value, allowed, label):
@@ -146,9 +147,35 @@ def summarize_comparisons(records):
     }
 
 
+def summarize_access(records, starts, as_of):
+    check_ids(records, "access_blocks")
+    by_stage = {stage: {"reported": 0, "recovered": 0, "started_trial": 0} for stage in ACCESS_STAGES}
+    for item in records:
+        check_keys(item, ("id", "stage", "observed_on", "recovered_on"), "access block")
+        stage = item.get("stage")
+        if stage not in ACCESS_STAGES:
+            raise ValueError("access block stage must name a supported pre-start step")
+        observed = read_day(item.get("observed_on"), "observed_on")
+        start = starts.get(item["id"])
+        if observed > as_of or (start is not None and observed > start):
+            raise ValueError("access block must be observed by as_of and no later than trial start")
+        if "recovered_on" in item:
+            recovered = read_day(item["recovered_on"], "recovered_on")
+            if not observed <= recovered <= (start or as_of):
+                raise ValueError("recovered_on is outside the observed pre-start interval")
+        counts = by_stage[stage]
+        counts["reported"] += 1
+        counts["recovered"] += "recovered_on" in item or start is not None
+        counts["started_trial"] += start is not None
+
+    for counts in by_stage.values():
+        counts["recovery_unconfirmed"] = counts["reported"] - counts["recovered"]
+    return {"by_stage": by_stage, "people": len(records)}
+
+
 def summarize(data):
     check_keys(data, ("as_of", "cohort", "candidate_commit", "public_readme_commit",
-                      "cold_reads", "trials", "comparisons"), "report")
+                      "cold_reads", "trials", "comparisons", "access_blocks"), "report")
     as_of = read_day(data.get("as_of"), "as_of")
     cohort = data.get("cohort")
     if "cohort" in data and (not isinstance(cohort, str) or not re.fullmatch(r"[a-z0-9-]{1,40}", cohort)):
@@ -187,6 +214,7 @@ def summarize(data):
     unscored_changes = 0
     returned = prompted_returns = return_eligible = 0
     channels, starters, shared_scenes = {}, {}, {}
+    starts = {}
     for item in trials:
         check_keys(item, ("id", "channel", "starter", "shared_scene", "started_on", "first_action", "finished_on",
                           "no_completion_reported_on", "change", "return"), "trial")
@@ -203,6 +231,7 @@ def summarize(data):
         start = read_day(item.get("started_on"), "started_on")
         if start > as_of:
             raise ValueError("started_on is after as_of")
+        starts[item["id"]] = start
         first_action_observed += "first_action" in item
         ready += item.get("first_action", False)
         due = start + timedelta(days=7)
@@ -263,6 +292,7 @@ def summarize(data):
         "cold_read_assisted": assisted_reads,
         "cold_read_incomplete": len(reads) - scored_reads - assisted_reads,
         "cold_read_checks": {key: ratio(correct, scored_reads) for key, correct in read_checks.items()},
+        "app_access": summarize_access(data["access_blocks"], starts, as_of) if "access_blocks" in data else None,
         "first_action": ratio(ready, len(trials)),
         "first_action_observed_not_ready": first_action_observed - ready,
         "first_action_unobserved": len(trials) - first_action_observed,

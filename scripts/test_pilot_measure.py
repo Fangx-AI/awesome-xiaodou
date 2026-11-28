@@ -5,6 +5,36 @@ from pilot_measure import summarize, summarize_comparisons, summarize_cumulative
 
 
 class PilotMeasurementTests(unittest.TestCase):
+    def test_access_recovery_stays_separate_from_trial_counts(self):
+        report = summarize({"as_of": "2026-12-12", "access_blocks": [
+            {"id": "P-0001", "stage": "activate", "observed_on": "2026-12-01"},
+            {"id": "P-0002", "stage": "activate", "observed_on": "2026-12-01"},
+            {"id": "P-0003", "stage": "install", "observed_on": "2026-12-02", "recovered_on": "2026-12-03"},
+        ], "trials": [{"id": "P-0002", "started_on": "2026-12-03", "finished_on": "2026-12-04"}]})
+        self.assertEqual(report["app_access"]["people"], 3)
+        self.assertEqual(report["app_access"]["by_stage"]["activate"], {
+            "reported": 2, "recovered": 1, "started_trial": 1, "recovery_unconfirmed": 1,
+        })
+        self.assertEqual(report["app_access"]["by_stage"]["install"], {
+            "reported": 1, "recovered": 1, "started_trial": 0, "recovery_unconfirmed": 0,
+        })
+        self.assertEqual(report["seven_day_completion"], {"denominator": 1, "numerator": 1, "percent": 100.0})
+        self.assertIsNone(summarize({"as_of": "2026-12-12"})["app_access"])
+        self.assertEqual(summarize({"as_of": "2026-12-12", "access_blocks": []})["app_access"]["people"], 0)
+
+    def test_access_rejects_invalid_stage_duplicate_person_and_date_order(self):
+        block = {"id": "P-0001", "stage": "send", "observed_on": "2026-12-02"}
+        snapshot = {"as_of": "2026-12-12", "trials": [{"id": "P-0001", "started_on": "2026-12-04"}]}
+        for records, reason in (
+            ([block, block], "duplicate participant"),
+            ([{**block, "stage": "finished"}], "supported pre-start step"),
+            ([{**block, "observed_on": "2026-12-05"}], "no later than trial start"),
+            ([{**block, "recovered_on": "2026-12-01"}], "outside the observed"),
+            ([{**block, "recovered_on": "2026-12-05"}], "outside the observed"),
+        ):
+            with self.subTest(reason=reason), self.assertRaisesRegex(ValueError, reason):
+                summarize({**snapshot, "access_blocks": records})
+
     def test_cumulative_counts_people_once_across_verified_cohorts(self):
         first = {"as_of": "2026-12-12", "cohort": "first", "candidate_commit": "a" * 40, "trials": [
             {"id": "P-0001", "channel": "github", "started_on": "2026-12-01", "finished_on": "2026-12-10"},
