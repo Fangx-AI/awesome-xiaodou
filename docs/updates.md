@@ -4,6 +4,11 @@
 
 - 用实测余量重算补货时间。原提醒存在时先预览改期，原状态不清时先问用户核对，避免重复提醒。 [猫粮补货玩法](../playbooks/05-restock.md)
 
+## v2.4.1 · 信息够了，先给能做的一步
+
+- 考试复习按剩余周数和薄弱题型先排首周。读书直接从当前进度开始。求职跟进先按已投数量给表，未知字段可后补。 [在线选计划](../skills/xiaodou-skill/references/life-plans/README.md#选一个你想做的计划)
+- 同步更新在线开局和两个下载包。 [发布页](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.4.1)
+
 ## v2.4.0 · 30 个计划，各有一句开局
 
 - 跑步、备餐、考试复习、求职、搬家等 30 个计划都可以单独复制到小豆。 [在线选计划](../skills/xiaodou-skill/references/life-plans/README.md#选一个你想做的计划)

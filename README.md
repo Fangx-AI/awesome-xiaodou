@@ -134,7 +134,7 @@
 - **财务与生活**　做月度预算、准备旅行、倒排搬家。 [复制生活开局](prompts/life-plans/household.txt)
 - **习惯与关系**　做起拖着的事、准备重要沟通、安排家庭分工。 [复制习惯开局](prompts/life-plans/habits.txt)
 
-[逐个复制 30 个计划开局](skills/xiaodou-skill/references/life-plans/README.md#选一个你想做的计划) · [复制计划整包](prompts/xiaodou-life-plans.txt) · [下载小豆 App 开局包](https://github.com/Fangx-AI/awesome-xiaodou/releases/download/skill-v2.4.0/xiaodou-app-starters.zip)
+[逐个复制 30 个计划开局](skills/xiaodou-skill/references/life-plans/README.md#选一个你想做的计划) · [复制计划整包](prompts/xiaodou-life-plans.txt) · [下载小豆 App 开局包](https://github.com/Fangx-AI/awesome-xiaodou/releases/download/skill-v2.4.1/xiaodou-app-starters.zip)
 
 | 你想做什么 | 可以这样开口 |
 | --- | --- |
@@ -193,7 +193,7 @@
 <details>
 <summary>下载、试用记录与建设计划</summary>
 
-- [下载 v2.4.0 · 30 条可单独发送的开局](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.4.0) · [S0 候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot)
+- [下载 v2.4.1 · 30 条可单独发送的开局](https://github.com/Fangx-AI/awesome-xiaodou/releases/tag/skill-v2.4.1) · [S0 候选构建](https://github.com/Fangx-AI/awesome-xiaodou/actions/workflows/check-skill.yml?query=branch%3Acodex%2Fs0-pilot)
 - [试用案例](docs/prompt-quality.md) · [提示词出处](skills/xiaodou-skill/references/prompt-sources.md) · [建设计划](docs/roadmap.md)
 - [玩法雷达](docs/radar.md) · [作者分享](docs/community.md) · [失败记录](docs/failures.md) · [来源登记](docs/source-ledger.md)
 
