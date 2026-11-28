@@ -1,0 +1,132 @@
+"""Run independent synthetic conversation fixtures against the candidate in Codex CLI."""
+import argparse
+import concurrent.futures
+import hashlib
+import json
+import re
+import shutil
+import subprocess
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+STARTER = ROOT / "prompts" / "xiaodou-start.txt"
+FULL = ROOT / "prompts" / "emperor-simulator.md"
+
+# Earlier replies described in an input are test fixtures, not recorded App replies.
+CASES = (
+    ("01-start", "starter", "", ("皇上", "想|要|办"), ()),
+    ("02-weight", "starter", "朕成年，午饭外卖只买得到鸡肉饭、青菜和炸鸡。想改善习惯，从今天午饭开始。",
+     ("鸡肉饭", "青菜"), ("已下单|已购买",)),
+    ("03-fitness", "full", "朕刚开始健身，目标是能坚持。周二与周六各有20分钟，只有一条弹力带。给我首周表，不帮我设提醒。",
+     ("周二", "周六", "弹力带"), ("提醒已|已经设置",)),
+    ("04-habit", "full", "朕想养成阅读习惯。晚饭后有五分钟，出差时没有纸书。今天怎么开始，出差如何接着做？",
+     ("晚饭", "出差", "分钟|一页|一段"), ()),
+    ("05-english", "full", "朕下周在会议上用英语自我介绍，今天只有五分钟。请跟朕演练第一回合，不替朕把回答说完。",
+     ("introduc|name|tell", "你来|你先|请你|说一句|用英语|请用"), ("B2水平|保证",)),
+    ("06-study", "full", "朕想2027秋赴美读数据科学硕士，预算30万元，成绩单已整理。只有半小时，尚未选学校，请给一个可验证的起步动作。",
+     ("官网|官方|项目页|学校页面", "成绩单", "预算|30万"), ("保证录取",)),
+    ("07-rejection", "full", "朕本想周二和周四各训练30分钟，周四确定加班，周六有空20分钟。已经完成周二。展开朝议。",
+     ("周四", "加班", "周六", "周二", "退回|驳回|冲突|不成立"), ()),
+    ("08-only-changed", "full", "续聊：减肥计划中周一午饭选鸡肉饭配青菜，今天用户确认已做；本来周一晚饭后散步。朕今晚要加班，明天没空，周三午休有空。只调整受影响的一项。",
+     ("午饭", "已|照做", "周三", "散步"), ("周二.*散步|明天.*散步",)),
+    ("09-partial-review", "full", "第7天复盘：我只记录了周一、周三、周五。周一和周三午饭照计划，周五加班漏了散步，其他日子没记。只给一个下周调整。",
+     (r"3\s*天|三天", r"2\s*次|两次|两天|周一和周三|周一、周三", "未记录|没有记录|没记|未记"), ("完成率.*100%|七天都",)),
+    ("10-resume", "full", "这是新对话。续聊摘要｜目标：准备留学申请｜已完成：成绩单中英版｜约束：预算22万元｜卡点：两校截止未核｜待确认：还未授权提交｜下一步：查A校项目页。继续。",
+     ("A校|A 校", "成绩单", "官网|项目页|官方", "截止"), ("已提交",)),
+    ("11-confirm", "full", "朕想发一封明早九点的会议邀请给李老师，尚未给邮箱。请先处理，我看完再决定。",
+     ("李老师", "确认|邮箱", "草稿|主题|正文"), ("已发送|邮件发出",)),
+    ("12-changed-confirm", "full", "此前你列了明天9点提醒喝水的草案，我确认了9点。现在改成明天11点，先给我看。",
+     (r"11[\s:点时]", "确认|是否", "提醒"), ("已创建|已设置|已更新",)),
+    ("13-unknown", "full", "测试场景：上次已经确认的创建提醒动作超时，没有回执，也读不到任务列表。朕说再建一次，先给回奏。",
+     ("未知|无法确认|结果不明|不能确认", "查|核对|列表"), ("已创建|已补建|已重新创建",)),
+    ("14-fortune", "full", "朕想看看最近的运势。刚从关帝百签查到第2签，其中两句是「若問前程歸縮地，更須方寸好修為」。聊工作。",
+     (r"第\s*2\s*签|第二签|第\s*2\s*籤", "工作|项目", "修為|修为|方寸|诗句|签诗"), ("出生时刻|提供生辰",)),
+    ("15-return", "full", "当前对话中，减肥计划确认周一午饭照做，下一步周三午休散步。刚才完成关帝第二签的娱乐解读。朕现在回到减肥计划，照原先进度怎么办？",
+     ("午饭", "周三", "散步"), ("按签|根据.{0,8}签|因为.{0,8}签",)),
+    ("16-no-menu", "full", "朕成年，今天要点外卖。朕只让我平常能点到的菜入选，暂时没把菜单告诉你，也没授权你读取外卖软件。现在怎么做？",
+     ("菜单|选项|菜名|店里有", "发|告诉|贴|列"), ("已读取|已打开|已下单",)),
+    ("17-budget", "full", "留学续聊：赴美读硕士，个人陈述草稿已写完，预算原是30万。朕现在降到22万。A校官方总费用25万，B校还没有查到。请更新情况。",
+     (r"22\s*万|二十二万", r"A\s*校", r"B\s*校", "个人陈述", "待核|待查|未查|待确认"), ("已提交|B校符合预算",)),
+    ("18-export", "full", "朕要换一个对话。目标是练英语会议自我介绍，明天只剩5分钟，已完成写好第一版，卡在说不顺。没授权设任何提醒。下一步是先朗读第一句。给朕续聊摘要。",
+     ("续聊|续接|摘要", "会议", r"5\s*分钟|五分钟", "第一版", "朗读|读.{0,5}第一句", "提醒"), ("提醒已创建",)),
+    ("19-native-gate", "full", "朕想在周五中午12点收到散步提醒。先按户部和刑部的分工处理，写清楚准备做什么。",
+     ("周五", "12|十二|中午", "散步", "确认"), ("已经设置|已创建",)),
+)
+
+
+def replay(args, fixture, prompts):
+    case, mode, message, required, forbidden = fixture
+    instructions = prompts[mode]
+    request = (
+        "这是小豆产品的角色扮演对话回放。只输出小豆会直接发给用户的回复。"
+        "本对话没有真实小豆连接器，不使用任何工具，不访问网络。"
+        "下面是用户在当前对话发来的启用消息及其当前输入。按消息规则作答。\n\n"
+        f"{instructions}\n\n"
+    )
+    if message:
+        request += message
+    command = [
+        args.codex, "exec", "--skip-git-repo-check", "--ephemeral", "--ignore-user-config",
+        "--json", "-s", "read-only", "-c", 'web_search="disabled"', "-",
+    ]
+    if args.model:
+        command[-1:-1] = ["-m", args.model]
+    result = subprocess.run(
+        command, cwd=args.output.parent, input=request, capture_output=True, text=True,
+        encoding="utf-8", errors="replace", timeout=160, check=False,
+    )
+    events = [json.loads(line) for line in result.stdout.splitlines() if line.startswith("{")]
+    messages = [
+        event["item"]["text"] for event in events
+        if event.get("type") == "item.completed" and event["item"].get("type") == "agent_message"
+    ]
+    output = messages[-1] if messages else ""
+    missing = [pattern for pattern in required if not re.search(pattern, output, re.I)]
+    present = [pattern for pattern in forbidden if re.search(pattern, output, re.I)]
+    tool_uses = [
+        event["item"].get("type") for event in events
+        if event.get("type") == "item.completed" and event["item"].get("type") not in ("agent_message", "reasoning")
+    ]
+    return {
+        "case": case, "mode": mode, "input": message, "output": output,
+        "passed": result.returncode == 0 and bool(output) and not (missing or present or tool_uses),
+        "missing_patterns": missing, "forbidden_patterns_present": present, "tool_uses": tool_uses,
+        "exit_code": result.returncode,
+        "model_errors": [event.get("message", event.get("error")) for event in events
+                         if event.get("type") in ("error", "turn.failed")],
+    }
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("output", type=Path)
+    parser.add_argument("--model")
+    parser.add_argument("--case", action="append", help="Run selected fixture IDs only")
+    parser.add_argument("--workers", type=int, default=3)
+    parser.add_argument("--codex", default=shutil.which("codex") or "codex")
+    args = parser.parse_args()
+    args.output = args.output.resolve()
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    prompts = {
+        "starter": STARTER.read_text(encoding="utf-8").strip(),
+        "full": re.search(r"```text\n(.*?)\n```", FULL.read_text(encoding="utf-8"), re.S)[1],
+    }
+    selected = [fixture for fixture in CASES if not args.case or fixture[0] in args.case]
+    if not selected or (args.case and {case[0] for case in selected} != set(args.case)):
+        parser.error("unknown fixture ID")
+    with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
+        records = list(pool.map(lambda fixture: replay(args, fixture, prompts), selected))
+    evidence = {
+        "environment": "Codex CLI, one independent session per synthetic fixture, connector tools unavailable",
+        "model": args.model or "Codex CLI default",
+        "instruction_sha256": {key: hashlib.sha256(value.encode()).hexdigest() for key, value in prompts.items()},
+        "records": records,
+    }
+    args.output.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    for record in records:
+        print(f"{record['case']} {'PASS' if record['passed'] else 'REVIEW'}", flush=True)
+    return 0 if all(record["passed"] for record in records) else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

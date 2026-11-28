@@ -1,1 +1,5 @@
 data/playbooks.csv text eol=lf
+
+# Keep these vendored documents byte-for-byte as provided upstream.
+skills/xiaodou-skill/vendor/ziwei-bazi/README.md whitespace=-blank-at-eof
+skills/xiaodou-skill/vendor/ziwei-bazi/references/quality-audit-checklist.md whitespace=-blank-at-eol

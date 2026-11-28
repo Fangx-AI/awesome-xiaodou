@@ -23,3 +23,12 @@ jobs:
           python scripts/check_release.py "$RUNNER_TEMP/xiaodou/xiaodou-skill.zip"
           git diff --exit-code
           test -z "$(git status --porcelain)"
+      - name: Test the packed divination tools
+        run: |
+          python -m zipfile -e "$RUNNER_TEMP/xiaodou/xiaodou-skill.zip" "$RUNNER_TEMP/xiaodou/extracted"
+          skill="$RUNNER_TEMP/xiaodou/extracted/xiaodou-skill"
+          for suite in "$skill"/vendor/ziwei-bazi/tests/test_*.py; do
+            python -B "$suite"
+          done
+          node "$skill/scripts/birth-chart/fortune.cjs" 2 > "$RUNNER_TEMP/xiaodou/lot.json"
+          python -c 'import json, sys; lot = json.load(open(sys.argv[1], encoding="utf-8")); assert lot["number"] == 2 and len(lot["verse"]) == 4' "$RUNNER_TEMP/xiaodou/lot.json"
