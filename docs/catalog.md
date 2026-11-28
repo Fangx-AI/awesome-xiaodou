@@ -24,7 +24,7 @@
 | 11 | [聊天截图变成日程](../playbooks/11-screenshot-calendar.md) | 作者体验分享 | S5 |
 | 18 | [在百度网盘找文件](../playbooks/18-netdisk-search.md) | 媒体功能描述 | S6 |
 | 19 | [将行情数据整理为 Excel](../playbooks/19-wind-excel.md) | 媒体体验 | S9 |
-| 23 | [纠正个人记忆与偏好](../playbooks/23-memory-correction.md) | 媒体功能描述 | S7, S15 |
+| 23 | [纠正个人记忆与偏好](../playbooks/23-memory-correction.md) | 媒体记录了纠正宠物名字及记忆摘要入口，跨对话结果待核 | S7, S15, S28 |
 | 27 | [搜索和修改飞书文档](../playbooks/27-feishu-docs.md) | 作者功能体验描述（聚合页） | S10 |
 | 29 | [查询自己的 GitHub 信息](../playbooks/29-github-info.md) | 作者自述，缺执行细节 | S12 |
 | 30 | [将一件事拆成多阶段提醒](../playbooks/30-staged-reminders.md) | 媒体任务创建记录 | S13 |

@@ -258,10 +258,11 @@
     "title": "纠正个人记忆与偏好",
     "path": "playbooks/23-memory-correction.md",
     "category": "办公与个人管理",
-    "evidence": "媒体功能描述",
+    "evidence": "媒体记录了纠正宠物名字及记忆摘要入口，跨对话结果待核",
     "sources": [
       "S7",
-      "S15"
+      "S15",
+      "S28"
     ],
     "self_tested": false
   },
