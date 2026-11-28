@@ -1,24 +1,24 @@
-name: 首页可读性反馈
-description: 第一次打开项目首页时，记下最先想点的位置和看不懂的地方
-title: "[S0 冷读] "
+name: 第一次看首页
+description: 用两句话说说你刚才怎么理解、实际点了哪里
+title: "第一次看小豆皇帝模拟器首页"
 labels: [cold-read]
 body:
   - type: markdown
     attributes:
       value: |
-        请先读完首页再填，按你最初的理解来答。这份反馈会公开显示你的 GitHub 账号。请省略个人资料和截图。
+        按第一次看到时的理解来答。找到了、点错了、中途停下了，都可以写。留言会公开显示你的 GitHub 账号。请省略个人资料和截图。
   - type: textarea
     id: first-impression
     attributes:
-      label: 第一次看完，你怎么理解
+      label: 你第一次看到时怎么理解
       description: 用自己的话说说它是什么、在哪里用。如果要发消息或设置提醒，你觉得会怎么发生？
     validations:
       required: true
   - type: textarea
     id: find-start
     attributes:
-      label: 你会点哪里开始
-      description: 写下最先想点的文字、实际点到哪里，以及哪里卡住。找不到入口也可以写。
+      label: 你当时想点哪里，实际点了哪里
+      description: 写下你点过的文字和接下来看到什么。中途停下的话，告诉我们停在哪。
     validations:
       required: true
   - type: input

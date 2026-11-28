@@ -1,9 +1,15 @@
-# 第一次看首页
+# 第一次看首页，你会点哪里？
 
-第一次见到小豆皇帝模拟器？用几分钟告诉我们，你觉得它是做什么的、会从哪里开始。用浏览器看首页就可以参加。
+如果你刚从首页过来，可以直接说说刚才的感受。找到了、点错了、中途停下了，都值得记录。用手机或电脑浏览器就能参加。
 
-1. 打开观察者给的链接，或[打开 GitHub 首页](https://github.com/Fangx-AI/awesome-xiaodou#readme)。按习惯读，记下第一个想点的位置，可以点过去看看。
-2. 用自己的话说说它是什么、在哪里用、你会怎样开始。碰到发消息或设置提醒时，你觉得会怎么发生？
-3. 把最先想点的位置和卡住的地方告诉邀请你的人，也可以[在 GitHub 自愿留言](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=cold-read.yml)。找不到入口也可以回报。请保留你第一次读到时的理解。
+两句话就够，可以直接发给邀请你的人。
 
-GitHub 留言会公开显示你的账号。写下设备、页面上的字句和自己的理解就够了。 [观察者记录方法](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/pilot-observer.md#冷读-12-人)
+> 我一开始以为它是＿＿，会在＿＿用。碰到发消息或设提醒，我以为会＿＿。
+>
+> 我原本想点＿＿，实际点了＿＿，后来＿＿。
+
+也可以[在 GitHub 留下这两句话](https://github.com/Fangx-AI/awesome-xiaodou/issues/new?template=cold-read.yml)。提交需登录，留言会公开显示你的账号。请省略个人资料和截图。
+
+如果是第一次直接打开这页，请先按平时的方式看邀请者发给你的链接，或[打开项目首页](https://github.com/Fangx-AI/awesome-xiaodou#readme)，再写下第一次的理解和实际点过的位置。
+
+[观察者记录方法](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/pilot-observer.md#冷读-12-人)
