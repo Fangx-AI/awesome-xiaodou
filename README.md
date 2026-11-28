@@ -33,7 +33,7 @@
 
 中书问目标和现状，门下核对日程和限制，尚书交四周路线和首周安排。
 
-第 7 天问「朕这周做得怎么样？」小豆按实际回报找出能坚持的做法，给下周留一个调整。 [看从立案到改期的演示](docs/weight-first-week.md) · [真机记录](docs/field-tests/README.md)
+第 7 天问「朕这周做得怎么样？」小豆按实际回报找出能坚持的做法，给下周留一个调整。 [看完整演示](docs/weight-first-week.md) · [下载月计划分享图](assets/xiaodou-monthly-plan-share.png) · [真机记录](docs/field-tests/README.md)
 
 | 你想做什么 | 可以这样开口 |
 | --- | --- |
