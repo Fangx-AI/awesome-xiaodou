@@ -2,7 +2,7 @@
 
 [返回首页](../README.md) · [玩法目录](../README.md#玩法目录) · [检索记录](research-log.md)
 
-整理日期：2026-11-24。这里优先给出作者和阅读入口，方便直接看别人的整理。**第三方声称实测，不等于本项目亲自复现。** 同一文章的转载只计算一个来源；我们不转载原文全文或截图。
+最近核对于 2026 年 11 月 28 日。按作者和场景查找体验记录。同一文章的转载合并在同一个来源下。
 
 ## 先看这些
 
@@ -14,6 +14,7 @@
 | [密度新闻 · 电话订海底捞](https://weibo.com/2/detail/5368859840217249) | 媒体实测帖 / 视频入口 | 具体订位记录 | [电话咨询与订位](../playbooks/04-restaurant-call.md) |
 | [华尔街见闻·全天候科技](https://wallstreetcn.com/articles/3786572) | 媒体体验 | 数据导出及历史订单查询 | [Wind 转 Excel](../playbooks/19-wind-excel.md)、[已购券查价](../playbooks/20-order-price-check.md) |
 | [怪哥 · 人人都是产品经理](https://www.woshipm.com/ai/6499154.html) | 产品介绍 | 理解界面和常见场景 | [行业早报](../playbooks/07-daily-brief.md) |
+| [字母榜 · 人人都是产品经理](https://www.woshipm.com/evaluating/6500484.html) | 作者体验 | 记录了游戏消息后续推送，也记录了多条任务消息交错的情况 | [追踪游戏和赛事](../playbooks/13-interest-updates.md) |
 
 表中“媒体体验”只描述文章性质；正文里的功能介绍、看到模板、建成任务、实际触发，是不同证据层级。请查看每条玩法中的具体说明。
 

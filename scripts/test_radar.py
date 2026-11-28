@@ -11,6 +11,13 @@ import collect_radar as radar
 
 
 class RadarTests(unittest.TestCase):
+    def test_invite_code_boards_are_removed_without_hiding_experiences(self):
+        self.assertIsNone(radar.classify_headline("小豆邀请码抓码站（社区收集）"))
+        self.assertIsNone(radar.classify_headline("求小豆邀请码"))
+        self.assertEqual(radar.classify_headline("小豆首发实测：一码难求但玩法不少"), "体验与玩法")
+        self.assertEqual(radar.classify_headline("体验小豆App：支持主动AI"), "体验与玩法")
+        self.assertEqual(radar.classify_headline("小豆 · 官方邀请开通说明"), "其他公开线索")
+
     def test_empty_results_distinguish_failed_sources(self):
         now = datetime.now(radar.CHINA)
         clean = radar.output_page([], now, [])
