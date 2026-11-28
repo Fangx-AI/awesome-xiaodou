@@ -7,6 +7,8 @@ from pathlib import Path
 
 READ_ANSWERS = ("identity", "where", "how", "confirmation")
 CHANGE_SCORES = ("preserved", "affected_only", "actionable")
+COMPARISON_ARMS = ("regular", "emperor")
+COMPARISON_FIELDS = ("first_action", "preserved", "affected_only", "replan_actionable")
 
 
 def check_keys(value, allowed, label):
@@ -46,8 +48,42 @@ def ratio(numerator, denominator):
     }
 
 
+def summarize_comparisons(records):
+    check_ids(records, "comparisons")
+    arm_counts = dict.fromkeys(COMPARISON_ARMS, 0)
+    outcomes = {(True, True): "both", (True, False): "regular_only",
+                (False, True): "emperor_only", (False, False): "neither"}
+    scores = {
+        mode: {"pairs": 0, "emperor_only": 0, "regular_only": 0, "both": 0, "neither": 0}
+        for mode in ("first_action", "replan")
+    }
+    for item in records:
+        check_keys(item, ("id", "order", *COMPARISON_ARMS), "comparison")
+        if item.get("order") not in COMPARISON_ARMS:
+            raise ValueError("comparison order must name the first arm: regular or emperor")
+        arm_counts[item["order"]] += 1
+        arms = [item.get(arm, {}) for arm in COMPARISON_ARMS]
+        for result in arms:
+            check_flags(result, COMPARISON_FIELDS, "comparison arm")
+
+        for name, fields in (("first_action", ("first_action",)), ("replan", COMPARISON_FIELDS[1:])):
+            if not all(field in arm for arm in arms for field in fields):
+                continue
+            regular, emperor = (all(arm[field] for field in fields) for arm in arms)
+            result = scores[name]
+            result["pairs"] += 1
+            result[outcomes[regular, emperor]] += 1
+
+    for values in scores.values():
+        count = values["pairs"]
+        values["unscored_pairs"] = len(records) - count
+        delta = values["emperor_only"] - values["regular_only"]
+        values["emperor_minus_regular_pp"] = round(100 * delta / count, 1) if count else None
+    return {"enrolled": len(records), "order_counts": arm_counts, "outcomes": scores}
+
+
 def summarize(data):
-    check_keys(data, ("as_of", "cold_reads", "trials"), "report")
+    check_keys(data, ("as_of", "cold_reads", "trials", "comparisons"), "report")
     as_of = read_day(data.get("as_of"), "as_of")
     reads, trials = data.get("cold_reads", []), data.get("trials", [])
     check_ids(reads, "cold_reads")
@@ -106,6 +142,7 @@ def summarize(data):
         "pending_seven_day_window": len(trials) - seven_day_eligible,
         "replanning": ratio(good_changes, changes),
         "unprompted_return": ratio(returned, return_eligible),
+        "matched_comparison": summarize_comparisons(data.get("comparisons", [])),
         "thresholds": {
             "cold_read": len(reads) >= 12 and 12 * understood >= 10 * len(reads),
             "first_action": len(trials) >= 100 and 100 * ready >= 80 * len(trials),
