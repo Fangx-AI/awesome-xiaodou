@@ -28,7 +28,7 @@
 
 > 有些计划写得很完整，第一周却不知道从哪开始。试试「小豆皇帝模拟器」：用一句话说你想改善什么，三省六部帮你拟方案、查条件、安排首周。减肥、健身、读书、练英语都可以。
 
-[带真实目标试七天](https://github.com/Fangx-AI/awesome-xiaodou/blob/codex/s0-pilot/docs/field-tests/seven-day.md)
+[带真实目标试七天](https://github.com/Fangx-AI/awesome-xiaodou/blob/main/docs/field-tests/seven-day.md)
 
 **给第一次看到项目、还没开通小豆的人**
 
